@@ -1,0 +1,14 @@
+WONDERWAKE 0.2.0 — HOMEPORT
+
+This ZIP updates the EXISTING wonderwake repository ONLY.
+DO NOT upload it to -ikes-wood-signs. That repository has the separate Homeport72.zip fleet update.
+
+Extract; upload every file inside the single Wonderwake02 folder to wonderwake repository ROOT. Replace matches and retain everything else. Keep the existing Pages configuration.
+
+No learner data is stored in this source ZIP. Existing database name, profile keys, progress format, curriculum, drawings and saving code are unchanged. Do not clear Safari data.
+
+After deployment refresh Wonderwake once. Homeport entrance asks you to choose an explorer; no learner is chosen automatically. Add learner opens the folded grown-up tools. Existing profiles remain available in that browser.
+
+Grown-ups includes Black Flag fleet identity, an Engine link (separate account checks), and a download of PUBLIC ship-release/capability notes. That public passport does not include learner records. PRIVATE learner progress exports remain unencrypted and must not be published.
+
+This is a family preview, not complete K–12 curriculum, not authenticated profiles, not cloud sync or a server-commissioned production vessel. Use one active game tab per device. Multiple repository paths on the same host are not separate browser origins.

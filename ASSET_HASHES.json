@@ -1,0 +1,59 @@
+{
+  "schema": "wonderwake-asset-inventory-v1",
+  "version": "0.2.0",
+  "files": {
+    "CURRICULUM_AND_SAFETY.md": {
+      "bytes": 6123,
+      "sha256": "4fd5a0a430957a108605f26af67f2decd2612bb8b94af3b65a3f015d8830e7e7"
+    },
+    "LEARNERS.md": {
+      "bytes": 2949,
+      "sha256": "981faf5bdc6860fdb77235e95a90544255e268ef9871c31fa4797952d19b86e4"
+    },
+    "README.md": {
+      "bytes": 8127,
+      "sha256": "3c28af2388f1f51f7811cd4a0b717de51aaaa7a08353d4e90df78762de549ec7"
+    },
+    "START_HERE.txt": {
+      "bytes": 1313,
+      "sha256": "c17579bec51c7699594fe9103d561206c19f15bc5188b9c90d4bfa42b4c10985"
+    },
+    "WONDERWAKE_VESSEL.json": {
+      "bytes": 1706,
+      "sha256": "d19b46fd0aa753308bfec240889b88030822a8cd2f15bb06d6d100595f769c5a"
+    },
+    "index.html": {
+      "bytes": 2831,
+      "sha256": "10c2409f7b59d7908cc9f55943d79f8d4c8d003518df4c7df4ede279ad48ec61"
+    },
+    "wonderwake.css": {
+      "bytes": 23988,
+      "sha256": "f260c2b9f83f1ccf02400d2714cea8818b6cdb95a82d9c8f30256025dea714f0"
+    },
+    "wonderwake_app.js": {
+      "bytes": 54259,
+      "sha256": "51fd71c5f0e5c12f958d609986a72ab24d8bd3861ccb446e0cd69e0fc6479fa5"
+    },
+    "wonderwake_content.js": {
+      "bytes": 21059,
+      "sha256": "0b0c2b6154d12ff670d33f092ea91db37d4339fc59d6fe0a07c06f4616925145"
+    },
+    "wonderwake_core.js": {
+      "bytes": 6018,
+      "sha256": "bfb901b94257249e5c15d9dd8111e3c16e332c88a48f405980d8330849a07441"
+    },
+    "wonderwake_fleet.js": {
+      "bytes": 1545,
+      "sha256": "afa582d2037fabda3a6bb4489f58c1233be37b28be8d19f30a766ee3dc736503"
+    },
+    "wonderwake_store.js": {
+      "bytes": 4660,
+      "sha256": "d7534a396b3c531e7da0cb47f1d2a9850feb9f24cf6dcf0fd27b4ad7c49be931"
+    },
+    "wonderwake_world.js": {
+      "bytes": 12561,
+      "sha256": "14a6d57444f92f1af8825df59601f97cbc2e19a7f56b29662d71bd0bfdded6bc"
+    }
+  },
+  "integrity_scope": "build inventory, not in-browser signed verification"
+}
