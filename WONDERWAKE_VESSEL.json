@@ -2,8 +2,8 @@
   "schema": "blackflag-draft-vessel-descriptor-v1",
   "project_key": "wonderwake",
   "display_name": "Wonderwake",
-  "release": "Homeport",
-  "version": "0.2.0",
+  "release": "Fernlight",
+  "version": "0.3.0",
   "lifecycle": "draft_family_preview",
   "commissioned_on_server": false,
   "fleet_core_membership_changed": false,
@@ -58,5 +58,14 @@
     "no_learner_transfer": true,
     "not_server_commissioning": true,
     "public_passport": "manual, static release metadata only"
+  },
+  "creative_exchange": {
+    "format": "restricted SVG subset to learner-owned PNG",
+    "source_limit_bytes": 262144,
+    "image_max_pixels": 512,
+    "upstream_runtime_embedded": false,
+    "native_vectorcraft_roundtrip_verified": false,
+    "artcraft_services_included": false,
+    "default_dinosaur": "Fern the triceratops"
   }
 }

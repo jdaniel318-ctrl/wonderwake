@@ -1,14 +1,23 @@
-WONDERWAKE 0.2.0 — HOMEPORT
+WONDERWAKE 0.3.0 — FERNLIGHT
 
-This ZIP updates the EXISTING wonderwake repository ONLY.
-DO NOT upload it to -ikes-wood-signs. That repository has the separate Homeport72.zip fleet update.
+UPLOAD ONLY TO YOUR EXISTING wonderwake REPOSITORY.
+Do NOT upload to -ikes-wood-signs. Black Flag stays on Homeport 8.8.20.72.
+No additional fleet ZIP or GitHub Pages changes are required.
 
-Extract; upload every file inside the single Wonderwake02 folder to wonderwake repository ROOT. Replace matches and retain everything else. Keep the existing Pages configuration.
+1. Extract Wonderwake03.zip and open its single folder.
+2. Upload ALL files INSIDE to the wonderwake repository root. Replace matching files; keep everything else. Commit.
+3. Refresh Wonderwake once. Select your existing learner, then Choose my explorer → Fern the triceratops. No need to create a replacement learner.
 
-No learner data is stored in this source ZIP. Existing database name, profile keys, progress format, curriculum, drawings and saving code are unchanged. Do not clear Safari data.
+Existing IDs, database, academic levels and artwork are retained. Changing character does not reset learning. Up to 24 local learners remain supported. Do not clear Safari data.
 
-After deployment refresh Wonderwake once. Homeport entrance asks you to choose an explorer; no learner is chosen automatically. Add learner opens the folded grown-up tools. Existing profiles remain available in that browser.
+NEW: Fern dinosaur; character picker; Grown-ups → Artwork workshop. Download the original Fern SVG, edit it in an SVG editor such as VectorCraft, and choose the exported SVG to preview. Preview first, then approve for that learner. Only a bounded PNG is stored. Use artwork you own or may use. Native VectorCraft roundtrip has NOT been verified in this environment.
 
-Grown-ups includes Black Flag fleet identity, an Engine link (separate account checks), and a download of PUBLIC ship-release/capability notes. That public passport does not include learner records. PRIVATE learner progress exports remain unencrypted and must not be published.
+The editable SVG remains your separate source file. Imported illustration can also be placed using My art in Maker Grove. Replacing it updates THAT learner's existing My art stamps. Other learners are unchanged.
 
-This is a family preview, not complete K–12 curriculum, not authenticated profiles, not cloud sync or a server-commissioned production vessel. Use one active game tab per device. Multiple repository paths on the same host are not separate browser origins.
+Finger / Pencil: one drawing pointer at a time. After a pen stroke, touch is ignored until Enable finger drawing is tapped. This is a software input guard, not tested native iPad palm rejection. No handwriting grading.
+
+No ArtCraft backend, professional editor, third-party code/assets, cloud account, analytics, or microphone access was added. No expanded K–12 coverage is claimed.
+
+Saving is LOCAL. Keep private learner exports. They include the new illustration and are NOT encrypted. Never upload them to GitHub or this chat.
+
+CAUTION: old 0.2 software cannot read new dinosaur/custom-art records. Do not downgrade after using the new features. Keep a 0.3 source backup and private progress exports. No automatic storage migration or deletion occurs in this update.
