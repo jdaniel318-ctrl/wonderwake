@@ -1,3 +1,7 @@
+# Wonderwake04 — Colorwake
+
+Start with START_HERE.txt. Release notes: COLORWAKE.md. Verification: VERIFY.txt. The following is retained 0.3 baseline documentation; 0.4 additions take precedence.
+
 # Wonderwake 0.3.0 — Fernlight
 
 An independent Black Flag learning ship. Update only the existing `wonderwake` repository with **Wonderwake03.zip**. Keep Black Flag's `-ikes-wood-signs` repository unchanged. `START_HERE.txt` is the current upload guide.

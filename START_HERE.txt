@@ -1,23 +1,25 @@
-WONDERWAKE 0.3.0 — FERNLIGHT
+WONDERWAKE04 — COLORWAKE · 0.4.0
 
-UPLOAD ONLY TO YOUR EXISTING wonderwake REPOSITORY.
-Do NOT upload to -ikes-wood-signs. Black Flag stays on Homeport 8.8.20.72.
-No additional fleet ZIP or GitHub Pages changes are required.
+UPLOAD ONLY TO THE EXISTING wonderwake REPOSITORY.
 
-1. Extract Wonderwake03.zip and open its single folder.
-2. Upload ALL files INSIDE to the wonderwake repository root. Replace matching files; keep everything else. Commit.
-3. Refresh Wonderwake once. Select your existing learner, then Choose my explorer → Fern the triceratops. No need to create a replacement learner.
+1. Keep a progress copy for each learner using the current site's export button.
+2. Unzip Wonderwake04-Colorwake.zip. Open its single Wonderwake04-Colorwake folder. Upload all files INSIDE that folder to the wonderwake repository root, replacing the matching files. Do not upload the enclosing folder itself. Leave GitHub Pages on main / (root).
+3. After Pages finishes, open the existing Wonderwake address and refresh once. The footer must say COLORWAKE · FAMILY PREVIEW 0.4. Choose your existing learner. Tap Paint a picture, make a drawing, and Save to my gallery. Return to the islands and open My picture gallery.
 
-Existing IDs, database, academic levels and artwork are retained. Changing character does not reset learning. Up to 24 local learners remain supported. Do not clear Safari data.
+DO NOT CLEAR WEBSITE DATA. Existing learners use the same database and IDs. Do not change the hosted address or repository for this update if you want existing device saves to remain available.
 
-NEW: Fern dinosaur; character picker; Grown-ups → Artwork workshop. Download the original Fern SVG, edit it in an SVG editor such as VectorCraft, and choose the exported SVG to preview. Preview first, then approve for that learner. Only a bounded PNG is stored. Use artwork you own or may use. Native VectorCraft roundtrip has NOT been verified in this environment.
+WHAT'S NEW
+- Paint with finger, Pencil or mouse; six colors including an eraser, four brush sizes, undo, clear and PNG download.
+- Up to 12 saved pictures per learner, with gallery downloads and explicit removal. New progress exports include the gallery.
+- Draw this answer in math and spelling. Counting, addition within 10 and subtraction within 10 accept a countable dot picture. For zero, leave the page blank. Other math skills offer a sketchpad alongside normal answer choices.
+- Handwritten spelling uses reveal-and-compare guided practice, not automatic handwriting recognition or independent mastery evidence.
+- Completed expeditions offer a prize picture studio. Painting is always available from the islands; no reward gate.
+- Moving mission scenery, floating stars and completion sparkles; reduced-motion and Motion off respected.
+- Comparison questions offer exactly the two numbers being compared, with larger numbers on either side.
 
-The editable SVG remains your separate source file. Imported illustration can also be placed using My art in Maker Grove. Replacing it updates THAT learner's existing My art stamps. Other learners are unchanged.
+DEVICE CHECK STILL NEEDED
+Automated results and limits are in VERIFY.txt. Actual Safari, Apple Pencil and iOS Files downloads require Captain's field test. One active tab per device. Draft paper is temporary until Save to my gallery succeeds. Look for the saved status before leaving.
 
-Finger / Pencil: one drawing pointer at a time. After a pen stroke, touch is ignored until Enable finger drawing is tapped. This is a software input guard, not tested native iPad palm rejection. No handwriting grading.
+Gallery progress exports require this version or later. Original 0.3 progress exports remain importable. The ZIP contains the previous Wonderwake03.zip as a rollback backup under recovery/; this backup is application files, not the learners' device records. Before rollback, export updated progress; older builds do not preserve the new gallery field.
 
-No ArtCraft backend, professional editor, third-party code/assets, cloud account, analytics, or microphone access was added. No expanded K–12 coverage is claimed.
-
-Saving is LOCAL. Keep private learner exports. They include the new illustration and are NOT encrypted. Never upload them to GitHub or this chat.
-
-CAUTION: old 0.2 software cannot read new dinosaur/custom-art records. Do not downgrade after using the new features. Keep a 0.3 source backup and private progress exports. No automatic storage migration or deletion occurs in this update.
+Only Wonderwake files are included. Nothing is deployed by this ZIP.

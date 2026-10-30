@@ -1,0 +1,38 @@
+WONDERWAKE04 — COLORWAKE · VERIFICATION
+
+Automated verification uses synthetic learners only, never real device records.
+
+Unit verification: 10 tests passing, zero failures.
+- 1,000 comparison seeds: exactly the two operands, one correct choice, larger values on either side.
+- 100 seeds across all 30 math skills: exactly one mathematically correct choice.
+- All spelling banks: generated tiles contain the word's letters.
+- Old profile shape retained; new galleries round-trip through validation.
+- Malformed gallery colors, sizes, coordinates, titles and excess pictures/strokes/points rejected.
+- Guided handwriting does not create independent evidence; fresh correct math can advance.
+- Single-pointer guard and pen-to-finger reset policy.
+
+Chromium browser workflows: passing, zero application page errors.
+- Editing during a delayed save remains unsaved until a second save; regression fails with the old bug and passes with the fix.
+- Paint, save, reload and find the saved picture in the learner gallery.
+- Switch learners: gallery belongs to the original learner.
+- Early math dot picture accepted as the answer.
+- Handwritten spelling reveal/self-check records guided success without independent mastery.
+- Gallery progress export/restore, checksum tamper rejection and original export shape.
+- Full gallery refuses a new picture instead of replacing an old one.
+- PNG picture download starts with the expected filename.
+- Blank paper correctly answers a zero subtraction problem.
+- Four-question expedition completes and opens prize painting.
+- iPhone-width layout (390 x 844) has no horizontal page overflow; visual inspection of mobile paint and desktop handwriting screens.
+
+Final packaging checks: syntax of every shipped JavaScript file; SHA-384 script/style integrity; SHA-256 inventory; archive CRC and single top-level folder. Exact results are recorded in verification/RESULTS.json.
+
+Not verified: native iPad/iPhone Safari, physical Apple Pencil, device restart persistence, actual iOS Files download/open behavior, hosted GitHub Pages deployment. Chromium was obtained through an npm browser package after the usual browser download returned truncated archives. No browser dependencies are bundled with the application.
+
+Application rollback backup: recovery/Wonderwake03.zip (original delivered bytes).
+Learner records are not included; export from the current site before updating.
+
+Run the unit tests from this folder:
+  node --test verification/unit.cjs verification/more-unit.cjs
+Browser checks require Playwright, a local HTTP server on port 8765, and an installed Chromium executable. Set WW_CHROMIUM to its path, then run verification/browser.cjs, verification/extra-browser.cjs and verification/race-browser.cjs against this folder. Browser screenshots are temporary test output and are not included.
+
+Independent code review found one save race; fixed and regression-tested. Follow-up review found no remaining important concerns.

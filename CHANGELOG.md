@@ -1,3 +1,7 @@
+# 0.4.0 — Colorwake
+
+Freehand painting, per-learner saved galleries, drawing answers, guided handwriting, prize pictures, comparison operand choices and additional mission animation. See COLORWAKE.md and VERIFY.txt.
+
 # Release record
 
 ## 0.3.0 Fernlight — October 29, 2026

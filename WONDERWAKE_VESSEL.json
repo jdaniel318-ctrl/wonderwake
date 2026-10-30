@@ -2,8 +2,8 @@
   "schema": "blackflag-draft-vessel-descriptor-v1",
   "project_key": "wonderwake",
   "display_name": "Wonderwake",
-  "release": "Fernlight",
-  "version": "0.3.0",
+  "release": "Colorwake",
+  "version": "0.4.0",
   "lifecycle": "draft_family_preview",
   "commissioned_on_server": false,
   "fleet_core_membership_changed": false,
@@ -30,7 +30,10 @@
     "spelling",
     "letter_trails",
     "maker_grove",
-    "star_glider"
+    "star_glider",
+    "colorwake_painting",
+    "learner_picture_gallery",
+    "guided_drawing_answers"
   ],
   "future_modules_not_implemented": [
     "comprehensive_reviewed_k12",
