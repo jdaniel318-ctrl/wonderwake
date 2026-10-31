@@ -1,3 +1,5 @@
+> Historical 0.4.0 notes. Openpaper 0.5.0 updates drawing controls, paper dimensions and capacity; CHANGELOG.md and README.md take precedence. Current bounds: 12 pictures, 2,000 strokes and 50,000 sampled points per picture.
+
 # Colorwake 0.4.0
 
 This release extends Wonderwake03. Existing IDs, IndexedDB database, profile schema and export envelope remain in place. A bounded optional gallery field is included only for learners who have saved paintings, preserving the canonical form of older profile exports. Each picture stores a title, timestamp, and validated normalized strokes: 12 pictures, 200 strokes and 1,600 points per picture. Drawing colors, brush sizes and coordinates are checked on every profile save or import.

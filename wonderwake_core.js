@@ -1,5 +1,6 @@
 (function(root){'use strict';const C=typeof module!=='undefined'?require('./wonderwake_content.js'):root.WWContent;
 const ids=['starling','comet','aurora'];const MAX_LEARNERS=24;
+const DRAWING_LIMITS=Object.freeze({strokes:2000,points:50000,importBytes:64000000});
 function validLearnerId(id){return typeof id==='string'&&(ids.includes(id)||/^learner-[a-f0-9]{8}-[a-f0-9]{4}-4[a-f0-9]{3}-[89ab][a-f0-9]{3}-[a-f0-9]{12}$/.test(id));}
 function nickname(value){if(typeof value!=='string'||value.trim().length<1||value.trim().length>24||/[<>\x00-\x1f\x7f]/.test(value))throw Error('Choose a short nickname, 1–24 characters, with no markup or line breaks.');return value.trim();}
 function displayName(p){return p.nickname||(ids.includes(p.id)?p.id[0].toUpperCase()+p.id.slice(1):'Explorer');}
@@ -35,10 +36,11 @@ if(p.artwork!==undefined){try{clean.artwork=X.validateArtwork(p.artwork);}catch(
 if(!p.art||typeof p.art!=='object')fail();for(const k of ['pumpkin','tree','robot']){if(!Array.isArray(p.art[k])||p.art[k].length>100)fail();clean.art[k]=p.art[k].map(o=>{if(!o||!['circle','star','triangle','heart','diamond','bolt','eye','mouth','sticker'].includes(o.type)||![o.x,o.y,o.size,o.rotation].every(Number.isFinite)||o.x<0||o.x>1||o.y<0||o.y>1||o.size<0.02||o.size>0.25||Math.abs(o.rotation)>360||!/^#[0-9a-f]{6}$/i.test(o.color))fail();if(o.type==='sticker'&&!clean.artwork)fail();return{type:o.type,x:o.x,y:o.y,size:o.size,rotation:o.rotation,color:o.color};});}
 if(p.gallery!==undefined){
  if(!Array.isArray(p.gallery)||p.gallery.length>12)fail();
- clean.gallery=p.gallery.map(d=>{if(!d||typeof d.title!=='string'||!d.title.trim()||d.title.length>80||/[<>\x00-\x1f]/.test(d.title)||!Number.isFinite(d.createdAt)||d.createdAt<0||!Array.isArray(d.strokes)||d.strokes.length>200)fail();let points=0;
- return {title:d.title,createdAt:d.createdAt,strokes:d.strokes.map(s=>{if(!s||!/^#[0-9a-f]{6}$/i.test(s.color)||![4,8,14,24].includes(s.size)||!Array.isArray(s.points)||!s.points.length||(points+=s.points.length)>1600||s.points.some(pt=>!Array.isArray(pt)||pt.length!==2||pt.some(v=>!Number.isFinite(v)||v<0||v>1)))fail();return {color:s.color,size:s.size,points:s.points.map(pt=>[...pt])};})};});
+ clean.gallery=p.gallery.map(d=>{if(!d||typeof d.title!=='string'||!d.title.trim()||d.title.length>80||/[<>\x00-\x1f]/.test(d.title)||!Number.isFinite(d.createdAt)||d.createdAt<0||!Array.isArray(d.strokes)||d.strokes.length>DRAWING_LIMITS.strokes)fail();let points=0;
+ if(d.paper!==undefined&&(!d.paper||d.paper.width!==1600||!Number.isInteger(d.paper.height)||d.paper.height<667||d.paper.height>2667))fail();
+ return {title:d.title,createdAt:d.createdAt,...(d.paper===undefined?{}:{paper:{width:d.paper.width,height:d.paper.height}}),strokes:d.strokes.map(s=>{if(!s||(s.tool!==undefined&&!['pen','pencil','marker','eraser'].includes(s.tool))||!/^#[0-9a-f]{6}$/i.test(s.color)||![4,8,14,24].includes(s.size)||!Array.isArray(s.points)||!s.points.length||(points+=s.points.length)>DRAWING_LIMITS.points||s.points.some(pt=>!Array.isArray(pt)||pt.length!==2||pt.some(v=>!Number.isFinite(v)||v<0||v>1)))fail();return {...(s.tool===undefined?{}:{tool:s.tool}),color:s.color,size:s.size,points:s.points.map(pt=>[...pt])};})};});
 }
 return clean;
 }
-const api={ids,MAX_LEARNERS,validLearnerId,nickname,displayName,avatars,newProfile,record,chooseSkill,skillStatus,answerEqual,number,canonical,validateProfile};if(typeof module!=='undefined')module.exports=api;root.WWCore=api;
+const api={ids,MAX_LEARNERS,DRAWING_LIMITS,validLearnerId,nickname,displayName,avatars,newProfile,record,chooseSkill,skillStatus,answerEqual,number,canonical,validateProfile};if(typeof module!=='undefined')module.exports=api;root.WWCore=api;
 })(typeof globalThis!=='undefined'?globalThis:this);

@@ -31,34 +31,119 @@
 .modal-shell{width:100%;min-height:0;max-height:calc(100dvh - 36px);display:flex;flex-direction:column}
 .modal-head{position:relative;flex:0 0 auto}
 #modal-body{min-height:0;overflow-y:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch}
-.paint-modal .modal-shell{height:calc(100dvh - 36px)}
-.paint-modal #modal-body{display:flex;flex-direction:column;overflow:hidden;flex:1}
-.paint-modal #free-paint{flex:1;min-height:0;display:flex}
-.paint-modal .paint-workshop{width:100%;min-height:0;display:flex;flex-direction:column;padding:12px 24px 8px;gap:7px}
-.paint-modal .paint-heading{flex:0 0 auto}
-.paint-modal .paint-heading .eyebrow{display:none}
-.paint-modal .paint-heading h3{font-size:24px;margin:0 0 3px}
-.paint-modal .paint-heading p{margin:0;font-size:13px;line-height:1.4}
-.paint-modal .paint-palette{flex:0 0 auto;margin:4px 0;gap:10px}
-.paint-modal .paint-paper{flex:1;min-height:0;display:flex;align-items:center;justify-content:center;overflow:hidden}
-.paint-modal .paint-canvas{flex:none;max-width:100%;aspect-ratio:auto}
-.paint-modal .learn-controls{flex:0 0 auto;margin:0;gap:8px;justify-content:center}
-.paint-modal .learn-controls button{min-height:44px;padding:10px 14px;font-size:14px}
-.paint-modal .paint-state{flex:0 0 auto;margin:0;min-height:20px;font-size:12px;line-height:1.4;text-align:center}
-.paint-modal .paint-compare:empty{display:none}
-.paint-modal .paint-bottom{flex:0 0 auto;padding:6px 18px 12px;margin:0;gap:10px}
-.paint-paper{min-width:0}
-@media(max-width:650px){.paint-modal .modal-shell{height:100dvh;max-height:100dvh}.paint-modal .paint-workshop{padding:10px 14px 6px;gap:6px}.paint-modal .paint-heading h3{font-size:22px}.paint-modal .paint-heading p{font-size:12px}.paint-modal .paint-palette{gap:9px;margin:3px 0}.paint-modal .paint-palette label{font-size:12px}.paint-modal .paint-color{width:38px;height:38px}.paint-modal .paint-size{min-height:40px;margin-left:6px}.paint-modal .learn-controls button{flex:1 1 auto;font-size:12px;padding:8px 10px}.paint-modal .paint-bottom{padding:5px 14px 10px;gap:8px}.paint-modal .paint-bottom button{font-size:12px}.modal-shell{max-height:calc(100dvh - 16px)}}
-.paint-modal #free-paint{overflow:hidden}
-.paint-modal .paint-workshop{height:100%;margin:0 auto}
-/* Save feedback must not resize the paper or shift the controls. */
-.paint-modal .paint-state{height:34px;min-height:34px;overflow-y:auto}
-.paint-modal .paint-bottom{padding-bottom:calc(12px + env(safe-area-inset-bottom,0px))}
-/* Short landscape screens keep navigation fixed and scroll the content safely. */
-@media(max-height:600px){
-.paint-modal #modal-body{display:block;overflow-y:auto}
-.paint-modal #free-paint{display:block;overflow:visible}
-.paint-modal .paint-workshop{height:auto;display:flex}
-.paint-modal .paint-paper{flex:none;height:200px;min-height:200px}
-.paint-modal .modal-head{padding-top:8px;padding-bottom:8px}
+
+/* Openpaper: a fixed studio with a roomy sheet and compact overlay trays. */
+.paper-surface{position:relative;width:100%;min-width:0;isolation:isolate}
+.paint-live{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;border-radius:inherit}
+.paint-modal{padding:8px;overscroll-behavior:none}
+.paint-modal .modal-shell{max-width:none;width:100%;height:calc(100dvh - 16px);max-height:calc(100dvh - 16px);border-radius:22px}
+.paint-modal .modal-head{padding:8px 16px;gap:16px;min-height:62px}
+.paint-modal .modal-head>div:not(.paint-header-actions){flex:1;min-width:0}
+.paint-modal .modal-head h2,.paint-modal .active-learner{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.paint-modal .back-btn,.paint-header-actions{flex-shrink:0}
+.paint-modal .modal-head .eyebrow,.paint-modal #voice-toggle{display:none}
+.paint-modal .modal-head h2{font-size:22px;margin:0}
+.paint-modal .active-learner{font-size:11px;margin-top:3px}
+.paint-modal .back-btn{padding:9px 12px;min-height:44px}
+.paint-header-actions{display:flex;align-items:center;gap:10px;margin-left:auto}
+.paint-header-actions svg{width:20px;height:20px;flex-shrink:0}
+.paint-header-actions button{display:flex;gap:7px;align-items:center;justify-content:center;min-height:44px;padding:10px 15px;border-radius:14px;font-size:14px}
+.paint-gallery{background:#e9eee4;color:#315b61;border:1px solid #ccd8cc}
+.paint-header-actions .paint-save{box-shadow:none;min-width:94px}
+.paint-save.saved{background:#387b68}
+.paint-save.saved svg{animation:savedTick .3s ease-out}
+.paint-modal #modal-body{display:flex;flex:1;flex-direction:column;overflow:hidden}
+.paint-modal #free-paint{display:flex;flex:1;min-height:0;overflow:hidden}
+.paint-modal .paint-workshop.openpaper{position:relative;display:flex;flex-direction:column;align-items:stretch;width:100%;height:100%;max-width:none;min-height:0;margin:0;padding:8px 14px calc(4px + env(safe-area-inset-bottom,0px));gap:7px;--ink-colour:#245e73}
+.paint-modal .paint-paper{flex:1;min-width:0;min-height:0;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.paint-modal .paper-surface{flex:none;border-radius:12px;overflow:hidden;background:#fffdf3;box-shadow:0 0 0 1px #b4c8b9,0 4px 14px #2449480b}
+.paint-modal .paint-canvas{display:block;width:100%;height:100%;max-width:none;aspect-ratio:auto;border:0;border-radius:0;touch-action:none;-webkit-user-select:none;user-select:none}
+.paint-modal .paint-state{flex:0 0 28px;height:28px;min-height:28px;max-width:100%;margin:0;overflow-y:auto;padding:0 8px;text-align:center;line-height:14px;font-size:11px;color:#58716c}
+.paint-dock{display:flex;align-items:center;justify-content:center;align-self:center;gap:5px;flex:0 0 66px;height:66px;padding:4px 8px;border-radius:22px;border:1px solid #d6ddce;background:#fffdf6ed;box-shadow:0 5px 18px #23463f12;-webkit-user-select:none;user-select:none}
+.dock-button{position:relative;width:54px;height:56px;min-width:44px;min-height:44px;padding:3px 6px;background:transparent;border-radius:14px;color:#395d62;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px}
+.dock-button svg{height:23px;width:23px}
+.dock-button small{font-size:9px;font-weight:700;line-height:11px;letter-spacing:.15px}
+.dock-button[aria-expanded=true]{background:#e1ede5;box-shadow:inset 0 0 0 1px #bdcdbd}
+.dock-button:active{transform:scale(.94)}
+.dock-button:disabled{opacity:.35}
+.dock-divider{height:26px;width:1px;background:#dce3d8;margin:0 2px}
+.colour-well{width:27px;height:27px;background:var(--paint);border-radius:50%;box-shadow:0 0 0 2px #fffdf5,0 0 0 3px #afc1b4;transition:background .16s,transform .2s}
+.colour-toggle[aria-expanded=true] .colour-well{transform:scale(.9)}
+.paint-tray{position:absolute;z-index:8;left:50%;bottom:110px;transform:translateX(-50%);width:348px;max-width:calc(100% - 28px);max-height:calc(100% - 118px);overflow:auto;overscroll-behavior:contain;padding:10px 16px 14px;background:#fffef7f5;border:1px solid #c6d3c5;border-radius:22px;box-shadow:0 16px 50px #153c453d;backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);animation:trayEnter .18s ease-out}
+.tray-heading{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:8px;min-height:44px}
+.tray-heading strong{font-size:14px;color:#2e535b}
+.tray-close{min-width:44px;height:44px;padding:12px;border-radius:50%;background:#edf0e5;color:#476968}
+.tray-close svg{display:block;width:20px;height:20px}
+.paint-tray .paint-palette{display:grid;grid-template-columns:repeat(6,1fr);gap:9px;margin:10px 0 12px}
+.paint-tray .paint-color{width:44px;height:44px;padding:0;border:5px solid #fffdf6;box-shadow:0 0 0 1px #c9d2c5;transition:transform .18s,box-shadow .18s}
+.paint-tray .paint-color.selected{outline:none;box-shadow:0 0 0 2px #3d726c;transform:scale(.92)}
+.paint-tray .paint-color.selected:after{content:'';display:block;width:8px;height:8px;margin:auto;border-radius:50%;background:#fff;box-shadow:0 0 0 1px #173a4b66}
+.paint-tray .colour-name{margin:4px 0 0;text-align:center;font-size:12px;color:#637b73}
+.pen-choices{display:grid;grid-template-columns:repeat(4,1fr);gap:7px}
+.pen-choice{display:flex;flex-direction:column;align-items:center;justify-content:end;gap:8px;height:102px;padding:12px 2px 9px;border-radius:14px;background:#eef1e6;color:#52716c;border:1px solid transparent;overflow:hidden}
+.pen-choice>span:last-child{font-size:11px;font-weight:700}
+.pen-choice.selected{background:#e0ece1;border-color:#97b8a8;color:#1e555a}
+.pen-tip{display:block;position:relative;flex-shrink:0;width:15px;height:28px;border-radius:4px 4px 1px 1px;background:linear-gradient(90deg,#b4bbb3 0%,#faf8ec 40%,#d5dbce 80%,#a3b1a8);border:1px solid #aebbad;overflow:visible}
+.pen-tip:before{content:'';position:absolute;top:-9px;left:2px;width:9px;height:10px;background:var(--ink-colour,#245e73);clip-path:polygon(50% 0,100% 100%,0 100%)}
+.pen-tip:after{content:'';position:absolute;bottom:5px;left:0;right:0;height:4px;background:var(--ink-colour,#245e73);opacity:.8}
+.pen-tip.pencil{width:12px;background:linear-gradient(90deg,#d9ae56,#f6d681 50%,#d9ae56);border-color:#c1a264}
+.pen-tip.pencil:before{left:0;background:linear-gradient(#344b4b 45%,#e7c8a1 45%);width:10px}
+.pen-tip.marker{width:21px;background:linear-gradient(90deg,#cacfc1,#fffdf5 50%,#cbd0c2);border-radius:3px}
+.pen-tip.marker:before{width:15px;height:8px;left:2px;top:-7px;clip-path:polygon(20% 0,100% 0,100% 100%,0 100%)}
+.pen-tip.eraser{width:22px;height:25px;background:linear-gradient(90deg,#dd9d9b,#f0bbb1 60%,#d59a98);border-color:#c9938b;border-radius:6px 6px 2px 2px}
+.pen-tip.eraser:before{display:none}
+.pen-tip.eraser:after{height:10px;bottom:0;background:#f1ecda;opacity:1}
+.pen-choices .pen-tip{height:39px;transform:translateY(4px);transition:transform .22s cubic-bezier(.2,.8,.2,1)}
+.pen-choice.selected .pen-tip{transform:translateY(-3px)}
+.pen-toggle .pen-tip{height:20px;margin-top:6px;scale:.85}
+.size-choices{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;border-top:1px solid #dde4d6;padding-top:11px;margin-top:12px}
+.size-choices button{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;min-height:50px;padding:6px;background:transparent;color:#59756c;border-radius:12px}
+.size-choices button.selected{background:#e4eee2;color:#2b625e;box-shadow:inset 0 0 0 1px #b6cebb}
+.size-choices i{display:block;width:var(--tip-size);height:var(--tip-size);min-height:3px;border-radius:50%;background:var(--ink-colour)}
+.size-choices small{font-size:10px}
+.paint-more .secondary{display:flex;width:100%;align-items:center;justify-content:center;gap:8px;min-height:44px;font-size:13px;margin-top:7px}
+.paint-more svg{width:18px;height:18px}
+.gallery-card canvas{max-height:360px;object-fit:contain}
+@keyframes trayEnter{from{opacity:0;scale:.97;translate:0 8px}to{opacity:1;scale:1;translate:0 0}}
+@keyframes savedTick{50%{transform:scale(1.2)}}
+@media(max-width:650px){
+ .paint-modal{padding:0}
+ .paint-modal .modal-shell{border-radius:0;height:100dvh;max-height:100dvh}
+ .paint-modal .modal-head{gap:8px;padding:6px 8px;min-height:58px}
+ .paint-modal .modal-head h2{font:600 13px/1.2 system-ui}
+ .paint-modal .active-learner{font-size:10px;line-height:1.2}
+ .paint-modal .back-btn{font-size:12px;padding:8px;min-width:68px}
+ .paint-header-actions{gap:5px}
+ .paint-header-actions button{padding:8px;min-width:44px}
+ .paint-header-actions .paint-save{min-width:60px;font-size:13px}
+ .paint-header-actions .paint-save svg,.paint-gallery span{display:none}
+ .paint-modal .paint-workshop.openpaper{padding:7px 10px calc(3px + env(safe-area-inset-bottom,0px));gap:7px}
+ .paint-dock{gap:3px;padding:3px 7px}
+ .dock-button{width:49px}
+ .paint-tray{max-width:calc(100% - 24px);padding:10px 13px 13px}
+ .paint-tray .paint-palette{gap:5px}
+ .paint-modal .paint-state{font-size:10px}
 }
+@media(max-width:355px){
+ .paint-modal .modal-head h2{font-size:11px}
+ .paint-modal .active-learner{font-size:9px}
+ .paint-tray .paint-palette{grid-template-columns:repeat(5,1fr)}
+ .dock-button{width:45px}
+ .paint-dock{gap:2px;padding:3px}
+}
+@media(max-height:500px) and (min-width:501px){
+ .paint-modal .modal-head{min-height:52px;padding-top:4px;padding-bottom:4px}
+ .paint-modal .paint-workshop.openpaper{display:grid;grid-template-columns:minmax(0,1fr) 72px;grid-template-rows:minmax(0,1fr) 28px;gap:6px 10px}
+ .paint-modal .paint-paper{grid-column:1;grid-row:1}
+ .paint-dock{grid-column:2;grid-row:1 / 3;flex-direction:column;height:auto;min-height:0;align-self:center;gap:0;padding:5px 4px;border-radius:18px}
+ .dock-button{height:44px}
+ .dock-button small{font-size:8px}
+ .dock-button svg{width:20px;height:20px}
+ .dock-divider{width:26px;height:1px;margin:4px 0}
+ .paint-modal .paint-state{grid-column:1;grid-row:2}
+ .paint-tray{left:auto;right:92px;bottom:12px;transform:none;width:340px;max-height:calc(100% - 24px)}
+ .pen-choice{height:88px}
+}
+.motion-off .openpaper *,.motion-off .paint-header-actions *{animation:none!important;transition:none!important}
+@media(prefers-reduced-motion:reduce){.openpaper *,.paint-header-actions *{animation:none!important;transition:none!important}}
+

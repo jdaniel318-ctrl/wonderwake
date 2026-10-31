@@ -1,14 +1,19 @@
-WONDERWAKE05 — STEADYHAND · 0.4.1
+WONDERWAKE06 — OPENPAPER · 0.5.0
 
-1. Export a progress copy from the existing Wonderwake page. Your saved drawing remains in the learner's local gallery.
-2. Unzip this package. Upload all top-level files INSIDE Wonderwake05-Steadyhand to the existing wonderwake repository root, replacing matching files. Leave verification/ and recovery/ on your device; neither folder is required to run the game.
-3. After GitHub Pages finishes, refresh the existing Wonderwake page once. Check the footer for STEADYHAND · FAMILY PREVIEW 0.4.1. Choose the same learner, then open Paint a picture.
+1. On the existing Wonderwake page, keep a progress copy for each learner you want backed up. Save any current paper to its gallery first.
+2. Unzip this package. Upload all top-level files INSIDE Wonderwake06-Openpaper to the existing wonderwake repository root, replacing matching files. Leave verification/ and recovery/ on your device; neither folder is required to run the game.
+3. Once GitHub Pages finishes, refresh the existing Wonderwake page once. Check for OPENPAPER · FAMILY PREVIEW 0.5.0. Choose the same learner, then Paint a picture.
 
-REPAIR
-The studio header/Islands button stays visible. Paper, palette, Save and gallery navigation fit the available screen. Save feedback no longer changes the paper's geometry. On very short landscape screens, only the content scrolls; navigation stays visible. Painting remains anchored while drawing. Portrait/landscape size changes preserve the normalized drawing.
+YOUR STUDIO
+Islands, Gallery and Save stay at the top. The small dock holds Colour, Pen, Undo, Redo and More. Tap Colour for twelve swatches. Tap Pen for pen/pencil/marker/eraser and thickness. Tap the paper or close the tray to continue. More holds PNG download, finger drawing, new paper and shapes.
 
-Do not clear website data or change the hosted address. Same learner IDs, same database and same galleries. Current exports remain compatible.
+BIGGER PAPER, MORE ROOM TO CREATE
+The paper uses the available screen shape. Rotation fits the original paper without stretching your marks. Up to 2,000 strokes / 50,000 sampled points per picture; 12 saved pictures per learner. New paper is temporary until Save succeeds. Download is another way to keep a PNG.
 
-The original Colorwake application ZIP is in recovery/. It contains application files, not your learners' local records. Keep your progress export separately.
+KEEP YOUR EXISTING WORK
+Same hosted address, database, learner IDs and galleries. Existing saved pictures and progress exports are supported. Do not clear website data. New Openpaper paintings require this version or later; older builds cannot read all the new gallery data.
 
-Verification details and limitations: VERIFY.txt. Native Safari/Pencil confirmation remains pending the device field test. No files have been deployed by this package. No Black Flag Engine files changed.
+recovery/ contains the previous application ZIP, not learner records. Keep progress exports separately. No files are deployed by downloading this package. The Black Flag Engine is unchanged.
+
+DEVICE CHECK
+Draw a detailed picture; switch colours/tools; Save and open Gallery. Confirm the screen stays still and the picture looks right on your actual Safari/Pencil. Automated checks are described in VERIFY.txt.

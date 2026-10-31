@@ -1,14 +1,14 @@
 {
   "schema": "wonderwake-asset-inventory-v1",
-  "version": "0.4.1",
+  "version": "0.5.0",
   "files": {
     "CHANGELOG.md": {
-      "bytes": 1115,
-      "sha256": "46ca9bd6489ebe06151aa6fc7aa0f17701dd0d81b1e9755b2948306a4ddcbdd9"
+      "bytes": 2226,
+      "sha256": "4d18d6b4e30c4a320a102ee7afa8632a38d0bdcb45e5253780f3379563ec3971"
     },
     "COLORWAKE.md": {
-      "bytes": 2087,
-      "sha256": "83f5bd4ea1382a02f1e024527b007ddf9ec5c4ea7ba9efd93993b86222ca6eef"
+      "bytes": 2313,
+      "sha256": "61e11c129380698781b978d24f14e31905954dcb0e4bca62d576d8ea097d8c2e"
     },
     "CREATIVE_WORKFLOW.md": {
       "bytes": 4613,
@@ -27,88 +27,108 @@
       "sha256": "981faf5bdc6860fdb77235e95a90544255e268ef9871c31fa4797952d19b86e4"
     },
     "README.md": {
-      "bytes": 5419,
-      "sha256": "aae37b9d33fea1be043d44b13c9bc9b7ae5e6aa35984aa9c19b8f7267478cfbf"
+      "bytes": 1687,
+      "sha256": "28ce25cab63245502b89a9b9bffe4f4c9dc473f78325bfbb4074b2ad06c4833b"
     },
     "START_HERE.txt": {
-      "bytes": 1467,
-      "sha256": "0b3875171eff87f74888265f5252b4621ec4026f9c05b2c1abe0a341636141b7"
+      "bytes": 1889,
+      "sha256": "069060db683166a84debe4824657f88f0df3546e17e8f0a778bce92f656a7a12"
     },
     "VERIFY.txt": {
-      "bytes": 3739,
-      "sha256": "73525cd2b9f2c74d89853a819c9fc16256682ade60c873613ecd7586baca8219"
+      "bytes": 3589,
+      "sha256": "03f4dc8530b548f4063fec348762ecbf98142bfd38b96428c948325dd3a3ee04"
     },
     "WONDERWAKE_VESSEL.json": {
-      "bytes": 2128,
-      "sha256": "41723c0cf5643be6a46e94f307c87d0e0efa62104061dac0c4db2a98262847e5"
+      "bytes": 2127,
+      "sha256": "56a664ef8d5c04947f5d00f7a5b83aed72543af70637bed899f45cc04e0cbf7c"
     },
     "index.html": {
-      "bytes": 3947,
-      "sha256": "53f08e566b47529c44e76f43c265d6095357defeb30919690dd040a5448248d3"
+      "bytes": 3944,
+      "sha256": "3e3caa1d047cb5535e0a38f672676902038e1a90602c6b0deada78e4f143a213"
     },
-    "recovery/Wonderwake04-Colorwake.zip": {
-      "bytes": 157314,
-      "sha256": "62d726fb11185905e482371fced4d800d368afa468e84c8a8fa70d8c89d28459"
+    "recovery/Wonderwake05-Steadyhand.zip": {
+      "bytes": 245330,
+      "sha256": "0b039a24241554d4bfa1fae3b5b53e7796498629a20e2eb8ba1958393e310925"
+    },
+    "verification/OPENPAPER_PLAN.md": {
+      "bytes": 2064,
+      "sha256": "8b06987c627724a65857e66465906bebecca137f0c1906f5cf4d0f544c553aec"
     },
     "verification/RESULTS.json": {
-      "bytes": 870,
-      "sha256": "d1a62c63df885165eb437f4721c26aa3a193a540a7eaccc3ec54699271b61cb2"
+      "bytes": 708,
+      "sha256": "a5acd0a72541de52a1b7f7c611e9ae0cdd1542d1466642c613a9fda0aafe93c4"
+    },
+    "verification/REVIEW.txt": {
+      "bytes": 826,
+      "sha256": "e83ef1ed338e4d1604e12449b26d8a6eba8aa728124b6154668d05c9f0cc2b59"
     },
     "verification/browser.cjs": {
       "bytes": 4307,
       "sha256": "3bd360ff9b7f8379e91bce3785cfa7a289ed154f9906db950d5d7afe609431dd"
     },
     "verification/extra-browser.cjs": {
-      "bytes": 4123,
-      "sha256": "9173f71d1f8d5d63767e56c9eafe85522beeaa74a3ffc3225b69dab1ad239ade"
+      "bytes": 4203,
+      "sha256": "f3cdc9e8523211d119b7b62fb26a7356051e14eafb20ba7024ba1f0a8d220887"
     },
     "verification/more-unit.cjs": {
-      "bytes": 2008,
-      "sha256": "d6475c26f8afa7d2860eafc76d14a43c473c19327cd6fea1e71eea005c0e7954"
+      "bytes": 2009,
+      "sha256": "735383517125eda4fa89bdd2c1625c4c630575001bd6b72f93a5e55f6d39fd62"
+    },
+    "verification/openpaper-browser.cjs": {
+      "bytes": 3663,
+      "sha256": "277cea3307289e298d67b860ea4287c3d3381ebfbbae1d9f5c6574e449664941"
+    },
+    "verification/openpaper-capacity.cjs": {
+      "bytes": 3740,
+      "sha256": "6d3c825b1115df8987f0976fbf1dddeaca2a298892306ce9e26c779c5cae22cd"
+    },
+    "verification/openpaper-layout.cjs": {
+      "bytes": 4448,
+      "sha256": "4e5cc5e670fe162d250467fd2592d6b71a28af82d03a91a3098569ac76464f24"
+    },
+    "verification/openpaper-unit.cjs": {
+      "bytes": 1716,
+      "sha256": "2a93029be8e7e8f6eb2e598c96efc47347ee7af276da62efa119c364a9263108"
     },
     "verification/race-browser.cjs": {
       "bytes": 1778,
       "sha256": "f2fd89a0cb67e6eccce23738b6aa566dccbed9e639b565bd815de100fea4e1b7"
     },
-    "verification/steady-browser.cjs": {
-      "bytes": 4234,
-      "sha256": "cc63c68c998e58db7ce04a894f39474e71f0f7c74642c075efb732d1a06a7b16"
-    },
     "verification/unit.cjs": {
-      "bytes": 1689,
-      "sha256": "4c73d5b640d4b0f47fb99f110d684f95d965ce53404c19b45dd0d78551c7a28d"
+      "bytes": 1690,
+      "sha256": "f1bbb56b7f739570a17760982cab5088d6231caaae4722d1d367a39c404101ab"
     },
     "wonderwake.css": {
-      "bytes": 32543,
-      "sha256": "e4cd3b8a28f9c513dc30026b97e14a8d6141364bb7ae22e3d449138a9f211b66"
+      "bytes": 40073,
+      "sha256": "0c12a3577b24f96c887888c298d12244f22a4c2fbaf0d4519a6c231eedded8bb"
     },
     "wonderwake_app.js": {
-      "bytes": 68565,
-      "sha256": "bd7bcaed05fb04e7d7826c75d7f269e1eb9ac34ea5b868e080115fbe35ff8d13"
+      "bytes": 68435,
+      "sha256": "44a9f9416585d69fbe8df43cad60c7ae46cd2eb3e8eee10e1dae89a8a84c611c"
     },
     "wonderwake_content.js": {
       "bytes": 21146,
       "sha256": "bdf92df92f140af8866bfccf348bc15579044d721c00f99a5730854c2f54666b"
     },
     "wonderwake_core.js": {
-      "bytes": 7056,
-      "sha256": "e1da83469f2bfd814bbcbadcc83e64dc4459719dafdd80da465c02b7074c27ad"
+      "bytes": 7532,
+      "sha256": "a978ad8630ff6b9202f58e2fca5fbd1c9af200f630f117ce36168ea60020c4fd"
     },
     "wonderwake_creative.js": {
       "bytes": 13947,
       "sha256": "28b2d133edcc869cb2a03afdad931b86cba9deae6f325175d936691d501d5842"
     },
     "wonderwake_drawing.js": {
-      "bytes": 6936,
-      "sha256": "a412e2f616e700da0749e8b3888d24de099bb99556bbd20e991e8cf4364c62a1"
+      "bytes": 17511,
+      "sha256": "82cda40dbcb3f5a4cd5f99163930c7fa1fe1ad08adee35ce1dd2b6b792d8c66f"
     },
     "wonderwake_fleet.js": {
-      "bytes": 1949,
-      "sha256": "b2b0caadf7d4762f1ffc1feb1c91ccc80cc0b7a32cc218df22037eca3b754ea0"
+      "bytes": 1948,
+      "sha256": "decd47c681cbde6f8b75ec53970ecdc8957371413652f27cbe49cb0ad1e75212"
     },
     "wonderwake_store.js": {
-      "bytes": 4660,
-      "sha256": "d7534a396b3c531e7da0cb47f1d2a9850feb9f24cf6dcf0fd27b4ad7c49be931"
+      "bytes": 4681,
+      "sha256": "f66236a771e2d0d94a114cf5a43636fce85bbc573b667afd06f6348ec2965982"
     },
     "wonderwake_world.js": {
       "bytes": 13070,
