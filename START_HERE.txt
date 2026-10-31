@@ -1,25 +1,30 @@
-WONDERWAKE07 — PRISM · 0.5.1
+WONDERWAKE08 — SHADECRAFT · 0.6.0
 
-1. Save any current picture to its gallery. On the existing Wonderwake page, keep a progress copy for each learner you want backed up.
-2. Unzip this package. Upload all top-level files INSIDE Wonderwake07-Prism to the existing wonderwake repository root, replacing matching files. Leave verification/ and recovery/ on your device; neither folder is needed to run the game.
-3. After GitHub Pages finishes, refresh Wonderwake once. Check PRISM · FAMILY PREVIEW 0.5.1. Choose the same explorer, then Paint a picture.
+UPDATE
+1. Save the current picture and keep a progress copy for each learner you want backed up.
+2. Unzip this package. Upload every top-level file INSIDE Wonderwake08-Shadecraft to the existing wonderwake repository root, replacing matching files. Include the new wonderwake_paint.js file. Leave verification/ and recovery/ on your device.
+3. After GitHub Pages finishes, refresh Wonderwake once. Check SHADECRAFT · FAMILY PREVIEW 0.6.0, select the same explorer, then Paint a picture.
 
-COLORS AND TOOLS
-The dock now says Colors. Open Colors, choose Make a color, move around the wheel and adjust Brightness. Add color puts it in My colors and selects it on the dock. An optional hex field lets you match an exact color. Your 12 default swatches remain; each explorer can keep 16 custom colors. Removing a swatch never changes a saved picture.
+BLACK, WHITE AND GRAYS
+Colors opens with a dedicated row: pure black, charcoal, dark gray, mid gray, light gray and pure white. The black-to-white slider selects any of 256 neutral shades directly. Keep this gray adds a non-preset shade to My colors. The color wheel now has an Intensity slider as well as Brightness, so tints do not require finding the exact center of the wheel.
 
-Open Pen to choose Pen, Pencil, Marker or Eraser. The size slider runs from 1 to 40 and remembers a separate setting for each tool and explorer. A small preview shows the line changing. Pencil is finer and Marker broader than Pen at the same setting.
+SHADING
+Open Pen and choose Soft brush for feathered shadows or highlights. Each drawing tool has its own size and opacity. Low opacity gives light passes; 100% gives solid color at the center. Successive strokes build up shading. For a crisp opaque line use Pen at 100%. Marker starts at 38% and Pencil at 78%, preserving the familiar defaults; both can now be adjusted. Tool settings stay with the explorer.
 
-Tap outside an open menu to close it. That entire tap or drag only closes the menu; after the short transition and lifting your fingers, the next gesture can draw. Done and Escape are also available. Menu changes leave the paper in place.
+LAYERS
+Open Layers on the dock. Add up to six layers; the selected row is where new strokes go. Layers at the top cover those below. Rename, hide/show, lock/unlock, move up/down, or adjust the whole layer's opacity. Eraser removes marks only from the selected layer and reveals the lower layers. Cream paper remains underneath all layers.
 
-KEEP CREATING
-The larger paper and 2,000-stroke / 50,000-point allowance remain. Each learner has 12 gallery slots. Save and Gallery stay at the top. More contains PNG download, new paper, finger drawing and shapes. New paper is temporary until saved.
+Remove this layer asks before deleting marks. Undo/Redo controls strokes, not layer management. Starting New paper resets to one empty layer. All layers, including hidden ones, remain in a saved picture and progress backup. A PNG is the visible flattened picture.
 
-KEEP YOUR EXISTING WORK
-Same hosted address, database, learner IDs and galleries. Existing progress exports remain readable. Custom colors and sizes are included in new progress copies. Do not clear website data. New Prism settings and variable-width drawings require Prism or later; older builds cannot read all new data.
+KEEP WORKING ON A PICTURE
+Gallery now has Edit picture. It opens an editable copy. Save updates that same picture instead of filling another gallery slot. Starting New paper while editing detaches the old picture; the next saved drawing becomes a new gallery picture. A deliberately emptied existing picture can also be saved. Save or Download before leaving unfinished work.
 
-recovery/ contains the previous application ZIP, not learner records. Keep progress exports separately. Downloading this package does not deploy it. Wonderwake remains independent; the Black Flag Engine is unchanged.
+THREE DEVICE CHECKS
+1. Draw black, gray and white marks with Pen at 100%. Try the gray slider. Check that the first outside tap only closes the menu.
+2. Draw a background, add a details layer, then shade with Soft brush around 20–30% opacity. Hide/show the layer and erase a small part; the background should stay intact.
+3. Save, open Gallery and Edit picture. Confirm the layers and shading remain. Save an edit, reopen the same explorer and check it again.
 
-BECCA'S THREE CHECKS
-1. Make a custom color, add it, and draw with it. Try a different size for each tool.
-2. Open Colors or Pen, then touch and drag on the paper. The menu should close without a mark; the next gesture should draw. The paper should stay still.
-3. Save the picture, open Gallery, then reopen Wonderwake and choose the same explorer. Check the picture, My colors and tool sizes.
+COMPATIBILITY
+Same address, database and learners. Existing pictures and progress files remain readable; old artwork is not converted until opened for editing and explicitly saved. New layered pictures require Shadecraft or later. Older recovery builds cannot read all new data. Do not clear website data.
+
+The large paper, 2,000-stroke / 50,000-point allowance and 12-picture gallery remain. Six layers bound tablet memory use. This is still local family preview; no cloud sync, fleet bootstrap or Engine deployment is included. recovery/ holds the previous application ZIP, not learner data. Native Safari/Pencil feel and memory pressure require the device check.

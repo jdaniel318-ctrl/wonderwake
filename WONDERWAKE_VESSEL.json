@@ -2,8 +2,8 @@
   "schema": "blackflag-draft-vessel-descriptor-v1",
   "project_key": "wonderwake",
   "display_name": "Wonderwake",
-  "release": "Prism",
-  "version": "0.5.1",
+  "release": "Shadecraft",
+  "version": "0.6.0",
   "lifecycle": "draft_family_preview",
   "commissioned_on_server": false,
   "fleet_core_membership_changed": false,
@@ -80,6 +80,15 @@
     "tool_sizes_remembered": true,
     "outside_gesture_dismisses_without_drawing": true,
     "strokes_per_picture": 2000,
-    "sampled_points_per_picture": 50000
+    "sampled_points_per_picture": 50000,
+    "layers_per_picture": 6,
+    "neutral_gray_values": 256,
+    "per_tool_opacity_range": [
+      1,
+      100
+    ],
+    "soft_shading_brush": true,
+    "layer_local_eraser": true,
+    "editable_gallery_pictures": true
   }
 }

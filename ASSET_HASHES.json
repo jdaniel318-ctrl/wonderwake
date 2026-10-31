@@ -1,10 +1,10 @@
 {
   "schema": "wonderwake-asset-inventory-v1",
-  "version": "0.5.1",
+  "version": "0.6.0",
   "files": {
     "CHANGELOG.md": {
-      "bytes": 3369,
-      "sha256": "42953ac580975ef57741ad20aa52b90528734a8f39fa304b416f6f1ae4a8de12"
+      "bytes": 4586,
+      "sha256": "34054a58dac6f3f91c9db6e16f141da878286f0d9bc3ae19ee3e8602161546fb"
     },
     "COLORWAKE.md": {
       "bytes": 2313,
@@ -27,32 +27,36 @@
       "sha256": "981faf5bdc6860fdb77235e95a90544255e268ef9871c31fa4797952d19b86e4"
     },
     "README.md": {
-      "bytes": 2000,
-      "sha256": "53ba660e67b0626d677c3951c84b6eb64f3f97b5cd313182652df19797b45eeb"
+      "bytes": 1768,
+      "sha256": "b716a2d4d3c09a4dd5529efbe82ad9afa2c7835ad41ec0dedcdcf7fe69c6f4cd"
     },
     "START_HERE.txt": {
-      "bytes": 2588,
-      "sha256": "1ec44042db62f776244d4f705699d0ddc763b17dc0f4a81a6f2a450a96a8bce7"
+      "bytes": 3431,
+      "sha256": "53afddd9802defd2e46ee13ef058f3e748dcbc0f2d6d99f880378ac11dea7df9"
     },
     "VERIFY.txt": {
-      "bytes": 4567,
-      "sha256": "63250faf63042fa1c80257581582fa4a7bb4664fb7e3371190923d8721579aee"
+      "bytes": 4435,
+      "sha256": "225a13c5828c0636016fbe1bd70f49b7830626d05eaee20fcba93615bd2f3510"
     },
     "WONDERWAKE_VESSEL.json": {
-      "bytes": 2398,
-      "sha256": "76e05415030595b92698e1474aafd259b2fc425924c977688f88c6f8c8e9b76a"
+      "bytes": 2625,
+      "sha256": "14e0bd1d9f9f25207f6d701c8e1edc5b42bde8e43c1894726a9f9acaed06da6d"
     },
     "index.html": {
-      "bytes": 3928,
-      "sha256": "40735e26bc45c352d2033b3ba7398d891b70c9f6b4146fb8a30f9c049bf8ab76"
+      "bytes": 4089,
+      "sha256": "bd3c1b651daecb526309dbe1e49a9cc80c20643f37a1e37c2c44c4ab237444d6"
     },
-    "recovery/Wonderwake06-Openpaper.zip": {
-      "bytes": 344060,
-      "sha256": "a6d7bccfff682e4128f69f52d263fc59c4875b9413e66161024e57a4469d64b3"
+    "recovery/Wonderwake07-Prism.zip": {
+      "bytes": 455710,
+      "sha256": "341724d6f831fff29b5883dc86dbd6a79459e53d8382c8f072ac952de3ad6c1a"
+    },
+    "verification/FINAL_TEST_OUTPUT.txt": {
+      "bytes": 5207,
+      "sha256": "1d11ef85a771c2d38b6a9b2ebabc2f09f6af426f40e66dd1fedd408b9e97db87"
     },
     "verification/FLEET_LESSONS.txt": {
-      "bytes": 1353,
-      "sha256": "d267551154aacdfbe587a70b0e6ee4359e07ab76d94a696c69b97c75cf785ebb"
+      "bytes": 1337,
+      "sha256": "8de021a61bdfc2cc2065fc2e95b1ba791855b87bc8455b9b3be97c9469ee9e4a"
     },
     "verification/OPENPAPER_PLAN.md": {
       "bytes": 2064,
@@ -63,12 +67,16 @@
       "sha256": "b0beb5d5f451acb359afd444527b1e6865901bf462f340dde607edc94cd416c6"
     },
     "verification/RESULTS.json": {
-      "bytes": 1039,
-      "sha256": "b4c8c6ec29dc62adb7f722039df0a863f239fa861835febe877ae3f8805ddeb7"
+      "bytes": 1275,
+      "sha256": "3097b6534d4a2cac1accccc3a5b5b333742175a6a508168e495c109ce010e337"
     },
     "verification/REVIEW.txt": {
-      "bytes": 1186,
-      "sha256": "55df5bdb743180b6c297a9f625198ba9a4698ae4917bacaf6258619601b2e5a5"
+      "bytes": 1622,
+      "sha256": "6899310ec476066137f176561bc2cfb4adb1855a30dc5e3c8d6e74b9c6a57a3c"
+    },
+    "verification/SHADECRAFT_PLAN.txt": {
+      "bytes": 3554,
+      "sha256": "27ee6d0496759a853e594e6e7e2fa770e8fa527daafd3f0f246bb78f9254750a"
     },
     "verification/browser.cjs": {
       "bytes": 4307,
@@ -91,16 +99,16 @@
       "sha256": "6d3c825b1115df8987f0976fbf1dddeaca2a298892306ce9e26c779c5cae22cd"
     },
     "verification/openpaper-layout.cjs": {
-      "bytes": 4643,
-      "sha256": "bfdd695d083f4219e01d7f395258c55e3aa4eedbc07e42fbf9ee3b6ac6ecd54a"
+      "bytes": 4663,
+      "sha256": "219b82fd8ef8ed099aeca27d389922f58b274ee1e718fe8bc9e61aa9b5b3cf94"
     },
     "verification/openpaper-unit.cjs": {
       "bytes": 1716,
       "sha256": "2a93029be8e7e8f6eb2e598c96efc47347ee7af276da62efa119c364a9263108"
     },
     "verification/prism-browser.cjs": {
-      "bytes": 10581,
-      "sha256": "9c46d14732232f5e3a284a9afd0de458ec0c02286d8129da6fe2b69c4facae58"
+      "bytes": 10650,
+      "sha256": "7070d55737125ef8d5543805d5b13f719e59f687d5fb35e9ae1827f2b72dd594"
     },
     "verification/prism-layout.cjs": {
       "bytes": 1998,
@@ -114,37 +122,49 @@
       "bytes": 1778,
       "sha256": "f2fd89a0cb67e6eccce23738b6aa566dccbed9e639b565bd815de100fea4e1b7"
     },
+    "verification/shade-browser.cjs": {
+      "bytes": 12551,
+      "sha256": "3afcb2bdd49ab701502fc10872d758924bb743da5e649fdf7e3265360a7f646d"
+    },
+    "verification/shade-unit.cjs": {
+      "bytes": 1288,
+      "sha256": "9d0867f981c38ace9210c789e7df77606bb753a1772196e7b4be5598c7d7a43f"
+    },
     "verification/unit.cjs": {
       "bytes": 1690,
       "sha256": "f1bbb56b7f739570a17760982cab5088d6231caaae4722d1d367a39c404101ab"
     },
     "wonderwake.css": {
-      "bytes": 43456,
-      "sha256": "d6679fffd5d4673befe91e37854029b8f90c002fa365796aa987c794a39f8717"
+      "bytes": 47596,
+      "sha256": "25b319ee1322861c1d2c01f05e8193bb0b3dae76794b67390db23199d47263c2"
     },
     "wonderwake_app.js": {
-      "bytes": 68619,
-      "sha256": "2e35e9beb3432d043b39e9594eb69b8d614a25e7174404a0a9807582fd98594e"
+      "bytes": 69565,
+      "sha256": "f01504e09ccc2cbbce321f96d9ac96c29ea0bcefa49c054143724f3659d9290d"
     },
     "wonderwake_content.js": {
       "bytes": 21146,
       "sha256": "bdf92df92f140af8866bfccf348bc15579044d721c00f99a5730854c2f54666b"
     },
     "wonderwake_core.js": {
-      "bytes": 8110,
-      "sha256": "79ab4a4a952f405898c474b4353c2c3ee45fa83265ff9a4c97815806b481c56a"
+      "bytes": 9423,
+      "sha256": "fd2f67802ba7a0cbc45ddfcb7b775f3241b9967d52155ec8e2804db9f4bcf96d"
     },
     "wonderwake_creative.js": {
       "bytes": 13947,
       "sha256": "28b2d133edcc869cb2a03afdad931b86cba9deae6f325175d936691d501d5842"
     },
     "wonderwake_drawing.js": {
-      "bytes": 29728,
-      "sha256": "2d83b3343c1c08c711e32dbaae967a7678047fb749c43c6ccf0be4308cc4d93e"
+      "bytes": 38400,
+      "sha256": "e5e65084aadadb5805b84602bd88b9dfa47051a69eb727bc1befe874688bb181"
     },
     "wonderwake_fleet.js": {
-      "bytes": 2551,
-      "sha256": "a34678e74c4353b719908d000b84a64f4b423093411ca87998169090c3463aeb"
+      "bytes": 2556,
+      "sha256": "ed66b76faca014b3920eac777d5794547301d8ce852cc1b7bb1ae1f34fbc8225"
+    },
+    "wonderwake_paint.js": {
+      "bytes": 3509,
+      "sha256": "c5f26b8cf802425b4e8cf2924cdad5c21ac7d3be71a249b64e064db228e2a8bf"
     },
     "wonderwake_store.js": {
       "bytes": 4681,

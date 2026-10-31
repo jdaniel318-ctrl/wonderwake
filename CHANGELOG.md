@@ -1,3 +1,13 @@
+# 0.6.0 — Shadecraft
+
+Direct pure-black-to-white grayscale swatches and a 256-value neutral slider. A separate color-intensity control makes lighter tints accessible in the wheel. Preset neutral choices synchronize the gray slider and its Keep action.
+
+A soft shading brush and per-tool 1–100% opacity extend the existing size controls. Up to six layers support name, order, visibility, lock and whole-layer opacity. The eraser clears only its current layer. A separate renderer caches completed layers and composites the live stroke in the correct order. Old, unlayered pictures retain their previous rendering and canonical export shape.
+
+Gallery Edit picture reopens a copy and updates the same saved entry. Starting New paper detaches the edit target and preserves the original; empty intentional edits can be saved. New layer IDs remain valid even after importing high IDs. Original timestamps, including zero, remain intact. Optional layer, stroke-opacity and tool-preference metadata is bounded and verified.
+
+Large fixed paper, safe menu dismissal and existing drawing/gallery limits remain. The new wonderwake_paint.js is required in the upload. No Engine, cloud, fleet authority or deployment changes.
+
 # 0.5.1 — Prism
 
 Colors uses American spelling. The new HSV color wheel, brightness control and hex input add up to 16 custom colors per explorer to the existing palette. Custom swatches persist, export and restore; removal leaves existing artwork unchanged. The dock shows the active color.

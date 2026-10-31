@@ -38,12 +38,26 @@ if(p.paintTools!==undefined){
  const t=p.paintTools,keys=['pen','pencil','marker','eraser'];
  if(!t||typeof t!=='object'||Array.isArray(t)||!Array.isArray(t.colors)||t.colors.length>16||t.colors.some(c=>typeof c!=='string'||!/^#[0-9a-f]{6}$/i.test(c))||new Set(t.colors.map(c=>c.toLowerCase())).size!==t.colors.length||!t.sizes||typeof t.sizes!=='object'||Array.isArray(t.sizes)||keys.some(k=>!Number.isInteger(t.sizes[k])||t.sizes[k]<1||t.sizes[k]>40))fail();
  clean.paintTools={colors:[...t.colors],sizes:Object.fromEntries(keys.map(k=>[k,t.sizes[k]]))};
+ if(t.sizes.brush!==undefined){if(!Number.isInteger(t.sizes.brush)||t.sizes.brush<1||t.sizes.brush>40)fail();clean.paintTools.sizes.brush=t.sizes.brush;}
+ if(t.opacities!==undefined){const all=[...keys,'brush'];if(!t.opacities||typeof t.opacities!=='object'||Array.isArray(t.opacities)||all.some(k=>!Number.isInteger(t.opacities[k])||t.opacities[k]<1||t.opacities[k]>100))fail();clean.paintTools.opacities=Object.fromEntries(all.map(k=>[k,t.opacities[k]]));}
 }
 if(p.gallery!==undefined){
  if(!Array.isArray(p.gallery)||p.gallery.length>12)fail();
- clean.gallery=p.gallery.map(d=>{if(!d||typeof d.title!=='string'||!d.title.trim()||d.title.length>80||/[<>\x00-\x1f]/.test(d.title)||!Number.isFinite(d.createdAt)||d.createdAt<0||!Array.isArray(d.strokes)||d.strokes.length>DRAWING_LIMITS.strokes)fail();let points=0;
- if(d.paper!==undefined&&(!d.paper||d.paper.width!==1600||!Number.isInteger(d.paper.height)||d.paper.height<667||d.paper.height>2667))fail();
- return {title:d.title,createdAt:d.createdAt,...(d.paper===undefined?{}:{paper:{width:d.paper.width,height:d.paper.height}}),strokes:d.strokes.map(s=>{if(!s||(s.tool!==undefined&&!['pen','pencil','marker','eraser'].includes(s.tool))||!/^#[0-9a-f]{6}$/i.test(s.color)||(!Number.isInteger(s.size)||s.size<1||s.size>40)||!Array.isArray(s.points)||!s.points.length||(points+=s.points.length)>DRAWING_LIMITS.points||s.points.some(pt=>!Array.isArray(pt)||pt.length!==2||pt.some(v=>!Number.isFinite(v)||v<0||v>1)))fail();return {...(s.tool===undefined?{}:{tool:s.tool}),color:s.color,size:s.size,points:s.points.map(pt=>[...pt])};})};});
+ clean.gallery=p.gallery.map(d=>{
+  if(!d||typeof d.title!=='string'||!d.title.trim()||d.title.length>80||/[<>\x00-\x1f]/.test(d.title)||!Number.isFinite(d.createdAt)||d.createdAt<0||!Array.isArray(d.strokes)||d.strokes.length>DRAWING_LIMITS.strokes)fail();let points=0;
+  if(d.paper!==undefined&&(!d.paper||d.paper.width!==1600||!Number.isInteger(d.paper.height)||d.paper.height<667||d.paper.height>2667))fail();
+  let layers;
+  if(d.layers!==undefined){
+   if(!Array.isArray(d.layers)||!d.layers.length||d.layers.length>6||new Set(d.layers.map(l=>l?.id)).size!==d.layers.length)fail();
+   layers=d.layers.map(l=>{if(!l||!Number.isInteger(l.id)||l.id<1||l.id>1000000||typeof l.name!=='string'||!l.name.trim()||l.name.length>24||/[<>\x00-\x1f]/.test(l.name)||typeof l.visible!=='boolean'||typeof l.locked!=='boolean'||!Number.isInteger(l.opacity)||l.opacity<1||l.opacity>100)fail();return{id:l.id,name:l.name,visible:l.visible,locked:l.locked,opacity:l.opacity};});
+  }
+  return {title:d.title,createdAt:d.createdAt,...(d.paper===undefined?{}:{paper:{width:d.paper.width,height:d.paper.height}}),...(layers?{layers}:{}),strokes:d.strokes.map(s=>{
+   if(!s||(s.tool!==undefined&&!['pen','pencil','marker','eraser','brush'].includes(s.tool))||!/^#[0-9a-f]{6}$/i.test(s.color)||!Number.isInteger(s.size)||s.size<1||s.size>40||!Array.isArray(s.points)||!s.points.length||(points+=s.points.length)>DRAWING_LIMITS.points||s.points.some(pt=>!Array.isArray(pt)||pt.length!==2||pt.some(v=>!Number.isFinite(v)||v<0||v>1)))fail();
+   if(s.opacity!==undefined&&(!Number.isInteger(s.opacity)||s.opacity<1||s.opacity>100))fail();
+   if(layers?!layers.some(l=>l.id===s.layer):s.layer!==undefined)fail();
+   return {...(s.tool===undefined?{}:{tool:s.tool}),color:s.color,size:s.size,...(s.opacity===undefined?{}:{opacity:s.opacity}),...(layers?{layer:s.layer}:{}),points:s.points.map(pt=>[...pt])};
+  })};
+ });
 }
 return clean;
 }

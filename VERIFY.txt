@@ -1,36 +1,27 @@
-WONDERWAKE07 — PRISM 0.5.1 · VERIFICATION
+WONDERWAKE08 — SHADECRAFT 0.6.0 · VERIFICATION
 
 All automated checks use synthetic learners, not the family's device records.
 
-16 unit/core tests passed: legacy canonical profiles and painting formats; new optional paintTools data; valid and invalid custom hex palettes; integer stroke/tool widths; HSV primary, neutral and shade output; drawing capacity bounds; learner separation; pointer guard; math/spelling generation and learning evidence.
+18 unit/core tests passed. Coverage includes old canonical profiles and painting formats; optional bounded tool preferences, layers and opacity; malformed layer metadata and orphaned strokes; custom palettes and continuous widths; color conversion; drawing capacity bounds; learner separation; pointer guard; math/spelling generation and learning evidence.
 
-7 Prism browser regressions passed:
-- Colors label on the main dock.
-- Outside tap/drag closes color and pen trays without a mark; the next gesture paints.
-- The wheel, brightness, keyboard hue control, hex entry and Add color feed the palette and dock. Duplicate colors are not added twice. Swatch removal leaves canvas pixels unchanged.
-- Custom colors and a size 17 painting survive local storage and an actual downloaded/decoded progress export; another learner has a separate palette; reload restores the original explorer's palette.
-- Touch and pen gestures remain suppressed through movement, cancellation, the transition and a later overlapping contact. The following independent gesture draws.
-- A first header tap only closes a menu; the second tap saves.
-- A Pencil dismissal enables the existing finger guard; explicit finger drawing resets it.
-- Individual tool sizes survive switching tools and reloading.
-(Some test cases cover several related behaviors.)
+21 browser regression tests passed: 11 Shadecraft, 7 Prism and 3 Openpaper. New coverage includes direct grayscale controls; synchronized neutral swatches; opacity and Soft brush; layer access, hide/lock/order/opacity; valid high imported layer IDs; keeping later edits saveable during a pending update; New paper preserving the original; empty intentional edits; valid zero timestamps; pixel results for opacity, feathered edges and layer-local erasing; live versus final eraser composition; gallery editing without duplicate entries; layered progress download/restore and reload. Inherited coverage checks the large stable paper, long drawings, accessible header controls, palette persistence and learner separation, per-tool sizes, and whole-gesture menu dismissal including overlapping contacts.
 
-3 inherited drawing regressions passed: large stable tablet paper through trays and Save feedback; 6,000 synthetic Pencil events save/reload beyond the old point limit; long learner nicknames keep Save/Gallery visible at 320 px width.
+6 layout sizes passed: 1366x900,1024x768,390x844,320x568,844x390,568x320. Paper occupies over half the viewport, the main controls remain visible and at least 44 px, trays stay contained, opening controls does not shift the paper, reduced motion is honored, and saved/gallery pixels agree. Additional wheel/palette checks passed at 1024x768,390x844,320x568. Tablet and phone tool panels and the tablet Layers panel were visually inspected.
 
-6 layout sizes passed: 1366x900,1024x768,390x844,320x568,844x390,568x320. Paper uses over half of the viewport, navigation/dock targets remain visible and at least 44 px, trays stay contained, modal/body scrolling does not move the paper, reduced motion is honored, marker/color/slider/undo/redo work, and saved/gallery pixels match. Additional wheel/palette checks passed at 1024x768,390x844,320x568: no sideways overflow, controls reachable, and paper geometry unchanged. Tablet/phone screenshots were visually inspected.
+Existing workflows passed: paint/save/reload/gallery, learner isolation, countable math picture answers including zero, guided spelling self-check, full-gallery refusal without silent replacement, PNG download, completed expedition/prize painting, checksummed export/restore, tamper rejection and old export shape. A new drawing edited during asynchronous save remains saveable separately; a gallery edit remains saveable in the same entry. Checked workflows reported no page errors.
 
-Existing workflows passed: paint/save/reload/gallery, learner isolation, countable math picture answers including zero, guided spelling self-check, full-gallery refusal without replacement, PNG download, four-question expedition/prize painting, checksummed export/restore and tamper rejection, editing during asynchronous save remains saveable, and no page errors in the checked paths.
+Capacity checks passed: 302 strokes, more than 1,600 stored points, duplicate filtering, synthetic palm rejection and rotation preserving canvas pixels. The actual full-gallery footer download held 12 pictures / 600,000 points and restored identical canonical data: 11,337,220 bytes, below the 64 MB import bound. The allowance remains 2,000 strokes / 50,000 sampled points per picture across all layers.
 
-Capacity checks passed: 302 strokes, more than 1,600 stored points, duplicate sampling filter, synthetic palm rejection and rotation preserving canvas pixels. An actual full-gallery footer download with 12 pictures / 600,000 points restored identical canonical data; size 11,337,220 bytes, below 64 MB import bound. Maximum picture allowance stays 2,000 strokes / 50,000 sampled points.
-
-Independent review found a delayed second-finger dismissal gap. A regression reproduced it before the fix. After the fix, genuine Chromium CDP touch input verified both finger-release orders, remaining-contact movement, no unintended marks, and normal drawing on the next gesture. The first-Pencil-dismissal guard behavior was also tightened and regression tested. Final source review: no remaining Critical or Important findings.
+Independent source review identified four important editing/control defects and one timestamp edge case. Each was fixed and covered by regression checks. Additional reviewer checks compared cached and freshly rendered six-layer pictures and confirmed old profile canonical equivalence. See verification/REVIEW.txt. Physical Safari/Pencil acceptance is not established by Chromium checks.
 
 Run: node --test verification/*unit.cjs
-Browser scripts require Playwright, Chromium at WW_CHROMIUM (or the script's default), and a local HTTP URL in WW_URL. Browser checks use Chromium; they do not establish physical Safari/Pencil behavior. Screenshot paths are temporary diagnostics, not application assets.
+Browser regression command: node --test verification/shade-browser.cjs verification/prism-browser.cjs verification/openpaper-browser.cjs
+Other scripts: openpaper-layout.cjs, prism-layout.cjs, browser.cjs, extra-browser.cjs, race-browser.cjs, openpaper-capacity.cjs.
+Browser scripts require Playwright, Chromium at WW_CHROMIUM (or the script default), and a local HTTP URL in WW_URL. The final full run exited 0; its captured output is verification/FINAL_TEST_OUTPUT.txt. Temporary screenshot paths are diagnostics, not application assets.
 
-Final package is checked for JS syntax, SHA-384 script/style integrity, SHA-256 inventory, ZIP CRC and agreement with extracted bytes. No deployment is performed by this package.
+Packaging checks cover JavaScript syntax, SHA-384 script/style integrity, the SHA-256 asset inventory, ZIP CRC and extracted-byte agreement. No live deployment is performed by this package.
 
 DEVICE EVIDENCE AND LIMITS
-The user's Openpaper screenshots and report establish that the larger studio and previous controls were visible and preferred on Safari. They do not establish acceptance of these new Prism controls. Becca's next device check should exercise custom colors, sliders, outside taps/drags, saved pictures and reopening the same explorer. Physical palm behavior and Safari browser-chrome resizing remain device checks.
+The supplied Safari screenshot shows Prism and the user's landscape painting. It establishes the previous release was being used, not acceptance of the new shading and layers. Three focused device checks are in START_HERE.txt. Physical Apple Pencil feel, palm behavior, Safari browser-chrome resizing and memory pressure remain field checks. Six layers bound canvas allocation but do not establish performance on every device.
 
-No new cloud sync, account, authenticated learner isolation, fleet bootstrap or commissioning is claimed. Unsaved paper is temporary. New Prism settings and variable-width paintings require Prism or later; recovery software is not a learner backup.
+No new cloud sync, fleet bootstrap or commissioning is claimed. Unsaved paper is temporary. New layered data requires Shadecraft or later; the recovery ZIP is application code, not a learner backup.

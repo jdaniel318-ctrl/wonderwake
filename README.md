@@ -1,17 +1,13 @@
-# Wonderwake07 — Prism 0.5.1
+# Wonderwake08 — Shadecraft 0.6.0
 
-A refinement of the independent Wonderwake drawing studio. Start with START_HERE.txt for the existing GitHub Pages upload workflow.
+Actual picture layers, controllable shading and direct grayscale for the independent Colorwake studio. Start with START_HERE.txt for uploading and three device checks.
 
-Colors replaces Colour on the dock. A color wheel, brightness slider and optional hex entry add up to 16 custom swatches to the existing palette for each explorer. The selected color appears on the dock. The 12 default colors stay available. Swatches can be removed without changing artwork.
+Colors has a permanent black/gray/white row and a continuous neutral slider. The wheel includes intensity and brightness. A new Soft brush feathers the stroke edges; per-tool opacity changes shading strength. Pen at 100% paints a crisp opaque line. The compact dock now includes Layers.
 
-Pen, Pencil, Marker and Eraser each remember their own size from a continuous 1–40 slider. Tool settings are stored with the selected explorer and included in progress exports. Selecting a color while Eraser is active returns to Pen.
+Up to six layers can be selected, named, hidden, locked, reordered and given their own opacity. Erasing affects only the selected layer. Completed layers are cached and the active stroke is composited in order, so preview and saved output agree. Saved pictures and backups retain every layer; PNG downloads flatten visible layers.
 
-A tap or drag outside a menu dismisses it without drawing or activating the control underneath. Overlapping fingers belong to that same closing gesture until they all lift. The following gesture draws. Menus animate briefly and honor reduced motion; Done and Escape remain accessible alternatives. The paper, fixed header and compact dock keep their positions.
+Gallery's Edit picture reopens the drawing and Save updates that entry. New paper keeps the saved original and starts a separate picture. Old profiles remain canonically unchanged when validated; old artwork keeps its original appearance. Editing an older picture places it on one layer and preserves old eraser marks as paper-colored strokes.
 
-The larger paper, 2,000 strokes / 50,000 sampled points per painting, undo/redo and 12 pictures per learner remain. Existing learners, pictures and progress exports are accepted. New Prism variable widths and palette settings require Prism or later to read. Save or download before leaving an unfinished paper.
+The paper stays large and fixed. Outside gestures dismiss a menu before drawing resumes. The 2,000-stroke / 50,000-point allowance and 12-picture gallery remain. New data requires Shadecraft or later; use progress backups when updating, and do not clear website data.
 
-Progress remains in the existing local IndexedDB database. No server sync, new account, fleet authority or commissioning is added. Fleet lessons are documented as candidates for later review. The currently deployed game changes only when the user uploads this package.
-
-Details: CHANGELOG.md. Verification and physical-device limitations: VERIFY.txt. Learning behavior: COLORWAKE.md. Learner workflow: LEARNERS.md. Static vessel metadata: WONDERWAKE_VESSEL.json. Test sources: verification/.
-
-Keep a progress export before updating; do not clear website data. recovery/ contains the previous application only, not learner records.
+This build does not commission or integrate Wonderwake into the fleet. Lessons are retained for future review. See CHANGELOG.md, VERIFY.txt, WONDERWAKE_VESSEL.json and verification/FLEET_LESSONS.txt. The source has no new external dependency or drawing service. recovery/ contains the previous application, not learner records.
