@@ -1,11 +1,30 @@
-CLEARPATH 0.9.0 — VERIFICATION
+WONDERWAKE14 SKYBLOOM 0.10.0 — VERIFICATION
 
-140 regression tests passed, zero failed. Three additional layout scripts passed: 10 viewport sizes for quest/studio controls, six legacy quest viewport sizes, and six guided answer modes at six viewport sizes. Actual output is in verification/CLEARPATH_TEST_OUTPUT.txt and CLEARPATH_LAYOUT_OUTPUT.txt. Summary and tested runtime hashes are in CLEARPATH_RESULTS.json. Review findings and intentional behavior changes are recorded in CLEARPATH_LEDGER.md.
+Current evidence is in verification/SKYBLOOM_RESULTS.json,
+verification/SKYBLOOM_TEST_OUTPUT.txt and verification/SKYBLOOM_REVIEW.md.
+Historical evidence retains its earlier release name and is not a current claim.
 
-Coverage includes real Maker ink versus shape manipulation, pointer cancellation and learner isolation, ink validation/reload, written numeral confirmation and correction, zero-dot answers, normal Skybridge question-to-completion fit, diagram/form non-overlap, readable Lantern code cells, zero/positive/capped spark fill, progress persistence, fireworks and cancellation, reduced motion, existing saves, gallery/backup and learner workflows.
+AUTOMATED COVERAGE
+- Flight targets/choices/spacing, wrong-hit recovery, steering constants, portrait hit testing, pause/hidden time, once-only completion.
+- Real browser input: wrong/correct balloons, six viewport sizes, touch, keyboard pause, active reduced-motion changes, exit cleanup, saved/failed save, replay and learner separation.
+- Existing suites: painting/layers/colors, menu dismissal, Maker ink versus shapes, written-number/dot answer modes, quest completion and duplicate rewards, storage/readback, backup/restore and invalid data.
+- Layout sweeps: Playdeck quest/studio (10 viewport sizes), quest states (6), guided answers (6 sizes × 6 modes). Visible controls and geometry are asserted, not inferred from screenshots.
 
-Packaging checks JavaScript syntax, script/style SHA-384 integrity, SHA-256 asset inventory, ZIP CRC and extracted-file equality. Historical evidence is prefixed with its release name.
+RUNNING THE TESTS
+Unit tests require Node.js. Browser tests also require Playwright and Chromium; the packaged tests use /tmp/ww-chromium/chromium in the authoring environment. Adjust that executable path to your local Chromium when reproducing elsewhere. Serve the release over HTTP and set WW_URL to that local URL. Do not use file:// for storage and integrity checks.
 
-Chromium automation includes mouse/keyboard, browser touch and synthetic pen events. It does not certify physical Pencil feel, Safari browser chrome or native assistive technology. START_HERE.txt has three focused iPad checks.
+node --test --test-concurrency=2 verification/*unit.cjs verification/*browser.cjs verification/quest-acceptance.cjs verification/number-input.cjs verification/number-app.cjs
+node verification/playdeck-layout.cjs
+node verification/quest-layout.cjs
+node verification/wayfinder-layout.cjs
 
-No deployment was performed. Fleet authority remains unchanged. Maker ink is an optional new learner field. Written numerals are confirmed by the child before grading, not automatically recognized.
+PACKAGE CHECKS
+ASSET_HASHES.json lists byte lengths and SHA-256 for every other packaged file.
+index.html pins all 16 runtime JS/CSS assets with SHA-384 integrity. The release
+was ZIP-CRC checked, extracted, and compared byte-for-byte against the source.
+
+LIMITS
+Chromium automation is not physical iPad/Safari/Pencil acceptance. START_HERE.txt
+contains three device tests. This archive does not deploy or verify the current
+Black Flag engine and does not commission the ship. No real learner data is
+included in tests, recovery files or public ship metadata.

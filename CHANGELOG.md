@@ -1,3 +1,7 @@
+# Skybloom 0.10.0
+
+Dedicated Star Glider round model, clearer collision feedback, fresh replay targets, flight landing/fireworks, responsive controls, once-only readback-checked completion, and fleet handoff/test guidance. No learner schema change.
+
 # Clearpath 0.9.0 — 2026-10-31
 
 Real Maker freehand input; distinct Shapes/Draw tools; validated persistent ink and per-mode undo. Fitted Skybridge questions/results; separate advanced diagram/input space. Explicit handwritten numeral confirmation alongside tap dots. Readable Lantern target/answer boxes. Empty zero-spark bar and no 100-spark wrap. Slightly slower travel, arrival hops and bounded fireworks with interruptible/reduced-motion paths.

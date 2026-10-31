@@ -2,8 +2,8 @@
   "schema": "blackflag-draft-vessel-descriptor-v1",
   "project_key": "wonderwake",
   "display_name": "Wonderwake",
-  "release": "Clearpath",
-  "version": "0.9.0",
+  "release": "Skybloom",
+  "version": "0.10.0",
   "lifecycle": "draft_family_preview",
   "commissioned_on_server": false,
   "fleet_core_membership_changed": false,
@@ -57,11 +57,13 @@
   },
   "fleet_connection": {
     "type": "explicit-preview-launch",
-    "engine_build": "8.8.20.72",
     "no_authority_transfer": true,
     "no_learner_transfer": true,
     "not_server_commissioning": true,
-    "public_passport": "manual, static release metadata only"
+    "public_passport": "manual, static release metadata only",
+    "last_recorded_engine_build": "8.8.20.72",
+    "current_engine_verified": false,
+    "handoff": "FLEET_HANDOFF.md"
   },
   "creative_exchange": {
     "format": "restricted SVG subset to learner-owned PNG",
@@ -117,5 +119,16 @@
     "dots_and_written_numbers": true,
     "handwriting_automatically_recognized": false,
     "written_number_confirmed_by_child": true
+  },
+  "star_glider": {
+    "distinct_targets_per_flight": 5,
+    "number_range": [
+      1,
+      12
+    ],
+    "wrong_hit_penalty": false,
+    "academic_mastery_awarded": false,
+    "dedicated_landing": true,
+    "readback_checked_save": true
   }
 }

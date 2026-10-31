@@ -358,3 +358,19 @@
 @media(max-height:540px) and (min-width:560px){
  .math-modal:not(.answer-modal) .learning-area:has(.type-answer) .question-visual{grid-row:3}
 }
+/* Skybloom: flight controls stay visible; the scene owns its feedback. */
+.glider-modal{padding:8px}.glider-modal .modal-shell{max-width:1500px;height:calc(100dvh - 16px);max-height:calc(100dvh - 16px)}
+.glider-modal .modal-head{padding:8px 16px;gap:16px;min-height:62px}.glider-modal .modal-head .eyebrow{display:none}.glider-modal .modal-head h2{margin:0;font-size:24px}
+.glider-modal #modal-body{display:flex;flex:1;overflow:hidden}.glider-modal .glider-wrap{display:flex;flex:1;min-height:0;min-width:0;flex-direction:column;gap:10px;padding:12px 16px}
+.glider-modal .glider-toolbar{flex:none;flex-wrap:nowrap;margin:0;gap:12px}.glider-toolbar>div{min-width:0}.flight-kicker{display:block;font-size:10px;letter-spacing:1.8px;font-weight:750;color:#637e77;margin-bottom:3px}
+.glider-modal .glider-toolbar h3{font-size:clamp(21px,2.7vw,30px)}.glider-modal #pause-flight{min-height:44px;flex:none}.glider-modal .mission-badge{white-space:nowrap;margin-left:auto}
+.flight-scene{position:relative;flex:1;min-height:90px;min-width:0;border-radius:20px;overflow:hidden;background:#8cbdc4;border:1px solid #9abcb8}
+.glider-modal .glider-canvas{position:absolute;inset:0;width:100%;height:100%;min-height:0;touch-action:none;user-select:none;-webkit-user-select:none;-webkit-touch-callout:none;border-radius:0}
+.flight-message{position:absolute;top:12px;left:50%;transform:translateX(-50%);max-width:calc(100% - 24px);width:max-content;margin:0;border:1px solid #ffffff99;box-shadow:0 3px 12px #17414e15;background:#fffbedee;color:#254c55;padding:9px 18px;border-radius:14px;font-weight:650;font-size:15px;text-align:center;pointer-events:none;line-height:1.3}
+.flight-message[data-kind=wrong]{background:#fff1d4;color:#77421c;border:2px solid #b56c31}.flight-message[data-kind=correct],.flight-message[data-kind=complete]{background:#e8f4dd;color:#285b4f;border-color:#9dbda3}
+.flight-paused{position:absolute;inset:0;display:grid;place-items:center;background:#103346bb;color:#fff4d4;font:32px Georgia;pointer-events:none}
+.flight-help{flex:none;text-align:center;font-size:12px;color:#456b6d;line-height:1.4;padding:1px 5px}
+.flight-finish{display:flex;justify-content:center;gap:10px;flex:none;flex-wrap:wrap;padding-bottom:4px}.flight-finish button{min-height:48px}
+#flight-save{margin:0;text-align:center;flex:none;font-size:12px;line-height:1.3;color:#406d65}
+@media(max-width:600px){.glider-modal{padding:0}.glider-modal .modal-shell{height:100dvh;max-height:100dvh;border-radius:0}.glider-modal .modal-head{padding:6px 8px;gap:8px}.glider-modal .modal-head h2{font-size:20px}.glider-modal .glider-wrap{padding:8px;gap:8px}.glider-modal .glider-toolbar{gap:6px;flex-wrap:wrap}.glider-modal .glider-toolbar h3{font-size:22px}.glider-modal .glider-toolbar>div{flex:1 1 100%}.glider-modal .mission-badge{margin-left:0}.glider-modal #pause-flight{margin-left:auto}.flight-message{font-size:13px;padding:8px 10px;top:8px}.flight-finish{gap:6px}.flight-finish button{font-size:12px;padding:8px 10px;min-height:44px}.flight-help{font-size:11px}.flight-kicker{display:none}}
+@media(max-height:540px) and (min-width:560px){.glider-modal{padding:0}.glider-modal .modal-shell{height:100dvh;max-height:100dvh;border-radius:0}.glider-modal .modal-head{min-height:48px;padding:2px 8px}.glider-modal .active-learner{display:none}.glider-modal .glider-wrap{padding:4px 8px;gap:4px}.glider-modal .glider-toolbar{flex-wrap:nowrap;gap:8px}.glider-modal .glider-toolbar>div{flex:auto}.glider-modal .glider-toolbar h3{font-size:20px}.flight-kicker{display:none}.flight-message{font-size:12px;padding:5px 10px;top:6px}.flight-help{font-size:10px}.flight-finish{gap:8px;padding:0}.flight-finish button{font-size:12px;min-height:44px;padding:6px 10px}#flight-save{font-size:10px}}

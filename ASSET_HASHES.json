@@ -1,10 +1,10 @@
 {
   "schema": "wonderwake-asset-inventory-v1",
-  "version": "0.9.0",
+  "version": "0.10.0",
   "files": {
     "CHANGELOG.md": {
-      "bytes": 8372,
-      "sha256": "1a11c306a5d7f9af9acd6d75f23f42fcc3b2fcb50c29a5ba1826f00676fd96d5"
+      "bytes": 8622,
+      "sha256": "e6a84c8621bf7e428c591796c0baca77c022b919824905efd174f96be0078cdf"
     },
     "COLORWAKE.md": {
       "bytes": 2313,
@@ -18,6 +18,14 @@
       "bytes": 6123,
       "sha256": "4fd5a0a430957a108605f26af67f2decd2612bb8b94af3b65a3f015d8830e7e7"
     },
+    "FLEET_HANDOFF.md": {
+      "bytes": 3900,
+      "sha256": "a81957e8265c63735ce08d62687692267cf8e8ad75907e594621c760abde4400"
+    },
+    "FLEET_LESSONS.md": {
+      "bytes": 3561,
+      "sha256": "a04e0f594db75ed1ceaed737fbb8791a5f45706193236ea4eb9abc90a8931d64"
+    },
     "Fern-original.svg": {
       "bytes": 2892,
       "sha256": "439916bf6b169980e2508ac257f39edd36c741f3b79566239816adce0ad55731"
@@ -27,32 +35,32 @@
       "sha256": "981faf5bdc6860fdb77235e95a90544255e268ef9871c31fa4797952d19b86e4"
     },
     "README.md": {
-      "bytes": 2384,
-      "sha256": "be30eb61c0c7da31403f65e0e5f14594353be152592ac9362b25c9fa938cd512"
+      "bytes": 2492,
+      "sha256": "89d05e5a29655cd7652e5d650ccbbf0a838aedbf195fff479208fd0221183e75"
     },
     "START_HERE.txt": {
-      "bytes": 2407,
-      "sha256": "2675aeeb17bfe2160779714174857509800e8cff108679c6554e7b35f99ee757"
+      "bytes": 2248,
+      "sha256": "423a397e3410dd6ba4cd7b446408140a8ab1fcd120d39e71f5b849cbbdc794a0"
     },
     "VERIFY.txt": {
-      "bytes": 1545,
-      "sha256": "55cc9299b6078fc8dc4ea43bcc85c73922c53eb52e56475992b0359fcbf5955a"
+      "bytes": 2221,
+      "sha256": "cfd5b634a55431f27dcaac0cab1688c97824095d370582f72a7e583d10674d81"
     },
     "WONDERWAKE_VESSEL.json": {
-      "bytes": 3333,
-      "sha256": "9b952558173ecf3a2353addd2196b5407d3cae8706b549aa3698230d18168940"
+      "bytes": 3665,
+      "sha256": "898ddb165a4371fef4dcf3d57423ce17402d6cebfc8965b087ad66fefa34aa37"
     },
     "index.html": {
-      "bytes": 4801,
-      "sha256": "172f495c3b6cf76b6dbf983ec02b3b94cf214a5a32fd80c5044c5954d7c1be14"
+      "bytes": 4956,
+      "sha256": "fa8de76c57d18a8851be3f6edeaccd8ea22361355945342994f8524620ebe669"
     },
     "number-input.css": {
       "bytes": 2632,
       "sha256": "dfbda9488277b75e4671a0a4bd817fab028f86096928202c17033399689b4db0"
     },
-    "recovery/Wonderwake12-Wayfinder.zip": {
-      "bytes": 1289158,
-      "sha256": "f4db2afc6af30fbafc39cb19c718ab239622e427b049ed2c908e3ea79b394dd6"
+    "recovery/Wonderwake13-Clearpath.zip": {
+      "bytes": 1515678,
+      "sha256": "b03efd23db46140347367c3a732d828dbed8664c39f319e49fcd54bd54749340"
     },
     "verification/CLEARPATH_LAYOUT_OUTPUT.txt": {
       "bytes": 2416,
@@ -118,6 +126,30 @@
       "bytes": 3554,
       "sha256": "27ee6d0496759a853e594e6e7e2fa770e8fa527daafd3f0f246bb78f9254750a"
     },
+    "verification/SKYBLOOM_LAYOUT_OUTPUT.txt": {
+      "bytes": 2072,
+      "sha256": "1ac0480194a42355a7560ac55310a4ee0ce1acd117aabbbd6963f6077559a1fc"
+    },
+    "verification/SKYBLOOM_LEDGER.md": {
+      "bytes": 4628,
+      "sha256": "0406a5fac65fe3ac5f7e3bbebd9afcbde20a71bf502de9cc72bf869a62cc7e6a"
+    },
+    "verification/SKYBLOOM_PLAN.md": {
+      "bytes": 2245,
+      "sha256": "94bf18af9e5ee190294fdeb82e941e2a27ebdc48c5ee1ad6818035dc81c6e81f"
+    },
+    "verification/SKYBLOOM_RESULTS.json": {
+      "bytes": 2606,
+      "sha256": "de11899bd90a52b43ab4f8359034e9b51ffe11a276dd21f8735b02efb3fb4850"
+    },
+    "verification/SKYBLOOM_REVIEW.md": {
+      "bytes": 1082,
+      "sha256": "6d8312148e8292d3521c11e463c7acd8547368eaf36d54c461743f1deb08701a"
+    },
+    "verification/SKYBLOOM_TEST_OUTPUT.txt": {
+      "bytes": 14967,
+      "sha256": "e4ddbd5aa57bddf6993bb467a6b8ec3f0aa26af1cc859ceb66e580faea97903a"
+    },
     "verification/SPARKSTEP_DESIGN.txt": {
       "bytes": 2271,
       "sha256": "94f822943afc5f01b2a67e30371ee5d5e552a975b9325c3fb86c99206d76d865"
@@ -177,6 +209,18 @@
     "verification/extra-browser.cjs": {
       "bytes": 4181,
       "sha256": "21ac0ab9fa65d5b164a8033a7168b098121b1aeac074ec2bad81335514a035ae"
+    },
+    "verification/fleet-return-unit.cjs": {
+      "bytes": 1114,
+      "sha256": "dc463a18dec5ccea76883f7d06ef916417d65325d4a80791c1463b1578d48e55"
+    },
+    "verification/flight-browser.cjs": {
+      "bytes": 7976,
+      "sha256": "416e3981ebb7bb32463f9e258ac63486d7b5711923bdaab612f61109c49c46bd"
+    },
+    "verification/flight-unit.cjs": {
+      "bytes": 3740,
+      "sha256": "5a5b1e5812ce9132aafda3a23e59bd6bc69ac3f1468330ddea958985f690a517"
     },
     "verification/lantern-dock-browser.cjs": {
       "bytes": 5147,
@@ -295,16 +339,16 @@
       "sha256": "3f7730678eeaed2d059ec40c3e02ecfb65c0e8acdc9d3ec8c1b32caa5aeeb896"
     },
     "verification/wayfinder-layout.cjs": {
-      "bytes": 3319,
-      "sha256": "17ed50f383cef60e2c4d7601ade0071c54343344b6bf8b433635b963f022d138"
+      "bytes": 3536,
+      "sha256": "bf82095a6ff53c9609dc10a79b4a82b738c1a21388e924c0aeb221c3da907509"
     },
     "wonderwake.css": {
-      "bytes": 62349,
-      "sha256": "2cfcd4596e798bbd934b1881a214478fb87ec5e2776b1e1f6d650b0f7e7edbfc"
+      "bytes": 66110,
+      "sha256": "650db90d8e1289c7779f575277e6cf7478033e67fbc296ea49f511977d2c8afb"
     },
     "wonderwake_app.js": {
-      "bytes": 76345,
-      "sha256": "166cb5b92406cd4efa06bf55fd44d2be0a0e0a1f670e88f4567891a404ee62fa"
+      "bytes": 73697,
+      "sha256": "01beafbdeb3a53816416690211770ef0d338201aeb25ab26a5a1b4d118b7240c"
     },
     "wonderwake_content.js": {
       "bytes": 21146,
@@ -323,8 +367,12 @@
       "sha256": "3b2f1b51ed181781324060ffa4010e186c1887219fa0395d61aa1e4b417d2770"
     },
     "wonderwake_fleet.js": {
-      "bytes": 2555,
-      "sha256": "f837e217aed892d3fd82b600f9359e144a50d4d30217aa6ef017a01016bf6031"
+      "bytes": 3012,
+      "sha256": "92a63621264bf415e142c7d90d976a0465bd84d6373f3513a9394807a075fc75"
+    },
+    "wonderwake_flight.js": {
+      "bytes": 11890,
+      "sha256": "6f1decb2334f4fe4f1957d2d202094dbe4257a726f53b778e2f57f210f5dcd29"
     },
     "wonderwake_paint.js": {
       "bytes": 3509,

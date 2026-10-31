@@ -1,16 +1,16 @@
-# Wonderwake13 — Clearpath 0.9.0
+# Wonderwake14 — Skybloom 0.10.0
 
-This release applies the family test findings to the activities where they matter.
+Star Glider now has a complete flight of its own: varied number rounds, visible balloon feedback, a star trail, a floating landing island, and staggered fireworks.
 
-- Maker Grove separates Shapes and Draw. Draw with finger selects actual freehand ink and restores finger input after Pencil use. It preserves existing shapes, includes pen thickness and neutral colors, and saves ink per explorer and creation. Separate undo actions avoid removing a shape when undoing a stroke.
-- Skybridge keeps question, reference, choices, feedback and the next action in one viewport. Decorative scenery yields space on short screens. Advanced diagrams and typed-answer controls occupy separate space.
-- Early counting, addition and subtraction offer Tap dots and Write number. Their papers remain separate while switching modes. Handwriting is freehand; the child explicitly chooses the numeral they wrote (0–20) and checks it. There is no automatic handwriting recognition or stroke-count grading. Blank dot paper is a valid zero; written zero needs an ink mark.
-- Lantern Hollow uses separate target and answer boxes, arrows showing reading order, and entry counts. The board remains steady between puzzle stages.
-- Zero sparks produces zero fill. The fill grows to 100 sparks and then remains full; the exact count continues to display without wrapping.
-- Travel and transitions are slightly slower. An arrival hop, staggered fireworks, and the lantern glow add distinct completion moments. Continue and Skip remain available; reduced motion and Motion off omit the effects.
+- Steering retains its tested response. Five distinct target numbers are selected from 1–12; each round has four unique choices and varied positions. Replaying changes the first target and sequence.
+- A wrong balloon gets an amber ring and retry symbol, gently wobbles when motion is enabled, and names both the hit number and the current target in the scene. It returns to a clear spot. No points or lives are taken away.
+- A correct find gets a short confirmation before the next target. Flight completion uses its own landing scene, the five collected number stars, the selected explorer and a roughly four-second celebration. Fly again, Paint your flight and Back to islands are available immediately. Paint your flight opens the existing free painting studio; it does not insert a screenshot into the painting.
+- Pause and background tabs freeze gameplay time. Motion off and operating-system reduced motion use a static celebration. Finger, Pencil, mouse and arrow steering remain available. Sound on reads outcome messages through the existing optional narration.
+- The target, scene, feedback and next actions fit six tested viewport sizes, including short landscape and portrait. Numerals remain round and readable instead of stretching with the scene.
+- Flight completion is counted once for the active learner and displays saved only after the existing local save/readback completes. Failed saves say so. No new learner fields, math mastery or spark rewards are introduced.
 
-Existing paintings, layers, custom colors, galleries, learning evidence and quest progress remain compatible. New Maker ink is optional validated local profile data; older releases do not preserve it when saving. Math and spelling grading rules are otherwise unchanged. Independent answers still require the child's response; optional guided spelling remains guided practice.
+Clearpath's changes remain: true Maker ink with separate Shapes/Draw tools; one-page Skybridge questions; Tap dots and Write number with child confirmation; separate Lantern Hollow target/answer boxes; zero sparks means zero bar fill; grayscale, layers and explicit painting save states.
 
-START_HERE.txt has upload steps and three iPad tests. All top-level assets must be uploaded together to match their integrity hashes. verification/ includes current Clearpath evidence and historical release records, labeled by release. recovery/ contains Wayfinder 0.8.1 application code only. Nothing is deployed by this ZIP.
+Use START_HERE.txt for upload instructions and three device tests. FLEET_HANDOFF.md distinguishes the launch link from server commissioning. FLEET_LESSONS.md maps reusable practices to implementations and tests. verification/ retains historical records by release and includes current Skybloom evidence. recovery/ contains the complete previous Clearpath application package.
 
-The ship remains standalone. Reusable interaction lessons are documented for later fleet review; no learner data or authority is transferred automatically.
+This ZIP is a prepared release, not a deployment. Physical Safari/Pencil acceptance and live fleet commissioning remain separate checks.

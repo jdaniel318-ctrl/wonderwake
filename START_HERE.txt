@@ -1,21 +1,25 @@
-WONDERWAKE13 — CLEARPATH · 0.9.0
+WONDERWAKE14 — SKYBLOOM · 0.10.0
 
 UPDATE
-1. Save any open painting and choose Keep a progress copy for each explorer you want backed up.
-2. Unzip this package. Upload every top-level file INSIDE Wonderwake13-Clearpath into your existing wonderwake repository, replacing matching files. Include number-input.css. Keep verification/ and recovery/ on your device.
-3. After GitHub Pages finishes, refresh your existing Wonderwake page. Check CLEARPATH · FAMILY PREVIEW 0.9.0 and choose the same explorer.
+1. Save any open painting. Keep a progress copy for each explorer you want backed up.
+2. Unzip Wonderwake14-Skybloom.zip. Upload ALL top-level files INSIDE its one folder into the existing wonderwake repository, replacing matching files. Include the new wonderwake_flight.js, all other JS/CSS files and index.html together. Keep verification/ and recovery/ on your device.
+3. When GitHub Pages has finished, refresh the existing Wonderwake page. Confirm SKYBLOOM · FAMILY PREVIEW 0.10.0. Choose the same explorer. Do not clear website data.
 
-THREE DEVICE CHECKS
-1. Maker Grove: place a shape, choose Draw with finger, and draw over it. The shape should stay put while a line appears. Switch to Shapes to move it. Leave and return: both shapes and lines should remain. Pencil palm rejection still applies until Draw with finger is chosen.
-2. Skybridge: the question, choices, feedback and Next discovery should fit together. Choose Draw this answer, then Write number. Write a 3, choose the number you wrote, and check it. Tap dots is still available, with separate marks. Handwriting is not automatically recognized; the child confirms their intended number before it is graded.
-3. Lantern Trail: read the separate Match this / Your code boxes, find shapes, and enter their order. Enjoy the slower travel, arrival hop and fireworks; Continue or Skip can move on immediately. Motion off / reduced motion skips the celebration. Also confirm that an explorer with zero sparks has an empty progress bar.
+THREE DEVICE TESTS
+1. WRONG BALLOON: Enter Star Glider. Deliberately touch a wrong balloon with your glider. Look for its amber outline/retry symbol and “That is X. Find Y.” inside the sky. The discovery count must stay the same. Then collect the target.
+2. FINISH AND REPLAY: Find five numbers. Enjoy the flight landing and fireworks; there should be no bridge. Fly again must work immediately and begin with a different target. Try Pause and Resume, and check that the controls remain visible with Safari's bars showing.
+3. KEEP YOUR WORK: Finish once and wait for “Flight saved on this device.” Leave and reload with the same explorer. Check their pictures and progress still belong to them; switch explorers and confirm separation. Turn Motion off and finish a flight: the landing should be still and the same buttons usable.
 
-SAVING
-Paint: Saved to gallery confirms the current picture on this device. Saving… means wait. Retry save means saving was not confirmed. Trail saved confirms a puzzle checkpoint.
-Maker Grove: shape arrangements and pen strokes save locally with the current explorer. Keep a picture downloads a combined PNG. Undo stroke affects ink; Undo last shape affects shapes.
-Math scratch papers stay while switching modes and returning to the same question. Use More → Save to my gallery to keep a paper after leaving that question.
+WIDER REGRESSION REMINDERS
+Maker Grove: Shapes places/moves pieces; Draw with finger makes ink without moving a piece.
+Skybridge: Write number accepts ink, then asks which numeral the child intended; handwriting is not automatically recognized. Tap dots keeps its own marks.
+Colorwake: Saving… is pending, Saved to gallery is confirmed, Retry save is not confirmed.
 
-Compatibility: existing learners, galleries and trails load unchanged. Maker ink is an optional new progress field. The previous release cannot preserve that new field if you roll back and save there. Keep a current progress copy before any rollback. recovery/ contains previous application code only, never learner data. Do not clear website data.
+FLEET RETURN
+Read FLEET_HANDOFF.md and FLEET_LESSONS.md after the device tests. The return link remains in Grown-ups. This package does not deploy or commission the ship and sends no learner data to the fleet.
+
+RECOVERY
+recovery/Wonderwake13-Clearpath.zip contains previous application code, not learner data. Back up progress first and restore all its top-level assets together if needed.
 
 OPEN WONDERWAKE
 https://jdaniel318-ctrl.github.io/wonderwake/
