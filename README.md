@@ -1,11 +1,11 @@
-# Wonderwake09 — Glowtrail 0.7.0
+# Wonderwake10 — Sparkstep 0.7.1
 
-A connected, untimed Lantern Trail adventure built from Wonderwake's touch, drawing, layering and saved-progress lessons. Start with START_HERE.txt for uploading and the next three device checks.
+A movement and transition update for the Lantern Trail. Original explorers now step along accepted routes, fireflies gather behind them, fitted planks sparkle, and a short lantern dissolve connects the puzzles and island celebrations. Skip animation is available during travel. Reduced motion completes these effects immediately.
 
-Three island routes each combine Bridge Bay (fit countable planks), Firefly Trail (draw or tap a safe route), and Lantern Hollow (move a light through a dark layer and match a discovered symbol code). The explorer walks the completed path and the island lantern lights up. One contextual tray exposes Undo, Reset, Clue and the current action. Clues are optional; there are no timers or lives. Each island awards ten sparks once. Existing academic skill records are not altered by puzzle play.
+The explorer stays at START until a drawn route is accepted. The scene keeps the same bounds between puzzles, including on narrow phones. No puzzle rules, reward rules, stored profile schema or drawing-studio controls change in this update.
 
-Committed actions and puzzle checkpoints are kept with the selected explorer. Wait for the checked-save message before closing or refreshing. Partial quests survive a progress export; a failed local save keeps current work available in the page for export. Existing profile shapes and checksums remain unchanged when no optional glowtrail field is present.
+Start with START_HERE.txt for uploading and three device checks. The new wonderwake_quest_motion.js file is required. Upload all top-level files together so the integrity-checked scripts match. Existing learners, gallery pictures, Glowtrail progress and progress-copy checksums remain compatible.
 
-The rule engine lives in wonderwake_quest.js; drawing/input and scene lifecycle live in wonderwake_quest_ui.js; responsive layout lives in wonderwake_quest.css. Core validates the bounded optional state, and app integration owns learner identity, reward and checked saving. The existing studio renderer and painting tools remain unchanged. All visuals are original Canvas/HTML/SVG code using the existing character art; no new remote dependency.
+Architecture: wonderwake_quest.js owns rules and validation; wonderwake_quest_motion.js samples accepted routes by distance; quest UI owns transient movement and scene changes. Optional walking poses reuse the original artwork in world/creative. All static callers keep their existing pose. Animation never decides puzzle success or grants a reward. The app still owns selected-learner identity and checked local saving.
 
-See VERIFY.txt, verification/RESULTS.json and verification/REVIEW.txt for evidence and limitations. This package does not deploy or commission Wonderwake into the fleet. New quest metadata requires Glowtrail or later. recovery/ contains the previous application ZIP, not learner records.
+Source, tests and review evidence are included in verification/. recovery/ contains the previous Glowtrail application ZIP. See VERIFY.txt for what was actually tested and the remaining physical Safari/Pencil check. Wonderwake remains a standalone family preview.

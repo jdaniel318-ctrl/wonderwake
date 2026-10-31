@@ -68,3 +68,16 @@
 @media(prefers-reduced-motion:reduce){.quest-shell *{animation:none!important;transition:none!important}}
 
 .quest-code svg{display:block;width:26px;height:26px}.quest-symbols svg{display:block;width:24px;height:24px;margin:auto}
+
+/* Scene-only travel: no camera pan, layout animation or overlay over Islands. */
+.quest-transition{position:absolute;inset:0;z-index:2;display:flex;flex-direction:column;align-items:center;justify-content:center;background:radial-gradient(ellipse at 50% 45%,#527f73,#1b474c 65%,#153747);color:#fff0bc;text-align:center;pointer-events:auto;padding:20px;overflow:hidden}
+.quest-transition[hidden],.quest-skip[hidden]{display:none}
+.quest-transition-light{font:80px Georgia;color:#ffe5a2;text-shadow:0 0 30px #ffdf8c;margin-bottom:4px;will-change:transform}
+.quest-transition p{font:500 clamp(20px,3vw,36px)/1.2 Georgia;margin:8px 0}
+.quest-transition>span{font-size:9px;letter-spacing:2px;color:#c8d9bb}
+.quest-skip{position:absolute;z-index:3;right:10px;top:10px;min-height:44px;padding:8px 13px;border:1px solid #e8dca58c;border-radius:22px;background:#153d49e8;color:#fff3cb;font:650 11px system-ui;box-shadow:0 3px 12px #102e4420}
+.quest-skip:focus-visible{outline:3px solid #f4cd6b;outline-offset:2px}
+@media(max-height:540px) and (min-width:560px){.quest-transition-light{font-size:44px}.quest-transition p{font-size:20px}.quest-skip{right:5px;top:5px;font-size:10px}}
+/* Reserve the tallest tray and instruction so changing puzzle cannot resize the paper. */
+@media(max-width:600px) and (min-height:541px){.quest-puzzle-tools{min-height:105px}.quest-instruction{min-height:33px}}
+@media(max-width:360px) and (min-height:541px){.quest-instruction{min-height:49px}}

@@ -1,3 +1,12 @@
+# Sparkstep 0.7.1 — 2026-10-31
+
+- Optional walking poses for the original explorers; distance-based accepted route travel with firefly followers.
+- Short, skippable scene dissolves between puzzles, lantern celebration and the next island.
+- Plank-fit and shape-discovery sparkles; reduced-motion support and cleanup on exit.
+- Fixed an unaccepted route moving the explorer away from START.
+- Reserved mobile tray space so the scene stays steady as the puzzle changes.
+- Existing profile/quest schema, reward rules, painting tools and gallery remain compatible.
+
 # 0.7.0 — Glowtrail
 
 Added the Lantern Trail: three connected, replayable island routes with bridge fitting, drawn/tapped pathfinding, and lantern reveal/code puzzles. Success animates the explorer and lights a persistent island lantern. The home quest card and map now provide a direct entrance and show the three completed lanterns. Skybridge still opens the original math activities.

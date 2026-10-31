@@ -1,30 +1,25 @@
-WONDERWAKE09 — GLOWTRAIL · 0.7.0
+WONDERWAKE10 — SPARKSTEP · 0.7.1
 
 UPDATE
-1. Save your current picture and keep a progress copy for each learner you want backed up.
-2. Unzip this package. Upload every top-level file INSIDE Wonderwake09-Glowtrail to your existing wonderwake repository root, replacing matching files. Include the new wonderwake_quest.js, wonderwake_quest_ui.js and wonderwake_quest.css. Leave verification/ and recovery/ on your device.
-3. When GitHub Pages finishes, refresh once. Check GLOWTRAIL · FAMILY PREVIEW 0.7.0 and choose the same explorer. Tap Play Lantern Trail.
+1. Save any open picture, then Keep a progress copy for each learner you want backed up.
+2. Unzip this package. Upload every top-level file INSIDE Wonderwake10-Sparkstep into the existing wonderwake repository root, replacing matching files. Include the new wonderwake_quest_motion.js. Keep verification/ and recovery/ on your device.
+3. After GitHub Pages finishes, refresh the existing Wonderwake page. Check SPARKSTEP · FAMILY PREVIEW 0.7.1 and choose the same explorer.
 
-THE LANTERN TRAIL
-Three connected puzzles lead to a lantern lighting up, with three island routes to explore.
-Bridge Bay: count the spaces and fit a plank into each gap. Drag a plank onto the picture, or tap a plank and then a Gap button. Filled gaps can be tapped without a selected plank to return the piece. A wrong fit is a chance to try another idea.
-Firefly Trail: draw a route from START, through the three golden sparks, to FINISH. Go around the water. You can also tap waypoints; the game joins them. Follow trail lets your explorer walk the route you made. Keyboard: focus the scene, use arrow keys to move the cursor, and Space to add a point.
-Lantern Hollow: move the lantern to discover shapes under the dark layer. Match the pictured three-shape code using the discovered buttons. Keyboard arrows move the light. Light lantern finishes the island.
-
-UNDO, CLUES AND SAVING
-The current puzzle has one compact set of controls: Undo, Reset, Clue and the next action. Reset can be undone. Clues show one possible approach; using them does not take anything away. There are no timers or lives. Reduced motion and optional sound follow the explorer's existing preferences. After using Pencil, Use finger safely switches back to finger play.
-Committed moves and completed puzzle checkpoints save with the current explorer. Wait for Trail saved on this device before refreshing or closing the browser. If Not saved appears, keep the page open and use Keep a progress copy on the islands. In-page progress remains available for export. Canceled unfinished gestures are discarded; committed moves remain.
-The first completion of each island awards 10 discovery sparks. Replay is welcome but does not repeatedly award those sparks. Quest play does not automatically increase independent math or spelling mastery.
+WHAT CHANGED
+Explorers take little steps, sway and face their route. Golden fireflies gather behind an accepted trail; fitted planks and newly found symbols sparkle. An 800 ms lantern dissolve connects Bridge Bay, Firefly Trail, Lantern Hollow, the lit island and the next island. The playing surface and header stay in place. Skip animation is available during travel and transitions. Reduced motion or turning Gentle motion off completes effects immediately.
+An unfinished or rejected trail now leaves the explorer at the yellow START circle. Solving and saving a puzzle happens before its celebration. Leaving during an effect resumes at the saved puzzle checkpoint.
 
 THREE DEVICE CHECKS
-1. Play Bridge Bay using both a dragged plank and a tapped plank/Gap pair. Check that Undo and Clue feel simple and the scene stays steady.
-2. Draw or tap a safe Firefly Trail. Watch your explorer follow it. Return to the islands and Continue Lantern Trail; the next puzzle should remain ready.
-3. Find the hidden shapes, enter the code and light the lantern. Wait for Trail saved on this device, reopen the same explorer, and check that the lantern and progress remain.
+1. Continue your saved Lantern Trail and cross a bridge. Watch the steps and the transition into Firefly Trail; check that the scene feels steady.
+2. In Firefly Trail, try a first mark away from START: the explorer should stay on START. Reset, draw a safe route from START through the sparks to FINISH, and watch the fireflies follow.
+3. Try Skip animation once, finish the island, and wait for Trail saved on this device. Refresh and choose the same explorer; the completed lantern should remain. Send screenshots and how the transitions felt.
 
-THE REST OF YOUR SHIP
-Math, spelling, Letter Trails, Maker Grove, Star Glider, free painting and the gallery remain available. The primary Start adventure entry now leads into the Lantern Trail; choose Skybridge for the original math questions. Shadecraft's studio retains its large paper, custom colors, soft brush, opacity controls, six layers and editable gallery. The new game uses its own compact contextual controls.
+SAVING AND COMPATIBILITY
+Same page, same local learners, same painting gallery, same quest schema. A canceled unfinished gesture is discarded; committed moves remain. Wait for Trail saved on this device before closing or refreshing. If Not saved appears, keep the page open and use Keep a progress copy on the islands. Quest completion awards 10 sparks once per island and does not change independent math/spelling mastery.
 
-COMPATIBILITY
-Same URL, same database, same local learners. Old progress copies remain readable with the same canonical checksums. New quest progress needs Glowtrail or later. recovery/ contains the previous Shadecraft application ZIP, not learner data; older applications cannot safely round-trip new quest progress. Do not clear website data.
+The recovery ZIP is the previous Glowtrail application code, not learner data. It reads the same quest schema. Your progress copies are separate. Do not clear website data.
 
-This is an independent local family preview. No fleet commissioning, account, cloud sync or Engine deployment is included. Native iPad/Safari/Pencil behavior and how enjoyable the quest is over repeated play still need your field feedback.
+WONDERWAKE LINK
+https://jdaniel318-ctrl.github.io/wonderwake/
+
+Wonderwake remains an independent family preview. This package does not deploy it or change the Black Flag engine or fleet authority. Sparkstep's new animations still need your physical iPad/Safari/Pencil feedback.

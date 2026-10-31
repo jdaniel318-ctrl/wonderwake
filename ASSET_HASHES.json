@@ -1,10 +1,10 @@
 {
   "schema": "wonderwake-asset-inventory-v1",
-  "version": "0.7.0",
+  "version": "0.7.1",
   "files": {
     "CHANGELOG.md": {
-      "bytes": 5804,
-      "sha256": "457289c8a8b76ef77be02a93839fb52b93cb8ae6abf0ca6c58a13479bf84eba7"
+      "bytes": 6368,
+      "sha256": "6c28d14e29ce056bcbdcbfcc09ac13247ceada1aaf79a56e7905e9a7e119cc14"
     },
     "COLORWAKE.md": {
       "bytes": 2313,
@@ -27,36 +27,36 @@
       "sha256": "981faf5bdc6860fdb77235e95a90544255e268ef9871c31fa4797952d19b86e4"
     },
     "README.md": {
-      "bytes": 1820,
-      "sha256": "6c95052381c669f4e52098f541695aa1b475e7a7e66899e1310f91d6fa8387c5"
+      "bytes": 1593,
+      "sha256": "ec3fa434327a15c49ff3bb856e5f7aa688e88b30d345a8dc5fcaa82959e598c3"
     },
     "START_HERE.txt": {
-      "bytes": 3881,
-      "sha256": "5e6eb7d15fdec6276d17164f2c34cc83c91c1a63c946d4d2fc3aed8ec6b4d774"
+      "bytes": 2634,
+      "sha256": "78dbf021dd7650aaf7c6451dd87dbb1abf650f40513bd75fd641f56b3de1acad"
     },
     "VERIFY.txt": {
-      "bytes": 5040,
-      "sha256": "2635319c1e22b19f4a9eaea35656a94a5a3de841805d8d89e06d9a2988b0b401"
+      "bytes": 4181,
+      "sha256": "d97b98b159d105398d6ce7314682b67c6fdbee91f2eb2bbab3008b5a7a3f4deb"
     },
     "WONDERWAKE_VESSEL.json": {
       "bytes": 2978,
-      "sha256": "3df12801dd06d1bf5cfebcc0ba48fbbf42fcc922e2fdf51a17fe8b6b116f7519"
+      "sha256": "6fc2a28b015a4c78c98590f299a934d82ff82f66efa86cc0d4d514fb0a68a0d6"
     },
     "index.html": {
-      "bytes": 4513,
-      "sha256": "654dd6820031200e90468707b367e2c2f11c0ba3bc10620e44f74d42e605760c"
+      "bytes": 4661,
+      "sha256": "362e546c8628441f12c1a09c995a55e7a2c44a42def71817459fd5eac67b0122"
     },
-    "recovery/Wonderwake08-Shadecraft.zip": {
-      "bytes": 582338,
-      "sha256": "63e32042aeafa5f1934c7b44673b1cdc5f30c61996ed5e21b161190bdf28ee81"
+    "recovery/Wonderwake09-Glowtrail.zip": {
+      "bytes": 740457,
+      "sha256": "e38b90596d8ea48c7c65d8e23d5b389d60f35e1ef2916afc850409b9701c0112"
     },
     "verification/FINAL_TEST_OUTPUT.txt": {
-      "bytes": 8097,
-      "sha256": "6db127b76a35a83b27850d538a85b165426e95861365c4b68c1aa66def97e877"
+      "bytes": 9242,
+      "sha256": "56a2b5283f6f64188e0d3c308685ce04dc34135a036bd6ad6dc5f9b0d635d0a7"
     },
     "verification/FLEET_LESSONS.txt": {
-      "bytes": 1654,
-      "sha256": "fa8ec60f889600761368989d3ab1e64f847572e023e48bdf8eaadbcce6c28fcd"
+      "bytes": 1708,
+      "sha256": "24b7bd21fd6966773ac6d30de7e67756eab743f316b9706377e58c25474b3024"
     },
     "verification/GLOWTRAIL_DESIGN.txt": {
       "bytes": 2474,
@@ -70,6 +70,10 @@
       "bytes": 3108,
       "sha256": "39805c11e745264d8885a3b5860af6d97e532dcc6e36a7b002b83f1ee9666fa7"
     },
+    "verification/GLOWTRAIL_REVIEW.txt": {
+      "bytes": 2460,
+      "sha256": "82a6eb0967067c96194b8c5b11f23e98c78bebb6281a175d66b0c568404dba61"
+    },
     "verification/OPENPAPER_PLAN.md": {
       "bytes": 2064,
       "sha256": "8b06987c627724a65857e66465906bebecca137f0c1906f5cf4d0f544c553aec"
@@ -79,20 +83,28 @@
       "sha256": "b0beb5d5f451acb359afd444527b1e6865901bf462f340dde607edc94cd416c6"
     },
     "verification/RESULTS.json": {
-      "bytes": 2110,
-      "sha256": "087fee3685c28d35ecebdd21eb322eb3bf2755d5cb247ff64adca64e6b72298a"
+      "bytes": 2712,
+      "sha256": "0d2798337f8d6eafa614a51d50b4463521158399af6ad7a0b7e41ee58614f16e"
     },
     "verification/REVIEW.txt": {
-      "bytes": 2460,
-      "sha256": "82a6eb0967067c96194b8c5b11f23e98c78bebb6281a175d66b0c568404dba61"
+      "bytes": 2390,
+      "sha256": "66c267e3a83ab07772e9a99fd7dcc745fc166c79bc0b8535855ed650fc10964f"
     },
     "verification/SEALED_SMOKE.txt": {
-      "bytes": 502,
-      "sha256": "54bb4c778241e9910d3234f8f60cfed5ffba6686cb297a3776c6df89ac3eb473"
+      "bytes": 962,
+      "sha256": "ec918882a8c8e844caf11b623db8f7275324f4473c6ef3866ea030e6bc2d685d"
     },
     "verification/SHADECRAFT_PLAN.txt": {
       "bytes": 3554,
       "sha256": "27ee6d0496759a853e594e6e7e2fa770e8fa527daafd3f0f246bb78f9254750a"
+    },
+    "verification/SPARKSTEP_DESIGN.txt": {
+      "bytes": 2271,
+      "sha256": "94f822943afc5f01b2a67e30371ee5d5e552a975b9325c3fb86c99206d76d865"
+    },
+    "verification/SPARKSTEP_LEDGER.txt": {
+      "bytes": 1652,
+      "sha256": "bfca2bc8a1668d3714dbbf9e7fa744512c38551764cab441ea2fa0f3b0b71526"
     },
     "verification/browser.cjs": {
       "bytes": 4285,
@@ -121,6 +133,10 @@
     "verification/openpaper-unit.cjs": {
       "bytes": 1716,
       "sha256": "2a93029be8e7e8f6eb2e598c96efc47347ee7af276da62efa119c364a9263108"
+    },
+    "verification/plans/2026-10-31-sparkstep.md": {
+      "bytes": 3634,
+      "sha256": "2f3540d2c3e5a270c0cfee22361bc94fe21c0b84c9d2a35b207cbe6345c30d16"
     },
     "verification/prism-browser.cjs": {
       "bytes": 10865,
@@ -162,6 +178,14 @@
       "bytes": 1288,
       "sha256": "9d0867f981c38ace9210c789e7df77606bb753a1772196e7b4be5598c7d7a43f"
     },
+    "verification/sparkstep-browser.cjs": {
+      "bytes": 10900,
+      "sha256": "6d59280525961aa20bd3b545917601b018b96432580d735d6a6e01f3ac78aa5c"
+    },
+    "verification/sparkstep-unit.cjs": {
+      "bytes": 1429,
+      "sha256": "e622a8de625d7bacbcef3fda3f6eef3bfe48a2a76b0031d222fb919a1f038a1e"
+    },
     "verification/unit.cjs": {
       "bytes": 1690,
       "sha256": "f1bbb56b7f739570a17760982cab5088d6231caaae4722d1d367a39c404101ab"
@@ -171,8 +195,8 @@
       "sha256": "25b319ee1322861c1d2c01f05e8193bb0b3dae76794b67390db23199d47263c2"
     },
     "wonderwake_app.js": {
-      "bytes": 70544,
-      "sha256": "008d892cbbdf0cb360d90e0698b263ff2d51da3c1748c6abc4bdf8f4e5644b0b"
+      "bytes": 70604,
+      "sha256": "85976e0b02d3222e51755509d94e3c3b706dfe84eeb003c4c403275352489c1b"
     },
     "wonderwake_content.js": {
       "bytes": 21146,
@@ -183,8 +207,8 @@
       "sha256": "48c02df62f3a2065e26cf8d757a470a30a0536979ad1245a1c696a840945a34d"
     },
     "wonderwake_creative.js": {
-      "bytes": 13947,
-      "sha256": "28b2d133edcc869cb2a03afdad931b86cba9deae6f325175d936691d501d5842"
+      "bytes": 14641,
+      "sha256": "5c4b425e867dc4d11b10a4b82344de4e9f77bb200ab93612f1e3d54da9b6ccab"
     },
     "wonderwake_drawing.js": {
       "bytes": 38400,
@@ -192,31 +216,35 @@
     },
     "wonderwake_fleet.js": {
       "bytes": 2555,
-      "sha256": "760e0c4f7aadcc18f1e011b91d863e4332532f293f263cacd503e1163d1cebb1"
+      "sha256": "b1ea734039294f7d2bf4ec93e16cc3789d60d5ce1706928a590c2642a9ed686c"
     },
     "wonderwake_paint.js": {
       "bytes": 3509,
       "sha256": "c5f26b8cf802425b4e8cf2924cdad5c21ac7d3be71a249b64e064db228e2a8bf"
     },
     "wonderwake_quest.css": {
-      "bytes": 8663,
-      "sha256": "1b859932931b9d8efa7754befae4c9016004cb7d8745c7e03c0ea310e7e97ecf"
+      "bytes": 10134,
+      "sha256": "308c2e400bf745fb62941c945c879391d2a360f92639c4ee1b0abeb8f0152b88"
     },
     "wonderwake_quest.js": {
       "bytes": 5105,
       "sha256": "45ee8ec6908350872b987e6fc299eaf1b57a70267532349151d0ecf1b13aba79"
     },
+    "wonderwake_quest_motion.js": {
+      "bytes": 1158,
+      "sha256": "1923d6ae14ebf63ef7191feac7359486348a1e3c7e57ac501873c939afb91a41"
+    },
     "wonderwake_quest_ui.js": {
-      "bytes": 23928,
-      "sha256": "a3426ae25ea5fa146d9bcb0432acfb3adf53451b1c118686778f490b1f3320fb"
+      "bytes": 29050,
+      "sha256": "ff4514be82b388534c414156f92c2c3ac2fbefa85322f22d61c1fc85e83e755a"
     },
     "wonderwake_store.js": {
       "bytes": 4681,
       "sha256": "f66236a771e2d0d94a114cf5a43636fce85bbc573b667afd06f6348ec2965982"
     },
     "wonderwake_world.js": {
-      "bytes": 13268,
-      "sha256": "8c6ddb26bfcb9eedc6993d0e303aa5ecdcf73b6fa45ea0c4f9225d477e9d7c95"
+      "bytes": 13350,
+      "sha256": "9adfe1d11855a23e71265dbffccc62c721d7062a50af862d9c1d60185869242f"
     }
   }
 }
