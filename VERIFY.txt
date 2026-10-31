@@ -1,4 +1,4 @@
-WONDERWAKE04 — COLORWAKE · VERIFICATION
+WONDERWAKE05 — STEADYHAND · VERIFICATION
 
 Automated verification uses synthetic learners only, never real device records.
 
@@ -28,7 +28,7 @@ Final packaging checks: syntax of every shipped JavaScript file; SHA-384 script/
 
 Not verified: native iPad/iPhone Safari, physical Apple Pencil, device restart persistence, actual iOS Files download/open behavior, hosted GitHub Pages deployment. Chromium was obtained through an npm browser package after the usual browser download returned truncated archives. No browser dependencies are bundled with the application.
 
-Application rollback backup: recovery/Wonderwake03.zip (original delivered bytes).
+Application rollback backup: recovery/Wonderwake04-Colorwake.zip (original delivered bytes).
 Learner records are not included; export from the current site before updating.
 
 Run the unit tests from this folder:
@@ -36,3 +36,8 @@ Run the unit tests from this folder:
 Browser checks require Playwright, a local HTTP server on port 8765, and an installed Chromium executable. Set WW_CHROMIUM to its path, then run verification/browser.cjs, verification/extra-browser.cjs and verification/race-browser.cjs against this folder. Browser screenshots are temporary test output and are not included.
 
 Independent code review found one save race; fixed and regression-tested. Follow-up review found no remaining important concerns.
+
+Steadyhand regression: old header scrolls to y=-312; new header stays visible. Studio outer and content scroll remain zero at 1366x900, 1024x768, 390x844 and 390x700. Paper remains at least 100 px tall, Save and gallery navigation remain visible. Save feedback leaves paper geometry unchanged. Viewport change preserves saved stroke data. Gallery/Islands navigation works.
+
+Short landscape fallback (844x390): 200 px paper is preserved, header stays visible, content can scroll to Save without moving the outer modal. Normal iPad/portrait views do not scroll. Safe-area bottom padding protects controls from the home indicator.
+Independent repair review found a short-landscape sizing issue; the fallback fixes it. Re-review found no further important issues.

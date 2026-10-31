@@ -1,3 +1,7 @@
+# Wonderwake05 — Steadyhand
+
+Repair for studio screen movement. Read START_HERE.txt. The release retains Colorwake painting, galleries and drawing practice. Version 0.4.1 changes layout and modal navigation; profile/storage format remains unchanged.
+
 # Wonderwake04 — Colorwake
 
 Start with START_HERE.txt. Release notes: COLORWAKE.md. Verification: VERIFY.txt. The following is retained 0.3 baseline documentation; 0.4 additions take precedence.

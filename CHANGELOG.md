@@ -1,3 +1,7 @@
+# 0.4.1 — Steadyhand
+
+Fix painting screen movement: fixed modal navigation header, fitted paper and visible studio controls. A bounded content scroller serves other long dialogs. Resize observer is removed when leaving the paper. Save feedback uses a stable-height row. Existing learner/gallery/export format is unchanged.
+
 # 0.4.0 — Colorwake
 
 Freehand painting, per-learner saved galleries, drawing answers, guided handwriting, prize pictures, comparison operand choices and additional mission animation. See COLORWAKE.md and VERIFY.txt.

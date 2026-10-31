@@ -26,3 +26,39 @@
 @media(max-width:700px){.arrival-scene .welcome-fern{width:148px;height:130px;bottom:14px;right:6px}}
 /* Colorwake: painting, a personal gallery and gentle discovery animation. */
 .colorwake-invitation{display:flex;align-items:center;justify-content:space-between;gap:24px;margin-top:28px;padding:28px;border:1px solid #87b9ae;border-radius:20px;background:linear-gradient(120deg,#e8eed8,#c7e0d6)}.colorwake-invitation h2{margin:8px 0}.colorwake-invitation p{margin-bottom:0}.colorwake-invitation .eyebrow{color:#346566}.paint-workshop,.picture-gallery{padding:26px;max-width:980px;margin:auto}.paint-heading h3{font:32px Georgia;margin:10px 0}.paint-heading p{line-height:1.6}.paint-palette{display:flex;align-items:center;flex-wrap:wrap;gap:12px;margin:20px 0}.paint-palette[hidden]{display:none}.paint-color{width:44px;height:44px;border-radius:50%;background:var(--paint);border:3px solid #e4e9df;box-shadow:0 0 0 1px #70928a}.paint-color.selected{outline:3px solid #315f6d;outline-offset:3px}.paint-size{min-height:44px;margin-left:10px}.paint-canvas{display:block;width:100%;aspect-ratio:5/3;background:#fffdf3;border:2px solid #a7c5b7;border-radius:16px;touch-action:none}.paint-state,.paint-compare{min-height:24px;line-height:1.6}.paint-compare{font-weight:700;color:#2c5b65}.paint-bottom{padding:0 26px 28px}.draw-answer-entry{margin-top:22px;padding-top:18px;border-top:1px solid #d0dfd5}#drawing-answer-host .paint-workshop{padding:22px 0}.gallery-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px;margin-top:24px}.gallery-card{padding:14px;border:1px solid #b4cdbf;border-radius:18px;background:#f8f9ed}.gallery-card canvas{width:100%;border-radius:12px}.gallery-card h3{font:22px Georgia}.discovery-glow{animation:discoveryGlow .9s ease-out}.end-emblem{animation:colorwakeFloat 3s ease-in-out infinite}.welcome-fern{animation:colorwakeFloat 4s ease-in-out infinite}@keyframes discoveryGlow{0%{box-shadow:0 0 0 0 #d8b35699;transform:scale(.99)}65%{box-shadow:0 0 0 12px #d8b35600}100%{transform:scale(1)}}@keyframes colorwakeFloat{50%{transform:translateY(-6px) rotate(1deg)}}.motion-off .end-emblem,.motion-off .welcome-fern,.motion-off .discovery-glow{animation:none}@media(prefers-reduced-motion:reduce){.end-emblem,.welcome-fern,.discovery-glow{animation:none}}@media(max-width:650px){.colorwake-invitation{display:block;padding:20px}.paint-workshop,.picture-gallery{padding:18px}.paint-heading h3{font-size:26px}.gallery-grid{grid-template-columns:1fr}.paint-workshop .learn-controls{gap:10px}.paint-workshop .learn-controls button{flex:1 1 140px}.paint-palette{gap:10px}.paint-canvas{aspect-ratio:5/3}.colorwake-invitation .learn-controls{margin-top:18px}}
+/* Steadyhand: the shell owns the header; only its content may scroll. */
+.modal{overflow:hidden;overscroll-behavior:none;display:flex;align-items:flex-start}
+.modal-shell{width:100%;min-height:0;max-height:calc(100dvh - 36px);display:flex;flex-direction:column}
+.modal-head{position:relative;flex:0 0 auto}
+#modal-body{min-height:0;overflow-y:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch}
+.paint-modal .modal-shell{height:calc(100dvh - 36px)}
+.paint-modal #modal-body{display:flex;flex-direction:column;overflow:hidden;flex:1}
+.paint-modal #free-paint{flex:1;min-height:0;display:flex}
+.paint-modal .paint-workshop{width:100%;min-height:0;display:flex;flex-direction:column;padding:12px 24px 8px;gap:7px}
+.paint-modal .paint-heading{flex:0 0 auto}
+.paint-modal .paint-heading .eyebrow{display:none}
+.paint-modal .paint-heading h3{font-size:24px;margin:0 0 3px}
+.paint-modal .paint-heading p{margin:0;font-size:13px;line-height:1.4}
+.paint-modal .paint-palette{flex:0 0 auto;margin:4px 0;gap:10px}
+.paint-modal .paint-paper{flex:1;min-height:0;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.paint-modal .paint-canvas{flex:none;max-width:100%;aspect-ratio:auto}
+.paint-modal .learn-controls{flex:0 0 auto;margin:0;gap:8px;justify-content:center}
+.paint-modal .learn-controls button{min-height:44px;padding:10px 14px;font-size:14px}
+.paint-modal .paint-state{flex:0 0 auto;margin:0;min-height:20px;font-size:12px;line-height:1.4;text-align:center}
+.paint-modal .paint-compare:empty{display:none}
+.paint-modal .paint-bottom{flex:0 0 auto;padding:6px 18px 12px;margin:0;gap:10px}
+.paint-paper{min-width:0}
+@media(max-width:650px){.paint-modal .modal-shell{height:100dvh;max-height:100dvh}.paint-modal .paint-workshop{padding:10px 14px 6px;gap:6px}.paint-modal .paint-heading h3{font-size:22px}.paint-modal .paint-heading p{font-size:12px}.paint-modal .paint-palette{gap:9px;margin:3px 0}.paint-modal .paint-palette label{font-size:12px}.paint-modal .paint-color{width:38px;height:38px}.paint-modal .paint-size{min-height:40px;margin-left:6px}.paint-modal .learn-controls button{flex:1 1 auto;font-size:12px;padding:8px 10px}.paint-modal .paint-bottom{padding:5px 14px 10px;gap:8px}.paint-modal .paint-bottom button{font-size:12px}.modal-shell{max-height:calc(100dvh - 16px)}}
+.paint-modal #free-paint{overflow:hidden}
+.paint-modal .paint-workshop{height:100%;margin:0 auto}
+/* Save feedback must not resize the paper or shift the controls. */
+.paint-modal .paint-state{height:34px;min-height:34px;overflow-y:auto}
+.paint-modal .paint-bottom{padding-bottom:calc(12px + env(safe-area-inset-bottom,0px))}
+/* Short landscape screens keep navigation fixed and scroll the content safely. */
+@media(max-height:600px){
+.paint-modal #modal-body{display:block;overflow-y:auto}
+.paint-modal #free-paint{display:block;overflow:visible}
+.paint-modal .paint-workshop{height:auto;display:flex}
+.paint-modal .paint-paper{flex:none;height:200px;min-height:200px}
+.paint-modal .modal-head{padding-top:8px;padding-bottom:8px}
+}

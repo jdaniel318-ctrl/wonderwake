@@ -1,10 +1,10 @@
 {
   "schema": "wonderwake-asset-inventory-v1",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "files": {
     "CHANGELOG.md": {
-      "bytes": 789,
-      "sha256": "5a556d7551fcbecb23c101f9599170cd767319a819e6aa99f2fb5a1627d0be77"
+      "bytes": 1115,
+      "sha256": "46ca9bd6489ebe06151aa6fc7aa0f17701dd0d81b1e9755b2948306a4ddcbdd9"
     },
     "COLORWAKE.md": {
       "bytes": 2087,
@@ -27,32 +27,32 @@
       "sha256": "981faf5bdc6860fdb77235e95a90544255e268ef9871c31fa4797952d19b86e4"
     },
     "README.md": {
-      "bytes": 5166,
-      "sha256": "1c697d5d6827da3011ec22bb473ae42f5f3d9cec84a747d45632dd19250ab5f2"
+      "bytes": 5419,
+      "sha256": "aae37b9d33fea1be043d44b13c9bc9b7ae5e6aa35984aa9c19b8f7267478cfbf"
     },
     "START_HERE.txt": {
-      "bytes": 2563,
-      "sha256": "2e83cf47baeff817d65bfb1137eca1eafcb9f9c93b19bd1946eaa752ac681101"
+      "bytes": 1467,
+      "sha256": "0b3875171eff87f74888265f5252b4621ec4026f9c05b2c1abe0a341636141b7"
     },
     "VERIFY.txt": {
-      "bytes": 2967,
-      "sha256": "3ae9b68304229b55a5507856f2ff3ce818e4f3aa0f78d99057ecc1e4e0b5dbca"
+      "bytes": 3739,
+      "sha256": "73525cd2b9f2c74d89853a819c9fc16256682ade60c873613ecd7586baca8219"
     },
     "WONDERWAKE_VESSEL.json": {
-      "bytes": 2127,
-      "sha256": "03727934983171632d0ad9257607315438b9c9501e47fe7a340a49df71212526"
+      "bytes": 2128,
+      "sha256": "41723c0cf5643be6a46e94f307c87d0e0efa62104061dac0c4db2a98262847e5"
     },
     "index.html": {
-      "bytes": 3942,
-      "sha256": "8305e494687caaeafb97fd88ff4a8ba07e523da6536da5fd8adb2f121d384920"
+      "bytes": 3947,
+      "sha256": "53f08e566b47529c44e76f43c265d6095357defeb30919690dd040a5448248d3"
     },
-    "recovery/Wonderwake03.zip": {
-      "bytes": 70836,
-      "sha256": "45ea4234e8664a0d239db8a429640862ec0159b16254a826b7f88f29eb67b5ed"
+    "recovery/Wonderwake04-Colorwake.zip": {
+      "bytes": 157314,
+      "sha256": "62d726fb11185905e482371fced4d800d368afa468e84c8a8fa70d8c89d28459"
     },
     "verification/RESULTS.json": {
-      "bytes": 657,
-      "sha256": "e4e864c08f4191b671d2f9b85a9631cd9d0f38b65b918e48b7f94fc518c0967b"
+      "bytes": 870,
+      "sha256": "d1a62c63df885165eb437f4721c26aa3a193a540a7eaccc3ec54699271b61cb2"
     },
     "verification/browser.cjs": {
       "bytes": 4307,
@@ -70,17 +70,21 @@
       "bytes": 1778,
       "sha256": "f2fd89a0cb67e6eccce23738b6aa566dccbed9e639b565bd815de100fea4e1b7"
     },
+    "verification/steady-browser.cjs": {
+      "bytes": 4234,
+      "sha256": "cc63c68c998e58db7ce04a894f39474e71f0f7c74642c075efb732d1a06a7b16"
+    },
     "verification/unit.cjs": {
       "bytes": 1689,
       "sha256": "4c73d5b640d4b0f47fb99f110d684f95d965ce53404c19b45dd0d78551c7a28d"
     },
     "wonderwake.css": {
-      "bytes": 29491,
-      "sha256": "503f800a622d5134ce33cdee0be5752549ac1a64a81a7c3b678d2789e9820d31"
+      "bytes": 32543,
+      "sha256": "e4cd3b8a28f9c513dc30026b97e14a8d6141364bb7ae22e3d449138a9f211b66"
     },
     "wonderwake_app.js": {
-      "bytes": 68446,
-      "sha256": "1ec5dc308b72a470be3dfe55e1eb3bf137891918e5864424c72359f452d2730a"
+      "bytes": 68565,
+      "sha256": "bd7bcaed05fb04e7d7826c75d7f269e1eb9ac34ea5b868e080115fbe35ff8d13"
     },
     "wonderwake_content.js": {
       "bytes": 21146,
@@ -95,12 +99,12 @@
       "sha256": "28b2d133edcc869cb2a03afdad931b86cba9deae6f325175d936691d501d5842"
     },
     "wonderwake_drawing.js": {
-      "bytes": 6563,
-      "sha256": "50ed9053da38cf78f78cfb014e35d24c79ac1c6e5338a93516a551a94376c3ab"
+      "bytes": 6936,
+      "sha256": "a412e2f616e700da0749e8b3888d24de099bb99556bbd20e991e8cf4364c62a1"
     },
     "wonderwake_fleet.js": {
-      "bytes": 1948,
-      "sha256": "61c2e34870245ea4d6e75eab321244e033241df3b0125d39ae78a4bf09ad9b6c"
+      "bytes": 1949,
+      "sha256": "b2b0caadf7d4762f1ffc1feb1c91ccc80cc0b7a32cc218df22037eca3b754ea0"
     },
     "wonderwake_store.js": {
       "bytes": 4660,
