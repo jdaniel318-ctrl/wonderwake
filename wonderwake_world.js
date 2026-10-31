@@ -5,6 +5,27 @@ function ellipse(g,x,y,rx,ry,fill){g.beginPath();g.ellipse(x,y,rx,ry,0,0,TAU);g.
 function line(g,pts,color,width=2){g.beginPath();pts.forEach((p,i)=>i?g.lineTo(...p):g.moveTo(...p));g.strokeStyle=color;g.lineWidth=width;g.lineJoin='round';g.lineCap='round';g.stroke();}
 function round(g,x,y,w,h,r,fill){g.beginPath();g.roundRect(x,y,w,h,r);g.fillStyle=fill;g.fill();}
 function star(g,x,y,r,fill,rot=0){const pts=[];for(let i=0;i<10;i++){let a=i*Math.PI/5-Math.PI/2+rot;pts.push([x+Math.cos(a)*r*(i%2?.45:1),y+Math.sin(a)*r*(i%2?.45:1)]);}poly(g,pts,fill);}
+// One-shot canvas fireworks: the caller owns time, cancellation and reduced motion.
+// Three stage bursts finish at 1.95s; five island bursts finish at 2.6s.
+function celebrate(g,w,h,t,kind='island'){
+ const stage=kind==='stage',duration=stage?1.95:2.6;
+ if(!Number.isFinite(t)||t<=0||t>=duration)return;
+ const colors=['#ffbf53','#ed83aa','#65d4bd','#b093e8','#ffa77d','#acd977'];
+ const bursts=stage?[[.22,.25,.05],[.76,.2,.45],[.5,.15,.9]]:[[.57,.24,.05],[.84,.24,.4],[.4,.55,.75],[.78,.52,1.1],[.61,.28,1.45]];
+ const life=stage?1.05:1.15,radius=Math.min(w*.11,h*.22);
+ g.save();g.beginPath();g.rect(0,0,w,h);g.clip();
+ bursts.forEach(([x,y,delay],i)=>{
+  const age=t-delay;if(age<=0||age>=life)return;x*=w;y*=h;
+  if(age<.2){const p=age/.2,at=y+(1-p)*h*.15;g.globalAlpha=Math.sin(p*Math.PI)*.75;line(g,[[x,at+9],[x,at]],colors[i],2);return;}
+  const p=(age-.2)/(life-.2),spread=(1-Math.pow(1-p,3))*radius,fall=p*p*radius*.3;
+  g.globalAlpha=Math.min(1,p*9)*(1-p)*.88;
+  for(let j=0;j<12;j++){
+   const a=j*TAU/12+i*.4,color=colors[(i+j%3)%colors.length],dx=Math.cos(a),dy=Math.sin(a);
+   line(g,[[x+dx*spread*.73,y+dy*spread*.73+fall],[x+dx*spread,y+dy*spread+fall]],color,Math.max(1.4,radius*.035));
+   star(g,x+dx*spread,y+dy*spread+fall,Math.max(1.7,radius*.045)*(1-p*.4),color,a+p*.35);
+  }
+ });g.restore();
+}
 function crystal(g,x,y,r=13,color='#9debe8'){poly(g,[[x,y-r],[x+r*.65,y-r*.4],[x+r*.55,y+r*.6],[x,y+r],[x-r*.65,y+r*.3],[x-r*.6,y-r*.4]],color);poly(g,[[x,y-r],[x,y+r],[x-r*.65,y+r*.3],[x-r*.6,y-r*.4]],'#51b7bb');line(g,[[x-r*.1,y-r*.6],[x+r*.25,y-r*.2]],'#e7fffc',2);}
 function tree(g,x,y,s=1,pink=false){g.save();g.translate(x,y);g.scale(s,s);ellipse(g,0,5,24,7,'#183f4c35');poly(g,[[-3,0],[-2,-49],[4,-46],[5,0]],'#6f4b39');const colors=pink?['#efab9b','#dd797e','#ffd2ad']:['#86c88d','#3e947a','#b9d796'];ellipse(g,-13,-48,20,23,colors[1]);ellipse(g,11,-48,23,27,colors[0]);ellipse(g,-4,-69,22,22,colors[2]);g.restore();}
 function pine(g,x,y,s=1){g.save();g.translate(x,y);g.scale(s,s);round(g,-3,-20,6,25,1,'#755342');poly(g,[[-27,-12],[0,-51],[26,-12]],'#39776e');poly(g,[[-23,-31],[0,-68],[23,-31]],'#4c9580');poly(g,[[-17,-51],[0,-84],[17,-51]],'#8ab79a');g.restore();}
@@ -49,6 +70,6 @@ else if(v.type==='polygon'){let pts=[];for(let i=0;i<v.sides;i++){let angle=TAU*
 else if(v.type==='rect'){round(g,190,32,220,118,8,'#79b6ab');if(v.grid){for(let i=1;i<v.a;i++)line(g,[[190+220*i/v.a,32],[190+220*i/v.a,150]],'#e2f2d1',1);for(let i=1;i<v.b;i++)line(g,[[190,32+118*i/v.b],[410,32+118*i/v.b]],'#e2f2d1',1);}g.fillStyle='#285166';g.textAlign='center';g.font='20px system-ui';g.fillText(v.a+' '+v.unit,300,178);g.fillText(v.b,453,95);}
 else if(v.type==='triangle'||v.type==='right'){poly(g,[[190,145],[190,40],[410,145]],'#97c6b2','#508b80');g.fillStyle='#285166';g.font='20px system-ui';g.fillText(v.a+(v.type==='triangle'?'°':''),142,90);g.fillText(v.b+(v.type==='triangle'?'°':''),284,173);if(v.type==='right')line(g,[[190,128],[207,128],[207,145]],'#508b80',2);}
 else {star(g,300,94,48,'#e9ce8d',.1);ellipse(g,300,162,44,7,'#24567113');}}
-function mission(canvas,progress=0,avatar='explorer',night=false,artwork=null,t=0){const g=setup(canvas,950,230);background(g,950,230,t,night);island(g,125,177,180,39,50);island(g,845,177,180,39,50);bridge(g,274,168,679,168,progress/4);tree(g,60,171,.7);tower(g,834,172,.7);hero(g,240+Math.min(progress,4)*113,161+Math.sin(t*2)*2,.8,avatar,t,artwork);for(let i=0;i<4;i++){ellipse(g,335+i*100,191,16,5,'#f2e5b43b');if(i<progress)star(g,335+i*100,116+Math.sin(t*2+i)*4,10,'#ffde81',t*.15);}cloud(g,472+Math.sin(t*.4)*20,216,1.3,.5);if(progress>=4){for(let i=0;i<18;i++)star(g,(i*83+t*15)%950,20+(i*31+t*18)%160,2+i%3,'#ffe4a2',t+i);}}
-root.WWArt={poly,ellipse,line,round,star,crystal,tree,pine,island,hero,fox,background,setup,world,visual,mission};
+function mission(canvas,progress=0,avatar='explorer',night=false,artwork=null,t=0){const g=setup(canvas,950,230);background(g,950,230,t,night);island(g,125,177,180,39,50);island(g,845,177,180,39,50);bridge(g,274,168,679,168,progress/4);tree(g,60,171,.7);tower(g,834,172,.7);const hop=progress>=4&&t>0&&t<.72?Math.sin(Math.PI*t/.72)*12:0;hero(g,240+Math.min(progress,4)*113,161+Math.sin(t*2)*2-hop,.8,avatar,t,artwork);for(let i=0;i<4;i++){ellipse(g,335+i*100,191,16,5,'#f2e5b43b');if(i<progress)star(g,335+i*100,116+Math.sin(t*2+i)*4,10,'#ffde81',t*.15);}cloud(g,472+Math.sin(t*.4)*20,216,1.3,.5);if(progress>=4){for(let i=0;i<18;i++)star(g,(i*83)%950,20+(i*31)%160,2+i%3,'#ffe4a2',i);celebrate(g,950,230,t);}}
+root.WWArt={poly,ellipse,line,round,star,celebrate,crystal,tree,pine,island,hero,fox,background,setup,world,visual,mission};
 })(globalThis);

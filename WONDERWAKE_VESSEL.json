@@ -2,8 +2,8 @@
   "schema": "blackflag-draft-vessel-descriptor-v1",
   "project_key": "wonderwake",
   "display_name": "Wonderwake",
-  "release": "Wayfinder",
-  "version": "0.8.1",
+  "release": "Clearpath",
+  "version": "0.9.0",
   "lifecycle": "draft_family_preview",
   "commissioned_on_server": false,
   "fleet_core_membership_changed": false,
@@ -105,5 +105,17 @@
     "local_checkpoint_resume": true,
     "backup_included": true,
     "academic_mastery_awarded": false
+  },
+  "maker_grove": {
+    "shape_and_draw_modes": true,
+    "finger_draw_switches_tool": true,
+    "ink_per_learner": true,
+    "strokes_per_creation": 2000,
+    "points_per_creation": 50000
+  },
+  "guided_answers": {
+    "dots_and_written_numbers": true,
+    "handwriting_automatically_recognized": false,
+    "written_number_confirmed_by_child": true
   }
 }

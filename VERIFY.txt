@@ -1,17 +1,11 @@
-WAYFINDER 0.8.1 — VERIFICATION
+CLEARPATH 0.9.0 — VERIFICATION
 
-Full regression suite: 98 tests passed. After the final guided-only initial-sizing correction, the extracted ZIP passed all 13 focused Wayfinder tests, 36 guided layout cases and three legacy workflow scripts. Detailed sequencing and actual outputs are in verification/FINAL_TEST_OUTPUT.txt, RESULTS.json and SEALED_SMOKE.txt.
+140 regression tests passed, zero failed. Three additional layout scripts passed: 10 viewport sizes for quest/studio controls, six legacy quest viewport sizes, and six guided answer modes at six viewport sizes. Actual output is in verification/CLEARPATH_TEST_OUTPUT.txt and CLEARPATH_LAYOUT_OUTPUT.txt. Summary and tested runtime hashes are in CLEARPATH_RESULTS.json. Review findings and intentional behavior changes are recorded in CLEARPATH_LEDGER.md.
 
-Coverage:
-- Visible goal, target/answer distinction, required-shape discovery, wrong code and Undo, explicit readiness.
-- Guided counting, zero, wrong-answer correction, successful Next, retained marks on return and reopening.
-- Counting, shapes and fraction references match original question visuals; spelling retains Hear the word and guided comparison.
-- Keyboard success moves focus to Next; menus consume outside mouse, Pencil and overlapping-touch dismissals.
-- Fixed paper bounds through feedback and comparison; initial paper uses the available space after references mount.
-- Ten viewport sizes for quest/studio docks; six tablet/phone/short-landscape sizes across six guided answer modes.
-- Existing quests, transitions, rewards, saves, learner isolation, gallery capacity, backup/restore and asynchronous-save editing regressions.
-- JavaScript syntax, SHA-384 script/style integrity, SHA-256 asset inventory, ZIP CRC and extracted-file equality.
+Coverage includes real Maker ink versus shape manipulation, pointer cancellation and learner isolation, ink validation/reload, written numeral confirmation and correction, zero-dot answers, normal Skybridge question-to-completion fit, diagram/form non-overlap, readable Lantern code cells, zero/positive/capped spark fill, progress persistence, fireworks and cancellation, reduced motion, existing saves, gallery/backup and learner workflows.
 
-Chromium automation includes real mouse/keyboard and existing CDP touch coverage plus synthetic Pencil events. It does not certify physical Pencil feel, Safari browser chrome, or native assistive technology. Three device checks are in START_HERE.txt.
+Packaging checks JavaScript syntax, script/style SHA-384 integrity, SHA-256 asset inventory, ZIP CRC and extracted-file equality. Historical evidence is prefixed with its release name.
 
-No deployment was performed. Learner schemas, puzzle rules and Black Flag fleet authority remain unchanged.
+Chromium automation includes mouse/keyboard, browser touch and synthetic pen events. It does not certify physical Pencil feel, Safari browser chrome or native assistive technology. START_HERE.txt has three focused iPad checks.
+
+No deployment was performed. Fleet authority remains unchanged. Maker ink is an optional new learner field. Written numerals are confirmed by the child before grading, not automatically recognized.

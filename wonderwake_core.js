@@ -35,6 +35,12 @@ const allowed=new Set([...C.math,...C.spelling].map(s=>s.id));let clean=newProfi
 for(const [k,s]of Object.entries(p.skills)){if(!allowed.has(k)||!s||!['attempts','correct','independent','streak'].every(n=>int(s[n],9999999))||s.correct>s.attempts||s.independent>s.correct||!Array.isArray(s.seen)||s.seen.length>60||s.seen.some(x=>typeof x!=='string'||x.length>1500)||!Array.isArray(s.days)||s.days.length>14||s.days.some(x=>!/^\d{4}-\d{2}-\d{2}$/.test(x))||![s.lastSeen,s.reviewAt].every(x=>Number.isFinite(x)&&x>=0))fail();clean.skills[k]={attempts:s.attempts,correct:s.correct,independent:s.independent,streak:s.streak,seen:[...s.seen],days:[...s.days],lastSeen:s.lastSeen,reviewAt:s.reviewAt};}
 if(p.artwork!==undefined){try{clean.artwork=X.validateArtwork(p.artwork);}catch(e){fail();}}if(p.avatar==='custom'&&!clean.artwork)fail();
 if(!p.art||typeof p.art!=='object')fail();for(const k of ['pumpkin','tree','robot']){if(!Array.isArray(p.art[k])||p.art[k].length>100)fail();clean.art[k]=p.art[k].map(o=>{if(!o||!['circle','star','triangle','heart','diamond','bolt','eye','mouth','sticker'].includes(o.type)||![o.x,o.y,o.size,o.rotation].every(Number.isFinite)||o.x<0||o.x>1||o.y<0||o.y>1||o.size<0.02||o.size>0.25||Math.abs(o.rotation)>360||!/^#[0-9a-f]{6}$/i.test(o.color))fail();if(o.type==='sticker'&&!clean.artwork)fail();return{type:o.type,x:o.x,y:o.y,size:o.size,rotation:o.rotation,color:o.color};});}
+if(p.makerInk!==undefined){
+ if(!p.makerInk||typeof p.makerInk!=='object'||Array.isArray(p.makerInk))fail();clean.makerInk={};
+ for(const kind of ['pumpkin','tree','robot']){const ink=p.makerInk[kind];let points=0;if(!Array.isArray(ink)||ink.length>DRAWING_LIMITS.strokes)fail();
+  clean.makerInk[kind]=ink.map(s=>{if(!s||!/^#[0-9a-f]{6}$/i.test(s.color)||!Number.isInteger(s.size)||s.size<2||s.size>30||!Array.isArray(s.points)||!s.points.length||(points+=s.points.length)>DRAWING_LIMITS.points||s.points.some(pt=>!Array.isArray(pt)||pt.length!==2||pt.some(v=>!Number.isFinite(v)||v<0||v>1)))fail();return{color:s.color,size:s.size,points:s.points.map(pt=>[...pt])};});
+ }
+}
 if(p.paintTools!==undefined){
  const t=p.paintTools,keys=['pen','pencil','marker','eraser'];
  if(!t||typeof t!=='object'||Array.isArray(t)||!Array.isArray(t.colors)||t.colors.length>16||t.colors.some(c=>typeof c!=='string'||!/^#[0-9a-f]{6}$/i.test(c))||new Set(t.colors.map(c=>c.toLowerCase())).size!==t.colors.length||!t.sizes||typeof t.sizes!=='object'||Array.isArray(t.sizes)||keys.some(k=>!Number.isInteger(t.sizes[k])||t.sizes[k]<1||t.sizes[k]>40))fail();

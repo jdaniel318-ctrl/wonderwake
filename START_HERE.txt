@@ -1,19 +1,21 @@
-WONDERWAKE12 — WAYFINDER · 0.8.1
+WONDERWAKE13 — CLEARPATH · 0.9.0
 
 UPDATE
-1. Save any open picture, then Keep a progress copy for each learner you want backed up.
-2. Unzip this package. Upload every top-level file INSIDE Wonderwake12-Wayfinder into the existing wonderwake repository root, replacing matching files. Keep verification/ and recovery/ on your device.
-3. After GitHub Pages finishes, refresh your existing Wonderwake page. Check WAYFINDER · FAMILY PREVIEW 0.8.1 and choose the same explorer.
+1. Save any open painting and choose Keep a progress copy for each explorer you want backed up.
+2. Unzip this package. Upload every top-level file INSIDE Wonderwake13-Clearpath into your existing wonderwake repository, replacing matching files. Include number-input.css. Keep verification/ and recovery/ on your device.
+3. After GitHub Pages finishes, refresh your existing Wonderwake page. Check CLEARPATH · FAMILY PREVIEW 0.9.0 and choose the same explorer.
 
 THREE DEVICE CHECKS
-1. Play Lantern Trail. Check the goal stays visible, including Lantern Hollow’s Match this / Your code and numbered slots. Enter three shapes, then light the lantern.
-2. In Skybridge, choose Draw this answer on an early addition question. Try too many dots, Check answer, Undo and check again. The paper should stay steady and Next discovery remain visible. Blank paper is a valid zero answer.
-3. In Wordforge, draw a word, reveal and compare it, then continue. Try Back to choices and reopen before checking: your drawing should remain. Open More and tap outside: the first tap only dismisses, and the next draws.
+1. Maker Grove: place a shape, choose Draw with finger, and draw over it. The shape should stay put while a line appears. Switch to Shapes to move it. Leave and return: both shapes and lines should remain. Pencil palm rejection still applies until Draw with finger is chosen.
+2. Skybridge: the question, choices, feedback and Next discovery should fit together. Choose Draw this answer, then Write number. Write a 3, choose the number you wrote, and check it. Tap dots is still available, with separate marks. Handwriting is not automatically recognized; the child confirms their intended number before it is graded.
+3. Lantern Trail: read the separate Match this / Your code boxes, find shapes, and enter their order. Enjoy the slower travel, arrival hop and fireworks; Continue or Skip can move on immediately. Motion off / reduced motion skips the celebration. Also confirm that an explorer with zero sparks has an empty progress bar.
 
 SAVING
-Saved to gallery confirms the current picture on this device. Saving… means wait. Retry save means saving has not been confirmed. Trail saved confirms the latest puzzle checkpoint. Drawing-answer scratch work is kept while switching views within the current question; save it from More to keep it in the gallery.
+Paint: Saved to gallery confirms the current picture on this device. Saving… means wait. Retry save means saving was not confirmed. Trail saved confirms a puzzle checkpoint.
+Maker Grove: shape arrangements and pen strokes save locally with the current explorer. Keep a picture downloads a combined PNG. Undo stroke affects ink; Undo last shape affects shapes.
+Math scratch papers stay while switching modes and returning to the same question. Use More → Save to my gallery to keep a paper after leaving that question.
 
-Same page, same learners and same gallery format. Do not clear website data. The recovery ZIP contains previous Playdeck application code, not learner data; progress copies are separate.
+Compatibility: existing learners, galleries and trails load unchanged. Maker ink is an optional new progress field. The previous release cannot preserve that new field if you roll back and save there. Keep a current progress copy before any rollback. recovery/ contains previous application code only, never learner data. Do not clear website data.
 
 OPEN WONDERWAKE
 https://jdaniel318-ctrl.github.io/wonderwake/

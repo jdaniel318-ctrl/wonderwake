@@ -35,6 +35,10 @@ function hsvFromColor(hex){
 
 function mount(host,opts={}){
  const compact=!!opts.fit,guided=!!opts.guided&&!compact,limits=root.WWCore.DRAWING_LIMITS;
+ const numberInput=!!opts.count&&!!opts.writeNumber&&!compact;
+ let answerMode='dots',writtenNumber=null;
+ const answerPapers={dots:null,write:null};
+ const isCounting=()=>!!opts.count&&answerMode==='dots';
  let strokes=[],redo=[],color=COLORS[0][0],size=compact?4:8,tool='pen',current=null,dirty=false,pending=null,editVersion=0,totalPoints=0,frame=0,disposed=false,paper=null,trayOpener=null;
  const initialConfirmed=!!opts.initial&&opts.initialSaved!==false;
  let saveBusy=false,saveFailed=!!opts.initial&&!initialConfirmed,hasSaved=initialConfirmed,savedVersion=initialConfirmed?0:-1,paperGeneration=0;
@@ -87,6 +91,58 @@ function mount(host,opts={}){
   host.querySelector('.paint-back').onclick=()=>{finish();closeTray();opts.onBack?.();};
   host.querySelector('.paint-heading .eyebrow').textContent=opts.count?'SHOW YOUR ANSWER WITH DOTS':'DRAW YOUR THINKING';
  }
+ let numberConfirm=null,numberConfirmButton=null;
+ const numberConfirmBackground=[];
+ if(numberInput){
+  workshop.classList.add('number-paper');
+  const modes=document.createElement('div');modes.className='number-modes';modes.setAttribute('role','group');modes.setAttribute('aria-label','How to show your answer');
+  modes.innerHTML='<button type="button" data-answer-mode="dots" aria-pressed="true">Tap dots</button><button type="button" data-answer-mode="write" aria-pressed="false">Write number</button>';
+  workshop.insertBefore(modes,paperWrap);
+  numberConfirm=document.createElement('div');numberConfirm.className='number-confirm';numberConfirm.hidden=true;numberConfirm.setAttribute('role','dialog');numberConfirm.setAttribute('aria-modal','true');numberConfirm.setAttribute('aria-label','Which number did you write?');
+  numberConfirm.innerHTML='<div class="number-confirm-card"><h4>Which number did you write?</h4><p>Tap your number, then check it. Your writing stays on the paper.</p><div class="written-number-choices" role="group" aria-label="The number I wrote">'+Array.from({length:21},(_,n)=>'<button type="button" data-written-number="'+n+'" aria-pressed="false">'+n+'</button>').join('')+'</div><div class="number-confirm-actions"><button type="button" class="secondary number-confirm-back">Back to writing</button><button type="button" class="primary gold number-confirm-answer" disabled>Check my number</button></div></div>';
+  workshop.append(numberConfirm);numberConfirmButton=numberConfirm.querySelector('.number-confirm-answer');
+  modes.querySelectorAll('[data-answer-mode]').forEach(b=>b.onclick=()=>switchAnswerMode(b.dataset.answerMode));
+  numberConfirm.querySelectorAll('[data-written-number]').forEach(b=>b.onclick=()=>{writtenNumber=Number(b.dataset.writtenNumber);numberConfirm.querySelectorAll('[data-written-number]').forEach(choice=>choice.setAttribute('aria-pressed',String(choice===b)));numberConfirmButton.disabled=false;numberConfirmButton.textContent='Check '+writtenNumber;});
+  numberConfirm.querySelector('.number-confirm-back').onclick=()=>closeNumberConfirm(true);
+  numberConfirmButton.onclick=()=>{if(writtenNumber===null||!strokes.length)return;const n=writtenNumber;closeNumberConfirm(true);opts.onAnswer?.(n,host.querySelector('.paint-compare'),host.querySelector('.paint-answer'));};
+ }
+ function resetWrittenChoice(){
+  if(writtenNumber===null)return;writtenNumber=null;if(!numberConfirm)return;
+  numberConfirm.querySelectorAll('[data-written-number]').forEach(b=>b.setAttribute('aria-pressed','false'));numberConfirmButton.disabled=true;numberConfirmButton.textContent='Check my number';
+ }
+ function openNumberConfirm(){
+  if(!numberConfirm||!numberConfirm.hidden)return;
+  numberConfirm.hidden=false;
+  // Keep both pointer and keyboard input inside the confirmation while it is open.
+  for(let branch=numberConfirm;branch&&branch!==document.body;branch=branch.parentElement){
+   for(const sibling of branch.parentElement?.children||[]){if(sibling===branch)continue;numberConfirmBackground.push([sibling,sibling.inert]);sibling.inert=true;}
+  }
+  numberConfirm.querySelector(writtenNumber===null?'[data-written-number]':'[data-written-number="'+writtenNumber+'"]')?.focus({preventScroll:true});
+ }
+ function closeNumberConfirm(focus=false){
+  if(!numberConfirm)return;numberConfirm.hidden=true;
+  for(const [element,wasInert] of numberConfirmBackground.splice(0))element.inert=wasInert;
+  if(focus)host.querySelector('.paint-answer')?.focus({preventScroll:true});
+ }
+ function syncAnswerMode(){
+  if(!numberInput)return;const dots=isCounting();
+  workshop.classList.toggle('writing-number',!dots);
+  host.querySelectorAll('[data-answer-mode]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.answerMode===answerMode)));
+  host.querySelector('.paint-heading .eyebrow').textContent=dots?'SHOW YOUR ANSWER WITH DOTS':'WRITE YOUR NUMBER';
+  host.querySelector('.paint-instruction').textContent=dots?'Tap once for each object. One tap makes one dot. Leave it blank for zero.':'Write your answer on the paper. Then choose the number you wrote and check it.';
+  can.setAttribute('aria-label',dots?'Tap paper: one tap makes one dot':'Number writing paper: write your answer with a finger, Pencil or mouse');
+  const answer=host.querySelector('.paint-answer');if(answer){answer.textContent=dots?'Check answer':'Choose my number';answer.setAttribute('aria-label',dots?'Check my picture answer':'Choose the number I wrote');}
+  const undo=host.querySelector('.paint-undo');undo.setAttribute('aria-label',dots?'Undo dot':'Undo stroke');if(!guided)undo.textContent=dots?'Undo dot':'Undo stroke';
+  state.textContent=dots?strokes.length+' dots on your paper. Leave it blank for zero.':'Write 0–20. Then choose your number.';
+ }
+ function switchAnswerMode(mode){
+  if(mode===answerMode)return;finish();closeTray();closeNumberConfirm();
+  answerPapers[answerMode]={strokes,redo,totalPoints};answerMode=mode;
+  const next=answerPapers[mode]||{strokes:[],redo:[],totalPoints:0};strokes=next.strokes;redo=next.redo;totalPoints=next.totalPoints;
+  // A saved gallery picture belongs to one paper, never to the other mode.
+  dirty=strokes.length>0;pending=null;editVersion++;hasSaved=false;savedVersion=-1;saveFailed=false;paperGeneration++;
+  size=isCounting()?24:8;resetWrittenChoice();syncSaveButton();syncAnswerMode();draw();
+ }
  const painter=compact?WWPaint.createPainter(can,live):null;
  const saveButton=(headerActions||host).querySelector('.paint-save');
  if(opts.count){host.querySelector('.paint-palette').hidden=true;size=24;}
@@ -105,15 +161,15 @@ function mount(host,opts={}){
   saveButton.setAttribute('aria-label',saveBusy?'Saving picture':confirmed?'Saved to gallery on this device':saveFailed?'Retry save to my gallery':'Save to my gallery');
   saveButton.title=confirmed?'This version is saved in your gallery on this device.':hasSaved?'Your changes need saving.':'Save this picture to your gallery on this device.';
  }
- function edited(){dirty=true;pending=null;editVersion++;saveFailed=false;syncSaveButton();}
+ function edited(){dirty=true;pending=null;editVersion++;saveFailed=false;if(numberInput)resetWrittenChoice();syncSaveButton();}
  function point(e){const b=can.getBoundingClientRect();return [Math.round(Math.max(0,Math.min(1,(e.clientX-b.left)/b.width))*100000)/100000,Math.round(Math.max(0,Math.min(1,(e.clientY-b.top)/b.height))*100000)/100000];}
  function full(){state.textContent='This is a wonderfully detailed picture. Save it, then start a new paper.';}
- function addPoint(e,force=false){if(!current||opts.count)return;const p=point(e),last=current.points.at(-1),dist=Math.hypot((p[0]-last[0])*800,(p[1]-last[1])*800/ratio());if(dist<(force?.01:.5))return;if(totalPoints>=limits.points){full();return;}current.points.push(p);totalPoints++;edited();}
+ function addPoint(e,force=false){if(!current||isCounting())return;const p=point(e),last=current.points.at(-1),dist=Math.hypot((p[0]-last[0])*800,(p[1]-last[1])*800/ratio());if(dist<(force?.01:.5))return;if(totalPoints>=limits.points){full();return;}current.points.push(p);totalPoints++;edited();}
  function finish(e){
   if(e&&!guard.end(e))return;
   if(!e)guard.cancel();if(!current)return;
   if(e?.type==='pointerup')addPoint(e,true);
-  const oldLength=current.points.length;if(!opts.count)current.points=simplify(current.points,ratio());totalPoints+=current.points.length-oldLength;
+  const oldLength=current.points.length;if(!isCounting())current.points=simplify(current.points,ratio());totalPoints+=current.points.length-oldLength;
   if(compact)painter.commit(current,layers);else stroke(can.getContext('2d'),current,can.width,can.height);current=null;
   cancelAnimationFrame(frame);frame=0;live.getContext('2d').clearRect(0,0,live.width,live.height);historyButtons();
  }
@@ -173,9 +229,9 @@ function mount(host,opts={}){
   if(compact){const layer=layers.find(l=>l.id===activeLayer);if(!layer.visible||layer.locked){guard.cancel();state.textContent=layer.locked?'This layer is locked. Unlock it in Layers to draw.':'This layer is hidden. Show it in Layers to draw.';return;}}
   if(strokes.length>=limits.strokes||totalPoints>=limits.points){guard.end(e);full();return;}
   current={color,size,...(compact?{tool,opacity:toolOpacities[tool],layer:activeLayer}:{}),points:[point(e)]};strokes.push(current);totalPoints++;redo=[];edited();
-  can.setPointerCapture(e.pointerId);queueFrame();historyButtons();state.textContent=opts.count?strokes.length+' dots on your paper.':guard.penSeen()?'Pencil ready · fingers rest safely.':'Your ideas, in color.';
+  can.setPointerCapture(e.pointerId);queueFrame();historyButtons();state.textContent=isCounting()?strokes.length+' dots on your paper.':numberInput?'Ready? Choose the number you wrote.':guard.penSeen()?'Pencil ready · fingers rest safely.':'Your ideas, in color.';
  };
- can.onpointermove=e=>{if(opts.count||!current||!guard.move(e))return;e.preventDefault();const batch=e.getCoalescedEvents?.();for(const pt of batch?.length?batch:[e])addPoint(pt);queueFrame();};
+ can.onpointermove=e=>{if(isCounting()||!current||!guard.move(e))return;e.preventDefault();const batch=e.getCoalescedEvents?.();for(const pt of batch?.length?batch:[e])addPoint(pt);queueFrame();};
  can.onpointerup=can.onpointercancel=can.onlostpointercapture=finish;
 
  function syncSizes(){
@@ -296,12 +352,17 @@ function mount(host,opts={}){
   renderLayers();
  }
  const sizeSelect=host.querySelector('select');if(sizeSelect)sizeSelect.onchange=e=>setSize(Number(e.target.value));
- const escapeTray=e=>{if(e.key==='Escape'&&host.querySelector('.paint-tray:not([hidden])')){e.preventDefault();e.stopPropagation();closeTray(true,true);}};
+ const escapeTray=e=>{
+  if(numberConfirm&&!numberConfirm.hidden){
+   if(e.key==='Escape'){e.preventDefault();e.stopPropagation();closeNumberConfirm(true);return;}
+   if(e.key==='Tab'){const buttons=[...numberConfirm.querySelectorAll('button:not([disabled])')],first=buttons[0],last=buttons.at(-1);if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus();}else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus();}}return;
+  }
+  if(e.key==='Escape'&&host.querySelector('.paint-tray:not([hidden])')){e.preventDefault();e.stopPropagation();closeTray(true,true);}};
  // Capture before the app-level Escape handler, even if focus is in the header.
  document.addEventListener('keydown',escapeTray,true);
- host.querySelector('.paint-undo').onclick=()=>{finish();const s=strokes.pop();if(!s)return;redo.push(s);totalPoints-=s.points.length;edited();draw();state.textContent=opts.count?strokes.length+' dots on your paper.':'Last stroke undone.';};
+ host.querySelector('.paint-undo').onclick=()=>{finish();const s=strokes.pop();if(!s)return;redo.push(s);totalPoints-=s.points.length;edited();draw();state.textContent=isCounting()?strokes.length+' dots on your paper.':'Last stroke undone.';};
  const redoButton=host.querySelector('.paint-redo');if(redoButton)redoButton.onclick=()=>{finish();const s=redo.pop();if(!s)return;strokes.push(s);totalPoints+=s.points.length;edited();draw();state.textContent='Stroke restored.';};
- host.querySelector('.paint-clear').onclick=()=>{if(strokes.length&&!confirm('Start a fresh paper? Save this picture to your gallery first to keep it.'))return;finish();strokes=[];redo=[];totalPoints=0;dirty=false;pending=null;editVersion++;hasSaved=false;savedVersion=-1;saveFailed=false;paperGeneration++;syncSaveButton();if(compact){opts.initial=null;opts.onNewPaper?.();layers=[{id:1,name:'My drawing',visible:true,locked:false,opacity:100}];activeLayer=1;renderLayers();}closeTray(true);draw();state.textContent=opts.count?'0 dots on your paper. Leave it blank if your answer is zero.':'Fresh paper. What will you make?';};
+ host.querySelector('.paint-clear').onclick=()=>{if(strokes.length&&!confirm('Start a fresh paper? Save this picture to your gallery first to keep it.'))return;finish();strokes=[];redo=[];totalPoints=0;dirty=false;pending=null;editVersion++;hasSaved=false;savedVersion=-1;saveFailed=false;paperGeneration++;resetWrittenChoice();syncSaveButton();if(compact){opts.initial=null;opts.onNewPaper?.();layers=[{id:1,name:'My drawing',visible:true,locked:false,opacity:100}];activeLayer=1;renderLayers();}closeTray(true);draw();state.textContent=isCounting()?'0 dots on your paper. Leave it blank if your answer is zero.':numberInput?'Fresh paper. Write your number, then choose it.':'Fresh paper. What will you make?';};
  host.querySelector('.paint-finger').onclick=()=>{finish();guard.allowFinger();closeTray(true);state.textContent='Finger drawing enabled. Your marks are kept.';};
  saveButton.onclick=async()=>{
   finish();closeTray();if(!strokes.length&&!opts.initial){state.textContent='Draw something first.';return;}
@@ -314,15 +375,23 @@ function mount(host,opts={}){
   }catch(e){if(!disposed&&savingPaper===paperGeneration){saveFailed=true;state.textContent=e.message;}}finally{if(!disposed){saveBusy=false;syncSaveButton();}}
  };
  host.querySelector('.paint-download').onclick=()=>{finish();if(!strokes.length){state.textContent='Draw something first.';return;}can.toBlob(blob=>{if(blob)opts.onDownload(blob);},'image/png');closeTray(true);};
- if(opts.onAnswer)host.querySelector('.paint-answer').onclick=()=>{finish();if(!strokes.length&&!opts.count){state.textContent='Make your picture first.';return;}opts.onAnswer(strokes.length,host.querySelector('.paint-compare'),host.querySelector('.paint-answer'));};
+ if(opts.onAnswer)host.querySelector('.paint-answer').onclick=()=>{
+  finish();
+  if(numberInput&&!isCounting()){
+   if(!strokes.length){state.textContent='Write your number first. For zero, write 0.';return;}
+   closeTray();openNumberConfirm();return;
+  }
+  if(!strokes.length&&!opts.count){state.textContent='Make your picture first.';return;}
+  opts.onAnswer(strokes.length,host.querySelector('.paint-compare'),host.querySelector('.paint-answer'));
+ };
  let resizeObserver=null;
  if(compact||guided){const fit=()=>{const r=paperWrap.getBoundingClientRect();if(r.width<1||r.height<1)return;
    if(!paper){const aspect=Math.max(.6,Math.min(2.4,r.width/r.height));paper={width:1600,height:Math.round(1600/aspect)};draw();}
    const w=Math.max(1,Math.min(r.width,r.height*ratio()));surface.style.width=w+'px';surface.style.height=w/ratio()+'px';
   };resizeObserver=new ResizeObserver(fit);resizeObserver.observe(paperWrap);if(compact)fit();}
- draw();setColor(color);syncSaveButton();if(opts.initial)state.textContent=initialConfirmed?'Saved to your gallery on this device.':'This picture is still in this page. Retry save to keep it on this device.';
- return()=>{disposed=true;painter?.dispose();clearTimeout(trayTimer);document.removeEventListener('pointerdown',dismissOutside,true);for(const event of ['pointermove','pointerup','pointercancel'])document.removeEventListener(event,consumeDismissed,true);document.removeEventListener('click',consumeClick,true);dismissedPointers.clear();dismissedClicks.clear();resizeObserver?.disconnect();cancelAnimationFrame(frame);guard.cancel();current=null;document.removeEventListener('keydown',escapeTray,true);headerActions?.remove();can.onpointerdown=can.onpointermove=can.onpointerup=can.onpointercancel=can.onlostpointercapture=null;};
+ draw();setColor(color);syncSaveButton();syncAnswerMode();if(opts.initial)state.textContent=initialConfirmed?'Saved to your gallery on this device.':'This picture is still in this page. Retry save to keep it on this device.';
+ return()=>{disposed=true;closeNumberConfirm();painter?.dispose();clearTimeout(trayTimer);document.removeEventListener('pointerdown',dismissOutside,true);for(const event of ['pointermove','pointerup','pointercancel'])document.removeEventListener(event,consumeDismissed,true);document.removeEventListener('click',consumeClick,true);dismissedPointers.clear();dismissedClicks.clear();resizeObserver?.disconnect();cancelAnimationFrame(frame);guard.cancel();current=null;document.removeEventListener('keydown',escapeTray,true);headerActions?.remove();can.onpointerdown=can.onpointermove=can.onpointerup=can.onpointercancel=can.onlostpointercapture=null;};
 }
-root.WWDrawing=Object.freeze({version:'0.8.1',paint,mount,colorFromHSV});
+root.WWDrawing=Object.freeze({version:'0.9.0',paint,mount,colorFromHSV});
 })(globalThis);
 

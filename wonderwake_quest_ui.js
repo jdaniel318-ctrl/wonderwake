@@ -10,7 +10,7 @@ const COLORS=['#f0c96d','#c5b4ef','#9acc9e','#83ced3'];
 function mount(host,opts){
  let state=Q.validate(opts.state||Q.fresh()),c=Q.chapter(state.chapter),viewStep=state.step;
  let history=[],selected=-1,hint=false,stopped=false,frame=0,animation=null,success=false,saveToken=0,saveOK=true,saveBusy=false,hasSaved=false;
- let stretch=1,dirty=true,lastDraw=0,transition=null,effects=[],acceptedRoute=null;
+ let stretch=1,dirty=true,lastDraw=0,transition=null,celebration=null,effects=[],acceptedRoute=null;
  let pointer=null,ignoreClickUntil=0,keyboard=[...c.start],light=[.1,.5],lastTime=performance.now(),time=0;
  const guard=WWCreative.pointerGuard(),heldKeys=new Set(),blockedKeys=new Set();
  function blockHeldKeys(){for(const code of heldKeys)blockedKeys.add(code);}
@@ -34,11 +34,11 @@ function mount(host,opts){
  const fog=document.createElement('canvas');fog.width=W;fog.height=H;const fg=fog.getContext('2d');
  function motion(){return typeof opts.motion==='function'?opts.motion():opts.motion!==false;}
  function syncMotionControls(){
-  el('.quest-skip').hidden=!animation&&!transition;
+  el('.quest-skip').hidden=!animation&&!transition&&!celebration;
   can.inert=!!transition;
   el('.quest-controls').inert=!!transition;el('.quest-gaps').inert=!!transition||success;
  }
- function message(text){el('.quest-feedback').textContent=text;}
+ function message(text){el('.quest-feedback').textContent=(viewStep===2?state.code.length+' of 3 shapes entered. ':'')+text;}
  function guidance(){
   const goal=el('.quest-goal');
   if(viewStep===0){goal.querySelector('strong').textContent='Build a bridge that fits.';goal.querySelector('span').textContent='Choose a plank, then tap a matching gap. Fill all three.';}
@@ -80,9 +80,9 @@ function mount(host,opts){
   }else if(viewStep===1){
    tools.innerHTML='<div class="quest-trail-tools"><span><b>✦ '+c.sparks.filter(p=>state.trail.some((v,i)=>i&&Q.segmentDistance(p,state.trail[i-1],v)<=38)).length+' / 3</b> sparks on your trail</span></div>';
   }else{
-   tools.innerHTML='<div class="quest-code"><div class="quest-code-row"><span>Match this</span><span class="quest-code-target" aria-label="Code: '+c.code.map(i=>Q.SYMBOLS[i]).join(', ')+'">'+c.code.map(i=>'<i style="color:'+COLORS[i]+'">'+symbolIcon(i)+'</i>').join('')+'</span></div><div class="quest-code-row"><span>Your code</span><span class="quest-code-answer" aria-label="Your code: '+(state.code.map(i=>Q.SYMBOLS[i]).join(', ')||'empty')+'">'+[0,1,2].map(i=>'<i class="'+(i===state.code.length?'next-slot':'')+'"'+(state.code[i]!==undefined?' style="color:'+COLORS[state.code[i]]+'"':'')+'>'+(state.code[i]===undefined?i+1:symbolIcon(state.code[i]))+'</i>').join('')+'</span></div></div><div class="quest-symbols">'+Q.SYMBOLS.map((name,i)=>button('data-symbol="'+i+'" aria-label="'+name+'" '+(!state.found.includes(i)||state.code.length>=3?'disabled':''),'<b style="color:'+COLORS[i]+'">'+(state.found.includes(i)?symbolIcon(i):'?')+'</b><span>'+ (state.found.includes(i)?name:'Hidden')+'</span>')).join('')+'</div>';
+   tools.innerHTML='<div class="quest-code"><div class="quest-code-row"><span>Match this</span><span class="quest-code-target" aria-label="Code: '+c.code.map(i=>Q.SYMBOLS[i]).join(', ')+'">'+c.code.map(i=>'<i style="color:'+COLORS[i]+'">'+symbolIcon(i)+'</i>').join('<span class="quest-code-arrow" aria-hidden="true">→</span>')+'</span></div><div class="quest-code-row"><span>Your code</span><span class="quest-code-answer" aria-label="Your code: '+(state.code.map(i=>Q.SYMBOLS[i]).join(', ')||'empty')+'">'+[0,1,2].map(i=>'<i class="'+(i===state.code.length?'next-slot':'')+'"'+(state.code[i]!==undefined?' style="color:'+COLORS[state.code[i]]+'"':'')+'>'+(state.code[i]===undefined?i+1:symbolIcon(state.code[i]))+'</i>').join('<span class="quest-code-arrow" aria-hidden="true">→</span>')+'</span></div></div><div class="quest-symbols">'+Q.SYMBOLS.map((name,i)=>button('data-symbol="'+i+'" aria-label="'+name+'" '+(!state.found.includes(i)||state.code.length>=3?'disabled':''),'<b style="color:'+COLORS[i]+'">'+(state.found.includes(i)?symbolIcon(i):'?')+'</b><span>'+ (state.found.includes(i)?name:'Hidden')+'</span>')).join('')+'</div>';
   }
-  if(success){closeMore();actions.innerHTML=button('data-q="continue" class="quest-primary" '+(animation?'disabled':''),viewStep===0?'Follow the fireflies →':'To the lantern →');}
+  if(success){closeMore();actions.innerHTML=button('data-q="continue" class="quest-primary"',viewStep===0?'Follow the fireflies →':'To the lantern →');}
   else actions.innerHTML=button('data-q="undo" '+(!history.length?'disabled':''),'↶ Undo')+button('data-q="hint" aria-pressed="'+hint+'"',hint?'Hide clue':'Clue')+button('data-q="more" aria-label="More puzzle options" aria-controls="quest-more" aria-expanded="false"','•••<small>More</small>')+button('data-q="check" class="quest-primary" '+(viewStep===2&&state.code.length<3?'disabled':''),viewStep===0?'Cross bridge':viewStep===1?'Follow trail':state.code.length<3?'Choose '+(3-state.code.length)+' shape'+(state.code.length===2?'':'s'):'Light lantern');
   tools.inert=success;
   el('.quest-finger').hidden=!guard.penSeen();saveLabel();restoreFocus();
@@ -142,37 +142,45 @@ function mount(host,opts){
   state=result.state;success=true;history=[];acceptedRoute=viewStep===1?M.route(state.trail):null;persist();
   message(viewStep===0?'You made a way across!':viewStep===1?'Every spark is following your trail!':'The lantern is waking up!');
   opts.onSpeak?.(el('.quest-feedback').textContent);
-  if(motion())animation={step:viewStep,elapsed:0,duration:viewStep===1?2500:1800,progress:0,collected:[],last:[...c.start]};
+  if(motion())animation={step:viewStep,elapsed:0,duration:[2400,3200,2100][viewStep],progress:0,collected:[],last:[...c.start]};
   renderTools();if(!animation&&viewStep===2)showWin();
  }
  function stageView(step){
-  viewStep=step;history=[];selected=-1;hint=false;success=false;acceptedRoute=null;effects=[];
+  viewStep=step;history=[];selected=-1;hint=false;success=false;acceptedRoute=null;celebration=null;effects=[];
   keyboard=[...c.start];light=[.1,.5];renderTools();
   if(step<3)message(INSTRUCTIONS[step]);
  }
  // Only presentation is delayed. Q.advance and persist have already secured the checkpoint.
  function transitionTo(step,label,prepare){
-  if(transition||stopped)return;closeMore();blockHeldKeys();cancelGesture();animation=null;
+  if(transition||stopped)return;closeMore();blockHeldKeys();cancelGesture();animation=null;celebration=null;effects=[];
   const change=()=>{if(prepare)prepare();stageView(step);};
   if(!motion()){change();syncMotionControls();can.focus({preventScroll:true});opts.onSpeak?.(INSTRUCTIONS[step]||label);return;}
   transition={elapsed:0,switched:false,change,step,label};
   el('.quest-transition p').textContent=label;el('.quest-transition').hidden=false;
   el('.quest-transition').style.opacity='0';syncMotionControls();dirty=true;
  }
- function finishTransition(){
+ function finishTransition(skip=false){
   if(!transition)return;blockHeldKeys();const current=transition;
   if(!current.switched){current.switched=true;current.change();}
-  transition=null;el('.quest-transition').hidden=true;syncMotionControls();dirty=true;
+  transition=null;el('.quest-transition').hidden=true;if(current.step===3&&!skip)startCelebration('island');syncMotionControls();dirty=true;
   can.focus({preventScroll:true});opts.onSpeak?.(INSTRUCTIONS[current.step]||current.label);
  }
  function finishTravel(skip=false){
-  blockHeldKeys();animation=null;dirty=true;
+  blockHeldKeys();animation=null;celebration=null;dirty=true;
   if(viewStep===2){if(skip){stageView(3);syncMotionControls();can.focus({preventScroll:true});}else showWin();}
-  else{renderTools();if(skip)can.focus({preventScroll:true});}
+  else{if(!skip)startCelebration('stage');renderTools();if(skip)can.focus({preventScroll:true});}
  }
  function showWin(){transitionTo(3,'A light for '+c.place);}
  function nextStage(){transitionTo(state.step,viewStep===0?'Follow the fireflies':'Into the lantern hollow');}
- function skipAnimation(){if(transition)finishTransition();else if(animation)finishTravel(true);}
+ function skipAnimation(){if(transition)finishTransition(true);else if(animation)finishTravel(true);else if(celebration){celebration=null;syncMotionControls();dirty=true;}}
+ function startCelebration(kind){if(motion()&&!document.hidden){celebration={kind,born:time};dirty=true;}}
+ function visibility(){
+  lastTime=performance.now();dirty=true;
+  if(!document.hidden)return;
+  cancelGesture();celebration=null;effects=[];
+  if(animation)finishTravel(true);if(transition)finishTransition(true);syncMotionControls();
+ }
+ document.addEventListener('visibilitychange',visibility);
 
  function click(e){const b=e.target.closest('button');if(!b||b.disabled||stopped)return;
   if(b.dataset.q==='more'&&!transition){const tray=el('#quest-more');if(!tray.hidden){closeMore(true);return;}cancelGesture();tray.hidden=false;el('[data-q=more]')?.setAttribute('aria-expanded','true');tray.querySelector('button').focus({preventScroll:true});return;}
@@ -189,7 +197,7 @@ function mount(host,opts){
    case'reset':closeMore();resetStage();el('[data-q=more]')?.focus({preventScroll:true});break;
    case'hint':hint=!hint;renderTools();message(hint?['Count the little spaces. A plank needs the same number.','The dotted trail shows one safe way. You can choose your own.','The faint rings show places to shine your lantern.'][viewStep]:'Clue tucked away. Your progress stays.');break;
    case'check':check();break;
-   case'continue':if(!animation)nextStage();break;
+   case'continue':nextStage();break;
    case'next-island':{const next=Q.nextChapter(state);state=next;persist();transitionTo(0,'Next stop: '+Q.chapter(next.chapter).place,()=>{c=Q.chapter(next.chapter);});break;}
    case'home':opts.onHome();break;
    case'paint':opts.onPaint();break;
@@ -220,17 +228,17 @@ function mount(host,opts){
  function burst(x,y,color){if(!motion())return;effects.push({x,y,color,born:time});if(effects.length>12)effects.shift();dirty=true;}
  function drawEffects(){
   if(!motion()){effects=[];return;}
-  effects=effects.filter(e=>time-e.born<.65);
-  for(const e of effects){const p=Math.min(1,(time-e.born)/.65);g.save();g.globalAlpha=1-p;
+  effects=effects.filter(e=>time-e.born<.85);
+  for(const e of effects){const p=Math.min(1,(time-e.born)/.85);g.save();g.globalAlpha=1-p;
    for(let i=0;i<7;i++){const a=i*Math.PI*2/7;A.star(g,e.x+Math.cos(a)*p*45,e.y+Math.sin(a)*p*30,3+(1-p)*4,e.color,a+p);}
    g.restore();
   }
  }
  function explorer(x,y,size,walking=false,direction=1){
-  const stride=walking&&motion()?1:0,bounce=stride*Math.abs(Math.sin(time*6.5))*3;
+  const stride=walking&&motion()?1:0,cheer=celebration?time-celebration.born:1,hop=motion()&&cheer<.72?Math.sin(Math.PI*cheer/.72)*16:0,bounce=stride*Math.abs(Math.sin(time*5.2))*3+hop;
   g.save();g.translate(x,y);g.scale(direction,1/stretch);g.translate(0,-bounce);
-  if(stride)g.rotate(Math.sin(time*6.5)*.025);
-  A.hero(g,0,0,size,opts.avatar,motion()?time:0,opts.artwork,stride);g.restore();
+  if(stride)g.rotate(Math.sin(time*5.2)*.025);else if(hop)g.rotate(-Math.sin(cheer/.72*Math.PI*2)*.06);
+  A.hero(g,0,0,size,opts.avatar,motion()?time*.82:0,opts.artwork,stride);g.restore();
  }
  function firefly(x,y){
   g.save();g.translate(x,y);g.scale(1,1/stretch);
@@ -243,7 +251,7 @@ function mount(host,opts){
   A.island(g,120,380,170,82,130);A.island(g,910,380,150,85,130);
   A.line(g,[[180,333],[850,333]],'#f0dbac',55);A.line(g,[[180,362],[850,362]],'#8e775b',6);A.line(g,[[180,304],[850,304]],'#8e775b',4);
   [310,510,710].forEach((x,i)=>{const width=c.gaps[i]*32;A.round(g,x-width/2-5,313,width+10,45,5,'#285f6c');g.save();g.strokeStyle='#d3e4d6';g.setLineDash([6,6]);g.strokeRect(x-width/2,317,width,36);g.restore();for(let j=1;j<c.gaps[i];j++)A.line(g,[[x-width/2+j*32,320],[x-width/2+j*32,351]],'#9ec8c0',2);if(state.bridge[i]>=0)plank(x,335,c.gaps[i]);text(String(i+1),x,394,23,'#fff9e2');if(hint)text(c.gaps[i]+(c.gaps[i]===1?' space':' spaces'),x,275,18);});
-  sprites.tree(g,83,327,.9,true);sprites.tree(g,918,305,.85);sprites.fox(g,875,350-(success&&motion()?Math.abs(Math.sin(time*4))*4:0),.85);
+  sprites.tree(g,83,327,.9,true);sprites.tree(g,918,305,.85);sprites.fox(g,875,350-(celebration&&motion()?Math.max(0,Math.sin(Math.min(1,(time-celebration.born)/.9)*Math.PI))*9:0),.85);
   const t=animation?.step===0?animation.progress:success?1:0;explorer(170+t*665,324,1.05,!!animation);
   text('WILLOW & WATER',120,465,14,'#517e6a');text('A WAY TOGETHER',876,470,14,'#517e6a');
   if(pointer?.piece!==null&&pointer?.at)plank(pointer.at[0]*W,pointer.at[1]*H,c.pieces[pointer.piece],.9);
@@ -274,7 +282,7 @@ function mount(host,opts){
   c.symbols.forEach((p,i)=>{if(state.found.includes(i)){A.ellipse(g,p[0]*W,p[1]*H,42,38,'#315c63');symbol(i,p[0]*W,p[1]*H);g.strokeStyle='#dcc98b';g.lineWidth=2;g.beginPath();g.arc(p[0]*W,p[1]*H,44,0,Math.PI*2);g.stroke();}else if(hint){g.strokeStyle='#c4d4c96b';g.lineWidth=3;g.beginPath();g.arc(p[0]*W,p[1]*H,46,0,Math.PI*2);g.stroke();}});
   for(let i=0;i<20;i++)A.ellipse(g,(i*97+30)%W,20+(i*39)%H,1.5,1.5,'#efdf9670');
   lantern(light[0]*W,light[1]*H,.8);sprites.hero(g,88,490,.85,opts.avatar,0,opts.artwork);
-  if(animation?.step===2){g.fillStyle='rgba(255,229,152,'+(animation.progress*.55)+')';g.fillRect(0,0,W,H);}
+  if(animation?.step===2){const p=animation.progress,x=light[0]*W,y=light[1]*H,r=55+p*240,glow=g.createRadialGradient(x,y,0,x,y,r);glow.addColorStop(0,'#ffe59888');glow.addColorStop(1,'#ffe59800');g.fillStyle=glow;g.fillRect(x-r,y-r,r*2,r*2);g.save();g.globalAlpha=Math.sin(p*Math.PI)*.6;g.strokeStyle='#ffe6a8';g.lineWidth=3;g.beginPath();g.arc(x,y,25+p*110,0,Math.PI*2);g.stroke();g.restore();}
  }
  function drawWin(){
   ground(true);const beam=g.createRadialGradient(770,190,0,770,190,500);beam.addColorStop(0,'#ffe39caa');beam.addColorStop(1,'#ffe39c00');g.fillStyle=beam;g.fillRect(0,0,W,H);A.island(g,750,450,240,75,120);A.island(g,220,495,260,70,95);
@@ -285,6 +293,7 @@ function mount(host,opts){
  function run(now){
   if(stopped)return;const dt=Math.min(.05,(now-lastTime)/1000);lastTime=now;const moving=motion(),visible=!document.hidden;
   if(moving&&visible)time+=dt;
+  if(celebration&&(!moving||time-celebration.born>=(celebration.kind==='stage'?1.95:2.6))){celebration=null;syncMotionControls();dirty=true;}
   if(animation){
    if(visible)animation.elapsed+=dt*1000;
    const p=moving?Math.min(1,animation.elapsed/animation.duration):1;animation.progress=p*p*(3-2*p);
@@ -292,7 +301,7 @@ function mount(host,opts){
   }
   if(transition){
    if(visible)transition.elapsed+=dt*1000;
-   const p=moving?Math.min(1,transition.elapsed/800):1;
+   const p=moving?Math.min(1,transition.elapsed/950):1;
    if(p>=.5&&!transition.switched){transition.switched=true;transition.change();}
    el('.quest-transition').style.opacity=String(p<.4?p/.4:p>.6?(1-p)/.4:1);
    el('.quest-transition-light').style.transform='scale('+(0.8+p*.6)+') rotate('+(p*25)+'deg)';
@@ -301,10 +310,10 @@ function mount(host,opts){
   if(!visible||(!dirty&&(!moving||now-lastDraw<33))){frame=requestAnimationFrame(run);return;}
   dirty=false;lastDraw=now;g.clearRect(0,0,W,H);
   if(viewStep===0)drawBridge();else if(viewStep===1)drawTrail();else if(viewStep===2)drawHollow();else drawWin();
-  drawEffects();frame=requestAnimationFrame(run);
+  if(celebration&&moving)A.celebrate(g,W,H,time-celebration.born,celebration.kind);drawEffects();frame=requestAnimationFrame(run);
  }
  renderTools();el('#quest-heading').tabIndex=-1;el('#quest-heading').focus({preventScroll:true});message(viewStep<3?INSTRUCTIONS[viewStep]:'Your lantern is still shining.');fit();opts.onSpeak?.(INSTRUCTIONS[viewStep]||'Your lantern is home.');frame=requestAnimationFrame(run);
- return()=>{stopped=true;hud.remove();document.removeEventListener('pointerdown',dismissDown,true);for(const event of ['pointermove','pointerup','pointercancel'])document.removeEventListener(event,consumeDismiss,true);document.removeEventListener('click',consumeClick,true);document.removeEventListener('keydown',escapeOptions,true);dismissed.clear();root.removeEventListener('keydown',trackKey,true);root.removeEventListener('keyup',releaseKey,true);heldKeys.clear();blockedKeys.clear();animation=null;transition=null;effects=[];cancelAnimationFrame(frame);observer.disconnect();guard.cancel();pointer=null;host.removeEventListener('pointerdown',down);host.removeEventListener('pointermove',move);host.removeEventListener('pointerup',end);host.removeEventListener('pointercancel',canceled);host.removeEventListener('lostpointercapture',canceled);host.removeEventListener('click',click);can.removeEventListener('keydown',key);can.width=can.height=fog.width=fog.height=1;};
+ return()=>{stopped=true;hud.remove();document.removeEventListener('visibilitychange',visibility);document.removeEventListener('pointerdown',dismissDown,true);for(const event of ['pointermove','pointerup','pointercancel'])document.removeEventListener(event,consumeDismiss,true);document.removeEventListener('click',consumeClick,true);document.removeEventListener('keydown',escapeOptions,true);dismissed.clear();root.removeEventListener('keydown',trackKey,true);root.removeEventListener('keyup',releaseKey,true);heldKeys.clear();blockedKeys.clear();animation=null;transition=null;celebration=null;effects=[];cancelAnimationFrame(frame);observer.disconnect();guard.cancel();pointer=null;host.removeEventListener('pointerdown',down);host.removeEventListener('pointermove',move);host.removeEventListener('pointerup',end);host.removeEventListener('pointercancel',canceled);host.removeEventListener('lostpointercapture',canceled);host.removeEventListener('click',click);can.removeEventListener('keydown',key);can.width=can.height=fog.width=fog.height=1;};
 }
-root.WWQuestUI=Object.freeze({version:'0.8.1',mount});
+root.WWQuestUI=Object.freeze({version:'0.9.0',mount});
 })(globalThis);

@@ -1,3 +1,11 @@
+# Clearpath 0.9.0 — 2026-10-31
+
+Real Maker freehand input; distinct Shapes/Draw tools; validated persistent ink and per-mode undo. Fitted Skybridge questions/results; separate advanced diagram/input space. Explicit handwritten numeral confirmation alongside tap dots. Readable Lantern target/answer boxes. Empty zero-spark bar and no 100-spark wrap. Slightly slower travel, arrival hops and bounded fireworks with interruptible/reduced-motion paths.
+
+This release carries the family test findings into the relevant activity, without replacing unrelated activity flows. Older profile/gallery/trail data remains compatible; new optional Maker ink requires this version to preserve it.
+
+---
+
 # Wayfinder 0.8.1
 
 - Persistent goal and current instruction in Lantern Trail; labeled target and entered codes, numbered empty slots and explicit readiness in Lantern Hollow.

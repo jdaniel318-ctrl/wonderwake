@@ -1,11 +1,16 @@
-# Wonderwake12 — Wayfinder 0.8.1
+# Wonderwake13 — Clearpath 0.9.0
 
-Lantern Trail keeps the goal in view while you play. Lantern Hollow now labels “Match this” and “Your code”, numbers empty slots and shows when the three-shape code is ready to check. Finding shapes and entering their order have distinct guidance. The large playfield, compact puzzle dock, quick transitions and existing rules remain.
+This release applies the family test findings to the activities where they matter.
 
-Skybridge and Wordforge have a fitted workspace only when you choose Draw this answer. The question stays above the paper; Undo, Clear, Back to choices, More and the relevant answer action remain within reach. Incorrect answers can be corrected without moving the paper. Returning to choices and reopening keeps the drawing for that question. Dot counting accepts zero on blank paper. Handwriting uses reveal-and-compare guided practice; other math drawings are scratch work with a return to the original answer choices.
+- Maker Grove separates Shapes and Draw. Draw with finger selects actual freehand ink and restores finger input after Pencil use. It preserves existing shapes, includes pen thickness and neutral colors, and saves ink per explorer and creation. Separate undo actions avoid removing a shape when undoing a stroke.
+- Skybridge keeps question, reference, choices, feedback and the next action in one viewport. Decorative scenery yields space on short screens. Advanced diagrams and typed-answer controls occupy separate space.
+- Early counting, addition and subtraction offer Tap dots and Write number. Their papers remain separate while switching modes. Handwriting is freehand; the child explicitly chooses the numeral they wrote (0–20) and checks it. There is no automatic handwriting recognition or stroke-count grading. Blank dot paper is a valid zero; written zero needs an ink mark.
+- Lantern Hollow uses separate target and answer boxes, arrows showing reading order, and entry counts. The board remains steady between puzzle stages.
+- Zero sparks produces zero fill. The fill grows to 100 sparks and then remains full; the exact count continues to display without wrapping.
+- Travel and transitions are slightly slower. An arrival hop, staggered fireworks, and the lantern glow add distinct completion moments. Continue and Skip remain available; reduced motion and Motion off omit the effects.
 
-This applies shared interaction lessons where useful. The regular choices, progression, Colorwake painting tools, tracing, Maker Grove, Star Glider, home and grown-up tools keep their own flow. Paint saving continues to show Saved to gallery after confirmation. No learner data format or fleet authority changes.
+Existing paintings, layers, custom colors, galleries, learning evidence and quest progress remain compatible. New Maker ink is optional validated local profile data; older releases do not preserve it when saving. Math and spelling grading rules are otherwise unchanged. Independent answers still require the child's response; optional guided spelling remains guided practice.
 
-Start with START_HERE.txt for uploading and three device checks. Upload all top-level files together so integrity-checked assets match. Existing learners, galleries, layered artwork and quest progress stay compatible. The 2,000-stroke drawing limit is unchanged.
+START_HERE.txt has upload steps and three iPad tests. All top-level assets must be uploaded together to match their integrity hashes. verification/ includes current Clearpath evidence and historical release records, labeled by release. recovery/ contains Wayfinder 0.8.1 application code only. Nothing is deployed by this ZIP.
 
-Source verification is in verification/. recovery/ contains the previous Playdeck application ZIP, not learner data. Physical iPad/Safari/Pencil testing remains the final device check. This standalone family preview is supplied for manual upload.
+The ship remains standalone. Reusable interaction lessons are documented for later fleet review; no learner data or authority is transferred automatically.

@@ -1,10 +1,10 @@
 {
   "schema": "wonderwake-asset-inventory-v1",
-  "version": "0.8.1",
+  "version": "0.9.0",
   "files": {
     "CHANGELOG.md": {
-      "bytes": 7681,
-      "sha256": "8084bdb9f51b558176a7ce3a7b929aa6127e865525794d8e7de347205d91e798"
+      "bytes": 8372,
+      "sha256": "1a11c306a5d7f9af9acd6d75f23f42fcc3b2fcb50c29a5ba1826f00676fd96d5"
     },
     "COLORWAKE.md": {
       "bytes": 2313,
@@ -27,36 +27,52 @@
       "sha256": "981faf5bdc6860fdb77235e95a90544255e268ef9871c31fa4797952d19b86e4"
     },
     "README.md": {
-      "bytes": 1727,
-      "sha256": "f0ad47c18496be7a4d3978ae7066818b4a2ade8d337f9fff5ea77da16fff55df"
+      "bytes": 2384,
+      "sha256": "be30eb61c0c7da31403f65e0e5f14594353be152592ac9362b25c9fa938cd512"
     },
     "START_HERE.txt": {
-      "bytes": 1688,
-      "sha256": "f99436c8d501c00e00ead32a7a2646c379b6671b4b9ff2e53852bd72e710cdf0"
+      "bytes": 2407,
+      "sha256": "2675aeeb17bfe2160779714174857509800e8cff108679c6554e7b35f99ee757"
     },
     "VERIFY.txt": {
-      "bytes": 1681,
-      "sha256": "506a6be76d3917e17863efb420a0d2d9969fdaed1b41d5029a142fd879294639"
+      "bytes": 1545,
+      "sha256": "55cc9299b6078fc8dc4ea43bcc85c73922c53eb52e56475992b0359fcbf5955a"
     },
     "WONDERWAKE_VESSEL.json": {
-      "bytes": 2978,
-      "sha256": "6ff74e76a7beff73bc0d80c1ccd1381afdfe6743f08e80013aa54068404a3c03"
+      "bytes": 3333,
+      "sha256": "9b952558173ecf3a2353addd2196b5407d3cae8706b549aa3698230d18168940"
     },
     "index.html": {
-      "bytes": 4661,
-      "sha256": "813f8a745d0472939b1829ee1ea41636f3eb1d6b546e76b61ae61d2980591e79"
+      "bytes": 4801,
+      "sha256": "172f495c3b6cf76b6dbf983ec02b3b94cf214a5a32fd80c5044c5954d7c1be14"
     },
-    "recovery/Wonderwake11-Playdeck.zip": {
-      "bytes": 1093963,
-      "sha256": "55ca8925c466219f5b24662fd199b04de7947f76a3a7a9f3265f2bbc57aecd39"
+    "number-input.css": {
+      "bytes": 2632,
+      "sha256": "dfbda9488277b75e4671a0a4bd817fab028f86096928202c17033399689b4db0"
     },
-    "verification/FINAL_TEST_OUTPUT.txt": {
-      "bytes": 12258,
-      "sha256": "6e8199099873f68cbdb6799fb437604cd578ec58753afd7e648f58b02ac6df73"
+    "recovery/Wonderwake12-Wayfinder.zip": {
+      "bytes": 1289158,
+      "sha256": "f4db2afc6af30fbafc39cb19c718ab239622e427b049ed2c908e3ea79b394dd6"
+    },
+    "verification/CLEARPATH_LAYOUT_OUTPUT.txt": {
+      "bytes": 2416,
+      "sha256": "a819a29d9d78b1bdd4cc0d65d9cb575b1d30d7b55205b973abdb817513ed36de"
+    },
+    "verification/CLEARPATH_LEDGER.md": {
+      "bytes": 2427,
+      "sha256": "3e475138b5f45a5605b205b09187c737266cf31095e0470876f49d0de1785ce7"
+    },
+    "verification/CLEARPATH_RESULTS.json": {
+      "bytes": 2406,
+      "sha256": "45b7f87f25171a7e52aa8026312c208b8cf04feca9df765f3eac4ed45ea2378f"
+    },
+    "verification/CLEARPATH_TEST_OUTPUT.txt": {
+      "bytes": 13088,
+      "sha256": "637dc8e09ae844f192b868466d84bfa41d941dd14140b67d4e1a89671794b6c0"
     },
     "verification/FLEET_LESSONS.txt": {
-      "bytes": 2512,
-      "sha256": "b8448cd0331a41cd07b7639a7710e712d2883fbf4ea3cca1136dfe83c447f1ad"
+      "bytes": 3237,
+      "sha256": "72c907f846305c1113eff532634b11acb86dacfc3d7c5d430798920063871ff2"
     },
     "verification/GLOWTRAIL_DESIGN.txt": {
       "bytes": 2474,
@@ -98,18 +114,6 @@
       "bytes": 1585,
       "sha256": "b0beb5d5f451acb359afd444527b1e6865901bf462f340dde607edc94cd416c6"
     },
-    "verification/RESULTS.json": {
-      "bytes": 3169,
-      "sha256": "62b96ab943f7c66822360a09442ccbe30093bc7cbfcda02a214634996d8feef6"
-    },
-    "verification/REVIEW.txt": {
-      "bytes": 1433,
-      "sha256": "5e84725cafc4e109a90eea5ef4e0ee0fad42f646a98080279e1cf6b8ee50aaf9"
-    },
-    "verification/SEALED_SMOKE.txt": {
-      "bytes": 1390,
-      "sha256": "6cf27a2e37c33d363a5726c75b3d5449772a36edba95329c9c9299de0c916fc8"
-    },
     "verification/SHADECRAFT_PLAN.txt": {
       "bytes": 3554,
       "sha256": "27ee6d0496759a853e594e6e7e2fa770e8fa527daafd3f0f246bb78f9254750a"
@@ -126,6 +130,10 @@
       "bytes": 2390,
       "sha256": "66c267e3a83ab07772e9a99fd7dcc745fc166c79bc0b8535855ed650fc10964f"
     },
+    "verification/WAYFINDER_FINAL_TEST_OUTPUT.txt": {
+      "bytes": 12258,
+      "sha256": "6e8199099873f68cbdb6799fb437604cd578ec58753afd7e648f58b02ac6df73"
+    },
     "verification/WAYFINDER_LEDGER.md": {
       "bytes": 1739,
       "sha256": "4b785a1726a33fd34553c9291bdebc0090a75700f477257746d5e70071e7b27b"
@@ -138,6 +146,18 @@
       "bytes": 7648,
       "sha256": "e48456bb37517121bb21f8a3fb5eca89d33efb946cdc9c54bcc386ed5462cb94"
     },
+    "verification/WAYFINDER_RESULTS.json": {
+      "bytes": 3169,
+      "sha256": "62b96ab943f7c66822360a09442ccbe30093bc7cbfcda02a214634996d8feef6"
+    },
+    "verification/WAYFINDER_REVIEW.txt": {
+      "bytes": 1433,
+      "sha256": "5e84725cafc4e109a90eea5ef4e0ee0fad42f646a98080279e1cf6b8ee50aaf9"
+    },
+    "verification/WAYFINDER_SEALED_SMOKE.txt": {
+      "bytes": 1390,
+      "sha256": "6cf27a2e37c33d363a5726c75b3d5449772a36edba95329c9c9299de0c916fc8"
+    },
     "verification/WAYFINDER_SPEC.md": {
       "bytes": 1279,
       "sha256": "de81b364aa07c3ebb7f5503257a4ae691db3bb3bcdc4115055fb20947c914fb7"
@@ -146,13 +166,41 @@
       "bytes": 4285,
       "sha256": "38df4d707eb8c1ebe9fc982f5584158eb175e91ecbe32d382a3c9d3f55dcfa4d"
     },
+    "verification/celebration-browser.cjs": {
+      "bytes": 6998,
+      "sha256": "6d8f87f968f5a0d6b1b315e1f665d2ba81479616797039776d0b717bcb6510fa"
+    },
+    "verification/clearpath-browser.cjs": {
+      "bytes": 4180,
+      "sha256": "f32b0e70e6efcd0c74397e75dbda41315b1008c03ec35cd39fd35281dd4ae4ec"
+    },
     "verification/extra-browser.cjs": {
       "bytes": 4181,
       "sha256": "21ac0ab9fa65d5b164a8033a7168b098121b1aeac074ec2bad81335514a035ae"
     },
+    "verification/lantern-dock-browser.cjs": {
+      "bytes": 5147,
+      "sha256": "17bd949efd6edef65696cabdc8611a123cc0c7eee6e9a5de10dadde59ba8ffaf"
+    },
+    "verification/maker-pointer-browser.cjs": {
+      "bytes": 2156,
+      "sha256": "18d1ae43019dc68f345b934dc1577afd4ebce9375c5c12d8ea5208f0c35cfb4f"
+    },
+    "verification/maker-unit.cjs": {
+      "bytes": 1232,
+      "sha256": "cc0c81365ac1160199f141a0e4b537fd2ea6b1f2147a7723bb2a55974b434935"
+    },
     "verification/more-unit.cjs": {
       "bytes": 2010,
       "sha256": "ee94f506bf9be6b8e5ac0f58139d918dde02144ba45b747c72d057bb28dcd73b"
+    },
+    "verification/number-app.cjs": {
+      "bytes": 3734,
+      "sha256": "d64dd0f1fdc3c8eeff363e4ca11dc7c49fbf6521a90495d16d5cbabcfd98054c"
+    },
+    "verification/number-input.cjs": {
+      "bytes": 8143,
+      "sha256": "61297024df242e3872742f91182fa37b35f14869c280fd8b968eba60eecc6d47"
     },
     "verification/openpaper-browser.cjs": {
       "bytes": 3727,
@@ -175,8 +223,8 @@
       "sha256": "2f3540d2c3e5a270c0cfee22361bc94fe21c0b84c9d2a35b207cbe6345c30d16"
     },
     "verification/playdeck-browser.cjs": {
-      "bytes": 11539,
-      "sha256": "79252da6e501e8b4d642f2367b91fa8d5683e57d99b2705dee3fcc9dcef3acc3"
+      "bytes": 11554,
+      "sha256": "0047004f35f69652d0a047c7ea47d28981fc7f731a8ce3aef65aab4c211001fa"
     },
     "verification/playdeck-layout.cjs": {
       "bytes": 3295,
@@ -195,8 +243,8 @@
       "sha256": "5ad99e200f6e562600f00f79b8933416876dc37441fcc81be4d64337a08c129e"
     },
     "verification/quest-acceptance.cjs": {
-      "bytes": 13074,
-      "sha256": "edb14002d02ad2e95847c4d7e64492f97b0d25119d85ad1a1601972938b68d09"
+      "bytes": 13128,
+      "sha256": "dbc8fbf60227cd03554d80424691d5998f8c67b7006b6c662906264994d908ec"
     },
     "verification/quest-browser.cjs": {
       "bytes": 5112,
@@ -214,6 +262,10 @@
       "bytes": 1778,
       "sha256": "f2fd89a0cb67e6eccce23738b6aa566dccbed9e639b565bd815de100fea4e1b7"
     },
+    "verification/serve-check.py": {
+      "bytes": 664,
+      "sha256": "7412c581e08d022681dc0dc693105742548d37d7ea20e11ac12081b18e8bbf11"
+    },
     "verification/shade-browser.cjs": {
       "bytes": 12551,
       "sha256": "3afcb2bdd49ab701502fc10872d758924bb743da5e649fdf7e3265360a7f646d"
@@ -221,6 +273,10 @@
     "verification/shade-unit.cjs": {
       "bytes": 1288,
       "sha256": "9d0867f981c38ace9210c789e7df77606bb753a1772196e7b4be5598c7d7a43f"
+    },
+    "verification/sparkbar-browser.cjs": {
+      "bytes": 2446,
+      "sha256": "90e91a527da61a092f5ac9a3aac024aa9c2d2076366d56a94a2a26eb219cc8a0"
     },
     "verification/sparkstep-browser.cjs": {
       "bytes": 10900,
@@ -243,40 +299,40 @@
       "sha256": "17ed50f383cef60e2c4d7601ade0071c54343344b6bf8b433635b963f022d138"
     },
     "wonderwake.css": {
-      "bytes": 55286,
-      "sha256": "2c36eb82d38e6ba2d73597e6f20a033ed35ea43fcf45e7063df8155653cb9f6c"
+      "bytes": 62349,
+      "sha256": "2cfcd4596e798bbd934b1881a214478fb87ec5e2776b1e1f6d650b0f7e7edbfc"
     },
     "wonderwake_app.js": {
-      "bytes": 72650,
-      "sha256": "c42980d7799977e718e56f5de2ae9ff191eeddc55e52d5c45b8f7bfcae709ea6"
+      "bytes": 76345,
+      "sha256": "166cb5b92406cd4efa06bf55fd44d2be0a0e0a1f670e88f4567891a404ee62fa"
     },
     "wonderwake_content.js": {
       "bytes": 21146,
       "sha256": "bdf92df92f140af8866bfccf348bc15579044d721c00f99a5730854c2f54666b"
     },
     "wonderwake_core.js": {
-      "bytes": 9598,
-      "sha256": "48c02df62f3a2065e26cf8d757a470a30a0536979ad1245a1c696a840945a34d"
+      "bytes": 10274,
+      "sha256": "7626b0d47ab6b4b3a99f9c5d2e1f9a9f7539f12f45fc78f54515dc1f918f0d64"
     },
     "wonderwake_creative.js": {
       "bytes": 14641,
       "sha256": "5c4b425e867dc4d11b10a4b82344de4e9f77bb200ab93612f1e3d54da9b6ccab"
     },
     "wonderwake_drawing.js": {
-      "bytes": 42038,
-      "sha256": "2d346e19da393f619ff385fd961540d568f966f55e2e05bd00cdca2a026c52a4"
+      "bytes": 48490,
+      "sha256": "3b2f1b51ed181781324060ffa4010e186c1887219fa0395d61aa1e4b417d2770"
     },
     "wonderwake_fleet.js": {
       "bytes": 2555,
-      "sha256": "50311dcf7fe1525c3d5347afb3d5ce8c74c1ba90e00940b4d4026d99e5f195bc"
+      "sha256": "f837e217aed892d3fd82b600f9359e144a50d4d30217aa6ef017a01016bf6031"
     },
     "wonderwake_paint.js": {
       "bytes": 3509,
       "sha256": "c5f26b8cf802425b4e8cf2924cdad5c21ac7d3be71a249b64e064db228e2a8bf"
     },
     "wonderwake_quest.css": {
-      "bytes": 13212,
-      "sha256": "e3faf3ccff35ac5a020c8a905535142b0fafe08169d5b5f605e5f6d0c41af3dc"
+      "bytes": 17308,
+      "sha256": "bda54a5ed9aa19a880d6d385a7fea6580feb4334e6c8ef8c0061442ab3b495cb"
     },
     "wonderwake_quest.js": {
       "bytes": 5105,
@@ -287,16 +343,16 @@
       "sha256": "1923d6ae14ebf63ef7191feac7359486348a1e3c7e57ac501873c939afb91a41"
     },
     "wonderwake_quest_ui.js": {
-      "bytes": 34744,
-      "sha256": "ce295cce5838f00b85a8c2afc699fb79d43ab6c5d0ed57a3e6a7755072af8059"
+      "bytes": 36357,
+      "sha256": "b10e933be12e8796bf28b8423e4b3d3b0f80c3bd4ec482a88326e158a5aaf619"
     },
     "wonderwake_store.js": {
       "bytes": 4681,
       "sha256": "f66236a771e2d0d94a114cf5a43636fce85bbc573b667afd06f6348ec2965982"
     },
     "wonderwake_world.js": {
-      "bytes": 13350,
-      "sha256": "9adfe1d11855a23e71265dbffccc62c721d7062a50af862d9c1d60185869242f"
+      "bytes": 14758,
+      "sha256": "7e431f685aaacbf7e00c46e6d178c2c241a533c9211127fd9ed79eecd1b0eef9"
     }
   }
 }
