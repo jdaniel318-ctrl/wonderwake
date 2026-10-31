@@ -1,0 +1,107 @@
+<!-- BLACKFLAG_CURRENT_RELEASE_START -->
+# Black Flag Fleetbound 8.8.20.73
+
+Wonderwake is commissioned as an active Admiral Program with accepted family-preview release Skybloom 0.10.0. A separate connected administrator transaction and independent server readback are recorded in WONDERWAKE_COMMISSION_RECEIPT.json. This software patch publishes the visible launch and dated receipt; it does not execute SQL or grant browser authority.
+
+Read FLEETBOUND_GUIDE.md and UPLOAD_THIS_ONE_BUILD.md. Authentication, PINs, session rules and the six Core business definitions are unchanged. Admiral Program rendering now survives filtering and branding refresh. Six Wonderwake lesson candidates remain unadopted pending mission-specific review.
+
+Engine publication and native Safari verification of this Engine patch are pending. The accepted Wonderwake game is unchanged. Full-source backups and UI rollback contain application code only.
+<!-- BLACKFLAG_CURRENT_RELEASE_END -->
+
+## Retained historical notes
+
+FAIRLEAD 8.8.20.68: verified software artifact production and page-local startup evidence. Preserve all source names, business workflows, auth/data boundaries and loading protections. See FAIRLEAD_GUIDE.md. No performance-improvement claim.
+
+HISTORICAL NOTES:
+CLEARDECK 8.8.20.67: bounded account-message, release-reference and verification-tool cleanup over Ironhaven .66. No SQL, authority or data changes; no passkeys or loading optimization. Native Safari pending.
+
+HISTORICAL NOTES:
+IRONHAVEN 8.8.20.66: account password self-service and partial encrypted Captain recovery rehearsal. No migrations, no server restore. Offline crypto 18/18; isolated browser UI 9 checks; native Safari pending.
+Keelwatch 8.8.20.65 — additive Fleetguard read-only Admiral evidence on exact-vessel server list readback. Base is the recovered Oct 25 GitHub snapshot verified to match every 8.8.20.64 update file. Existing appointment and sign workflows retained. No SQL, data reset, or new authority grant. See KEELWATCH_GUIDE.md.
+
+Fleetclarity 8.8.20.64 — status presentation cleanup over 8.8.20.63.
+Read FLEETCLARITY_GUIDE.md and FLEETCLARITY_EVIDENCE.json for workflow and verification scope.
+Prior release records remain below as historical evidence.
+
+Fleetcare 8.8.20.63 — bounded fleet controls cleanup over 8.8.20.62.
+Read FLEETCARE_GUIDE.md and FLEETCARE_EVIDENCE.json for workflow and verification scope.
+Prior release records remain below as historical evidence.
+
+Boardcraft 8.8.20.62 — Ike customer board-photo design and complete-package delivery.
+Read BOARDCRAFT_GUIDE.md and BOARDCRAFT_EVIDENCE.json for workflow and verification scope.
+Prior release records remain below as historical evidence.
+
+Lettercraft 8.8.20.61 — Retroline and Orchard Swash lettering trials.
+Read LETTERCRAFT_GUIDE.md and LETTERCRAFT_EVIDENCE.json for trial and verification scope.
+Prior release records remain below as historical evidence.
+
+Shopcraft 8.8.20.60 — Ike reviews sign requests before production.
+Read SHOPCRAFT_GUIDE.md and SHOPCRAFT_EVIDENCE.json for the exact workflow and test scope.
+Prior release records remain below as historical evidence.
+
+Fleetcraft 8.8.20.59 — editable text and vector graphic layers.
+Read FLEETCRAFT_GUIDE.md. The new evidence records the actual software checks.
+Prior release records below are retained as historical evidence.
+
+Carvewright 8.8.20.58 — controller-preview downloads
+
+Adds a separate preview-file preparation action for work away from the machine, with explicit unverified-setup filenames/comments and purpose metadata. Keeps the original setup-confirmed cutting export, exact source checks, identity/generation guards, native downloads and stale-link revocation. Delivered program bytes are rechecked after the preview header is added, and their exact SHA is recorded.
+
+Corrects outdated Home capability text. The CAM engine, all six controller exporters, original design/geometry stores and unrelated customer/business behavior remain unchanged. No database change, machine connection or physical acceptance claim. Current guide: CARVEWRIGHT_PREVIEW_GUIDE.md. Current evidence: CARVEWRIGHT_PREVIEW_EVIDENCE.json.
+
+Historical notes below are retained verbatim.
+
+Carvewright 8.8.20.57 — First Cut
+
+Adds bounded polygon CAM for fixed-depth flat-endmill letter pockets; independent mm toolpaths; ShopBot OpenSBP, GRBL1.1 and LinuxCNC inch/mm exporters with validated readback; Setup/Preview/Export workspace; actual 2D cutter footprint; isolated locally saved setups; portable machining records and exact editable artwork downloads.
+
+Source review, separate GEOS geometry comparisons, actual revision-3 Smoke Hole! design, controller readback, browser interactions, existing workspace/session regressions and exact archive reconstruction are recorded in current evidence. Software validation does not establish physical machine acceptance.
+
+The original geometry, fonts, design schemas, design stores and unrelated customer/business behavior are retained. No database action, permission change, remote machine operation or file deletion is included. ShopBot uses manual spindle prompts and checks current controller units. GRBL/LinuxCNC use explicit G54 with stock-top Z. Defaults are editable examples; operators must configure the actual setup.
+
+Current guide: CARVEWRIGHT_MACHINING_GUIDE.md. Current evidence: CARVEWRIGHT_MACHINING_EVIDENCE.json. Historical records below are retained verbatim.
+
+Carvewright 8.8.20.56 — five-second session repair
+
+Corrected the app/editor's unconditional response to routine session-changed events. Valid same-context status, focus and authority-refresh notifications preserve current work and links. Ended/unavailable sessions and invalid guards still close private surfaces.
+
+Added an adapter-only trusted activity bridge from the independent body-level job/editor dialogs to the existing noteProgramActivity API using the captured actor and session start. Synthetic/outside/background/status activity does not renew idle. Existing idle 15 minutes, maximum 60 minutes, sign-in and server verification are preserved.
+
+Three runtime behavior files changed. All other existing runtime is preserved outside current release identity and the actual rebuilt player SHA. Current data schemas, geometry/fonts/stores and business/fleet policies are unchanged. Full 369 files; one cumulative update for complete .53/.54/.55; standalone 12. No deletions or database actions.
+
+Current evidence: CARVEWRIGHT_SESSION_EVIDENCE.json. Current guide: CARVEWRIGHT_SESSION_GUIDE.md. Earlier evidence and guides are retained as historical records. New verification exercises the real bundled session manager instead of only a synthetic session facade.
+
+Native Safari, native Firefox, live commissioning and physical machine acceptance remain not claimed.
+
+Historical notes below are retained verbatim.
+
+Carvewright 8.8.20.55 — independent fleet design workspace
+
+New: independent Home, Jobs, editor and revision-specific artwork handoff; direct Engine/Admiral/My Fleet entrances; separate Carvewright application identity and scoped local store; explicit legacy read/copy/import with unchanged originals; job requester, source reference, brief and requested output. Existing Quotes & invoices no longer owns the design application.
+
+Current build uses the existing Admiral authorization model. My Fleet closes before presenting the gate; cancelled gate intent does not launch later. Session/context loss closes private design surfaces and revokes prepared files. Requests and imported labels do not grant vessel access.
+
+Real vector preview and SVG share the retained exact glyph geometry. Handoff verifies saved revision and layout review, offers native file links, and makes no delivery/approval/machine claim. New metadata resets review. Current and legacy imports are new unreviewed copies.
+
+Release boundary: one cumulative update over complete .53 or .54, at most85 files, zero deletions. Seven new runtime assets. Full target366 files; standalone12 files with no private auth adapter. All original .54 evidence, reference models and guides remain historical records. Current instructions are CARVEWRIGHT_FLEET_GUIDE.md. New evidence is CARVEWRIGHT_FLEET_EVIDENCE.json.
+
+Not included: live canonical commissioning, automatic cross-vessel transactions, cross-device synchronization, cutter libraries, CAM, stock simulation or machine output. Native Firefox, native Safari, installed VCarve compatibility and physical production acceptance are not claimed.
+
+Historical build notes below are retained verbatim.
+
+Carvewright 8.8.20.54
+
+Ike’s Carve Studio adds a physical vector lettering editor, two bundled public reference styles, entered stock dimensions/margins, exact case and spacing, local layout review, isolated device-local saves, validated portable JSON files and lettering-only SVG exports.
+
+The existing authorized Quotes & invoices workspace gains an Ike-only Open Carve Studio entry. A separate carve-studio.html provides a local reference workspace. The editor shares the existing account/business guard while keeping its controls and data store separate from financial records.
+
+Studio Sans Bold and Studio Serif Bold are reference lettering, not Ike’s approved A/B/C geometry. Wood appearance is illustrative. No CAM engine, material-removal simulation, .crv import, machine program, cross-device synchronization, live service write or automatic financial action is included.
+
+The exact complete Quartermaster 8.8.20.53 release is the baseline. Preserve every previous file. Existing runtime behavior is verified through inverse identity/integration comparison, with retained document/PDF regressions. Only release identity changes apply to the compiled game. Historical model/evidence files remain unchanged.
+
+Current byte-bound evidence: CARVEWRIGHT_EVIDENCE.json.
+User guide: CARVEWRIGHT_GUIDE.md.
+Reference sources: CARVEWRIGHT_REFERENCE_SOURCES.md.
+Upload instructions: UPLOAD_THIS_ONE_BUILD.md.
+
+Offline release checks are distinct from native Firefox/iPad Safari, installed VCarve and physical-machine acceptance.

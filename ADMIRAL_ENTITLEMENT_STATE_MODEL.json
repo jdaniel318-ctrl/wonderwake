@@ -1,0 +1,71 @@
+{
+  "release": "Ironbound TEST",
+  "build": "8.8.20.73",
+  "name": "VoyageKeeper",
+  "purpose": "Give every Fleet feature an independent Off, Free or Paid state for every vessel.",
+  "owner_state_precedence": [
+    "enabled",
+    "entitled",
+    "requested",
+    "available"
+  ],
+  "owner_labels": {
+    "enabled": "Active",
+    "entitled_free": "Free \u2022 $0",
+    "entitled_paid": "Approved Upgrade",
+    "requested": "Requested",
+    "available_paid": "Available for Upgrade"
+  },
+  "authority_contract": {
+    "owner": "may view and request eligible paid upgrades",
+    "captain": "may operationalize an already valid entitlement when delegated",
+    "admiral": "issues explicit feature, vessel-wide or fleet-wide commercial orders for Off, Free or Paid",
+    "browser": "never grants entitlement from local UI state"
+  },
+  "admiral_passage": {
+    "candidate": "Captain may operate, commission private vessels, and collect readiness evidence without receiving Admiral authority.",
+    "proof": [
+      "fleet readiness has no release-blocking failure",
+      "outside-owner vessel can be commissioned privately without transferring ownership",
+      "owner publication approval remains mandatory",
+      "exact-vessel boundaries and durable command evidence remain intact"
+    ],
+    "promotion": "An active server-side fleet_global_authorities Admiral record plus authenticated identity is required.",
+    "result": "After server verification, the same identity may enter Admiral My Fleet and issue governed orders.",
+    "local_self_promotion": false,
+    "status": "commissioned",
+    "rank_session_separation": "Commissioned rank persists across session locks; active server verification is still required for each secure workspace.",
+    "readiness_warnings_do_not_demote": true
+  },
+  "command_contract": {
+    "source_of_truth": "append-only server-governed Admiral commercial orders",
+    "current_live_scope": "one selected vessel and one selected feature",
+    "next_scopes": [
+      "all features on the selected vessel",
+      "all features across the fleet"
+    ],
+    "bulk_enablement_gate": "atomic server transaction plus impact preview, readback verification and rollback record",
+    "forbidden_automation": [
+      "readiness",
+      "sea_trial",
+      "launch",
+      "billing",
+      "feature discovery"
+    ],
+    "meaning": "If the Admiral orders all Free at a scope, every entitlement in that scope is Free until a later Admiral order changes it."
+  },
+  "security": "No service-role or secret credential is present in browser code. Server-side entitlement writes remain protected.",
+  "state_separation": {
+    "access": "Off is stored as revoked; active access remains entitled or enabled.",
+    "commercial": "Active features are independently Free or Paid.",
+    "environment": "Sea Trial or Live is separate from access and price."
+  },
+  "expansion": "The same feature-level state model applies to every Fleet vessel without vessel-specific code.",
+  "release_compatibility": {
+    "runtime_build": "8.8.17.13",
+    "basis": "same semantic contract; exact existing safety predicates retained and negative-tested",
+    "authored_build": "8.8.17",
+    "verified_by": "keelguard-package-validation",
+    "proves_live_operation": false
+  }
+}

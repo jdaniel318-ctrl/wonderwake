@@ -1,0 +1,144 @@
+{
+  "schema": "dark-sky-fleet-doctrine-registry-v1",
+  "build": "8.8.20.73",
+  "release": "Ironbound TEST",
+  "status": "active",
+  "principles": [
+    {
+      "id": "project-isolation",
+      "rule": "No project branding, data, media, settings, orders, or authority may bleed across vessel boundaries.",
+      "scope": "fleet",
+      "origin": "cross-project flash and wrong-project admin regressions"
+    },
+    {
+      "id": "bounded-startup",
+      "rule": "Every startup and route-resolution shield must resolve within a bounded interval or transition to explicit safe recovery.",
+      "scope": "fleet",
+      "origin": "Securing Route indefinite hang"
+    },
+    {
+      "id": "explicit-navigation",
+      "rule": "Operational navigation uses deterministic in-app routes; browser Back is not an operating control.",
+      "scope": "fleet",
+      "origin": "return-route regressions"
+    },
+    {
+      "id": "owner-self-service",
+      "rule": "Every vessel must preserve a durable owner/partner control path independent of Black Flag.",
+      "scope": "fleet",
+      "origin": "three-surface architecture"
+    },
+    {
+      "id": "test-contact-safety",
+      "rule": "Test, Sea Trial and Private Preview cannot trigger live phone, mail or SMS actions.",
+      "scope": "fleet",
+      "origin": "preview safety contract"
+    },
+    {
+      "id": "production-truth",
+      "rule": "Customer production previews must represent the geometry the production process will use; no unsupported fallback geometry.",
+      "scope": "production-capability",
+      "origin": "Ike Fit / Style Foundry"
+    },
+    {
+      "id": "immutable-approval",
+      "rule": "A customer-approved production artifact remains immutable through review, confirmation, owner/admin and archive.",
+      "scope": "production-capability",
+      "origin": "approved-artifact voyage"
+    },
+    {
+      "id": "refresh-continuity",
+      "rule": "Refresh preserves the correct authority, project and route when safe; refresh is recovery, not navigation.",
+      "scope": "fleet",
+      "origin": "owner/engine refresh regressions"
+    },
+    {
+      "id": "durable-feedback",
+      "rule": "Consequential actions leave readable transient feedback plus a durable visible result.",
+      "scope": "fleet",
+      "origin": "toast/readability regressions"
+    },
+    {
+      "id": "professional-first",
+      "rule": "Operational command surfaces are complete in Professional View; Cinematic View is optional presentation and cannot be an operating dependency.",
+      "scope": "upper-command",
+      "origin": "8.5.4 command audit"
+    },
+    {
+      "id": "admiral-course-authority",
+      "rule": "The Admiral may deliberately change Fleet course. Course changes are versioned, promoted explicitly, preserve prior doctrine as history, and remain rollback-capable.",
+      "scope": "fleet-governance",
+      "origin": "8.6.40 Registry Commit hardening"
+    },
+    {
+      "id": "mission-level-is-not-parentage",
+      "rule": "Admiral, Captain, Engine, and vessel mission levels describe responsibility and authority; they never make one project the owner or container of another.",
+      "scope": "fleet-structure",
+      "origin": "8.8.11.1 Bootstrap Build Schedule repair"
+    },
+    {
+      "id": "shared-capability-passage",
+      "rule": "Any fleet member may explicitly adopt an approved capability while its ownership, authority, branding, namespace, and project data remain isolated.",
+      "scope": "fleet-learning",
+      "origin": "8.8.11.1 Bootstrap Build Schedule repair"
+    },
+    {
+      "id": "admiral-rank-session-separation",
+      "rule": "A commissioned Admiral role persists across browser workspace locks and session expiry. Secure re-authentication protects entry; it does not demote the rank. Only explicit server authority revocation changes that role.",
+      "scope": "fleet-governance",
+      "origin": "8.8.18.0 AdmiralKeel hardening"
+    }
+  ],
+  "governance": {
+    "courseAuthority": {
+      "holder": "admiral",
+      "admiralMayChangeCourse": true,
+      "requiresDeliberatePromotion": true,
+      "captainMayRecommend": true,
+      "engineMayImplementApprovedCourse": true,
+      "ownerMayNotAlterFleetDoctrine": true,
+      "historyIsAppendOnly": true,
+      "rollbackSupported": true,
+      "rule": "Current doctrine governs the Fleet until the Admiral deliberately promotes a successor course. A new course may supersede prior doctrine without erasing why the prior course existed or which releases operated under it."
+    },
+    "courseLifecycle": [
+      "proposed",
+      "reviewed",
+      "promoted",
+      "active",
+      "superseded",
+      "rolled-back"
+    ],
+    "currentCourse": {
+      "id": "doctrine-authority-repair",
+      "version": 2,
+      "status": "active",
+      "effectiveBuild": "8.6.56",
+      "heading": "Current Admiral course authority, visible doctrine evidence, and measured-storage truth"
+    },
+    "historyPolicy": "append-only; superseded course records remain evidence and rollback references",
+    "courseHistory": [
+      {
+        "id": "identity-keel-and-registry-truth",
+        "version": 1,
+        "status": "active",
+        "effectiveBuild": "8.6.40",
+        "heading": "Production identity with recoverable Fleet authority and committed proof truth"
+      }
+    ],
+    "admiralOffice": {
+      "status": "commissioned",
+      "rankSessionSeparated": true,
+      "sessionGate": "passage-pin-plus-server-verified-account",
+      "readOnlyDefault": true,
+      "captainOfficeDistinct": true
+    }
+  },
+  "release_compatibility": {
+    "runtime_build": "8.8.17.13",
+    "basis": "same semantic contract; exact existing safety predicates retained and negative-tested",
+    "authored_build": "8.8.17",
+    "verified_by": "keelguard-package-validation",
+    "proves_live_operation": false
+  }
+}

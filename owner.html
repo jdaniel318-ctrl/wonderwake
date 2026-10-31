@@ -1,0 +1,930 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#07191f">
+<title>Business Owner Access</title>
+<style>
+:root{--bg:#07171d;--panel:#0d2027;--panel2:#102832;--line:#34515c;--text:#f0f5f3;--muted:#aebfc1;--gold:#d5ad51;--blue:#1f83b4;--green:#55c27c;--danger:#d56f6f}
+*{box-sizing:border-box}html,body{margin:0;min-height:100%;background:radial-gradient(circle at 50% 18%,#103743 0%,#09232c 26%,#07171d 58%,#061319 100%);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif}button,input{font:inherit}.hidden{display:none!important}
+.shell{min-height:100vh}.route-safe{min-height:100vh;display:grid;place-items:center;padding:28px}.card{width:min(620px,94vw);padding:32px;border:1px solid var(--line);border-radius:22px;background:linear-gradient(180deg,rgba(15,38,47,.97),rgba(10,27,34,.97));box-shadow:0 30px 80px #0007}.eyebrow{font-size:12px;letter-spacing:.18em;font-weight:900;color:#8fc4d0}.gold{color:var(--gold)}h1,h2,h3,p{margin-top:0}.card h1{font-size:42px;margin:10px 0 12px}.muted{color:var(--muted);line-height:1.55}.status{margin:18px 0 0;padding:12px 14px;border:1px solid #294651;border-radius:12px;color:#93bbc4;background:#0a1b22}
+.login-grid{display:grid;gap:14px;margin-top:24px}.login-grid label{display:grid;gap:7px;color:#b9c8c8;font-weight:700}.login-grid input{width:100%;padding:15px 16px;border-radius:12px;border:1px solid #486572;background:#07151b;color:#fff;font-size:17px}.btn{min-height:52px;border-radius:14px;border:1px solid transparent;padding:12px 18px;font-weight:900;letter-spacing:.05em;cursor:pointer}.btn.primary{background:linear-gradient(180deg,#258fc0,#176d99);color:#fff}.btn.secondary{background:#e9efed;color:#17313a}.btn.ghost{background:#0d2832;color:#d8e5e4;border-color:#3f626e}.btn.warn{background:#3a2913;color:#f3d47a;border-color:#80672b}.error{color:#ffb6b6;min-height:20px}.test-note{margin-top:14px;padding:12px 14px;border-radius:12px;background:#10242c;border:1px solid #31505b;color:#b6cccf}.portal{min-height:100vh;padding:22px}.portal-wrap{max-width:1180px;margin:0 auto}.portal-head{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;padding:22px 24px;border:1px solid var(--line);border-radius:20px;background:#0b1e25;position:sticky;top:10px;z-index:5;box-shadow:0 18px 44px #0005}.portal-head h1{font-size:34px;margin:4px 0}.head-actions{display:flex;gap:10px;flex-wrap:wrap}.owner-badge{display:inline-flex;align-items:center;gap:8px;padding:7px 10px;border-radius:999px;border:1px solid #315e43;background:#102b1b;color:#8cdfa7;font-weight:900;font-size:11px;letter-spacing:.08em}.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:16px 0}.metric,.module{border:1px solid #294650;border-radius:16px;background:#0b1d24;padding:18px}.metric span,.module small{display:block;color:#89a6ad;font-size:11px;font-weight:900;letter-spacing:.12em}.metric strong{font-size:28px;display:block;margin-top:7px}.modules{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.module{cursor:pointer;text-align:left;color:var(--text);min-height:135px}.module h3{font-size:21px;margin:8px 0}.module p{color:var(--muted);line-height:1.4}.workspace{margin-top:16px;border:1px solid #294650;border-radius:18px;background:#0a1c23;padding:22px}.workspace-head{display:flex;justify-content:space-between;gap:16px;align-items:flex-start;margin-bottom:18px}.orders{display:grid;gap:10px}.order{border:1px solid #294650;border-radius:14px;padding:14px;background:#0d242c}.order-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;color:#c6d1d1}.rates{display:grid;gap:9px}.rate{display:grid;grid-template-columns:1fr 150px 90px;align-items:center;gap:10px;padding:12px;border:1px solid #294650;border-radius:12px}.rate input[type=number]{padding:11px;border-radius:10px;border:1px solid #3a5965;background:#07151b;color:#fff}.save-state{margin-top:12px;padding:11px 13px;border-radius:11px;background:#102b1b;border:1px solid #315e43;color:#9be3b2;min-height:42px}.feature-list{display:grid;gap:10px}.feature{display:flex;justify-content:space-between;gap:14px;align-items:center;padding:13px;border:1px solid #294650;border-radius:12px}.brand-grid{display:grid;gap:12px}.brand-grid label{display:grid;gap:6px}.brand-grid input{padding:12px;border-radius:10px;border:1px solid #3a5965;background:#07151b;color:#fff}
+.recovery-proof{margin:16px 0 0;padding:13px 15px;border-left:4px solid var(--gold);border-radius:0 12px 12px 0;background:#201b0d;color:#e8d28d;line-height:1.45}.recovery-success{margin-top:14px;padding:13px 15px;border:1px solid #315e43;border-radius:12px;background:#102b1b;color:#9be3b2;font-weight:800}.btn:disabled{cursor:not-allowed;opacity:.58}
+@media(max-width:850px){.metrics{grid-template-columns:repeat(2,1fr)}.modules{grid-template-columns:repeat(2,1fr)}.portal-head{position:static}.rate{grid-template-columns:1fr 120px}.rate .enabled{grid-column:1/-1}.order-grid{grid-template-columns:1fr}}
+@media(max-width:560px){.portal{padding:12px}.metrics,.modules{grid-template-columns:1fr}.portal-head{display:block}.head-actions{margin-top:12px}.card h1{font-size:34px}}
+.owner-review-flag{margin-top:10px;padding:9px 11px;border:1px solid #8b6f2d;border-radius:10px;background:#241d0d;color:#e8c86b;font-size:12px;font-weight:800;letter-spacing:.04em}
+.style-foundry-list{display:grid;gap:10px;margin-top:14px}.style-foundry-row{display:grid;grid-template-columns:110px 1fr auto;gap:12px;align-items:center;border:1px solid #294650;border-radius:14px;padding:12px;background:#0d242c}.style-foundry-row img{width:110px;height:76px;object-fit:cover;border-radius:9px}.style-foundry-upload{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.style-foundry-upload label{display:grid;gap:6px}.style-foundry-upload input,.style-foundry-upload select{padding:11px;border-radius:10px;border:1px solid #3a5965;background:#07151b;color:#fff}.style-foundry-state{padding:12px;border-radius:12px;border:1px solid #6e5c2f;background:#211c10;color:#edd27f;margin-bottom:12px}
+.style-registry{display:grid;gap:12px;margin:14px 0}.style-pack-card{border:1px solid #294650;border-radius:16px;background:#0c222a;padding:14px}.style-pack-head{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}.style-pack-head h3{margin:4px 0}.style-pack-anchor{display:grid;grid-template-columns:150px 1fr;gap:14px;margin-top:12px;align-items:start}.style-pack-anchor img{width:150px;height:96px;object-fit:cover;border-radius:10px;border:1px solid #38545d}.coverage-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:10px}.coverage-cell{padding:9px;border:1px solid #294650;border-radius:10px;background:#08191f}.coverage-cell b{display:block;color:#8fc4d0;font-size:10px;letter-spacing:.08em}.style-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}.style-new{margin:14px 0;padding:14px;border:1px dashed #486572;border-radius:14px;background:#091b22}.style-new-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:10px}.style-new-grid label{display:grid;gap:6px}.style-new-grid input,.style-new-grid select{padding:11px;border-radius:10px;border:1px solid #3a5965;background:#07151b;color:#fff}.status-pill{display:inline-flex;padding:5px 8px;border-radius:999px;border:1px solid #45626c;font-size:10px;font-weight:900;letter-spacing:.08em}.status-pill.published{border-color:#377f50;color:#91e0a8;background:#0e2a19}.status-pill.compiled{border-color:#7d692e;color:#efd477;background:#261e0c}@media(max-width:700px){.style-pack-anchor,.style-new-grid{grid-template-columns:1fr}.style-pack-anchor img{width:100%;height:180px}.coverage-grid{grid-template-columns:1fr}}@media(max-width:700px){.style-foundry-row{grid-template-columns:1fr}.style-foundry-row img{width:100%;height:150px}.style-foundry-upload{grid-template-columns:1fr}}
+.glyph-bench{margin-top:12px;padding:12px;border:1px solid #31505b;border-radius:12px;background:#091b22}.glyph-bench h4{margin:0 0 8px}.glyph-grid{display:grid;grid-template-columns:repeat(13,minmax(0,1fr));gap:5px;margin-top:8px}.glyph-cell{min-height:32px;display:grid;place-items:center;border:1px solid #294650;border-radius:7px;background:#07151b;color:#738a90;font-size:12px;font-weight:800}.glyph-cell.proven{border-color:#3f7653;color:#9be3b2;background:#0f2718}.glyph-cell.inferred{border-color:#7d692e;color:#efd477;background:#241d0d}.glyph-legend{display:flex;gap:10px;flex-wrap:wrap;margin-top:8px;font-size:11px;color:var(--muted)}.evidence-mini-list{display:grid;gap:8px;margin-top:10px}.evidence-mini{display:grid;grid-template-columns:84px 1fr auto;gap:10px;align-items:center;padding:8px;border:1px solid #294650;border-radius:10px;background:#08191f}.evidence-mini img{width:84px;height:58px;object-fit:cover;border-radius:7px}.graphic-import{margin:14px 0;padding:14px;border:1px solid #3f626e;border-radius:14px;background:#0a2028}.graphic-import-grid{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:10px}.graphic-import-grid label{display:grid;gap:6px}.graphic-import-grid input,.graphic-import-grid select{padding:11px;border-radius:10px;border:1px solid #3a5965;background:#07151b;color:#fff}.bench-score{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}.bench-score span{padding:6px 8px;border-radius:999px;border:1px solid #365762;color:#bfd1d4;font-size:11px}.bench-note{margin-top:8px;color:#aebfc1;line-height:1.45;font-size:12px}@media(max-width:700px){.glyph-grid{grid-template-columns:repeat(7,minmax(0,1fr))}.evidence-mini{grid-template-columns:1fr}.evidence-mini img{width:100%;height:140px}.graphic-import-grid{grid-template-columns:1fr}}
+
+/* GlyphForge 8.4.3 */
+.style-pack-card.recent-change,.evidence-mini.recent-change{outline:3px solid rgba(82,194,124,.55);outline-offset:3px;animation:glyphForgeFlash 1.8s ease-out}
+@keyframes glyphForgeFlash{0%{background:#123828}100%{background:#0c222a}}
+.forge-badge{display:inline-flex;gap:6px;align-items:center;padding:5px 8px;border-radius:999px;border:1px solid #4b6570;font-size:10px;font-weight:900;letter-spacing:.07em}.forge-badge.anchor{border-color:#80672b;color:#f3d47a;background:#241d0d}.forge-badge.ready{border-color:#39744e;color:#9be3b2;background:#102b1b}.forge-badge.hold{border-color:#765850;color:#f0b6aa;background:#2a1713}
+.evidence-tools{display:flex;gap:7px;flex-wrap:wrap;justify-content:flex-end}.evidence-edit{grid-column:1/-1;padding:10px;border-top:1px solid #294650;display:grid;grid-template-columns:1fr 1fr auto;gap:8px}.evidence-edit input{padding:10px;border:1px solid #3a5965;border-radius:9px;background:#07151b;color:#fff}.evidence-edit[hidden]{display:none}
+.glyph-candidates{grid-column:1/-1;border-top:1px solid #294650;padding-top:10px}.candidate-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:8px;margin-top:8px}.glyph-candidate{border:1px solid #294650;border-radius:10px;padding:8px;background:#07171d}.glyph-candidate.canonical{border-color:#4a8a5d;background:#0c2616}.candidate-head{display:flex;justify-content:space-between;gap:6px;align-items:center}.candidate-preview{height:76px;overflow:hidden;position:relative;border:1px solid #294650;border-radius:7px;background:#efe9d9;margin:7px 0}.candidate-preview img{position:absolute;top:50%;height:auto;max-width:none;transform:translateY(-50%)}.candidate-metrics{font-size:10px;color:#9fb1b4;display:grid;grid-template-columns:1fr 1fr;gap:4px}.candidate-adjust{display:grid;grid-template-columns:1fr 1fr auto;gap:5px;margin-top:6px}.candidate-adjust input{width:100%;padding:6px;border:1px solid #38545d;background:#07151b;color:#fff;border-radius:6px}.candidate-adjust button{min-height:34px;padding:5px 8px}
+.version-list,.benchmark-list{display:grid;gap:6px;margin-top:8px}.version-row,.benchmark-row{display:flex;justify-content:space-between;gap:8px;align-items:center;padding:8px;border:1px solid #294650;border-radius:9px;background:#08191f}.benchmark-row.pass{border-color:#315e43}.benchmark-row.hold{border-color:#80672b}.geometry-stack{display:grid;gap:10px}.forge-summary{padding:10px;border-left:3px solid #4f7d89;background:#0a2028;color:#bfd1d4;font-size:12px;line-height:1.45}.style-foundry-state strong{letter-spacing:.04em}
+@media(max-width:700px){.evidence-edit{grid-template-columns:1fr}.candidate-grid{grid-template-columns:1fr}.version-row,.benchmark-row{align-items:flex-start;flex-direction:column}.evidence-tools{justify-content:flex-start}}
+
+/* Fleet Services Framework 8.8.17 */
+.portal{overflow-x:hidden}.owner-stage{transition:opacity .18s ease,transform .18s ease}.owner-stage.stage-out{opacity:0;transform:translateX(-14px)}.owner-stage.stage-in{animation:ownerBridgeIn .22s ease-out}@keyframes ownerBridgeIn{from{opacity:0;transform:translateX(16px)}to{opacity:1;transform:none}}
+.vessel-strip{display:grid;grid-template-columns:auto 1fr auto;gap:14px;align-items:center;margin:14px 0 10px;padding:13px 16px;border:1px solid #34515c;border-radius:18px;background:linear-gradient(135deg,#102832,#0a1c23)}.vessel-strip img{width:62px;height:62px;object-fit:contain;border-radius:13px;background:#0a171d;padding:5px;border:1px solid #35525c}.vessel-strip h2{margin:2px 0 3px;font-size:23px}.vessel-strip p{margin:0;color:var(--muted);line-height:1.35}.vessel-chip{padding:7px 10px;border:1px solid #80672b;border-radius:999px;color:#f0cf76;background:#241d0d;font-size:10px;font-weight:900;letter-spacing:.08em;white-space:nowrap}.owner-home-note{margin:0 0 12px;padding:10px 14px;border-left:3px solid var(--gold);background:#0b2028;border-radius:0 12px 12px 0;color:#c8d6d6;line-height:1.4}.brand-identity{display:grid;grid-template-columns:78px 1fr;gap:14px;align-items:center;padding:14px;margin:14px 0;border:1px solid #34515c;border-radius:14px;background:#0d242c}.brand-identity img{width:78px;height:78px;object-fit:contain;border-radius:12px;background:#08171c;padding:5px;border:1px solid #35525c}.brand-identity strong{display:block;font-size:18px;margin:2px 0 4px}.brand-identity small{color:var(--muted);line-height:1.4}.workspace{margin-top:0;min-height:calc(100vh - 180px)}.workspace-head{position:sticky;top:10px;z-index:4;background:#0a1c23;padding:4px 0 14px}.workspace-back{background:#e9efed!important;color:#17313a!important;box-shadow:0 8px 24px #0004}.portal.subview .metrics,.portal.subview .modules,.portal.subview .vessel-strip,.portal.subview .owner-home-note{display:none}.portal.subview .portal-head{margin-bottom:16px}.portal.subview #workspace{display:block}.owner-badge{letter-spacing:.05em}.module{transition:transform .12s ease,border-color .12s ease,background .12s ease}.module:active{transform:scale(.985)}.module:hover{border-color:#4c7180;background:#0e2630}.owner-scope-note{color:#8cdfa7;font-size:12px;font-weight:800;margin-top:6px}
+@media(max-width:700px){.vessel-strip{grid-template-columns:auto 1fr}.vessel-chip{grid-column:1/-1;width:max-content}.vessel-strip img{width:58px;height:58px}.workspace-head{position:static}}
+
+/* 8.8.17 persistent vessel identity + Fleet Services */
+.workspace-brand{display:grid;grid-template-columns:50px 1fr auto;gap:12px;align-items:center;margin-bottom:14px;padding:10px 12px;border:1px solid #34515c;border-radius:14px;background:linear-gradient(135deg,#102832,#0a1c23)}.workspace-brand img{width:50px;height:50px;object-fit:contain;border-radius:10px;background:#08171c;padding:4px;border:1px solid #35525c}.workspace-brand strong{display:block;font-size:17px}.workspace-brand small{display:block;color:var(--muted);margin-top:2px}.service-list{display:grid;gap:10px;margin-top:14px}.service-card{border:1px solid #294650;border-radius:14px;padding:14px;background:#0d242c}.service-card-head{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}.service-card h3{margin:3px 0 6px}.service-meta{display:flex;gap:7px;flex-wrap:wrap;margin-top:10px}.service-pill{display:inline-flex;padding:5px 8px;border-radius:999px;border:1px solid #45626c;font-size:10px;font-weight:900;letter-spacing:.06em}.service-pill.standard{border-color:#39744e;color:#9be3b2;background:#102b1b}.service-pill.paid{border-color:#80672b;color:#f3d47a;background:#241d0d}.service-pill.prototype{border-color:#4b6570;color:#bdd0d3}.service-action{margin-top:12px}.service-note{margin-top:10px;color:var(--muted);font-size:12px;line-height:1.4}@media(max-width:600px){.workspace-brand{grid-template-columns:44px 1fr}.workspace-brand .vessel-chip{grid-column:1/-1;width:max-content}.service-card-head{display:block}}
+.watch-report{display:grid;gap:14px}.watch-report-grid{display:grid;grid-template-columns:1fr 180px;gap:12px}.watch-report label{display:grid;gap:7px;color:#bfd0d2;font-weight:800}.watch-report input,.watch-report textarea{width:100%;padding:13px;border-radius:11px;border:1px solid #3a5965;background:#07151b;color:#fff}.watch-report textarea{min-height:110px;resize:vertical}.watch-report-proof{padding:13px 15px;border-left:4px solid var(--gold);background:#0b2028;border-radius:0 12px 12px 0;color:#c8d6d6;line-height:1.45}.watch-report-proof.is-fresh{border-left-color:var(--green);background:#102b1b}.watch-report-actions{display:flex;gap:10px;flex-wrap:wrap}@media(max-width:650px){.watch-report-grid{grid-template-columns:1fr}.watch-report-actions .btn{width:100%}}
+/* 8.8.17 Admiral Commission — compact, stable Owner bridge on iPad. */
+.portal-head{padding:18px 20px}.portal-head h1{font-size:31px}.metric{padding:15px}.module{min-height:122px;padding:16px}.module p{margin-bottom:12px}
+@media(min-width:701px) and (max-width:1180px){.portal{padding:16px}.portal-head{top:6px}.portal-head h1{font-size:30px}.head-actions .btn{min-height:48px}.metrics{margin:12px 0}.workspace{padding:18px}}
+
+
+/* 8.8.20.14 HarborMaster — vessel Captain handoff station */
+.captain-handoff{min-height:100vh;padding:24px;display:grid;place-items:start center}.captain-handoff-shell{width:min(1080px,96vw);display:grid;gap:14px}.captain-handoff-head{display:flex;justify-content:space-between;gap:18px;align-items:flex-start;padding:20px;border:1px solid #3b5660;border-radius:18px;background:#0b2028}.captain-handoff-head h1{font-size:34px;margin:5px 0}.captain-handoff-badge{display:inline-flex;padding:7px 10px;border:1px solid #8a7030;border-radius:999px;color:#ebcc70;background:#211b0c;font-size:10px;font-weight:900;letter-spacing:.1em}.captain-handoff-panel{padding:18px;border:1px solid #2f4e58;border-radius:16px;background:#0a1d24}.captain-handoff-panel h2{margin-bottom:6px}.captain-handoff-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.captain-handoff-grid label{display:grid;gap:7px;color:#c3d1d2;font-weight:800}.captain-handoff-grid input,.captain-handoff-grid textarea,.captain-handoff-grid select{width:100%;padding:13px;border:1px solid #3a5965;border-radius:11px;background:#06161c;color:#fff}.captain-handoff-grid textarea{min-height:92px;resize:vertical}.captain-handoff-status{padding:12px 14px;border-left:4px solid #d5ad51;border-radius:0 10px 10px 0;background:#211b0d;color:#e9d182;line-height:1.45}.captain-handoff-status.good{border-left-color:#55c27c;background:#0f2819;color:#a4e6b5}.captain-orders{display:grid;gap:9px}.captain-order{display:grid;grid-template-columns:1fr 210px auto;gap:10px;align-items:center;padding:12px;border:1px solid #2f4e58;border-radius:12px;background:#081b22}.captain-order div{display:grid;gap:3px}.captain-order small{color:#8ca8ae}.captain-order select{min-height:44px;padding:8px 10px;border-radius:9px;border:1px solid #3a5965;background:#06161c;color:#fff}.captain-watch-grid{display:grid;grid-template-columns:1fr 180px;gap:12px}.captain-watch-grid label{display:grid;gap:7px;color:#c3d1d2;font-weight:800}.captain-watch-grid input,.captain-watch-grid textarea{width:100%;padding:13px;border:1px solid #3a5965;border-radius:11px;background:#06161c;color:#fff}.captain-watch-grid .wide{grid-column:1/-1}.captain-watch-grid textarea{min-height:96px;resize:vertical}.captain-route-note{padding:12px;border:1px solid #2f4e58;border-radius:11px;background:#071a21;color:#aebfc1;line-height:1.45}.captain-route-note b{color:#f0dfaa}.captain-handoff-actions{display:flex;gap:10px;flex-wrap:wrap}.captain-handoff-actions .btn{min-width:170px}@media(max-width:760px){.captain-handoff{padding:12px}.captain-handoff-head{display:grid}.captain-handoff-grid,.captain-watch-grid,.captain-order{grid-template-columns:1fr}.captain-watch-grid .wide{grid-column:auto}.captain-handoff-actions .btn{width:100%}}
+
+
+/* TrueBearing: exact-vessel station only. No fixed height, transformed controls,
+   or overflow locks; long records and keyboard-size viewports scroll normally. */
+.captain-handoff[data-view="station"]{padding:16px;align-content:start}
+.captain-handoff[data-view="station"] .captain-handoff-shell{width:min(1240px,100%);gap:12px;min-width:0}
+.captain-station-head{padding:14px 18px;align-items:center;min-width:0}
+.captain-station-head>div{min-width:0}
+.captain-station-head h1{font-size:30px;line-height:1.15;margin:5px 0 6px;overflow-wrap:anywhere}
+.captain-station-head .eyebrow{font-size:11px;line-height:1.4;letter-spacing:.12em}
+.captain-station-sub{display:flex;align-items:center;flex-wrap:wrap;gap:6px 10px;margin:0;color:var(--muted);font-size:14px;line-height:1.4}
+.captain-stage-tag{display:inline-block;padding:3px 8px;border:1px solid #806a33;border-radius:8px;color:#ead18a;background:#211b0d;font-weight:800}
+.captain-station-head .captain-handoff-actions{flex-wrap:nowrap;flex-shrink:0;gap:8px}
+.captain-station-head .captain-handoff-actions .btn{min-width:0;min-height:46px;padding:10px 14px;font-size:14px;letter-spacing:.02em}
+.captain-station-context{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px;align-items:start;border:1px solid #355460;border-radius:12px;padding:6px 10px;background:#0a2028}
+.captain-station-context .captain-handoff-status{margin:0;padding:10px 12px;font-size:15px;min-height:44px;overflow-wrap:anywhere}
+.captain-scope{font-size:14px;color:var(--muted);min-width:0;max-width:420px}
+.captain-scope summary{min-height:44px;display:flex;align-items:center;padding:8px 12px;color:#d3e3e4;cursor:pointer;border:1px solid transparent;border-radius:8px;font-weight:750;list-style:none}
+.captain-scope summary::before{content:'▸';margin-right:8px}
+.captain-scope[open] summary::before{content:'▾'}
+.captain-scope summary::-webkit-details-marker{display:none}
+.captain-scope[open]{grid-column:1/-1;max-width:none;width:100%;padding:0 8px 8px}
+.captain-scope .captain-scope-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px 16px;padding:8px 12px;line-height:1.45;overflow-wrap:anywhere}
+.captain-scope b{color:var(--text)}
+.captain-station-columns{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.08fr);gap:12px;align-items:start}
+.captain-station-columns>.captain-handoff-panel{min-width:0;padding:16px;margin:0}
+.captain-station-columns h2{font-size:22px;line-height:1.25;margin:0 0 6px}
+.captain-station-help{color:var(--muted);font-size:15px;line-height:1.4;margin:0 0 12px}
+.captain-section-title{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+.captain-count{font-size:14px;color:var(--muted);white-space:nowrap}
+.captain-station-empty{border:1px dashed #3a5965;border-radius:12px;background:#081b22;padding:24px 16px;margin-top:12px;color:var(--muted);line-height:1.5;font-size:16px}
+.captain-station-empty b{display:block;color:#e2eaea;font-size:18px;margin-bottom:5px}
+.captain-station-columns .captain-watch-grid{grid-template-columns:minmax(0,1fr) 110px;gap:10px}
+.captain-station-columns .captain-watch-grid label{gap:6px;font-size:16px;min-width:0}
+.captain-station-columns .captain-watch-grid input,.captain-station-columns .captain-watch-grid textarea{font-family:inherit;font-size:18px;line-height:1.3;padding:10px 12px;min-width:0;min-height:46px}
+.captain-station-columns .captain-watch-grid textarea{height:80px;min-height:80px;resize:vertical}
+.captain-station-columns .captain-handoff-actions{margin-top:12px}
+.captain-station-columns .captain-handoff-actions .btn{width:100%;min-height:48px;font-size:15px;letter-spacing:.035em}
+.captain-station-last-report{margin:10px 0 0;color:var(--muted);font-size:14px;line-height:1.4;overflow-wrap:anywhere}
+.captain-station-columns .captain-order{grid-template-columns:minmax(0,1fr) auto;gap:8px;padding:12px}
+.captain-station-columns .captain-order>div{grid-column:1/-1;min-width:0;overflow-wrap:anywhere}
+.captain-station-columns .captain-order select{min-width:0;width:100%;min-height:46px;font:inherit;font-size:17px}
+.captain-station-columns .captain-order .btn{min-width:0;min-height:46px;font-size:14px;letter-spacing:.02em;padding:10px 12px}
+.captain-handoff :is(button,input,select,textarea,summary):focus-visible{outline:3px solid #83d5e6;outline-offset:2px}
+.captain-handoff .btn:active:not(:disabled){filter:brightness(1.14);border-color:#9cdae5}
+.captain-handoff [aria-busy="true"]{cursor:progress}
+.captain-handoff-loading h2{margin-bottom:8px}
+.captain-handoff-loading .captain-handoff-status{margin:12px 0}
+@media(max-width:920px){
+ .captain-station-columns{grid-template-columns:minmax(0,1fr)}
+ .captain-station-head{align-items:flex-start}
+}
+@media(max-width:700px){
+ .captain-handoff[data-view="station"]{padding:12px}
+ .captain-station-head{display:block;padding:14px}
+ .captain-station-head h1{font-size:28px}
+ .captain-station-head .captain-handoff-actions{margin-top:12px;display:grid;grid-template-columns:1fr 1fr}
+ .captain-station-context{grid-template-columns:minmax(0,1fr)}
+ .captain-scope{max-width:none}
+ .captain-scope .captain-scope-grid{grid-template-columns:1fr}
+ .captain-station-columns>.captain-handoff-panel{padding:14px}
+}
+@media(max-width:380px){.captain-station-columns .captain-watch-grid{grid-template-columns:minmax(0,1fr)}.captain-station-columns .captain-watch-grid .wide{grid-column:auto}}
+
+
+/* TrueBearing: destination, identity and operating role are always explicit. */
+.captain-handoff .tb-login input{font-size:18px}
+.tb-destination{display:flex;align-items:center;gap:14px;min-width:0}.tb-destination>div{min-width:0}
+.tb-vessel-mark{width:66px;height:66px;object-fit:contain;flex-shrink:0;border:1px solid #3f626e;border-radius:12px;background:#102c36;padding:6px}
+.tb-code{display:grid;place-items:center;font-size:22px;font-weight:800;color:var(--gold)}
+.tb-entry-head{flex-wrap:wrap;align-items:center}.tb-entry-head h1{font-size:30px;line-height:1.2;overflow-wrap:anywhere}
+.tb-destination-note{flex-basis:100%;margin:0!important;color:var(--muted);font-size:14px;line-height:1.45}
+.tb-identity{display:flex;flex-wrap:wrap;gap:6px 20px;padding:10px 14px;background:#102b34;border:1px solid #385560;border-radius:12px;color:#d2e2e6;font-size:15px;line-height:1.45;overflow-wrap:anywhere}
+.tb-login .captain-handoff-actions{margin-top:16px}.tb-entry-nav{display:flex;gap:12px;flex-wrap:wrap;margin-top:14px}
+.tb-entry-nav a,.tb-command-note a{color:#a5e0ef;text-decoration:underline;text-underline-offset:3px}
+.tb-entry-nav a{min-height:44px;display:inline-flex;align-items:center;border:1px solid #3f626e;border-radius:10px;padding:8px 12px}
+.tb-command-note{color:var(--muted);font-size:15px;line-height:1.5;margin-top:14px;margin-bottom:0}
+.tb-roster{display:grid;gap:12px;margin:14px 0}.tb-roster article{display:flex;gap:16px;align-items:center;justify-content:space-between;padding:16px;border:1px solid #3f626e;border-radius:12px}
+.tb-roster h3{margin:0 0 6px;font-size:21px}.tb-roster p{margin:0;color:var(--muted);overflow-wrap:anywhere}
+.tb-field-count{color:var(--muted);font-size:13px;font-weight:500}
+.captain-handoff .captain-watch-grid #captainWatchWork{height:66px;min-height:66px;resize:vertical}
+.captain-handoff .captain-station-head .captain-handoff-actions{flex-wrap:wrap}
+@media(max-width:700px){.tb-roster article{display:block}.tb-roster .btn{width:100%;margin-top:12px}.tb-entry-head h1{font-size:27px}.tb-vessel-mark{width:52px;height:52px}.tb-entry-head{display:block}.tb-entry-head .captain-handoff-badge{margin-top:12px}.tb-destination-note{margin-top:12px!important}.captain-station-head .captain-handoff-actions{grid-template-columns:1fr 1fr!important}}
+
+
+.captain-station-context .tb-identity{border:0;background:none;padding:2px 4px;gap:4px 14px;font-size:14px}
+.captain-station-context .tb-station-receipt{margin:0;padding:2px 4px;font-size:14px;line-height:1.4;color:#9bddac}
+.captain-station-context{align-items:center}
+.captain-station-columns .captain-watch-grid{align-items:start}
+.captain-station-columns .captain-watch-grid #captainWatchIssues{height:46px}
+@media(min-width:921px) and (max-height:700px){.captain-handoff[data-view="station"]{padding:12px}.captain-handoff[data-view="station"] .captain-handoff-shell{gap:10px}.captain-station-head{padding:10px 14px}.captain-station-columns>.captain-handoff-panel{padding:12px}.captain-station-context{padding:5px 8px}.captain-station-columns h2{margin-bottom:4px}.captain-station-help{margin-bottom:8px}.captain-station-columns .captain-handoff-actions{margin-top:8px}.captain-station-last-report{margin-top:6px}}
+
+/* Lifeboat: expandable, signed-in Captain security and vessel-scoped recovery drill. */
+.tb-security{border:1px solid #315361;border-radius:16px;background:#0a2029;padding:12px 16px;color:#deeaec}
+.tb-security summary{cursor:pointer;min-height:46px;padding:10px 0;font-size:15px;font-weight:850;color:#d7e8ea;letter-spacing:.01em;touch-action:manipulation}
+.tb-security[open] summary{border-bottom:1px solid #315361;margin-bottom:14px}
+.tb-security-form,.tb-recovery-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.tb-security-form label,.tb-recovery-grid label{display:grid;gap:7px;color:#d2dfe1;font-weight:700;font-size:14px;margin:0 0 10px}
+.tb-security-form input,.tb-recovery-grid input{min-height:46px;width:100%;padding:12px;color:#fff;background:#061820;border:1px solid #41616d;border-radius:11px;font-size:16px;max-width:100%}
+.tb-security-form>.captain-handoff-actions{grid-column:1/-1;flex-wrap:wrap}
+.tb-security .captain-handoff-status{margin-top:14px;overflow-wrap:anywhere}
+.tb-recovery-grid>div{min-width:0;padding:6px}
+.tb-recovery-grid input[type=file]{font-size:13px}
+.tb-recovery-grid .btn{width:100%;min-height:46px;font-size:13px}
+@media(max-width:700px){.tb-security-form,.tb-recovery-grid{grid-template-columns:1fr}.tb-security-form>.captain-handoff-actions{grid-column:auto}}
+</style>
+<link rel="stylesheet" href="business_deck.css?v=fairlead-882068" onerror="window.__workhorseDeckStylesFailed=true">
+<script id="blackFlagPageRelease">window.__blackFlagPageRelease=Object.freeze({build:'8.8.20.73',seal:'fleetbound-882073',name:'Fleetbound'});</script>
+<script src="input_hygiene.js?v=fairlead-882068"></script>
+<script src="business_deck.js?v=fairlead-882068"></script>
+<script src="fleet_supabase.js?v=fairlead-882068"></script>
+<script src="fleet_recovery_core.js?v=fairlead-882068"></script>
+<link rel="stylesheet" href="fleet_viewport.css?harborhold=882049"><script src="fleet_viewport.js?harborhold=882049"></script><script src="headway_contracts.js?harborhold=882049"></script>
+</head>
+<body>
+<div id="app" class="shell">
+  <section id="safeShell" class="route-safe">
+    <div class="card">
+      <div class="eyebrow gold">OWNER ROUTE PROTECTED</div>
+      <h1 id="safeName">Business Portal</h1>
+      <p class="muted">Opening the project-scoped owner surface. Black Flag Engine authority is not part of this route.</p>
+      <div id="safeStatus" class="status">Resolving business identity…</div>
+    </div>
+  </section>
+  <section id="login" class="route-safe hidden">
+    <div class="card">
+      <div class="eyebrow">BUSINESS PORTAL</div>
+      <h1 id="loginName">Business</h1>
+      <p class="muted">Sign in to manage this business. This account is scoped to one project only.</p>
+      <div class="login-grid">
+        <label>Email<input data-bf-trim="boundary" id="loginUser" type="email" autocomplete="email" inputmode="email"></label>
+        <label id="passwordLabel">Password<input data-bf-trim="preserve" id="loginPass" type="password" autocomplete="current-password"></label>
+        <button id="signIn" class="btn primary">SIGN IN</button>
+        <button id="sendMagicLink" class="btn ghost hidden">FIRST-TIME / SECURE SIGN-IN LINK</button>
+        <button id="forgotPassword" class="btn ghost hidden">FORGOT PASSWORD?</button>
+        <button id="useLocalRecovery" class="btn warn hidden">USE LOCAL RECOVERY</button>
+        <div id="loginError" class="error"></div>
+      </div>
+      <div id="supabaseNote" class="test-note hidden"></div>
+      <div id="testNote" class="test-note hidden"></div>
+      <div style="margin-top:14px"><button id="returnEngineFromLogin" class="btn ghost hidden">RETURN TO BLACK FLAG</button></div>
+    </div>
+  </section>
+  <section id="passwordSetup" class="route-safe hidden">
+    <div class="card">
+      <div class="eyebrow gold">SECURE YOUR OWNER ACCOUNT</div>
+      <h1 id="passwordSetupName">Business</h1>
+      <p id="passwordSetupCopy" class="muted">Your identity and vessel ownership are verified. Create a password to continue.</p>
+      <div class="login-grid">
+        <label>New password<input data-bf-trim="preserve" id="newPassword" type="password" autocomplete="new-password"></label>
+        <label>Confirm password<input data-bf-trim="preserve" id="confirmPassword" type="password" autocomplete="new-password"></label>
+        <button id="savePassword" class="btn primary">CREATE PASSWORD & CONTINUE</button>
+        <div id="passwordSetupError" class="error"></div>
+      </div>
+      <div class="test-note">Password is handled by Supabase Auth. Dark Sky does not store it in GitHub, Fleet tables, IndexedDB, localStorage, or sessionStorage.</div>
+    </div>
+  </section>
+  <section id="localRecovery" class="route-safe hidden">
+    <div class="card">
+      <div class="eyebrow gold">EXACT-VESSEL ACCOUNT RECOVERY</div>
+      <h1 id="localRecoveryName">Business</h1>
+      <p class="muted">Verify this project’s administrator recovery PIN, then replace only this business owner password.</p>
+      <div class="recovery-proof"><strong>Authority stays separate.</strong> This does not grant Engine, Captain, Admiral, ownership, or Fleet Watch reporting authority.</div>
+      <div class="login-grid">
+        <label>Email or login<input data-bf-trim="boundary" id="recoveryLogin" type="text" autocomplete="username"></label>
+        <label>Project Admin recovery PIN<input data-bf-trim="preserve" id="recoveryPin" type="password" inputmode="numeric" autocomplete="one-time-code"></label>
+        <label>New owner password<input data-bf-trim="preserve" id="localNewPassword" type="password" autocomplete="new-password"></label>
+        <label>Confirm new password<input data-bf-trim="preserve" id="localConfirmPassword" type="password" autocomplete="new-password"></label>
+        <button id="saveLocalRecovery" class="btn primary">RESET OWNER PASSWORD</button>
+        <button id="cancelLocalRecovery" class="btn ghost">BACK TO SIGN IN</button>
+        <div id="localRecoveryError" class="error"></div>
+      </div>
+    </div>
+  </section>
+  <section id="portal" class="portal hidden">
+    <div class="portal-wrap">
+      <header class="portal-head">
+        <div class="bd-brand-heading"><div id="businessHeaderLogo" aria-hidden="true"></div><div><div class="eyebrow" id="ownerInstalledRelease">8.8.20.73 · QUARTERMASTER</div><h1 id="portalName">Business</h1><span class="owner-badge">● SECURE OWNER SESSION</span><div id="ownerScopeNote" class="owner-scope-note">Verified for this business only</div></div></div>
+        <div class="head-actions"><button id="returnEngine" class="btn ghost hidden">RETURN TO BLACK FLAG</button><button id="signOut" class="btn secondary">SIGN OUT</button></div>
+      </header>
+      <nav id="businessDeckNav" class="bd-owner-nav" aria-label="Business workspace"></nav>
+      <div id="ownerHome" class="owner-stage">
+      <div id="businessDeckHome"></div>
+      <div id="vesselStrip" class="vessel-strip hidden"><img src="ike_character.png" alt="Ike's Wood Signs"><div><div class="eyebrow gold">YOUR BUSINESS BRIDGE</div><h2>Ike's Wood Signs</h2><p>Orders, pricing, lettering styles, and customer-facing controls in one place.</p></div><span class="vessel-chip">OWNER BRIDGE</span></div>
+      <div id="ownerHomeNote" class="owner-home-note hidden"><strong>Run Ike's Wood Signs from here.</strong> Your business tools stay together while the secure Fleet systems work underneath.</div>
+      <div class="metrics"><div class="metric"><span>ORDERS</span><strong id="mOrders">0</strong></div><div class="metric"><span>OWNER STATUS</span><strong id="mOwner">ACTIVE</strong></div><div class="metric"><span>BUSINESS</span><strong id="mProject">—</strong></div><div class="metric"><span>ACCESS</span><strong>SECURE</strong></div></div>
+      <div id="modules" class="modules"></div>
+      </div>
+      <section id="workspace" class="workspace owner-stage hidden"></section>
+    </div>
+  </section>
+  <section id="failure" class="route-safe hidden"><div class="card"><div class="eyebrow gold">OWNER ROUTE SAFE</div><h1 id="failureName">Business Portal</h1><p class="muted">The owner surface could not finish loading. Your business access remained protected.</p><div id="failureDetail" class="status"></div><div class="login-grid"><button id="retry" class="btn primary">RETRY OWNER PORTAL</button><button id="failureEngine" class="btn secondary hidden">RETURN TO BLACK FLAG</button></div></div></section>
+</div>
+
+<script>
+;(()=>{
+  'use strict';
+  const q=new URLSearchParams(location.search);
+  if(q.get('surface')!=='vessel-captain')return;
+  window.__darkSkyVesselCaptainRouteActive=true;
+  // Installed page identity and retained helper revision are separate contracts.
+  const BUILD=window.__blackFlagPageRelease.build, HELPER_COMPONENT_BUILD='8.8.20.68', input=window.BlackFlagInput;
+  let projectId=String(q.get('project')||'').trim().toLowerCase();
+  const invalidRoute=q.getAll('project').length>1||q.getAll('surface').length!==1||(projectId&&!/^[a-z0-9][a-z0-9-]{0,95}$/.test(projectId));
+  const SUPABASE_URL='https://sjgqqtnuttnkwsoebbqf.supabase.co', SUPABASE_KEY='sb_publishable_gvWfIBQg4ew2RvVr6CpJSg_8y02QmKy', SESSION_KEY='darkSkySupabaseVesselCaptainSessionV1';
+  const root=document.getElementById('app'),esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  if(!input || input.build!==HELPER_COMPONENT_BUILD){root.innerHTML='<section class="route-safe"><div class="card"><h1>Test build files do not match</h1><p>Upload the complete Quartermaster folder contents, then reopen this page. No sign-in or vessel command was sent.</p></div></section>';return;}
+  const client=window.DarkSkySupabase.create({url:SUPABASE_URL,publishableKey:SUPABASE_KEY,sessionKey:SESSION_KEY,build:BUILD,guardSession:true});
+  let appointment=null,access=null,orders=[],watch=null,busy=false,stationEpoch=0,person=null,myAppointments=[],securityController=null;
+
+  // Names below come from the unchanged release muster. No server roster or
+  // business data is read before authentication. Names are not permissions.
+  const DIRECTORY={"beccas-bloom-shop": {"name": "Becca's Bloom Shop", "code": "BBS"}, "bf-p-f92f87e8ec44": {"name": "Legacy Plumbing", "code": "LP"}, "bor-north-richmond": {"name": "Signal Restoration", "code": "SIG", "mark": "signal_restoration_logo.png"}, "grizzly-bear": {"name": "Grizzly Bear", "code": "GRZ"}, "ikes-wood-signs": {"name": "Ike's Wood Signs", "code": "IKE", "mark": "ike_character.png"}, "mugshot-after-dark": {"name": "Mugs After Dark", "code": "MUG"}};
+  function destination(){return access?.project_id===projectId?access.display_name:appointment?.project_id===projectId?appointment.vessel_name:DIRECTORY[projectId]?.name|| (projectId?'Requested vessel':'My Assigned Vessels');}
+  function routeUrl(id=''){const u=new URL('owner.html',location.href);u.searchParams.set('surface','vessel-captain');if(id)u.searchParams.set('project',id);return u.toString();}
+  function commandUrl(){return new URL('index.html',location.href).toString();}
+  function projectMark(){const d=DIRECTORY[projectId];return d?.mark?`<img class="tb-vessel-mark" src="${esc(d.mark)}" alt="${esc(d.name)}">`:`<span class="tb-vessel-mark tb-code" aria-hidden="true">${esc(d?.code||'BF')}</span>`;}
+  function identityStrip(role='Vessel Captain access check'){
+    return person?`<div class="tb-identity" role="status"><span><b>Signed in:</b> ${esc(person.email)}</span><span><b>Acting as:</b> ${esc(role)}</span><span><b>Vessel:</b> ${esc(destination())}</span></div>`:'';
+  }
+  // Account security is independent of vessel authority: even a former Captain
+  // may secure their own authenticated account, without regaining any appointment.
+  // Cleardeck account messages begin — presentation only; never grants authority.
+  function captainAccountLabel(records){
+    const rows=Array.isArray(records)?records:[];
+    if(rows.some(a=>a&&a.status==='accepted'&&!a.revoked_at))return 'Appointed Captain — assigned vessels only';
+    if(rows.some(a=>a&&a.status==='pending'&&!a.revoked_at))return 'Pending Captain appointment — no operating access yet';
+    return 'Signed in — no active vessel assignments';
+  }
+  function accountSecurityFailure(error){
+    const code=String(error?.code||'').toLowerCase(),status=Number(error?.status||0);
+    // Use provider text only to recognize older responses. Never echo arbitrary
+    // backend payloads: an error can contain sensitive values supplied by a caller.
+    const text=String(error?.message||'');
+    if(code==='same_password'||(!code&&/different from the old password|same (?:as the )?(?:old|current) password/i.test(text)))
+      return 'This already matches your current password. No password change was made. Use a different password to change it.';
+    if(code==='weak_password')return 'Choose a stronger, unique password with 12 to 128 characters. The account provider did not accept this password.';
+    if(['reauthentication_needed','reauth_nonce_missing'].includes(code))return 'Recent account verification is required. Tap EMAIL SECURITY CODE once, then enter the code and your new password. No password change is confirmed yet.';
+    if(['reauthentication_not_valid','otp_expired'].includes(code))return 'The security code was not accepted or has expired. Use the newest code for this account; request another only if needed. No password change is confirmed.';
+    if(code==='account_identity_mismatch')return 'The account confirmation did not match the signed-in account. No success is claimed. Sign in again as the intended account before checking its password.';
+    if(['session_expired','session_not_found','bad_jwt','no_authorization','refresh_token_not_found'].includes(code)||status===401||(!code&&/session expired|sign-in is required|identity could not be verified|signed-in account changed/i.test(text)))return 'Sign in again with this account using its password or a new secure email link, then reopen Account Security. The password update is not confirmed.';
+    if(['over_request_rate_limit','over_email_send_rate_limit','over_sms_send_rate_limit'].includes(code)||status===429)return 'Too many requests. Please wait before making another attempt. Do not keep requesting codes or submitting the form.';
+    if(code==='current_password_required')return 'The provider requires your current password. Enter it in Current password, then submit the new password again.';
+    if(['invalid_credentials','invalid_password'].includes(code))return 'Account verification was refused. Check any required current password, or sign in again with the intended account. The new password is not confirmed.';
+    if(error?.name==='AbortError'||error?.name==='TypeError'||/timed? ?out|network|failed to fetch|connection/i.test(text))return 'The password update could not be confirmed because the connection was interrupted. Do not submit repeatedly. Check whether the new password works before trying another change.';
+    const reference=/^[a-z][a-z_]{1,47}$/.test(code)?' Reference: '+code+(status?' (HTTP '+status+')':'')+'.':'';
+    return 'Password update not confirmed. No success was recorded. Keep this page open and report this message without sharing passwords or security codes.'+reference;
+  }
+  // Cleardeck account messages end
+  function accountSecurityMarkup(){
+    return `<details class="tb-security"><summary>ACCOUNT SECURITY · SET OR CHANGE PASSWORD</summary>
+      <p class="muted">Only your signed-in account can change its password. This does not appoint a Captain or restore a revoked vessel.</p>
+      <form id="captainPasswordForm" class="tb-security-form" autocomplete="on">
+        <label style="grid-column:1/-1">Account email<input id="captainSecurityEmail" type="email" name="username" autocomplete="username" readonly value="${esc(person?.email||'')}" aria-label="Password change account email"></label>
+        <label>New password<input id="captainNewPassword" name="new_password" type="password" data-bf-trim="preserve" autocomplete="new-password" minlength="12" required></label>
+        <label>Confirm new password<input id="captainConfirmPassword" name="confirm_new_password" type="password" data-bf-trim="preserve" autocomplete="new-password" minlength="12" required></label>
+        <label>Current password (only if your account requires it)<input id="captainOldPassword" name="current_password" type="password" data-bf-trim="preserve" autocomplete="current-password"></label>
+        <label>Reauthentication code (only if Supabase requests one)<input id="captainReauthCode" name="reauthentication_code" type="text" autocomplete="one-time-code" inputmode="numeric" maxlength="12"></label>
+        <div class="captain-handoff-actions"><button id="captainSetPassword" type="submit" class="btn primary">SAVE MY NEW PASSWORD</button><button id="captainRequestReauth" type="button" class="btn ghost">EMAIL SECURITY CODE</button></div>
+      </form>
+      <p id="captainSecurityStatus" role="status" aria-live="polite" class="captain-handoff-status">Use a unique password of at least 12 characters. Nothing is changed until the server confirms it.</p>
+      <p class="muted">Your personal device's password manager can help fill these fields. Do not save credentials on a shared shop device.</p>
+    </details>`;
+  }
+  async function securityRequest(endpoint,body,method='POST'){
+    const s=await stationRead(client.currentSession());
+    if(!s?.access_token)throw Object.assign(new Error('Your session expired.'),{code:'session_expired'});
+    const p=await verifyPerson();
+    if(!person || person.id!==p.id)throw Object.assign(new Error('The account identity changed.'),{code:'account_identity_mismatch'});
+    const controller=new AbortController();securityController=controller;
+    let r;
+    try{r=await stationRead(fetch(SUPABASE_URL+endpoint,{method,cache:'no-store',signal:controller.signal,headers:{'apikey':SUPABASE_KEY,'Authorization':'Bearer '+s.access_token,'Content-Type':'application/json'},body:JSON.stringify(body)}));}
+    finally{if(securityController===controller)securityController=null;}
+    let result={};try{result=await r.json();}catch(_){}
+    if(!r.ok)throw Object.assign(new Error(String(result?.msg||result?.error_description||result?.message||'Account provider refused the request.').slice(0,300)),{code:String(result?.error_code||result?.code||''),status:r.status});
+    return result;
+  }
+  function bindAccountSecurity(){
+    const form=document.getElementById('captainPasswordForm'),button=document.getElementById('captainRequestReauth');
+    if(!form)return;
+    const say=message=>{const target=document.getElementById('captainSecurityStatus');if(target)target.textContent=message;};
+    form.onsubmit=async event=>{
+      event.preventDefault();if(busy)return;
+      const password=document.getElementById('captainNewPassword').value,
+        repeat=document.getElementById('captainConfirmPassword').value,
+        previous=document.getElementById('captainOldPassword').value,
+        nonce=document.getElementById('captainReauthCode').value.trim(),
+        epoch=stationEpoch;
+      if(password.length<12||password.length>128)return say('Use a new password with 12 to 128 characters.');
+      if(password!==repeat)return say('The confirmation does not match. No password was sent.');
+      busy=true;const save=document.getElementById('captainSetPassword');save.disabled=true;
+      try{
+        say('Updating only your authenticated account password…');
+        const payload={password};if(previous)payload.current_password=previous;if(nonce)payload.nonce=nonce;
+        const result=await securityRequest('/auth/v1/user',payload,'PUT');
+        if(epoch!==stationEpoch)return;
+        if(result?.id!==person?.id)throw Object.assign(new Error('Account update readback did not match the signed-in user.'),{code:'account_identity_mismatch'});
+        // Passwords and reauthentication codes are never retained in any app storage.
+        form.reset();client.clearSession();renderLogin('Account password updated. Sign in with the new password to verify it. Vessel permissions were not changed.');
+      }catch(error){if(epoch===stationEpoch)say(accountSecurityFailure(error));}
+      finally{form.reset();busy=false;if(save.isConnected)save.disabled=false;}
+    };
+    button.onclick=async()=>{
+      if(busy)return;busy=true;button.disabled=true;
+      try{await securityRequest('/auth/v1/reauthenticate',{});say('A security code has been requested for the signed-in account. Check your email, then enter it above.');}
+      catch(error){say('Security code request not confirmed. '+accountSecurityFailure(error));}
+      finally{busy=false;if(button.isConnected)button.disabled=false;}
+    };
+  }
+  function recoveryMarkup(){
+    return `<details class="tb-security tb-recovery"><summary>ENCRYPTED RECOVERY DRILL · EXACT VESSEL</summary>
+      <p class="muted">Download an encrypted copy of this vessel's currently available server orders and latest Watch report. This is NOT a full vessel backup, cloud replication, or a server restore. No record will be modified.</p>
+      <div class="tb-recovery-grid">
+        <div><label>Separate recovery passphrase<input id="captainVaultNewPass" type="password" autocomplete="new-password" data-bf-trim="preserve"></label>
+        <label>Confirm passphrase<input id="captainVaultConfirmPass" type="password" autocomplete="new-password" data-bf-trim="preserve"></label>
+        <button type="button" id="captainVaultExport" class="btn primary">DOWNLOAD ENCRYPTED SNAPSHOT</button></div>
+        <div><label>Choose an encrypted snapshot to check<input id="captainVaultFile" type="file" accept=".json,application/json"></label>
+        <label>Recovery passphrase<input id="captainVaultVerifyPass" type="password" data-bf-trim="preserve" autocomplete="off"></label>
+        <button type="button" id="captainVaultVerify" class="btn ghost">VERIFY WITHOUT RESTORING</button></div>
+      </div><p id="captainVaultStatus" role="status" aria-live="polite" class="captain-handoff-status">Encryption stays on this device. Use a unique passphrase of at least 14 characters and store the file securely. The app never stores the passphrase.</p>
+    </details>`;
+  }
+  function bindRecovery(){
+    const exportBtn=document.getElementById('captainVaultExport'),verifyBtn=document.getElementById('captainVaultVerify');
+    if(!exportBtn||!window.BlackFlagRecovery)return;
+    const core=window.BlackFlagRecovery,scope=access?.project_id;
+    const say=msg=>{const n=document.getElementById('captainVaultStatus');if(n)n.textContent=msg;};
+    exportBtn.onclick=async()=>{
+      if(busy)return;
+      const pass=document.getElementById('captainVaultNewPass').value,
+        confirmation=document.getElementById('captainVaultConfirmPass').value,epoch=stationEpoch;
+      try{core.validatePassphrase(pass);if(pass!==confirmation)throw new Error('Passphrases do not match.');}
+      catch(error){return say(error.message);}
+      busy=true;exportBtn.disabled=true;
+      try{
+        say('Rechecking current Captain authority and vessel data before encryption…');
+        const p=await verifyPerson();if(epoch!==stationEpoch)return;
+        const a=await stationRead(rpc('vessel_captain_verify_access',{p_project_id:scope}));
+        if(a?.ok!==true||a.project_id!==scope||a.vessel_id!==access?.vessel_id||p.id!==person?.id)throw new Error('Vessel Captain authority is no longer valid. No snapshot was created.');
+        const [o,w]=await stationRead(Promise.all([rpc('vessel_captain_list_business_orders',{p_project_id:scope}),rpc('vessel_captain_read_watch_report',{p_project_id:scope})]));
+        if(epoch!==stationEpoch)return;
+        const snapshot=core.snapshotFor({projectId:scope,vesselId:a.vessel_id,vesselName:a.display_name,orders:o,watch:w});
+        const final=await core.encrypt(snapshot,pass);if(epoch!==stationEpoch)return;
+        const recheck=await stationRead(rpc('vessel_captain_verify_access',{p_project_id:scope}));
+        if(epoch!==stationEpoch)return;
+        if(recheck?.ok!==true||recheck.project_id!==scope)throw new Error('Captain authority changed before download. No file was issued.');
+        const blob=new Blob([final.text],{type:'application/json'}),url=URL.createObjectURL(blob),link=document.createElement('a');
+        link.href=url;link.download=final.filename;document.body.appendChild(link);link.click();link.remove();setTimeout(()=>URL.revokeObjectURL(url),60000);
+        say('Encrypted snapshot downloaded for '+final.summary.project_id+'. '+final.summary.order_count+' orders, latest Watch '+(final.summary.watch_report_present?'present':'absent')+'. The server was NOT restored.');
+      }catch(error){if(epoch===stationEpoch)say('No recovery download confirmed: '+String(error.message||error).slice(0,230));}
+      finally{for(const id of ['captainVaultNewPass','captainVaultConfirmPass']){const n=document.getElementById(id);if(n)n.value='';}busy=false;if(exportBtn.isConnected)exportBtn.disabled=false;}
+    };
+    verifyBtn.onclick=async()=>{
+      if(busy)return;const file=document.getElementById('captainVaultFile')?.files?.[0],field=document.getElementById('captainVaultVerifyPass'),epoch=stationEpoch;
+      if(!file)return say('Choose the encrypted recovery JSON first.');
+      if(file.size>9*1024*1024)return say('This recovery file exceeds the supported size.');
+      busy=true;verifyBtn.disabled=true;
+      try{
+        const recheck=await stationRead(rpc('vessel_captain_verify_access',{p_project_id:scope}));
+        if(epoch!==stationEpoch)return;
+        if(recheck?.ok!==true||recheck.project_id!==scope)throw new Error('Current Captain authority is required to inspect a recovery snapshot.');
+        const result=await core.verify(await file.text(),field.value,scope);if(epoch!==stationEpoch)return;
+        say('PASS — Encrypted snapshot decrypted and matched '+result.project_id+'; '+result.order_count+' orders and latest Watch '+(result.watch_report_present?'present':'absent')+'. READ-ONLY. No database restore was performed.');
+      }catch(error){if(epoch===stationEpoch)say('Verification not passed: '+String(error.message||error).slice(0,230));}
+      finally{field.value='';const f=document.getElementById('captainVaultFile');if(f)f.value='';busy=false;if(verifyBtn.isConnected)verifyBtn.disabled=false;}
+    };
+  }
+  function bindIdentityActions(){
+    document.getElementById('captainMyVessels')?.addEventListener('click',showMyVessels);
+    document.getElementById('captainDeniedSignOut')?.addEventListener('click',signOut);
+  }
+  async function verifyPerson(){
+    const current=await stationRead(client.currentSession());
+    if(!current?.access_token)throw new Error('Captain sign-in is required.');
+    const p=await stationRead(client.user(current));
+    if(!p?.id||!p.email)throw new Error('The account identity could not be verified. Sign in again.');
+    if(person&&person.id!==p.id)throw new Error('The signed-in account changed. Sign in again for the intended vessel.');
+    return p;
+  }
+  function renderDenied(message){
+    access=null;orders=[];watch=null;
+    document.title=destination()+' · Access not granted';
+    shell(`${header(destination(),'Vessel Captain access not granted')}${identityStrip('No operating access to this vessel')}<section class="captain-handoff-panel"><h2>No appointment for ${esc(destination())}</h2><p id="captainStationStatus" class="captain-handoff-status" role="status">${esc(message)}</p><p class="muted">You are signed in. This is a permission decision, not a request to repeat your password. No orders or operating controls are displayed for this vessel.</p><div class="captain-handoff-actions"><button id="captainMyVessels" class="btn primary">MY ASSIGNED VESSELS</button><button id="captainDeniedSignOut" class="btn secondary">USE ANOTHER ACCOUNT</button></div><p class="tb-command-note">Need your Fleet Command workspace? <a href="${esc(commandUrl())}">Open the Engine for Fleet Command</a>. Your appointed-Captain account is not promoted by that link.</p></section>${accountSecurityMarkup()}`);
+    bindIdentityActions();bindAccountSecurity();
+  }
+  function renderRoster(){
+    projectId='';appointment=null;access=null;orders=[];watch=null;
+    history.replaceState({},'',routeUrl());
+    document.title='My Assigned Vessels · Captain access';
+    shell(`${header('My Assigned Vessels','Choose your vessel — no hidden default')}${identityStrip(captainAccountLabel(myAppointments))}<section class="captain-handoff-panel"><h2>Your Captain appointments</h2><p class="muted">Only appointments returned for your signed-in account are listed. Opening a vessel rechecks its current operating authority.</p><div class="tb-roster">${myAppointments.length?myAppointments.map((a,i)=>`<article><div><h3>${esc(a.vessel_name||a.project_id)}</h3><p>${esc(a.project_id)} · ${esc(a.status)}</p></div><button type="button" class="btn primary" data-tb-assignment="${i}" ${!['accepted','pending'].includes(a.status)?'disabled':''}>${a.status==='pending'?'REVIEW APPOINTMENT':a.status==='accepted'?'OPEN CAPTAIN STATION':'UNAVAILABLE'}</button></article>`).join(''):'<p class="captain-handoff-status">No current Captain appointments were returned for this account.</p>'}</div><div class="captain-handoff-actions"><button id="captainRosterRefresh" class="btn ghost">REFRESH MY VESSELS</button><button id="captainDeniedSignOut" class="btn secondary">SIGN OUT</button></div><p class="tb-command-note"><a href="${esc(commandUrl())}">Fleet Command uses the separate Engine entrance</a>. No assignment is created here.</p></section>${accountSecurityMarkup()}`);
+    bindIdentityActions();bindAccountSecurity();
+    document.getElementById('captainRosterRefresh').onclick=showMyVessels;
+    document.querySelectorAll('[data-tb-assignment]').forEach(b=>b.onclick=async()=>{
+      if(busy)return;const a=myAppointments[Number(b.dataset.tbAssignment)];if(!a||!/^[a-z0-9][a-z0-9-]{0,95}$/.test(a.project_id))return;
+      projectId=a.project_id;history.replaceState({},'',routeUrl(projectId));++stationEpoch;busy=true;
+      try{await loadAppointment();}catch(e){renderStationRecovery(String(e.message||e));}finally{busy=false;}
+    });
+  }
+  async function showMyVessels(){
+    if(busy)return;busy=true;++stationEpoch;projectId='';appointment=null;
+    try{await loadAppointment();}catch(e){renderStationRecovery(String(e.message||e));}finally{busy=false;}
+  }
+
+  function shell(content,view='handoff'){root.innerHTML=`<main class="captain-handoff" data-view="${esc(view)}"><div class="captain-handoff-shell">${content}</div></main>`;}
+  function header(title=destination(),sub='Vessel Captain sign-in'){
+    const verified=!!(access?.project_id===projectId||appointment?.project_id===projectId);
+    const note=projectId?(verified?'Vessel identity from your authenticated response.':DIRECTORY[projectId]?'Destination from the release directory. Account authority is checked after sign-in.':'Requested project: '+projectId+'. Identity must be resolved after sign-in.'):(person?'Only assignments returned for your signed-in account are shown.':'Sign in to list only your assigned vessels.');
+    document.title=String(title)+' · '+sub;
+    return `<header class="captain-handoff-head tb-entry-head"><div class="tb-destination">${projectMark()}<div><div class="eyebrow gold">BLACK FLAG · QUARTERMASTER · ${BUILD}</div><h1>${esc(title)}</h1><p class="muted">${esc(sub)}</p></div></div><span class="captain-handoff-badge">VESSEL ACCOUNT · NOT FLEET COMMAND</span><p class="tb-destination-note">${esc(note)}</p></header>`;
+  }
+  function status(message,good=false){const n=document.getElementById('captainLoginStatus')||document.getElementById('captainPendingStatus')||document.getElementById('captainStationStatus');if(!n)return;n.textContent=message;n.classList.toggle('good',good);}
+  async function rpc(name,body={}){return client.rpc(name,body,'HarborMaster refused the vessel-Captain request.');}
+  function missing(error){return /could not find the function|schema cache|PGRST202/i.test(String(error?.message||error));}
+  function renderLogin(message='Use the account named in your vessel appointment. This is not the Admiral sign-in.'){
+    ++stationEpoch;person=null;appointment=null;access=null;orders=[];watch=null;myAppointments=[];
+    shell(`${header()}<section class="captain-handoff-panel tb-login"><h2>${projectId?'Sign in for '+esc(destination()):'Sign in to your assigned vessels'}</h2><form id="captainLoginForm"><div class="captain-handoff-grid"><label>Email<input data-bf-trim="boundary" id="captainLoginEmail" name="username" type="email" inputmode="email" autocomplete="username" autocapitalize="none" spellcheck="false" placeholder="Captain account email" required></label><label>Password<input data-bf-trim="preserve" id="captainLoginPassword" name="password" type="password" autocomplete="current-password" placeholder="Fleet account password" required></label></div><div class="captain-handoff-actions"><button id="captainLoginBtn" type="submit" class="btn primary">SIGN IN & CHECK ACCESS</button><button id="captainMagicBtn" type="button" class="btn ghost">EMAIL SIGN-IN LINK</button></div></form><p id="captainLoginStatus" class="captain-handoff-status" role="status">${esc(message)}</p><nav class="tb-entry-nav"><a href="${esc(routeUrl())}">My assigned vessels</a><a href="${esc(commandUrl())}">Fleet Captain / Admiral entrance</a></nav><p class="tb-command-note">Fleet Command can observe unassigned vessels through My Fleet. Its separate operating authorization is not granted by this Captain sign-in.</p></section>`);
+    document.getElementById('captainLoginForm').onsubmit=e=>{e.preventDefault();signIn();};
+    document.getElementById('captainMagicBtn').onclick=magicLink;
+  }
+  async function signIn(){
+    if(busy)return;busy=true;
+    const epoch=stationEpoch,b=document.getElementById('captainLoginBtn'),field=document.getElementById('captainLoginPassword');
+    try{
+      b.disabled=true;b.textContent='VERIFYING…';status('Authenticating account and checking the selected vessel…');
+      await stationRead(client.signInWithPassword(input.read(document.getElementById('captainLoginEmail')),field.value));
+      field.value='';if(epoch!==stationEpoch){client.clearSession();return;}
+      await loadAppointment();
+    }catch(error){
+      if(epoch===stationEpoch){client.clearSession();renderLogin(missing(error)?'The Captain appointment service is unavailable. No vessel authority was opened.':String(error?.message||error));}
+    }finally{field.value='';busy=false;}
+  }
+  async function magicLink(){
+    if(busy)return;
+    const email=input.read(document.getElementById('captainLoginEmail'));
+    if(!email)return status('Enter the appointed Captain email first.');
+    if(/[\s\u200B-\u200D\u2060\uFEFF]/u.test(email)||!/^.+@[^@]+\.[^@]+$/.test(email))return status('Check the email address. Spaces or invisible characters inside it are not allowed.');
+    busy=true;const button=document.getElementById('captainMagicBtn');button.disabled=true;
+    status('Requesting a secure sign-in link…');
+    try{
+      const redirect=new URL(routeUrl(projectId));
+      const r=await fetch(SUPABASE_URL+'/auth/v1/otp?redirect_to='+encodeURIComponent(redirect.toString()),{method:'POST',headers:{apikey:SUPABASE_KEY,'Content-Type':'application/json'},body:JSON.stringify({email,create_user:false,gotrue_meta_security:{}})});
+      if(!r.ok)throw new Error('Secure sign-in link could not be requested.');
+      status('If this is an existing account, the newest secure sign-in link is on its way.',true);
+    }catch(error){status(String(error?.message||error));}finally{busy=false;if(button.isConnected)button.disabled=false;}
+  }
+  async function loadAppointment(){
+    const epoch=stationEpoch,p=await verifyPerson();if(epoch!==stationEpoch)return;
+    person=p;
+    const data=await stationRead(rpc('captain_read_my_appointments',{}));if(epoch!==stationEpoch)return;
+    if(!Array.isArray(data?.records))throw new Error('The appointment list was not a valid server response.');
+    const email=String(person.email).toLowerCase();
+    if(data.records.some(a=>String(a.candidate_email||'').toLowerCase()!==email))throw new Error('The returned appointments did not match the signed-in account. No data was opened.');
+    myAppointments=data.records;
+    if(!projectId)return renderRoster();
+    appointment=myAppointments.find(r=>r.project_id===projectId)||null;
+    if(!appointment)return renderDenied('This account has no open Captain appointment for '+projectId+'.');
+    if(appointment.status==='pending')return renderPending();
+    if(appointment.status==='accepted')return loadStation();
+    renderDenied('This Captain appointment is '+String(appointment.status||'unavailable')+'. No vessel operations were opened.');
+  }
+  function renderPending(){shell(`${header(appointment.vessel_name,'Captain appointment awaiting your decision')}${identityStrip('Candidate — awaiting acceptance')}<section class="captain-handoff-panel"><div class="captain-handoff-status"><b>APPOINTMENT PENDING</b><br>${esc(appointment.candidate_email)} · expires ${appointment.expires_at?new Date(appointment.expires_at).toLocaleString():'—'}</div><p class="muted" style="margin-top:14px">${esc(appointment.intent||'No appointment note was supplied.')}</p><div class="captain-handoff-actions"><button id="captainAccept" class="btn primary">ACCEPT THIS VESSEL</button><button id="captainDecline" class="btn ghost">DECLINE</button><button id="captainPendingSignOut" class="btn secondary">SIGN OUT</button></div><p id="captainPendingStatus" class="captain-handoff-status">Nothing changes until you accept. Acceptance does not transfer ownership or grant Fleet-wide Captain authority.</p></section>`);document.getElementById('captainAccept').onclick=accept;document.getElementById('captainDecline').onclick=decline;document.getElementById('captainPendingSignOut').onclick=signOut;}
+  async function accept(){
+    if(busy)return;
+    busy=true;
+    const epoch=++stationEpoch;
+    for(const id of ['captainAccept','captainDecline']){const b=document.getElementById(id);if(b)b.disabled=true;}
+    try{
+      status('Accepting exact-vessel Captain appointment…');
+      const data=await rpc('captain_accept_appointment',{p_appointment_id:appointment.appointment_id});
+      if(epoch!==stationEpoch)return;
+      if(data?.status!=='accepted'||data?.project_id!==appointment.project_id)throw new Error('Acceptance response did not match this vessel. Recheck the saved appointment; do not accept again.');
+      appointment={...appointment,status:'accepted'};
+      await loadStation(`Appointment accepted for ${data.vessel_name||appointment.vessel_name}. Exact-vessel Captain authority rechecked.`);
+    }catch(error){
+      if(epoch===stationEpoch)renderStationRecovery('Acceptance result needs checking. '+String(error?.message||error));
+    }finally{busy=false;}
+  }
+  async function decline(){if(!window.confirm('Decline this vessel-Captain appointment? No vessel authority will be granted.'))return;try{await rpc('captain_decline_appointment',{p_appointment_id:appointment.appointment_id,p_reason:'Declined from Captain Handoff'});client.clearSession();renderLogin('Appointment declined. No vessel authority was granted.');}catch(error){status(String(error?.message||error));}}
+  function renderStationLoading(){
+    shell(`${header(appointment?.vessel_name||'Vessel Captain Station','Accepted appointment · opening your station')}${identityStrip('Vessel Captain access check')}<section class="captain-handoff-panel captain-handoff-loading" aria-busy="true"><h2>Opening Captain Station…</h2><p id="captainStationStatus" class="captain-handoff-status" role="status">Checking current vessel authority, orders and Watch report. No new acceptance is being sent.</p><div class="captain-handoff-actions"><button id="captainLoadingSignOut" class="btn secondary">SIGN OUT</button></div></section>`);
+    document.getElementById('captainLoadingSignOut').onclick=signOut;
+  }
+  function renderStationRecovery(message){
+    shell(`${header(appointment?.vessel_name||'Vessel Captain Station','Readback needs attention')}${identityStrip('Vessel Captain access check')}<section class="captain-handoff-panel captain-handoff-loading"><h2>Recheck the station</h2><p id="captainStationStatus" class="captain-handoff-status" role="status">${esc(message)}</p><p class="muted">Recheck reads the saved appointment and current access. It does not repeat acceptance, change an order, or publish a report.</p><div class="captain-handoff-actions"><button id="captainStationRecheck" class="btn primary">RECHECK STATION</button><button id="captainRecoverySignOut" class="btn secondary">SIGN OUT</button></div></section>`);
+    document.getElementById('captainStationRecheck').onclick=async()=>{if(busy)return;busy=true;const b=document.getElementById('captainStationRecheck'),epoch=stationEpoch;b.disabled=true;try{await loadAppointment();}catch(error){if(epoch===stationEpoch)renderStationRecovery(String(error?.message||error));}finally{busy=false;}};
+    document.getElementById('captainRecoverySignOut').onclick=signOut;
+  }
+  async function stationRead(work){
+    let timer;
+    try{return await Promise.race([work,new Promise((_,reject)=>{timer=setTimeout(()=>reject(new Error('Station readback timed out. No command was repeated.')),12000);})]);}
+    finally{clearTimeout(timer);}
+  }
+  async function loadStation(receipt='',expectedReport=null){
+    const epoch=++stationEpoch,scope=appointment?.project_id;
+    if(!scope||scope!==projectId)return renderLogin('Captain station scope does not match the requested vessel.');
+    renderStationLoading();
+    try{
+      const p=await verifyPerson();if(epoch!==stationEpoch)return;person=p;
+      const verified=await stationRead(rpc('vessel_captain_verify_access',{p_project_id:scope}));
+      if(epoch!==stationEpoch)return;
+      if(verified?.ok!==true||verified.project_id!==scope)throw new Error('Exact-vessel Captain access is not active for this route.');
+      const [o,w]=await stationRead(Promise.all([rpc('vessel_captain_list_business_orders',{p_project_id:scope}),rpc('vessel_captain_read_watch_report',{p_project_id:scope})]));
+      if(epoch!==stationEpoch)return;
+      if(o?.project_id!==scope||w?.project_id!==scope||!Array.isArray(o.records))throw new Error('Station readback did not match the requested vessel. No business data was displayed.');
+      if(expectedReport && (w?.has_report!==true || !input.reportMatches(w,expectedReport.payload,expectedReport.id)))throw new Error('Saved report read-back did not match the submitted report. No automatic retry was sent.');
+      access=verified;orders=o.records;watch=w;renderStation(receipt);
+    }catch(error){
+      if(epoch!==stationEpoch)return;
+      ++stationEpoch; // Retire late read completions. Retrying is an explicit read only.
+      renderStationRecovery(String(error?.message||error));
+    }
+  }
+  function orderSummary(row){const p=row?.payload||{};return p.customerName||p.customer?.name||p.name||p.description||p.item||'Business order';}
+  function renderStation(receipt=''){
+    const lifecycle=String(access.lifecycle_state||'unknown');
+    const operating=String(access.operating_model||'unknown').replaceAll('_',' ');
+    document.title=String(access.display_name||'Vessel')+' · Captain Station';
+    shell(`
+      <header class="captain-handoff-head captain-station-head">
+        <div><div class="eyebrow gold">BLACK FLAG · QUARTERMASTER · ${BUILD}</div>
+          <h1>${esc(access.display_name)}</h1>
+          <p class="captain-station-sub"><span>Vessel Captain Station</span><span class="captain-stage-tag">${esc(lifecycle.toUpperCase())}</span><span>${esc(operating)}</span></p>
+        </div>
+        <div class="captain-handoff-actions"><button id="captainMyVessels" class="btn ghost">MY VESSELS</button><button id="captainRefresh" class="btn ghost">REFRESH</button><button id="captainStationSignOut" class="btn secondary">SIGN OUT</button></div>
+      </header>
+      <section class="captain-station-context" aria-label="Vessel access and status">
+        <div>${identityStrip('Vessel Captain — this vessel only')}<p id="captainStationStatus" class="tb-station-receipt" role="status" aria-live="polite">${esc(receipt||'Exact-vessel Captain authority verified.')}</p></div>
+        <details class="captain-scope"><summary>Access &amp; scope</summary><div class="captain-scope-grid">
+          <div><b>Vessel:</b> ${esc(access.display_name)}<br><b>Project:</b> ${esc(access.project_id)}</div>
+          <div><b>Membership role:</b> operator<br><b>Appointment role:</b> vessel_captain</div>
+          <div><b>Lifecycle:</b> ${esc(lifecycle)}<br><b>Operating model:</b> ${esc(access.operating_model)}</div>
+          <div>Ownership remains separate. This station does not grant owner controls, another vessel, or Fleet-wide Captain authority.</div>
+        </div></details>
+      </section>
+      <div class="captain-station-columns">
+        <section class="captain-handoff-panel" aria-labelledby="captainOrdersTitle">
+          <div class="captain-section-title"><h2 id="captainOrdersTitle">Orders</h2><span class="captain-count">${orders.length} loaded</span></div>
+          <p class="captain-station-help">Server-backed queue · status changes only.</p>
+          <div class="captain-orders">${orders.length?orders.map(row=>`<article class="captain-order"><div><small>${esc(row.id)} · ${row.updated_at?new Date(row.updated_at).toLocaleString():'—'}</small><b>${esc(orderSummary(row))}</b><span>${esc(row.status||'New')}</span></div><select aria-label="Order status for ${esc(row.id)}" data-captain-order-status="${esc(row.id)}"><option>${esc(row.status||'New')}</option><option>New</option><option>In Progress</option><option>Ready</option><option>Completed</option><option>On Hold</option></select><button class="btn ghost" data-captain-save-order="${esc(row.id)}">SAVE STATUS</button></article>`).join(''):'<div class="captain-station-empty"><b>No orders yet</b>No server-backed orders are present for this vessel.</div>'}</div>
+        </section>
+        <section class="captain-handoff-panel" aria-labelledby="captainWatchTitle">
+          <h2 id="captainWatchTitle">Report to Admiral Watch</h2>
+          <p class="captain-station-help">Current work and issues for read-only Admiral oversight.</p>
+          <div class="captain-watch-grid">
+            <label>Current work<textarea data-bf-trim="boundary" id="captainWatchWork" maxlength="160" rows="2">${esc(watch?.current_work||'')}</textarea><small id="captainWorkCount" class="tb-field-count"></small></label>
+            <label>Open issues<input id="captainWatchIssues" type="number" min="0" max="100000" value="${esc(watch?.unresolved_issues??0)}"></label>
+            <label class="wide">Issue summary<textarea data-bf-trim="boundary" id="captainWatchSummary" maxlength="500">${esc(watch?.issue_summary||'')}</textarea></label>
+          </div>
+          <div class="captain-handoff-actions"><button id="captainPublishWatch" class="btn primary">PUBLISH WATCH UPDATE</button></div>
+          <p class="captain-station-last-report">${watch?.has_report?'Last report: '+new Date(watch.reported_at).toLocaleString()+' · '+esc(watch.source_label||'VESSEL CAPTAIN'):'No prior Captain watch report.'}</p>
+        </section>
+      </div>${recoveryMarkup()}${accountSecurityMarkup()}`, 'station');
+    bindIdentityActions();bindRecovery();bindAccountSecurity();
+    document.getElementById('captainRefresh').onclick=async()=>{if(busy)return;busy=true;try{await loadAppointment();}catch(e){renderStationRecovery(String(e.message||e));}finally{busy=false;}};
+    document.getElementById('captainStationSignOut').onclick=signOut;
+    document.querySelectorAll('[data-captain-save-order]').forEach(b=>b.onclick=()=>saveOrder(b.dataset.captainSaveOrder));
+    document.getElementById('captainPublishWatch').onclick=publishWatch;
+    const work=document.getElementById('captainWatchWork'),count=document.getElementById('captainWorkCount');const showCount=()=>count.textContent=input.length(input.boundary(work.value))+' / 160 characters';work.oninput=showCount;showCount();
+  }
+  function disableActions(){root.querySelectorAll('button').forEach(b=>{if(!/SignOut/.test(b.id))b.disabled=true;});}
+  async function saveOrder(id){
+    if(busy)return;const select=document.querySelector(`[data-captain-order-status="${CSS.escape(id)}"]`);if(!select)return;
+    busy=true;const epoch=stationEpoch,scope=appointment.project_id,value=select.value;disableActions();
+    status('Saving order status for '+destination()+'…');
+    try{
+      const data=await stationRead(rpc('vessel_captain_update_order_status',{p_project_id:scope,p_external_order_id:id,p_status:value}));
+      if(epoch!==stationEpoch)return;
+      if(data?.project_id!==scope||data?.id!==id||data?.status!==value)throw new Error('Order reply did not match this command.');
+      await loadStation('Order '+id+' status saved. Station reloaded from the server.');
+    }catch(e){if(epoch===stationEpoch){++stationEpoch;renderStationRecovery('Order result unconfirmed. '+String(e.message||e)+' Recheck saved state before another change.');}}
+    finally{busy=false;}
+  }
+  async function publishWatch(){
+    if(busy)return;
+    const workField=document.getElementById('captainWatchWork'),summaryField=document.getElementById('captainWatchSummary');
+    if(input.isComposing(workField)||input.isComposing(summaryField))return status('Finish entering the text before publishing.');
+    let payload;
+    try{payload=input.reportPayload(appointment.project_id,input.read(workField),document.getElementById('captainWatchIssues').value,input.read(summaryField));}
+    catch(error){return status(error.message);}
+    document.getElementById('captainWorkCount').textContent=input.length(payload.p_current_work)+' / 160 characters';
+    busy=true;const epoch=stationEpoch;disableActions();status('Publishing this vessel’s Watch report…');
+    try{
+      const data=await stationRead(rpc('vessel_captain_publish_watch_report',{...payload,p_detail:{source:'vessel-captain-station',build:BUILD}}));
+      if(epoch!==stationEpoch)return;
+      if(!input.reportMatches(data,payload))throw new Error('Report reply did not match the submitted vessel, text, issue count or summary.');
+      await loadStation('Watch report saved for '+destination()+'. Exact report reloaded from the server.',{payload,id:data.report_id});
+    }catch(e){if(epoch===stationEpoch){++stationEpoch;renderStationRecovery('Report result unconfirmed. '+String(e.message||e)+' Recheck the saved report; no automatic retry was sent.');}}
+    finally{busy=false;}
+  }
+  async function signOut(){
+    if(securityController){securityController.abort();securityController=null;}
+    ++stationEpoch;appointment=null;access=null;orders=[];watch=null;person=null;myAppointments=[];
+    // Conceal first. A slow network sign-out must not leave vessel data painted.
+    const work=client.signOut();client.clearSession();renderLogin('Captain session ended in this tab. Sign in again to reopen a vessel.');
+    try{await stationRead(work);}catch(_){}busy=false;
+  }
+  async function boot(){
+    if(invalidRoute){shell(`${header('Vessel link needs correction','No account access attempted')}<section class="captain-handoff-panel"><p>Use a single valid vessel destination, or open your assigned-vessel list.</p><a class="btn ghost" href="${esc(routeUrl())}">MY ASSIGNED VESSELS</a></section>`);return;}
+    const hash=new URLSearchParams(location.hash.replace(/^#/,''));
+    if(hash.get('access_token')){try{client.saveSession({access_token:hash.get('access_token'),refresh_token:hash.get('refresh_token'),expires_in:hash.get('expires_in'),flow_type:hash.get('type')||'',user:null});history.replaceState({},'',location.pathname+location.search);}catch(_){}}
+    shell(`${header()}<section class="captain-handoff-panel"><p class="captain-handoff-status">Checking this tab’s account session…</p></section>`);
+    try{const s=await stationRead(client.currentSession());if(!s?.access_token)return renderLogin();await loadAppointment();}
+    catch(e){client.clearSession();renderLogin(String(e.message||e));}
+  }
+
+  boot();
+})();
+</script>
+
+<script>
+(()=>{
+'use strict';
+if(window.__darkSkyVesselCaptainRouteActive)return;
+const DB_NAME='blackFlagPlatformV1', STORE_PROJECTS='projects', STORE_SETTINGS='settings', STORE_ORDERS='orders';
+const OWNER_SESSION_KEY='blackFlagOwnerSessionV1', OWNER_AUTHORITY_WITNESS_KEY='darkSkyOwnerAuthorityWitnessV1', SUPABASE_SESSION_KEY='darkSkySupabaseOwnerSessionV1', OWNER_SESSION_TTL_MS=8*60*60*1000;
+const LOCAL_RECOVERY_FAILURE_KEY='darkSkyOwnerRecoveryFailuresV1', LOCAL_RECOVERY_MAX_FAILURES=5, LOCAL_RECOVERY_LOCK_MS=5*60*1000, DEFAULT_PROJECT_ADMIN_RECOVERY_PIN='4353';
+const SUPABASE_URL='https://sjgqqtnuttnkwsoebbqf.supabase.co', SUPABASE_KEY='sb_publishable_gvWfIBQg4ew2RvVr6CpJSg_8y02QmKy';
+const ownerSupabase=window.DarkSkySupabase.create({url:SUPABASE_URL,publishableKey:SUPABASE_KEY,sessionKey:SUPABASE_SESSION_KEY,build:window.__blackFlagPageRelease.build});
+const FLEET_CORE_PROJECT_IDS=new Set(['beccas-bloom-shop','bf-p-f92f87e8ec44','bor-north-richmond','grizzly-bear','ikes-wood-signs','mugshot-after-dark']);
+const q=new URLSearchParams(location.search), projectId=String(q.get('project')||''), source=String(q.get('source')||''), requestedView=String(q.get('view')||'login');
+const $=id=>document.getElementById(id); let db=null, project=null, orders=[], localRecoveryAttempt=false;
+let ownerOrderReadError='',ownerViewEpoch=0;
+// A server namespace and the browser's storage namespace are different identifiers.
+// Bind both to the same server-verified project in this document, never rewrite records.
+let verifiedOwnerBinding=null;const orderDeckState={tab:'active',query:'',sort:'oldest',page:1,pageSize:6};
+const IKE_RATES=[['pine','Pine'],['cedar','Cedar'],['red-oak','Red Oak'],['white-oak','White Oak'],['walnut','Walnut'],['hickory','Hickory']];
+function esc(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+function show(id){['safeShell','login','passwordSetup','localRecovery','portal','failure'].forEach(x=>$(x).classList.toggle('hidden',x!==id));}
+
+function usesSupabaseOwner(){return FLEET_CORE_PROJECT_IDS.has(projectId)||project?.ownerAccess?.identityProvider==='supabase';}
+function ownerAccessMessage(reason=''){const name=project?.name||'this business';if(reason==='owner_membership_denied'||reason==='vessel_denied')return 'This Supabase account is not commissioned as the owner of '+name+'. Use the exact owner email assigned to this business.';if(String(reason).startsWith('membership_query_')||String(reason).startsWith('vessel_query_'))return 'The secure owner check could not complete. No business data was opened. Try again.';return 'This account is not authorized for this business.';}
+function configureOwnerLogin(){localRecoveryAttempt=false;$('passwordLabel').classList.remove('hidden');$('signIn').classList.remove('hidden');$('forgotPassword').classList.remove('hidden');$('sendMagicLink').classList.toggle('hidden',!usesSupabaseOwner());$('useLocalRecovery').classList.add('hidden');$('supabaseNote').classList.add('hidden');$('testNote').classList.add('hidden');$('loginUser').placeholder=(project?.name||'Business')+' owner email';if(usesSupabaseOwner()){$('supabaseNote').textContent='SUPABASE OWNER GATE • Use the owner email commissioned for this business • exact-vessel membership required';$('supabaseNote').classList.remove('hidden');}else{if(!$('loginUser').value)$('loginUser').value=project?.ownerAccess?.credential?.login||project?.ownerAccess?.ownerEmail||'';$('testNote').textContent='PROVISIONAL OWNER IDENTITY • Forgot Password uses exact-vessel Project Admin recovery. Server reporting remains unavailable until a Supabase owner membership is commissioned.';$('testNote').classList.remove('hidden');}}
+function engineUrl(){const u=new URL('./index.html',location.href);u.search='';u.hash='';return u.toString();}
+function openDb(){return new Promise((resolve,reject)=>{const r=indexedDB.open(DB_NAME);r.onsuccess=()=>resolve(r.result);r.onerror=()=>reject(r.error);r.onblocked=()=>reject(new Error('Business storage is busy in another tab.'));});}
+function req(r){return new Promise((resolve,reject)=>{r.onsuccess=()=>resolve(r.result);r.onerror=()=>reject(r.error);});}
+function tx(store,mode='readonly'){return db.transaction(store,mode).objectStore(store);}
+async function getProject(){let p=await req(tx(STORE_PROJECTS).get(projectId));if(p)return p;try{const s=await req(tx(STORE_SETTINGS).get('companies'));const rows=Array.isArray(s?.value)?s.value:[];return rows.find(x=>String(x?.id||'')===projectId)||null;}catch(_){return null;}}
+async function putProject(p){await req(tx(STORE_PROJECTS,'readwrite').put(p));try{const s=await req(tx(STORE_SETTINGS).get('companies'));if(Array.isArray(s?.value)){const rows=s.value.map(x=>String(x?.id||'')===p.id?p:x);await req(tx(STORE_SETTINGS,'readwrite').put({key:'companies',value:rows}));}}catch(_){}}
+async function getSetting(key){try{return (await req(tx(STORE_SETTINGS).get(key)))?.value}catch(_){return undefined}}
+async function setSetting(key,value){await req(tx(STORE_SETTINGS,'readwrite').put({key,value}));}
+async function getOrders(){ownerOrderReadError='';try{return (await req(tx(STORE_ORDERS).getAll())).filter(o=>String(o?.projectId||'')===projectId)}catch(_){ownerOrderReadError='This browser’s order storage could not be read.';return[]}}
+async function sha256(text){const b=new TextEncoder().encode(text);const h=await crypto.subtle.digest('SHA-256',b);return [...new Uint8Array(h)].map(x=>x.toString(16).padStart(2,'0')).join('');}
+function random(){const a=new Uint8Array(18);crypto.getRandomValues(a);return [...a].map(x=>x.toString(16).padStart(2,'0')).join('');}
+function ownerSession(){try{return JSON.parse(sessionStorage.getItem(OWNER_SESSION_KEY)||'null')}catch(_){return null}}
+function ownerWitness(event,s,extra={}){const w={schema:'dark-sky-owner-authority-witness-v1',build:window.__blackFlagPageRelease.build,event,at:new Date().toISOString(),projectId:s?.projectId||projectId,sessionId:s?.sessionId||'',authority:'project_owner',namespace:s?.namespace||project?.namespace||'',...extra};try{sessionStorage.setItem(OWNER_AUTHORITY_WITNESS_KEY,JSON.stringify(w));}catch(_){}return w;}
+function saveSession(){const now=Date.now(),s={schema:'dark-sky-owner-session-v2',projectId,namespace:project?.namespace||'',authority:'project_owner',sessionId:'OWN-'+now.toString(36)+'-'+Math.random().toString(36).slice(2,8),startedAt:new Date(now).toISOString(),expiresAt:new Date(now+OWNER_SESSION_TTL_MS).toISOString()};sessionStorage.setItem(OWNER_SESSION_KEY,JSON.stringify(s));ownerWitness('session-started',s,{scopeVerified:true});return s;}
+function sessionValid(s){
+  if(!s||s.authority!=='project_owner'||s.projectId!==projectId||project?.id!==projectId)return false;
+  if(usesSupabaseOwner()){
+    const b=verifiedOwnerBinding,expires=Date.parse(s.expiresAt||''),auth=supabaseSession();
+    const sameAccount=!!b&&!!auth?.access_token&&(auth.user?.id?auth.user.id===b.userId:auth.access_token===b.accessToken);
+    // A persisted receipt alone cannot confer owner access in a new document.
+    return sameAccount&&s.identityProvider==='supabase'&&Number.isFinite(expires)&&expires>Date.now()
+      &&Number.isFinite(Number(auth.expires_at))&&Number(auth.expires_at)>Date.now()
+      &&s.sessionId===b.sessionId&&s.projectId===b.projectId
+      &&s.vesselId===b.vesselId&&s.userId===b.userId
+      &&String(s.namespace||'')===b.serverNamespace
+      &&String(project.namespace||'')===b.localNamespace;
+  }
+  // Preserve provisional local-workspace policy; it is not a server membership.
+  return (!s.namespace||!project.namespace||s.namespace===project.namespace)
+    &&(!s.expiresAt||Date.parse(s.expiresAt)>Date.now());
+}
+function clearSession(reason='explicit-logout'){verifiedOwnerBinding=null;ownerViewEpoch++;const s=ownerSession();if(s)ownerWitness('session-ended',s,{reason,scopeVerified:true});sessionStorage.removeItem(OWNER_SESSION_KEY);}
+function supaHeaders(token=''){return ownerSupabase.headers(token);}
+function supabaseSession(){return ownerSupabase.readSession();}
+function saveSupabaseSession(data){return ownerSupabase.saveSession(data);}
+function clearSupabaseSession(){ownerSupabase.clearSession();}
+function liveOwnerRedirect(){const u=new URL('./owner.html',location.href);u.searchParams.set('project',projectId);u.searchParams.set('view','portal');if(source==='engine')u.searchParams.set('source','engine');return u.toString();}
+async function sendMagicLink(email){const redirect=liveOwnerRedirect();const r=await fetch(SUPABASE_URL+'/auth/v1/otp?redirect_to='+encodeURIComponent(redirect),{method:'POST',headers:supaHeaders(),body:JSON.stringify({email:String(email||'').trim(),create_user:false,gotrue_meta_security:{}})});if(!r.ok)throw new Error((await r.text())||('Supabase sign-in request failed '+r.status));return true;}
+async function exchangeHashSession(){const hash=new URLSearchParams(location.hash.replace(/^#/,''));const access=hash.get('access_token'),refresh=hash.get('refresh_token'),expires=hash.get('expires_in'),type=hash.get('type')||'';if(access){saveSupabaseSession({access_token:access,refresh_token:refresh,expires_in:expires,user:null,flow_type:type});history.replaceState(history.state,'',location.pathname+location.search);return true;}return false;}
+async function refreshSupabaseSession(s){return ownerSupabase.refreshSession(s);}
+async function currentSupabaseSession(){return ownerSupabase.currentSession();}
+async function fetchSupabaseUser(s){return ownerSupabase.user(s);}
+function passwordSetupComplete(user){return user?.user_metadata?.dark_sky_owner_password_set===true;}
+async function signInWithPassword(email,password){return ownerSupabase.signInWithPassword(email,password);}
+async function setOwnerPassword(password){let s=await currentSupabaseSession();if(!s?.access_token)throw new Error('Owner session expired. Request a fresh secure link.');const r=await fetch(SUPABASE_URL+'/auth/v1/user',{method:'PUT',headers:supaHeaders(s.access_token),body:JSON.stringify({password:String(password),data:{dark_sky_owner_password_set:true,dark_sky_owner_password_set_at:new Date().toISOString()}})});if(!r.ok){let msg='Password could not be saved.';try{const e=await r.json();if(e?.msg||e?.message)msg=e.msg||e.message;}catch(_){}throw new Error(msg);}const u=await r.json();s.user=u;s.flow_type='';sessionStorage.setItem(SUPABASE_SESSION_KEY,JSON.stringify(s));ownerWitness('owner-password-established',ownerSession(),{identityProvider:'supabase'});return u;}
+async function sendPasswordRecovery(email){const redirect=liveOwnerRedirect();const r=await fetch(SUPABASE_URL+'/auth/v1/recover?redirect_to='+encodeURIComponent(redirect),{method:'POST',headers:supaHeaders(),body:JSON.stringify({email:String(email||'').trim().toLowerCase()})});if(!r.ok)throw new Error((await r.text())||('Password recovery request failed '+r.status));return true;}
+function passwordStrongEnough(v){return String(v||'').length>=10;}
+function localRecoveryFailures(){try{const row=JSON.parse(sessionStorage.getItem(LOCAL_RECOVERY_FAILURE_KEY)||'null');return row?.projectId===projectId?row:{projectId,count:0,lockedUntil:0};}catch(_){return {projectId,count:0,lockedUntil:0};}}
+function saveLocalRecoveryFailures(row){sessionStorage.setItem(LOCAL_RECOVERY_FAILURE_KEY,JSON.stringify({...row,projectId}));}
+function clearLocalRecoveryFailures(){sessionStorage.removeItem(LOCAL_RECOVERY_FAILURE_KEY);}
+function localRecoveryWaitMs(){return Math.max(0,Number(localRecoveryFailures().lockedUntil||0)-Date.now());}
+function recordLocalRecoveryFailure(){const row=localRecoveryFailures(),count=Number(row.count||0)+1,locked=count>=LOCAL_RECOVERY_MAX_FAILURES;saveLocalRecoveryFailures({count:locked?0:count,lockedUntil:locked?Date.now()+LOCAL_RECOVERY_LOCK_MS:0});return {locked,remaining:locked?0:Math.max(0,LOCAL_RECOVERY_MAX_FAILURES-count)};}
+async function validProjectAdminRecoveryPin(pin){const entered=String(pin||'').trim();if(!entered)return false;if(entered===DEFAULT_PROJECT_ADMIN_RECOVERY_PIN)return true;const scoped=await getSetting(`projectAdminPin:${projectId}`);return !!scoped&&entered===String(scoped);}
+function renderLocalRecovery(){const wait=localRecoveryWaitMs();show('localRecovery');$('recoveryLogin').value=String($('loginUser').value||project?.ownerAccess?.credential?.login||project?.ownerAccess?.ownerEmail||'').trim();$('recoveryPin').value='';$('localNewPassword').value='';$('localConfirmPassword').value='';$('localRecoveryError').textContent=wait?`Recovery is temporarily locked. Try again in ${Math.ceil(wait/60000)} minute(s).`:'';$('saveLocalRecovery').disabled=wait>0;}
+async function resetLocalOwnerCredential(){const wait=localRecoveryWaitMs();if(wait)throw new Error(`Recovery is temporarily locked. Try again in ${Math.ceil(wait/60000)} minute(s).`);const login=String($('recoveryLogin').value||'').trim(),pin=String($('recoveryPin').value||''),a=String($('localNewPassword').value||''),b=String($('localConfirmPassword').value||'');if(!login)throw new Error('Enter the owner email or login.');if(!passwordStrongEnough(a))throw new Error('Use at least 10 characters for the new password.');if(a!==b)throw new Error('The new passwords do not match.');const currentLogin=String(project?.ownerAccess?.credential?.login||project?.ownerAccess?.ownerEmail||'').trim().toLowerCase(),recoveryMatches=await validProjectAdminRecoveryPin(pin)&&(!currentLogin||login.toLowerCase()===currentLogin);if(!recoveryMatches){const f=recordLocalRecoveryFailure();throw new Error(f.locked?'Too many incorrect recovery attempts. Recovery is locked for 5 minutes.':`The recovery details did not match this business. ${f.remaining} attempt(s) remain.`);}const now=new Date().toISOString(),salt=random().slice(0,24),prior=project.ownerAccess?.credential||{};project.ownerAccess=project.ownerAccess&&typeof project.ownerAccess==='object'?project.ownerAccess:{};project.ownerAccess.enabled=true;project.ownerAccess.status='active';project.ownerAccess.credential={login:prior.login||login,salt,passwordHash:await sha256(salt+':'+a),hashAlgorithm:'SHA-256-SALTED-LOCAL-PROTOTYPE',testMode:!!prior.testMode,createdAt:prior.createdAt||now,changedAt:now,recoveredAt:now,recoveryMode:'exact-vessel-project-admin'};project.ownerAccess.updatedAt=now;await putProject(project);clearLocalRecoveryFailures();clearSession('owner-password-recovered');ownerWitness('owner-password-recovered',null,{scopeVerified:true,recoveryMode:'exact-vessel-project-admin'});show('login');$('loginUser').value=project.ownerAccess.credential.login;$('loginPass').value='';configureOwnerLogin();$('loginError').innerHTML='<div class="recovery-success">Password reset complete for this business only. Sign in with the new password.</div>';}
+async function resolveLiveOwnerState(){verifiedOwnerBinding=null;await exchangeHashSession();let ss=await currentSupabaseSession();if(!ss?.access_token)return {state:'signed_out'};const user=await fetchSupabaseUser(ss);if(!user){clearSupabaseSession();return {state:'signed_out'};}const proof=await verifySupabaseMembership();if(!proof.ok)return {state:'denied',reason:proof.reason};const forceSetup=ss.flow_type==='recovery'||!passwordSetupComplete(user);if(forceSetup)return {state:'password_setup',user,proof,recovery:ss.flow_type==='recovery'};const entered=await enterSupabaseOwner();return entered.ok?{state:'ready',entered,user,proof}:{state:'denied',reason:entered.reason};}
+async function verifySupabaseMembership(){
+  const s=await currentSupabaseSession();
+  if(!s?.access_token)return {ok:false,reason:'no_session'};
+  const user=await fetchSupabaseUser(s);
+  if(!user?.id)return {ok:false,reason:'no_session'};
+  const headers={...supaHeaders(s.access_token),Accept:'application/json'};
+  const vessels=await fetch(SUPABASE_URL+'/rest/v1/fleet_vessels?select=id,project_id,namespace,display_name,owner_state,ownership_model,operating_model&project_id=eq.'+encodeURIComponent(projectId),{headers});
+  if(!vessels.ok)return {ok:false,reason:'vessel_query_'+vessels.status};
+  const rows=await vessels.json(),v=Array.isArray(rows)&&rows.length===1?rows[0]:null;
+  if(!v?.id||v.project_id!==projectId||typeof v.namespace!=='string'||!v.namespace.trim())return {ok:false,reason:'vessel_denied'};
+  const memberships=await fetch(SUPABASE_URL+'/rest/v1/fleet_memberships?select=id,user_id,role,active,revoked_at,vessel_id&vessel_id=eq.'+encodeURIComponent(v.id)+'&user_id=eq.'+encodeURIComponent(user.id)+'&role=eq.project_owner&active=eq.true&revoked_at=is.null',{headers});
+  if(!memberships.ok)return {ok:false,reason:'membership_query_'+memberships.status};
+  const matches=await memberships.json(),m=Array.isArray(matches)&&matches.length===1?matches[0]:null;
+  if(!m?.id||m.vessel_id!==v.id||m.user_id!==user.id||m.role!=='project_owner'||m.active!==true||m.revoked_at!==null)return {ok:false,reason:'owner_membership_denied'};
+  return {ok:true,vessel:v,membership:m,session:s,user};
+}
+async function ownerWatchRpc(name,body){const proof=await verifySupabaseMembership();if(!proof.ok||!proof.session?.access_token)throw new Error('A live exact-vessel owner identity is required. Local recovery cannot report to Fleet Watch.');const r=await fetch(SUPABASE_URL+'/rest/v1/rpc/'+name,{method:'POST',headers:{...supaHeaders(proof.session.access_token),Accept:'application/json'},body:JSON.stringify(body)});if(!r.ok){let message='Fleet Watch refused the report. No operational truth changed.';try{const problem=await r.json();message=problem?.message||problem?.hint||message;}catch(_){}throw new Error(message.replaceAll('_',' '));}return r.json();}
+async function readOwnWatchReport(){return ownerWatchRpc('vessel_read_own_watch_report',{p_project_id:projectId});}
+async function publishOwnWatchReport(currentWork,unresolvedIssues,issueSummary){return ownerWatchRpc('vessel_publish_watch_report',{p_project_id:projectId,p_current_work:String(currentWork||'').trim(),p_unresolved_issues:Math.max(0,Math.floor(Number(unresolvedIssues)||0)),p_issue_summary:String(issueSummary||'').trim().slice(0,500),p_source_label:'OWNER CONTROL CENTER',p_detail:{build:window.__blackFlagPageRelease.build,surface:'owner-control-center',project_id:projectId}});}
+async function enterSupabaseOwner(){
+  verifiedOwnerBinding=null;
+  const proof=await verifySupabaseMembership();if(!proof.ok)return proof;
+  if(project?.id!==projectId)return {ok:false,reason:'vessel_denied'};
+  const now=Date.now(),tokenExpiry=Number(proof.session.expires_at);
+  if(!Number.isFinite(tokenExpiry)||tokenExpiry<=now)return {ok:false,reason:'no_session'};
+  const s={schema:'dark-sky-owner-session-v3-supabase',projectId,
+    namespace:proof.vessel.namespace,authority:'project_owner',identityProvider:'supabase',
+    vesselId:proof.vessel.id,userId:proof.user.id,
+    sessionId:'SUPA-'+now.toString(36)+'-'+random(),
+    startedAt:new Date(now).toISOString(),
+    expiresAt:new Date(Math.min(now+OWNER_SESSION_TTL_MS,tokenExpiry)).toISOString()};
+  sessionStorage.setItem(OWNER_SESSION_KEY,JSON.stringify(s));
+  verifiedOwnerBinding=Object.freeze({sessionId:s.sessionId,projectId,vesselId:s.vesselId,userId:s.userId,
+    serverNamespace:s.namespace,localNamespace:String(project.namespace||''),accessToken:proof.session.access_token});
+  ownerWitness('supabase-session-started',s,{scopeVerified:true,vesselId:proof.vessel.id});
+  return {ok:true,s};
+}
+function renderPasswordSetup(recovery=false){show('passwordSetup');$('newPassword').value='';$('confirmPassword').value='';$('passwordSetupError').textContent='';$('passwordSetupCopy').textContent=recovery?'Choose a new password to recover this owner account. Vessel ownership remains unchanged.':'Your identity and exact-vessel ownership are verified. Create a password to continue.';$('savePassword').textContent=recovery?'SAVE NEW PASSWORD & CONTINUE':'CREATE PASSWORD & CONTINUE';}
+function capabilities(){const a=project?.ownerAccess?.capabilities;return new Set(Array.isArray(a)&&a.length?a:['orders','customers','products','pricing','branding','kiosks','deployments','staff','reporting','notifications']);}
+async function ensureIkeTestCredential(){if(projectId!=='ikes-wood-signs')return;if(!project.ownerAccess||typeof project.ownerAccess!=='object')project.ownerAccess={};project.ownerAccess.enabled=true;let replace=!project.ownerAccess.credential;const c=project.ownerAccess.credential;if(c?.testMode&&c?.login==='joe'&&c?.salt&&c?.passwordHash){try{replace=(await sha256(c.salt+':4353'))===c.passwordHash}catch(_){}}if(replace){const salt=random().slice(0,24);project.ownerAccess.credential={login:'joe',salt,passwordHash:await sha256(salt+':8642'),hashAlgorithm:'SHA-256-SALTED-LOCAL-PROTOTYPE',testMode:true,createdAt:c?.createdAt||new Date().toISOString(),changedAt:new Date().toISOString()};project.ownerAccess.status='active';await putProject(project);}}
+async function verify(login,password){const c=project?.ownerAccess?.credential;if(!c)return false;if(String(login||'').trim().toLowerCase()!==String(c.login||'').trim().toLowerCase())return false;if(c.salt&&c.passwordHash)return await sha256(c.salt+':'+String(password||''))===c.passwordHash;if(c.password!=null)return String(c.password)===String(password||'');return false;}
+function setNames(){const n=project?.name||"Ike's Wood Signs";$('safeName').textContent=n;$('loginName').textContent=n;$('passwordSetupName').textContent=n;$('localRecoveryName').textContent=n;$('portalName').textContent=n;$('failureName').textContent=n;$('mProject').textContent=String(project?.projectCode||projectId||'BUSINESS').toUpperCase();}
+function ownerActive(){return project?.ownerAccess?.enabled!==false && project?.ownerAccess?.status==='active';}
+function bindEngineButtons(){for(const id of ['returnEngineFromLogin','returnEngine','failureEngine']){if(source==='engine')$(id)?.classList.remove('hidden');$(id)?.addEventListener('click',()=>location.replace(engineUrl()));}}
+function modules(){const caps=capabilities();const all=[['watch','Fleet Report','Report current work and issues to the read-only Admiral watch'],['orders','Orders','Review customer orders'],['pricing','Pricing','Manage customer pricing rules'],['features','Features','Choose the business features customers can use'],['branding','Branding','Manage how customers see your business'],...(projectId==='ikes-wood-signs'?[['references','Lettering Styles','Review and manage production lettering styles']]:[]),['services','Fleet Services','See included and available Fleet capabilities'],['settings','Settings','Owner access and account controls']];return all.filter(([k])=>['watch','features','services','settings','references'].includes(k)||caps.has(k));}
+async function fleetServiceCatalog(){const ss=await currentSupabaseSession();if(!ss?.access_token)return [];const proof=await verifySupabaseMembership();if(!proof.ok)return [];const eh={...supaHeaders(ss.access_token),Accept:'application/json'};const er=await fetch(SUPABASE_URL+'/rest/v1/fleet_service_entitlements?select=id,commercial_mode,status,fee_label,capability_id&vessel_id=eq.'+encodeURIComponent(proof.vessel.id),{headers:eh});if(!er.ok)return [];const ents=await er.json();if(!Array.isArray(ents)||!ents.length)return [];const [cr,rr]=await Promise.all([fetch(SUPABASE_URL+'/rest/v1/fleet_capabilities?select=id,capability_key,display_name,owner_summary,lifecycle,operation_mode',{headers:eh}),fetch(SUPABASE_URL+'/rest/v1/fleet_service_requests?select=id,capability_id,status,created_at&vessel_id=eq.'+encodeURIComponent(proof.vessel.id)+'&status=in.(requested,reviewing,approved)',{headers:eh})]);if(!cr.ok)return [];const caps=await cr.json(),reqs=rr.ok?await rr.json():[],by=new Map(caps.map(c=>[c.id,c])),rq=new Map((Array.isArray(reqs)?reqs:[]).map(r=>[r.capability_id,r]));return ents.map(e=>({...e,request:rq.get(e.capability_id)||null,capability:by.get(e.capability_id)})).filter(x=>x.capability).sort((a,b)=>String(a.capability.display_name).localeCompare(String(b.capability.display_name)));}
+async function requestFleetService(entitlement){const ss=await currentSupabaseSession();if(!ss?.access_token)throw new Error('Sign in again to request this service.');const proof=await verifySupabaseMembership();if(!proof.ok)throw new Error('This vessel could not be verified.');const r=await fetch(SUPABASE_URL+'/rest/v1/fleet_service_requests',{method:'POST',headers:{...supaHeaders(ss.access_token),Prefer:'return=minimal'},body:JSON.stringify({vessel_id:proof.vessel.id,capability_id:entitlement.capability_id,status:'requested'})});if(!r.ok)throw new Error('Service request could not be recorded.');return true;}
+function serviceStatusLabel(e){if(e.status==='enabled')return 'ACTIVE';if(e.status==='entitled'&&e.commercial_mode==='standard')return 'INCLUDED WITH FLEET';if(e.status==='entitled'&&e.commercial_mode==='paid')return 'APPROVED UPGRADE';if(e.status==='pending_payment')return 'PENDING PAYMENT';if(e.request?.status==='approved')return 'APPROVED';if(e.request?.status==='requested'||e.request?.status==='reviewing'||e.status==='requested')return 'REQUESTED';if(e.commercial_mode==='standard')return 'INCLUDED WITH FLEET';return 'AVAILABLE FOR UPGRADE';}
+function renderPortal(){if(!canReadOwnerDeck())return;show('portal');$('portal').classList.add('workhorse-owner');renderBusinessNav();$('businessHeaderLogo').innerHTML=window.BlackFlagBusinessDeck.logo(project);$('portal').classList.remove('subview');$('mOrders').textContent=orders.length;$('mOwner').textContent=String(project?.ownerAccess?.status||'active').toUpperCase();$('modules').innerHTML=modules().map(([k,t,d])=>`<button class="module" data-module="${k}"><small>${k.toUpperCase()}</small><h3>${esc(t)}</h3><p>${esc(d)}</p><strong>OPEN →</strong></button>`).join('');document.querySelectorAll('[data-module]').forEach(b=>b.addEventListener('click',()=>openOwnerView(b.dataset.module)));returnToBridgeHome(false);}function returnToBridgeHome(animate=true){if(!canReadOwnerDeck())return;ownerViewEpoch++;renderBusinessHome();markBusinessNav('portal');$('portal').classList.remove('subview');$('workspace').classList.add('hidden');$('workspace').classList.remove('stage-in');$('workspace').innerHTML='';$('ownerHome').classList.remove('hidden','stage-out');if(animate){$('ownerHome').classList.add('stage-in');setTimeout(()=>$('ownerHome').classList.remove('stage-in'),260);}if(projectId==='ikes-wood-signs'){$('vesselStrip').classList.remove('hidden');$('ownerHomeNote').classList.remove('hidden');}history.replaceState({surface:'owner',projectId,ownerView:'portal'},'',`owner.html?project=${encodeURIComponent(projectId)}&view=portal${source==='engine'?'&source=engine':''}`);window.BlackFlagViewport?.enter({key:'owner:'+projectId,reason:'new'});}
+function canReadOwnerDeck(){
+  const s=ownerSession(),ok=sessionValid(s);
+  if(!ok){
+    ownerViewEpoch++;show('login');configureOwnerLogin();
+    const expires=Date.parse(s?.expiresAt||'');
+    $('loginError').textContent=Number.isFinite(expires)&&expires<=Date.now()
+      ?'Your owner session has expired. Sign in again for this business. Saved orders are unchanged.'
+      :'The owner session could not be matched to this business. No order was changed. Sign in once; if this repeats, report the session check instead of resetting your password.';
+  }
+  return ok;
+}
+function renderBusinessNav(){const allowed=modules();const links=[['portal','Today'],...['orders','pricing','references'].map(k=>allowed.find(m=>m[0]===k)).filter(Boolean)];$('businessDeckNav').innerHTML=links.map(([k,t])=>`<button type="button" data-owner-nav="${k}" aria-pressed="${k==='portal'}">${esc(t)}</button>`).join('');$('businessDeckNav').querySelectorAll('[data-owner-nav]').forEach(b=>b.onclick=()=>{if(!canReadOwnerDeck())return;b.dataset.ownerNav==='portal'?returnToBridgeHome(true):openOwnerView(b.dataset.ownerNav);});}
+function markBusinessNav(k){$('businessDeckNav')?.querySelectorAll('[data-owner-nav]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.ownerNav===k)));}
+function renderBusinessHome(){if(!window.BlackFlagBusinessDeck)return;window.BlackFlagBusinessDeck.mountHome({container:$('businessDeckHome'),project,orders,modules:modules(),readError:ownerOrderReadError,onOpen:openOwnerView,onOrders:tab=>{Object.assign(orderDeckState,{tab,query:'',page:1});openOwnerView('orders');}});}
+
+function headwayBackupPanel(){
+ const host=$('bdOrders'),H=window.BlackFlagHeadway;if(!host||!H)return;
+ const panel=document.createElement('details');panel.className='hw-backup';panel.id='hwBackupPanel';panel.innerHTML='<summary>Protect this business’s saved orders</summary><p>Export the complete saved order rows, including stored photos and previews. This file contains customer information: keep it private. Checking a backup restores only into isolated memory, never over this browser’s records. This is not cloud backup.</p><button type="button" id="hwExportOrders" class="btn">EXPORT FULL ORDER BACKUP</button><button type="button" id="hwRehearseBackup" class="btn">CHECK A BACKUP IN ISOLATION</button><input type="file" id="hwBackupFile" accept="application/json,.json" hidden><p id="hwBackupStatus" role="status" aria-live="polite">No export or restore has been run.</p><div id="hwBackupLegacy" hidden role="note" style="white-space:pre-wrap;overflow-wrap:anywhere;margin-top:12px"></div>';host.appendChild(panel);
+ const status=panel.querySelector('#hwBackupStatus'),exp=panel.querySelector('#hwExportOrders'),check=panel.querySelector('#hwRehearseBackup'),file=panel.querySelector('#hwBackupFile');
+ const valid=()=>panel.isConnected&&canReadOwnerDeck();
+ const legacy=panel.querySelector('#hwBackupLegacy');
+ const showLegacy=proof=>{const entries=proof?.specialValues||[];legacy.hidden=!entries.length;legacy.textContent=entries.length?'Legacy values preserved unchanged: '+entries.length+'. These are archival values, not validated prices or measurements.\n'+entries.slice(0,12).map(x=>'Order '+x.orderId+' · '+x.path+' · '+x.kind).join('\n')+(entries.length>12?'\nAdditional locations are listed in the private backup file.':''):'';};
+ exp.onclick=async()=>{if(!valid())return;exp.disabled=true;check.disabled=true;showLegacy(null);status.textContent='Reading this business’s saved orders…';try{const rows=await getOrders();if(!valid())return;if(ownerOrderReadError)throw Error(ownerOrderReadError);const b=await H.backup(projectId,rows),proof=await H.rehearse(b,projectId);if(!valid())return;const blob=new Blob([JSON.stringify(b,null,2)],{type:'application/json'});if(blob.size>100000000)throw Error('Backup exceeds the 100 MB file-check limit; no download was created');const url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='BlackFlag-'+projectId+'-Orders-'+new Date().toISOString().replace(/[:.]/g,'-')+'.json';document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),30000);status.textContent='Backup prepared: '+proof.records+' records, '+proof.sourcePhotos+' source photos and '+proof.approvedPreviews+' previews. Internal copy check passed. Confirm the file is in Downloads; no records were changed.';showLegacy(proof);}catch(e){if(panel.isConnected)status.textContent='Backup not confirmed: '+String(e.message||e)+'. Nothing was imported or deleted.';}finally{exp.disabled=false;check.disabled=false;}};
+ check.onclick=()=>{if(valid())file.click();};
+ file.onchange=async()=>{const f=file.files?.[0];if(!f||exp.disabled||!valid())return;check.disabled=true;exp.disabled=true;showLegacy(null);try{if(f.size>100000000)throw Error('Backup exceeds the 100 MB rehearsal limit');const b=JSON.parse(await f.text());if(!valid())return;const v=await H.rehearse(b,projectId);if(!valid())return;status.textContent='Isolated restore comparison passed: '+v.records+' records. '+v.missingSourcePhotos+' without a stored source photo; '+v.missingPreviews+' without a stored preview. Genuine legacy gaps remain gaps. The original database was not touched.';showLegacy(v);}catch(e){if(panel.isConnected)status.textContent='Backup rejected: '+String(e.message||e)+'. Original records are unchanged.';}finally{check.disabled=false;exp.disabled=false;file.value='';}};
+}
+
+function renderOrderDeck(){workspace('Orders',"Find the right record. Keep active work separate from completed history.",'<div id="bdOrders"></div>');window.BlackFlagBusinessDeck.mountOrders({container:$('bdOrders'),project,orders,state:orderDeckState,readError:ownerOrderReadError,onDetail:o=>{if(!canReadOwnerDeck())return;workspace('Order details','The saved record for this business. Viewing does not edit, reprice or approve it.','<div id="bdOrderDetail"></div>');window.BlackFlagBusinessDeck.mountOrderDetail({container:$('bdOrderDetail'),project,order:o,onBack:()=>{if(!canReadOwnerDeck())return;renderOrderDeck();window.BlackFlagViewport?.enter({key:'owner:'+projectId+':orders',reason:'back',position:orderDeckState.scrollY||0});}});window.BlackFlagViewport?.enter({key:'owner:'+projectId,reason:'new'});}});headwayBackupPanel();}
+async function openOwnerView(k){if(!canReadOwnerDeck()||!modules().some(m=>m[0]===k))return;const generation=++ownerViewEpoch;markBusinessNav(k);$('ownerHome').classList.add('stage-out');setTimeout(async()=>{if(generation!==ownerViewEpoch||!canReadOwnerDeck())return;$('ownerHome').classList.add('hidden');$('ownerHome').classList.remove('stage-out');$('portal').classList.add('subview');$('workspace').classList.remove('hidden');$('workspace').classList.add('stage-in');await renderWorkspace(k);if(generation!==ownerViewEpoch||!sessionValid(ownerSession()))return;history.replaceState({surface:'owner',projectId,ownerView:k},'',`owner.html?project=${encodeURIComponent(projectId)}&view=${encodeURIComponent(k)}${source==='engine'?'&source=engine':''}`);window.BlackFlagViewport?.enter({key:'owner:'+projectId,reason:'new'});setTimeout(()=>$('workspace').classList.remove('stage-in'),260);},120);}
+
+function workspace(title,copy,body){$('workspace').classList.remove('hidden');$('workspace').innerHTML=`<div class="workspace-head"><div><div class="eyebrow">YOUR BUSINESS TOOLS</div><h2>${esc(title)}</h2><p class="muted">${esc(copy)}</p></div><button id="backOverview" class="btn workspace-back">← OVERVIEW</button></div>${body}`;$('backOverview').onclick=()=>returnToBridgeHome(true);}
+
+async function config(){return (await getSetting('businessConfig:'+projectId))||{};}
+function normalizeRates(rows){const map=new Map((Array.isArray(rows)?rows:[]).map(r=>[String(r.id),r]));return IKE_RATES.map(([id,name])=>({id,name,rate:Number(map.get(id)?.rate||0),enabled:map.has(id)?map.get(id).enabled!==false:true}));}
+function styleRefs(){if(!Array.isArray(project.referenceLibrary))project.referenceLibrary=[];return project.referenceLibrary;}
+function readFileData(file){return new Promise((resolve,reject)=>{const r=new FileReader();r.onload=()=>resolve(String(r.result||''));r.onerror=()=>reject(r.error);r.readAsDataURL(file);});}
+function sfChars(text){return [...new Set(String(text||'').replace(/\s/g,'').split(''))].sort().join('');}
+function stylePackRegistry(){
+  project.styleFoundry=project.styleFoundry||{schema:'dark-sky-ike-style-foundry-project-v4',version:4,styles:{},glyphCandidates:[]};
+  project.styleFoundry.schema='dark-sky-ike-style-foundry-project-v4';project.styleFoundry.version=4;
+  project.styleFoundry.styles=project.styleFoundry.styles||{};project.styleFoundry.glyphCandidates=Array.isArray(project.styleFoundry.glyphCandidates)?project.styleFoundry.glyphCandidates:[];
+  const seeds={
+    A:{id:'A',name:'RAMJET',label:'Style A — Bold Block',sampleText:'RAMJET',anchorText:'RAMJET',anchorImage:'ike_style_a_ramjet_reference.jpg',anchorSource:'bundled-production',status:'production-anchor',customerVisible:true,geometryProfile:'A',geometryCertified:true,geometryCertificationBasis:'bundled-anchor',currentVersion:'1.0',versions:[{version:'1.0',basis:'bundled-anchor',certified:true,createdAt:'2026-08-27T00:00:00.000Z'}]},
+    B:{id:'B',name:'SMOKE HOLE!',label:'Style B — Tall Western',sampleText:'SMOKE HOLE!',anchorText:'SMOKE HOLE!',anchorImage:'ike_style_b_smoke_hole_reference.jpg',anchorSource:'bundled-production',status:'production-anchor',customerVisible:true,geometryProfile:'B',geometryCertified:true,geometryCertificationBasis:'bundled-anchor',currentVersion:'1.0',versions:[{version:'1.0',basis:'bundled-anchor',certified:true,createdAt:'2026-08-27T00:00:00.000Z'}]}
+  };
+  for(const [id,seed] of Object.entries(seeds)){const existing=project.styleFoundry.styles[id]||{};project.styleFoundry.styles[id]={...seed,...existing};if(!Array.isArray(project.styleFoundry.styles[id].versions))project.styleFoundry.styles[id].versions=seed.versions.slice();}
+  for(const pack of Object.values(project.styleFoundry.styles)){if(!pack.anchorSource)pack.anchorSource=pack.candidateFromGraphic?'owner-draft-graphic':'none';if(!pack.geometryCertificationBasis)pack.geometryCertificationBasis=pack.anchorSource==='bundled-production'?'bundled-anchor':'evidence-required';pack.canonicalGlyphs=pack.canonicalGlyphs&&typeof pack.canonicalGlyphs==='object'?pack.canonicalGlyphs:{};pack.versions=Array.isArray(pack.versions)?pack.versions:[];}
+  return project.styleFoundry.styles;
+}
+function nextStyleId(){const used=new Set(Object.keys(stylePackRegistry()));for(const c of 'CDEFGHIJKLMNOPQRSTUVWXYZ')if(!used.has(c))return c;return 'S'+Date.now().toString(36).slice(-3).toUpperCase();}
+function glyphCandidates(){stylePackRegistry();return project.styleFoundry.glyphCandidates;}
+function styleCoverage(style){
+  const pack=stylePackRegistry()[style]||{}, refs=styleRefs().filter(r=>r.style===style), approved=refs.filter(r=>r.status==='approved'), drafts=refs.filter(r=>r.status!=='approved');
+  const trustedAnchor=pack.anchorSource==='bundled-production'?(pack.anchorText||''):'';
+  const proven=sfChars([trustedAnchor,...approved.map(r=>r.sampleText||'')].join(''));
+  const inferred=sfChars([pack.anchorSource!=='bundled-production'?(pack.anchorText||''):'',...drafts.map(r=>r.sampleText||'')].join(''));
+  const inferredOnly=[...inferred].filter(ch=>!proven.includes(ch)).join('');
+  return {chars:proven,inferredChars:inferredOnly,upper:[...proven].filter(c=>/[A-Z]/.test(c)).join(''),lower:[...proven].filter(c=>/[a-z]/.test(c)).join(''),other:[...proven].filter(c=>!(/\s|[A-Za-z]/.test(c))).join(''),approvedCount:approved.length,draftCount:drafts.length};
+}
+function glyphGridMarkup(pack,c){const proven=new Set((c.chars||'').split('')),inferred=new Set((c.inferredChars||'').split(''));const seq="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!?&._-'";return `<div class="glyph-bench"><h4>Glyph coverage</h4><div class="glyph-grid">${[...seq].map(ch=>`<span class="glyph-cell ${proven.has(ch)?'proven':inferred.has(ch)?'inferred':''}" title="${proven.has(ch)?'Proven by approved evidence':inferred.has(ch)?'Observed in draft evidence — not proven yet':'Missing evidence'}">${esc(ch)}</span>`).join('')}</div><div class="glyph-legend"><span>● Proven / approved</span><span>◐ Draft observation</span><span>○ Missing</span></div></div>`;}
+function candidateCropMarkup(c,r){const span=Math.max(1,Number(c.x1)-Number(c.x0)),w=100/span*100,left=-(Number(c.x0)/span)*100;return `<div class="candidate-preview"><img src="${r.dataUrl}" alt="${esc(c.char)} candidate from ${esc(r.title||'evidence')}" style="width:${w.toFixed(2)}%;left:${left.toFixed(2)}%;"></div>`;}
+function candidateMarkup(c,r,pack){const canonical=pack.canonicalGlyphs?.[c.char]===c.id;return `<div class="glyph-candidate ${canonical?'canonical':''}" id="candidate-${esc(c.id)}"><div class="candidate-head"><strong>${esc(c.char)}</strong><span class="forge-badge ${canonical?'ready':''}">${canonical?'CANONICAL':esc(String(c.status||'CANDIDATE').toUpperCase())}</span></div>${candidateCropMarkup(c,r)}<div class="candidate-metrics"><span>Confidence ${(Number(c.confidence||0)*100).toFixed(0)}%</span><span>Occurrence ${Number(c.occurrence||1)}</span><span>Left ${Number(c.x0).toFixed(1)}%</span><span>Right ${Number(c.x1).toFixed(1)}%</span></div><div class="candidate-adjust"><input data-cand-x0="${esc(c.id)}" type="number" min="0" max="99" step="0.5" value="${Number(c.x0).toFixed(1)}" aria-label="left crop percent"><input data-cand-x1="${esc(c.id)}" type="number" min="1" max="100" step="0.5" value="${Number(c.x1).toFixed(1)}" aria-label="right crop percent"><button class="btn ghost" data-cand-save="${esc(c.id)}">SAVE CROP</button></div><div class="style-actions"><button class="btn secondary" data-cand-canonical="${esc(c.id)}" ${r.status==='approved'?'':'disabled'}>${r.status==='approved'?'MAKE CANONICAL':'APPROVE EVIDENCE FIRST'}</button></div></div>`;}
+function evidenceMiniMarkup(style){const pack=stylePackRegistry()[style]||{},rows=styleRefs().filter(r=>r.style===style).slice().sort((a,b)=>String(b.updatedAt||'').localeCompare(String(a.updatedAt||''))).slice(0,8);if(!rows.length)return '<p class="muted" style="margin-top:10px">No owner-uploaded evidence yet.</p>';return `<div class="evidence-mini-list">${rows.map(r=>{const cs=glyphCandidates().filter(c=>c.evidenceId===r.id);return `<div class="evidence-mini" id="evidence-${esc(r.id)}">${r.dataUrl?`<img src="${r.dataUrl}" alt="style evidence">`:'<div>NO IMAGE</div>'}<div><small>${esc(String(r.status||'draft').toUpperCase())} • ${esc(r.source||'owner')}</small><strong style="display:block">${esc(r.title||'Example')}</strong><span class="muted">${esc(r.sampleText||'')}</span><div class="muted" style="font-size:11px;margin-top:4px">${cs.length?cs.length+' segmentation candidate'+(cs.length===1?'':'s'):'Not segmented yet'}</div></div><div class="evidence-tools">${r.status!=='approved'?`<button class="btn secondary" data-sf-approve="${esc(r.id)}">APPROVE</button>`:'<span class="forge-badge ready">APPROVED</span>'}<button class="btn ghost" data-sf-edit="${esc(r.id)}">EDIT</button><button class="btn ghost" data-sf-segment="${esc(r.id)}">${cs.length?'RESEGMENT':'SEGMENT GLYPHS'}</button></div><div class="evidence-edit" id="edit-${esc(r.id)}" hidden><input data-bf-trim="boundary" data-edit-title="${esc(r.id)}" value="${esc(r.title||'')}" aria-label="evidence title"><input data-bf-trim="preserve" data-edit-text="${esc(r.id)}" value="${esc(r.sampleText||'')}" aria-label="exact wording"><button class="btn secondary" data-edit-save="${esc(r.id)}">SAVE + RECHECK</button></div>${cs.length?`<div class="glyph-candidates"><strong>Glyph segmentation candidates</strong><div class="candidate-grid">${cs.map(c=>candidateMarkup(c,r,pack)).join('')}</div></div>`:''}</div>`}).join('')}</div>`;}
+function benchmarkReplay(pack){const available=new Set([...(pack.anchorSource==='bundled-production'?String(pack.anchorText||''):'').replace(/\s/g,''),...Object.keys(pack.canonicalGlyphs||{})]);const refs=styleRefs().filter(r=>r.style===pack.id&&r.status==='approved');const tests=[];if(pack.anchorSource==='bundled-production'&&pack.anchorText)tests.push({label:'Bundled anchor: '+pack.anchorText,text:pack.anchorText,basis:'anchor'});for(const r of refs)tests.push({label:r.title||r.sampleText||'Approved evidence',text:r.sampleText||'',basis:r.id});return tests.map(t=>{const missing=[...new Set(String(t.text||'').replace(/\s/g,'').split(''))].filter(ch=>!available.has(ch));return {...t,pass:missing.length===0,missing};});}
+function benchmarkMarkup(pack){const tests=benchmarkReplay(pack);if(!tests.length)return '<div class="forge-summary">No approved benchmarks yet. Approve evidence before certification.</div>';return `<div class="glyph-bench"><h4>Protected benchmark replay</h4><div class="benchmark-list">${tests.map(t=>`<div class="benchmark-row ${t.pass?'pass':'hold'}"><span><strong>${esc(t.label)}</strong><br><small>${t.pass?'All required geometry available':'Missing canonical geometry: '+esc(t.missing.join(' '))}</small></span><span class="forge-badge ${t.pass?'ready':'hold'}">${t.pass?'CLEAR':'HOLD'}</span></div>`).join('')}</div></div>`;}
+function versionMarkup(pack){const versions=(pack.versions||[]).slice().reverse().slice(0,6);if(!versions.length)return '';return `<div class="glyph-bench"><h4>Geometry versions</h4><div class="version-list">${versions.map(v=>`<div class="version-row"><span><strong>v${esc(v.version)}</strong> ${pack.currentVersion===v.version?'• CURRENT':''}<br><small>${esc(v.basis||'compiled evidence')} • ${esc(v.createdAt?new Date(v.createdAt).toLocaleString():'')}</small></span>${pack.currentVersion!==v.version?`<button class="btn ghost" data-sf-rollback="${esc(pack.id)}" data-version="${esc(v.version)}">ROLL BACK</button>`:'<span class="forge-badge ready">ACTIVE</span>'}</div>`).join('')}</div></div>`;}
+function geometryBenchMarkup(pack,c,status){const anchorCertified=pack.geometryCertificationBasis==='bundled-anchor',canonicalCount=Object.keys(pack.canonicalGlyphs||{}).length,compiled=!!pack.currentVersion||status==='compiled'||status==='published',bench=benchmarkReplay(pack),benchClear=bench.length>0&&bench.every(t=>t.pass);const ready=!anchorCertified&&c.approvedCount>0&&canonicalCount>=Math.min(6,Math.max(1,c.chars.length))&&compiled&&benchClear;const score=Math.min(100,(anchorCertified?30:0)+Math.min(35,c.chars.length*2)+(c.approvedCount?10:0)+Math.min(15,canonicalCount*2)+(compiled?10:0));const certBadge=anchorCertified?`<span class="forge-badge anchor">ANCHOR GEOMETRY CERTIFIED • v${esc(pack.currentVersion||'1.0')}</span>`:pack.geometryCertified?`<span class="forge-badge ready">GEOMETRY CERTIFIED • v${esc(pack.currentVersion||'—')}</span>`:`<button class="btn warn" data-sf-certify="${esc(pack.id)}" ${ready?'':'disabled'}>${ready?'CERTIFY GEOMETRY':'GEOMETRY HOLD'}</button>`;return `<div class="glyph-bench"><h4>Geometry certification</h4><div class="bench-score"><span>${score}% readiness</span><span>${c.chars.length} proven glyphs</span><span>${canonicalCount} canonical glyphs</span><span>${c.approvedCount} approved uploads</span></div><p class="bench-note">GlyphForge separates evidence coverage from production geometry. New evidence must be segmented and canonical glyph candidates approved before it can affect a compiled geometry version.</p><div class="style-actions">${certBadge}</div></div>${benchmarkMarkup(pack)}${versionMarkup(pack)}`;}
+function nextGeometryVersion(pack){const cur=String(pack.currentVersion||'0.0').split('.').map(Number);const major=Number.isFinite(cur[0])?cur[0]:0,minor=Number.isFinite(cur[1])?cur[1]:0;return `${major}.${minor+1}`;}
+async function compileGlyphForge(){const now=new Date().toISOString(),styles=stylePackRegistry();for(const [id,pack] of Object.entries(styles)){const c=styleCoverage(id),version=nextGeometryVersion(pack),bench=benchmarkReplay(pack),snapshot={version,createdAt:now,basis:'approved canonical glyphs',certified:false,evidenceChars:c.chars,canonicalGlyphs:{...(pack.canonicalGlyphs||{})},benchmarkClear:bench.length>0&&bench.every(t=>t.pass)};pack.certifiedEvidenceChars=c.chars;pack.upperEvidence=c.upper;pack.lowerEvidence=c.lower;pack.otherEvidence=c.other;pack.approvedExampleCount=c.approvedCount;pack.compiledGeometryChars=sfChars((pack.anchorSource==='bundled-production'?pack.anchorText:'')+Object.keys(pack.canonicalGlyphs||{}).join(''));pack.compiledAt=now;pack.compiledBy='owner';pack.currentVersion=version;pack.versions=Array.isArray(pack.versions)?pack.versions:[];pack.versions.push(snapshot);if(pack.versions.length>12)pack.versions=pack.versions.slice(-12);if(pack.status==='approved'||pack.status==='production-anchor'||(pack.status==='draft'&&c.approvedCount))pack.status='compiled';if(pack.geometryCertificationBasis!=='bundled-anchor')pack.geometryCertified=false;}project.styleFoundry.schema='dark-sky-ike-style-foundry-project-v4';project.styleFoundry.version=4;project.styleFoundry.compiledAt=now;project.styleFoundry.compiledBy='owner';return putProject(project);}
+function stylePackCards(){const styles=stylePackRegistry();return Object.values(styles).map(pack=>{const c=styleCoverage(pack.id),status=String(pack.status||'draft'),anchor=pack.anchorImage?`<img src="${esc(pack.anchorImage)}" alt="${esc(pack.name)} production anchor">`:'<div class="muted">No approved anchor image yet.</div>',statusLabel=pack.geometryCertificationBasis==='bundled-anchor'?'PRODUCTION-ANCHOR':status.toUpperCase();return `<article class="style-pack-card" id="style-pack-${esc(pack.id)}"><div class="style-pack-head"><div><small>STYLE ${esc(pack.id)} • ${esc(String(pack.geometryProfile||'UNSET').toUpperCase())} PROFILE</small><h3>${esc(pack.name||('Style '+pack.id))}</h3><div class="muted">${esc(pack.label||'Production style pack')}</div></div><span class="status-pill ${status==='published'?'published':status==='compiled'?'compiled':''}">${esc(statusLabel)}</span></div><div class="style-pack-anchor">${anchor}<div><strong>ANCHOR WORDING</strong><p>${esc(pack.anchorText||'Needs approved anchor')}</p><div class="coverage-grid"><div class="coverage-cell"><b>UPPER</b>${esc(c.upper||'Needs approved evidence')}</div><div class="coverage-cell"><b>lower</b>${esc(c.lower||'Needs approved evidence')}</div><div class="coverage-cell"><b>OTHER</b>${esc(c.other||'Needs approved evidence')}</div></div><p class="muted" style="margin-top:10px">${c.approvedCount} approved upload${c.approvedCount===1?'':'s'} • ${c.chars.length} proven glyph${c.chars.length===1?'':'s'}${c.inferredChars?` • ${c.inferredChars.length} draft observation${c.inferredChars.length===1?'':'s'}`:''}</p></div></div>${glyphGridMarkup(pack,c)}${geometryBenchMarkup(pack,c,status)}<div class="style-actions">${status==='compiled'&&pack.geometryCertified&&benchmarkReplay(pack).every(t=>t.pass)?`<button class="btn primary" data-sf-publish="${esc(pack.id)}">PUBLISH TO CX</button>`:''}${status==='published'?`<button class="btn ghost" data-sf-unpublish="${esc(pack.id)}">REMOVE FROM CX</button>`:''}</div><h4 style="margin:14px 0 6px">Evidence cards</h4>${evidenceMiniMarkup(pack.id)}</article>`}).join('');}
+function focusStyleFoundry(styleId,message,evidenceId){requestAnimationFrame(()=>requestAnimationFrame(()=>{const target=document.getElementById(evidenceId?`evidence-${evidenceId}`:`style-pack-${styleId}`)||document.getElementById(`style-pack-${styleId}`);if(target){const advanced=target.closest('details');if(advanced)advanced.open=true;target.scrollIntoView({behavior:'smooth',block:'center'});target.classList.add('recent-change');setTimeout(()=>target.classList.remove('recent-change'),2200);}const st=$('sfStatus');if(st&&message)st.textContent=message;}));}
+function rerenderFoundry(styleId,message,evidenceId){renderWorkspace('references');focusStyleFoundry(styleId,message,evidenceId);}
+function estimatedSegments(text){const chars=[...String(text||'')].filter(ch=>!(/\s/.test(ch)));if(!chars.length)return[];const left=3,right=97,step=(right-left)/chars.length,occ={};return chars.map((ch,i)=>{occ[ch]=(occ[ch]||0)+1;return {char:ch,occurrence:occ[ch],x0:left+i*step,x1:left+(i+1)*step,confidence:0.42};});}
+async function renderWorkspace(k){
+if(k==='watch'){
+  let latest=null,live=true;
+  try{latest=await readOwnWatchReport();}catch(_){live=false;}
+  const record=latest?.record||latest?.records?.[0]||latest||{},reportedAt=record?.reported_at?new Date(record.reported_at).toLocaleString():'Never reported';
+  workspace('Fleet Report','Publish a narrow operational heartbeat for this business. Admiral can read it but cannot change it.',`<div class="watch-report"><div id="watchReportProof" class="watch-report-proof ${record?.reported_at?'is-fresh':''}"><strong>${record?.reported_at?'LAST VERIFIED REPORT':'LIVE IDENTITY REQUIRED'}</strong><br>${esc(record?.reported_at?reportedAt:live?'No report has been published for this vessel.':'Sign in with the live owner account. Local recovery remains view-only for Fleet reporting.')}</div><div class="watch-report-grid"><label>Current work<input data-bf-trim="boundary" id="watchCurrentWork" required minlength="3" maxlength="160" value="${esc(record?.current_work||'')}" placeholder="Required: what is the business working on now?"></label><label>Unresolved issues<input id="watchIssues" type="number" min="0" step="1" value="${Number.isFinite(Number(record?.unresolved_issues))?Math.max(0,Number(record.unresolved_issues)):0}"></label></div><label>Issue summary<textarea data-bf-trim="boundary" id="watchIssueSummary" maxlength="500" placeholder="Name blockers or leave blank when there are none.">${esc(record?.issue_summary||'')}</textarea></label><div class="watch-report-actions"><button id="publishWatchReport" class="btn primary" ${live?'':'disabled'}>PUBLISH VERIFIED REPORT</button><button id="refreshWatchReport" class="btn ghost">REFRESH FROM FLEET CORE</button></div><div id="watchReportState" class="save-state">${live?'Current work is required. Nothing is sent until the saved report is read back and verified.':'Reporting is locked until live owner identity is verified.'}</div></div>`);
+  $('refreshWatchReport').onclick=()=>renderWorkspace('watch');
+  $('publishWatchReport').onclick=async()=>{
+    const button=$('publishWatchReport'),state=$('watchReportState'),proof=$('watchReportProof'),currentInput=$('watchCurrentWork');
+    const currentWork=String(currentInput.value||'').trim();
+    state.classList.remove('is-fresh');
+    if(currentWork.length<3){
+      state.textContent='CURRENT WORK REQUIRED · Enter at least 3 meaningful characters before publishing.';
+      currentInput.focus();
+      return;
+    }
+    try{
+      button.disabled=true;
+      button.textContent='VERIFYING & PUBLISHING…';
+      state.textContent='Saving through Supabase, then reading the report back from Fleet Core…';
+      const result=await publishOwnWatchReport(currentWork,$('watchIssues').value,$('watchIssueSummary').value);
+      const latestSaved=await readOwnWatchReport();
+      const saved=latestSaved?.record||latestSaved?.records?.[0]||latestSaved||{};
+      if(!result?.report_id||!saved?.reported_at||String(saved?.current_work||'').trim()!==currentWork){
+        throw new Error('REPORT VERIFICATION FAILED · Fleet Core did not return the same Current work. No success was declared.');
+      }
+      const verifiedAt=new Date(saved.reported_at).toLocaleString();
+      proof.innerHTML='<strong>LAST VERIFIED REPORT</strong><br>'+esc(verifiedAt)+' · '+esc(saved.current_work);
+      proof.classList.add('is-fresh');
+      state.textContent='VERIFIED REPORT SAVED AND READ BACK · '+verifiedAt+'. Admiral can now read: '+saved.current_work;
+      state.classList.add('is-fresh');
+      button.disabled=false;
+      button.textContent='PUBLISH UPDATED REPORT';
+    }catch(error){
+      state.textContent=error?.message||'The report was refused. No operational truth changed.';
+      button.disabled=false;
+      button.textContent='PUBLISH VERIFIED REPORT';
+    }
+  };
+  return;
+}
+if(k==='orders'){renderOrderDeck();return;}
+if(k==='pricing'){const c=await config();if(projectId==='ikes-wood-signs'){const rates=normalizeRates(c.ikeSpeciesRates);workspace('Pricing','Set the private price per linear foot by wood species. Customers see one simple final price.',`<div class="rates">${rates.map(r=>`<label class="rate"><strong>${esc(r.name)}</strong><input data-rate="${r.id}" type="number" min="0" step="0.01" value="${r.rate||''}" placeholder="Rate / ft"><span class="enabled"><input data-enabled="${r.id}" type="checkbox" ${r.enabled?'checked':''}> Active</span></label>`).join('')}</div><button id="savePricing" class="btn primary" style="margin-top:14px">SAVE SPECIES PRICING</button><div id="savePricingState" class="save-state">No unsaved changes.</div>`);$('savePricing').onclick=async()=>{const next={...c,ikeSpeciesRates:rates.map(r=>({...r,rate:Math.max(0,Number(document.querySelector(`[data-rate="${r.id}"]`)?.value||0)),enabled:!!document.querySelector(`[data-enabled="${r.id}"]`)?.checked}))};await setSetting('businessConfig:'+projectId,next);$('savePricingState').textContent='Species pricing saved. This state remains visible.';};window.BlackFlagBusinessDeck.mountPriceGuide({container:$('workspace'),rates});return;}workspace('Pricing','Manage project pricing.',`<p class="muted">Pricing controls are configured per project.</p>`);return;}
+if(k==='features'){const caps=capabilities(), allow=project.customization?.allowCustomColors!==false, email=!!project.notifications?.customerConfirmationEmail;workspace('Features','Choose the business features available to your customers.',`<div class="feature-list"><label class="feature"><span><strong>Custom Colors</strong><br><small>Customer color choices available for your business</small></span><input id="fColors" type="checkbox" ${allow?'checked':''} ${caps.has('branding')?'':'disabled'}></label><label class="feature"><span><strong>Confirmation Email</strong><br><small>Send customers an order confirmation email</small></span><input id="fEmail" type="checkbox" ${email?'checked':''} ${caps.has('notifications')?'':'disabled'}></label></div><button id="saveFeatures" class="btn primary" style="margin-top:14px">SAVE FEATURES</button><div id="saveFeaturesState" class="save-state">No unsaved changes.</div>`);$('saveFeatures').onclick=async()=>{project.customization={...(project.customization||{}),allowCustomColors:!!$('fColors').checked};project.notifications={...(project.notifications||{}),customerConfirmationEmail:!!$('fEmail').checked};await putProject(project);$('saveFeaturesState').textContent='Approved feature choices saved.';};return;}
+if(k==='branding'){workspace('Branding','Update how your business name and message appear to customers.',`${projectId==='ikes-wood-signs'?`<div class="brand-identity"><img src="ike_character.png" alt="Current Ike's Wood Signs identity"><div><div class="eyebrow gold">CURRENT BUSINESS IDENTITY</div><strong>${esc(project.name||"Ike's Wood Signs")}</strong><small>Approved Ike identity currently used across the Owner Bridge and customer-facing surfaces.</small></div></div>`:''}<div class="brand-grid"><label>Business name<input data-bf-trim="boundary" id="brandName" value="${esc(project.name||'')}"></label><label>Subtitle<input data-bf-trim="boundary" id="brandSub" value="${esc(project.branding?.subtitle||'')}"></label></div><button id="saveBrand" class="btn primary" style="margin-top:14px">SAVE BRANDING</button><div id="brandState" class="save-state">No unsaved changes.</div>`);$('saveBrand').onclick=async()=>{const n=String($('brandName').value||'').trim();if(n)project.name=n;project.branding={...(project.branding||{}),businessName:n||project.name,subtitle:String($('brandSub').value||'').trim()};await putProject(project);setNames();$('brandState').textContent='Branding saved.';};return;}
+if(k==='references'){const rows=styleRefs().slice().sort((a,b)=>String(b.updatedAt||'').localeCompare(String(a.updatedAt||'')));const styles=stylePackRegistry();workspace('Lettering styles','Real examples first. Keep reference evidence, exact wording and production approval distinct.',`<div class="style-foundry-state"><strong>PRODUCTION RULE</strong><br>Evidence → correct → segment → approve → assemble → benchmark → certify → publish. Draft observations never become proven geometry automatically.</div><div id="sfStatus" class="save-state">${project.styleFoundry?.compiledAt?'Last geometry compile '+esc(new Date(project.styleFoundry.compiledAt).toLocaleString()):'No GlyphForge compile yet. Bundled A/B anchor geometry remains protected.'}</div><div class="style-registry">${stylePackCards()}</div><div class="graphic-import"><h3>Create style from a graphic</h3><p class="muted">Upload a lettering graphic or finished-sign image and type the exact characters shown. The graphic starts as draft evidence. Its characters are observations until the evidence is approved and its glyph segmentation is reviewed.</p><div class="graphic-import-grid"><label>Style name<input data-bf-trim="boundary" id="sfGraphicName" placeholder="Example: Cabin Serif"></label><label>Exact wording in graphic<input data-bf-trim="preserve" id="sfGraphicText" placeholder="Type exactly what the graphic shows"></label><label>Starting geometry<select id="sfGraphicProfile"><option value="A">Bold / block seed</option><option value="B">Tall / condensed seed</option></select></label><label>Graphic<input id="sfGraphicFile" type="file" accept="image/*"></label></div><button id="sfGraphicCreate" class="btn primary" style="margin-top:10px">CREATE DRAFT STYLE FROM GRAPHIC</button></div><div class="style-new"><h3>Create empty style pack</h3><p class="muted">Use this only when there is no graphic yet. The empty style remains hidden until evidence, geometry, benchmark replay, certification, and publication are complete.</p><div class="style-new-grid"><label>Style name<input data-bf-trim="boundary" id="sfNewName" placeholder="Example: Rustic Script"></label><label>Starting geometry<select id="sfNewProfile"><option value="A">Bold / block starting profile</option><option value="B">Tall / condensed starting profile</option></select></label><label>Sample label<input data-bf-trim="preserve" id="sfNewSample" placeholder="Example wording"></label></div><button id="sfCreateStyle" class="btn secondary" style="margin-top:10px">CREATE EMPTY DRAFT STYLE</button></div><div class="style-foundry-upload"><label>Style<select id="sfStyle">${Object.values(styles).map(p=>`<option value="${esc(p.id)}">Style ${esc(p.id)} — ${esc(p.name)}</option>`).join('')}</select></label><label>Exact wording shown<input data-bf-trim="preserve" id="sfText" placeholder="Type exactly what appears in the photo"></label><label>Title<input data-bf-trim="boundary" id="sfTitle" placeholder="Finished sign example"></label><label>Image<input id="sfFile" type="file" accept="image/*"></label></div><button id="sfAdd" class="btn primary" style="margin-top:12px">ADD DRAFT EXAMPLE</button> <button id="sfCompile" class="btn warn" style="margin-top:12px">COMPILE REVIEWED GEOMETRY</button><div class="style-foundry-list">${rows.length?rows.map(r=>`<article class="style-foundry-row">${r.dataUrl?`<img src="${r.dataUrl}" alt="reference">`:'<div>NO IMAGE</div>'}<div><small>${esc(String(r.status||'draft').toUpperCase())} • STYLE ${esc(r.style||'—')}</small><h3>${esc(r.title||'Example')}</h3><p class="muted">${esc(r.sampleText||'No wording tagged')}</p></div><div>${r.status!=='approved'?`<span class="forge-badge hold">REVIEW REQUIRED</span>`:'<span class="forge-badge ready">APPROVED</span>'}</div></article>`).join(''):'<p class="muted">No uploaded examples yet. Bundled RAMJET and SMOKE HOLE! anchors remain protected starting geometry.</p>'}</div>`);
+$('sfGraphicCreate').onclick=async()=>{const name=String($('sfGraphicName').value||'').trim(),sampleText=String($('sfGraphicText').value||'').trim(),f=$('sfGraphicFile').files?.[0];if(!name){$('sfStatus').textContent='Give the graphic-derived style a name.';return;}if(!sampleText){$('sfStatus').textContent='Enter the exact wording shown in the graphic.';return;}if(!f){$('sfStatus').textContent='Choose the graphic image.';return;}if(f.size>12*1024*1024){$('sfStatus').textContent='Use an image under 12 MB.';return;}const id=nextStyleId(),profile=$('sfGraphicProfile').value,now=new Date().toISOString(),dataUrl=await readFileData(f),refId='REF-'+Date.now().toString(36);styles[id]={id,name,label:`Style ${id} — ${name}`,sampleText,anchorText:sampleText,anchorImage:dataUrl,anchorSource:'owner-draft-graphic',status:'draft',customerVisible:false,geometryProfile:profile,geometryCertified:false,geometryCertificationBasis:'evidence-required',candidateFromGraphic:true,canonicalGlyphs:{},versions:[],createdAt:now};styleRefs().push({id:refId,projectId,style:id,title:`${name} graphic seed`,sampleText,dataUrl,status:'draft',kind:'lettering-graphic',role:'production-geometry-seed',createdAt:now,updatedAt:now,source:'owner-graphic'});await putProject(project);rerenderFoundry(id,`Style ${id} created from graphic as DRAFT. ${sfChars(sampleText).length} characters are observations only until approval.`,refId);};
+$('sfCreateStyle').onclick=async()=>{const name=String($('sfNewName').value||'').trim();if(!name){$('sfStatus').textContent='Give the new style a name first.';return;}const id=nextStyleId(),profile=$('sfNewProfile').value;styles[id]={id,name,label:`Style ${id} — ${name}`,sampleText:String($('sfNewSample').value||name).trim(),anchorText:'',anchorImage:'',anchorSource:'none',status:'draft',customerVisible:false,geometryProfile:profile,geometryCertified:false,geometryCertificationBasis:'evidence-required',canonicalGlyphs:{},versions:[],createdAt:new Date().toISOString()};await putProject(project);rerenderFoundry(id,`Style ${id} empty draft created. Add real evidence before geometry work.`);};
+$('sfAdd').onclick=async()=>{const f=$('sfFile').files?.[0],style=$('sfStyle').value;if(!f){$('sfStatus').textContent='Choose an image.';return;}if(f.size>12*1024*1024){$('sfStatus').textContent='Use an image under 12 MB.';return;}const sampleText=String($('sfText').value||'').trim();if(!sampleText){$('sfStatus').textContent='Enter the exact wording shown so coverage can be measured.';return;}const now=new Date().toISOString(),id='REF-'+Date.now().toString(36);styleRefs().push({id,projectId,style,title:String($('sfTitle').value||'Finished sign example').trim(),sampleText,dataUrl:await readFileData(f),status:'draft',kind:'finished-sign',role:'production-geometry',createdAt:now,updatedAt:now,source:'owner'});await putProject(project);rerenderFoundry(style,`Draft evidence added to Style ${style}. No customer geometry changed.`,id);};
+document.querySelectorAll('[data-sf-edit]').forEach(b=>b.onclick=()=>{const el=document.getElementById('edit-'+b.dataset.sfEdit);if(el)el.hidden=!el.hidden;});
+document.querySelectorAll('[data-edit-save]').forEach(b=>b.onclick=async()=>{const r=styleRefs().find(x=>x.id===b.dataset.editSave);if(!r)return;const oldText=r.sampleText||'',newText=String(document.querySelector(`[data-edit-text="${CSS.escape(r.id)}"]`)?.value||'').trim(),newTitle=String(document.querySelector(`[data-edit-title="${CSS.escape(r.id)}"]`)?.value||'').trim();if(!newText){$('sfStatus').textContent='Exact wording cannot be blank.';return;}r.sampleText=newText;r.title=newTitle||r.title;r.updatedAt=new Date().toISOString();if(r.status==='approved'&&newText!==oldText){r.status='draft';delete r.approvedAt;const pack=stylePackRegistry()[r.style];for(const c of glyphCandidates().filter(c=>c.evidenceId===r.id)){if(pack?.canonicalGlyphs?.[c.char]===c.id)delete pack.canonicalGlyphs[c.char];c.status='candidate';}if(pack&&pack.geometryCertificationBasis!=='bundled-anchor'){pack.geometryCertified=false;pack.status='draft';} }glyphCandidates().splice(0,glyphCandidates().length,...glyphCandidates().filter(c=>c.evidenceId!==r.id));await putProject(project);rerenderFoundry(r.style,newText!==oldText?`Evidence wording corrected. Approval and segmentation were reset so stale geometry cannot survive.`:`Evidence metadata updated.`,r.id);});
+document.querySelectorAll('[data-sf-approve]').forEach(b=>b.onclick=async()=>{const r=styleRefs().find(x=>x.id===b.dataset.sfApprove);if(!r)return;const before=styleCoverage(r.style).chars.length;r.status='approved';r.approvedAt=new Date().toISOString();r.updatedAt=r.approvedAt;const pack=stylePackRegistry()[r.style];if(pack&&pack.status==='draft')pack.status='approved';if(pack&&!pack.anchorImage){pack.anchorImage=r.dataUrl;pack.anchorText=r.sampleText||'';pack.anchorSource='owner-approved';}await putProject(project);const after=styleCoverage(r.style).chars.length;rerenderFoundry(r.style,`Style ${r.style}: ${before} → ${after} proven glyphs. Evidence approved; geometry still requires segmentation/canonical review.`,r.id);});
+document.querySelectorAll('[data-sf-segment]').forEach(b=>b.onclick=async()=>{const r=styleRefs().find(x=>x.id===b.dataset.sfSegment);if(!r)return;const segs=estimatedSegments(r.sampleText),all=glyphCandidates(),keep=all.filter(c=>c.evidenceId!==r.id);const now=new Date().toISOString();const next=segs.map((g,i)=>({id:'GLY-'+r.id+'-'+i,evidenceId:r.id,style:r.style,char:g.char,occurrence:g.occurrence,x0:g.x0,x1:g.x1,confidence:g.confidence,status:'candidate',createdAt:now,updatedAt:now,sourceText:r.sampleText,provenance:{projectId,style:r.style,evidenceId:r.id,source:r.source||'owner'}}));project.styleFoundry.glyphCandidates=[...keep,...next];await putProject(project);rerenderFoundry(r.style,`${next.length} glyph segmentation candidates created from “${r.sampleText}”. Review crop boundaries before choosing canonical glyphs.`,r.id);});
+document.querySelectorAll('[data-cand-save]').forEach(b=>b.onclick=async()=>{const c=glyphCandidates().find(x=>x.id===b.dataset.candSave);if(!c)return;const x0=Number(document.querySelector(`[data-cand-x0="${CSS.escape(c.id)}"]`)?.value),x1=Number(document.querySelector(`[data-cand-x1="${CSS.escape(c.id)}"]`)?.value);if(!(Number.isFinite(x0)&&Number.isFinite(x1)&&x0>=0&&x1<=100&&x1>x0+0.5)){$('sfStatus').textContent='Crop bounds must be valid percentages with right greater than left.';return;}c.x0=x0;c.x1=x1;c.confidence=Math.min(.95,Number(c.confidence||.42)+.12);c.updatedAt=new Date().toISOString();await putProject(project);rerenderFoundry(c.style,`Crop for “${c.char}” updated. Candidate confidence is now ${(c.confidence*100).toFixed(0)}%.`,c.evidenceId);});
+document.querySelectorAll('[data-cand-canonical]').forEach(b=>b.onclick=async()=>{const c=glyphCandidates().find(x=>x.id===b.dataset.candCanonical);if(!c)return;const r=styleRefs().find(x=>x.id===c.evidenceId);if(r?.status!=='approved'){$('sfStatus').textContent='Approve the source evidence before choosing canonical geometry.';return;}const pack=stylePackRegistry()[c.style];for(const other of glyphCandidates().filter(x=>x.style===c.style&&x.char===c.char)){other.status=other.id===c.id?'canonical':'alternate';}pack.canonicalGlyphs[c.char]=c.id;if(pack.geometryCertificationBasis!=='bundled-anchor')pack.geometryCertified=false;c.updatedAt=new Date().toISOString();await putProject(project);rerenderFoundry(c.style,`Style ${c.style}: “${c.char}” canonical geometry selected from ${r.title||'approved evidence'}.`,c.evidenceId);});
+document.querySelectorAll('[data-sf-rollback]').forEach(b=>b.onclick=async()=>{const pack=stylePackRegistry()[b.dataset.sfRollback],v=pack?.versions?.find(x=>x.version===b.dataset.version);if(!pack||!v)return;pack.currentVersion=v.version;pack.canonicalGlyphs={...(v.canonicalGlyphs||{})};pack.certifiedEvidenceChars=v.evidenceChars||'';pack.compiledGeometryChars=sfChars((pack.anchorSource==='bundled-production'?pack.anchorText:'')+Object.keys(pack.canonicalGlyphs).join(''));pack.geometryCertified=!!v.certified;pack.status='compiled';pack.rolledBackAt=new Date().toISOString();await putProject(project);rerenderFoundry(pack.id,`Style ${pack.id} rolled back to geometry v${v.version}. Customer publication remains deliberate.`);});
+document.querySelectorAll('[data-sf-certify]').forEach(b=>b.onclick=async()=>{const pack=stylePackRegistry()[b.dataset.sfCertify];if(!pack)return;const bench=benchmarkReplay(pack),canonicalCount=Object.keys(pack.canonicalGlyphs||{}).length;if(!(pack.currentVersion&&canonicalCount>=Math.min(6,Math.max(1,styleCoverage(pack.id).chars.length))&&bench.length&&bench.every(t=>t.pass))){$('sfStatus').textContent='Certification blocked: compile reviewed canonical geometry and clear every protected benchmark first.';return;}pack.geometryCertified=true;pack.geometryCertificationBasis='owner-reviewed-glyphforge';pack.geometryCertifiedAt=new Date().toISOString();pack.geometryCertifiedBy='owner';const v=pack.versions?.find(x=>x.version===pack.currentVersion);if(v)v.certified=true;await putProject(project);rerenderFoundry(pack.id,`Style ${pack.id} geometry v${pack.currentVersion} certified after benchmark replay.`);});
+document.querySelectorAll('[data-sf-publish]').forEach(b=>b.onclick=async()=>{const pack=stylePackRegistry()[b.dataset.sfPublish];if(!pack)return;if(!(pack.geometryCertified&&benchmarkReplay(pack).every(t=>t.pass))){$('sfStatus').textContent='Publication blocked until certified geometry clears protected benchmarks.';return;}pack.status='published';pack.customerVisible=true;pack.publishedAt=new Date().toISOString();await putProject(project);rerenderFoundry(pack.id,`Style ${pack.id} v${pack.currentVersion||'—'} published to CX.`);});
+document.querySelectorAll('[data-sf-unpublish]').forEach(b=>b.onclick=async()=>{const pack=stylePackRegistry()[b.dataset.sfUnpublish];if(!pack)return;pack.status='compiled';pack.customerVisible=false;await putProject(project);rerenderFoundry(pack.id,`Style ${pack.id} removed from CX. Compiled geometry remains available for review.`);});
+$('sfCompile').onclick=async()=>{const style=$('sfStyle').value;await compileGlyphForge();rerenderFoundry(style,'Reviewed canonical geometry compiled into a new version. Benchmark replay and certification remain separate gates.');};window.BlackFlagBusinessDeck.mountLettering({container:$('workspace'),packs:Object.values(styles),coverages:Object.fromEntries(Object.keys(styles).map(id=>[id,styleCoverage(id)]))});return;}
+if(k==='services'){const rows=await fleetServiceCatalog();workspace('Fleet Services','Services offered to this business. Included services and requested paid upgrades remain separately governed.',`<div class="service-list">${rows.length?rows.map(e=>{const c=e.capability,status=serviceStatusLabel(e),canRequest=e.commercial_mode==='paid'&&e.status==='available'&&!e.request;const note=e.status==='enabled'?'This service is active for this business.':e.status==='entitled'&&e.commercial_mode==='standard'?'Included by the Fleet. No upgrade request is required.':e.status==='entitled'?'Approved by the Admiral. Setup can proceed without another request.':e.request?'Your request is on file. The service stays off until the Fleet approves it.':'Requesting a paid service does not turn it on. The Fleet must approve it first.';return `<article class="service-card"><div class="service-card-head"><div><div class="eyebrow">${esc(c.lifecycle.toUpperCase())}</div><h3>${esc(c.display_name)}</h3><p class="muted">${esc(c.owner_summary.replace('project-scoped','your').replace('permitted for this vessel','approved for this business'))}</p></div><strong>${esc(status)}</strong></div><div class="service-meta"><span class="service-pill ${e.commercial_mode==='standard'?'standard':'paid'}">${e.commercial_mode==='standard'?'INCLUDED':'PAID UPGRADE'}</span>${e.fee_label?`<span class="service-pill">${esc(e.fee_label)}</span>`:''}</div>${canRequest?`<button class="btn ghost service-action" data-service-request="${esc(e.id)}">REQUEST UPGRADE</button>`:''}<div class="service-note">${esc(note)}</div></article>`}).join(''):'<p class="muted">No Fleet services are currently offered to this business.</p>'}</div>`);document.querySelectorAll('[data-service-request]').forEach(b=>b.onclick=async()=>{const ent=rows.find(x=>x.id===b.dataset.serviceRequest);if(!ent)return;b.disabled=true;b.textContent='REQUESTING…';try{await requestFleetService(ent);b.textContent='REQUESTED';}catch(e){b.disabled=false;b.textContent='REQUEST SERVICE';alert(String(e?.message||e));}});return;}
+if(k==='settings'){workspace('Settings','Manage your owner access for this business.',`<div class="feature-list"><div class="feature"><span><strong>Owner access</strong><br><small>Verified for ${esc(project?.name||'this business')}</small></span><strong>ACTIVE</strong></div><div class="feature"><span><strong>Fleet services</strong><br><small>Standard and paid capabilities are governed separately from owner access</small></span><strong>GOVERNED</strong></div><div class="feature"><span><strong>Fleet administration</strong><br><small>Kept separate from owner access</small></span><strong>SEPARATE</strong></div></div>`);return;}}
+async function boot(){if(!window.BlackFlagHeadway||window.BlackFlagHeadway.version!=='8.8.20.68'||!window.BlackFlagViewport)throw new Error('Strongbox workspace helpers are incomplete. Upload the complete update without clearing business data.');if(!window.BlackFlagBusinessDeck||window.BlackFlagBusinessDeck.BUILD!=='8.8.20.68'||window.BlackFlagInput?.build!=='8.8.20.68'||window.__workhorseDeckStylesFailed)throw new Error('Strongbox business workspace files are incomplete. Upload the complete matching TEST package; do not clear business data.');if(!projectId)throw new Error('Owner route is missing its project identifier.');$('safeStatus').textContent='Securing owner session…';db=await openDb();$('safeStatus').textContent='Resolving canonical project record…';project=await getProject();if(!project)throw new Error('The requested business was not found in the canonical project registry.');setNames();await ensureIkeTestCredential();orders=await getOrders();bindEngineButtons();$('safeStatus').textContent='Verifying owner authority…';const local=ownerSession();if(!usesSupabaseOwner()&&sessionValid(local)&&ownerActive()&&local.identityProvider!=='supabase'){renderPortal();history.replaceState({surface:'owner',projectId},'',`owner.html?project=${encodeURIComponent(projectId)}&view=portal${source==='engine'?'&source=engine':''}`);return;}const liveState=await resolveLiveOwnerState();if(liveState.state==='ready'){renderPortal();history.replaceState({surface:'owner',projectId},'',`owner.html?project=${encodeURIComponent(projectId)}&view=portal${source==='engine'?'&source=engine':''}`);return;}if(liveState.state==='password_setup'){renderPasswordSetup(liveState.recovery);return;}if(liveState.state==='denied'){$('safeStatus').textContent='Owner identity authenticated, but this vessel is not authorized.';clearSupabaseSession();clearSession('owner-scope-denied');show('login');$('loginError').textContent=ownerAccessMessage(liveState.reason);}else{show('login');if(requestedView==='portal')$('loginError').textContent='Sign in to restore the Owner Control Center.';}configureOwnerLogin();}
+$('signIn').onclick=async()=>{try{$('loginError').textContent='';if(usesSupabaseOwner()&&!localRecoveryAttempt){await signInWithPassword($('loginUser').value,$('loginPass').value);const state=await resolveLiveOwnerState();if(state.state==='password_setup'){renderPasswordSetup(state.recovery);return;}if(state.state!=='ready'){clearSupabaseSession();clearSession('owner-scope-denied');throw new Error(ownerAccessMessage(state.reason));}history.replaceState({surface:'owner',projectId},'',`owner.html?project=${encodeURIComponent(projectId)}&view=portal${source==='engine'?'&source=engine':''}`);renderPortal();return;}if(!await verify($('loginUser').value,$('loginPass').value)){ $('loginError').textContent='The login or password did not match.';return;}saveSession();history.replaceState({surface:'owner',projectId},'',`owner.html?project=${encodeURIComponent(projectId)}&view=portal${source==='engine'?'&source=engine':''}`);renderPortal();}catch(e){$('loginError').textContent=String(e?.message||e);}};
+$('sendMagicLink').onclick=async()=>{try{$('loginError').textContent='Sending secure sign-in link…';await sendMagicLink($('loginUser').value);$('loginError').textContent='Secure sign-in link sent. Open the newest email on this device.';}catch(e){$('loginError').textContent='Secure sign-in could not start. '+String(e?.message||e);}};
+$('forgotPassword').onclick=async()=>{try{$('loginError').textContent='';if(!usesSupabaseOwner()){renderLocalRecovery();return;}const email=String($('loginUser').value||'').trim();if(!email){$('loginError').textContent='Enter your email first.';return;}$('forgotPassword').disabled=true;$('forgotPassword').textContent='SENDING RECOVERY…';await sendPasswordRecovery(email);$('loginError').innerHTML='<div class="recovery-success">If this email belongs to the owner of this business, a recovery message is on its way. Open the newest recovery email on this device.</div>';}catch(e){$('loginError').textContent='Recovery could not start. '+String(e?.message||e);}finally{$('forgotPassword').disabled=false;$('forgotPassword').textContent='FORGOT PASSWORD?';}};
+$('saveLocalRecovery').onclick=async()=>{try{$('localRecoveryError').textContent='';$('saveLocalRecovery').disabled=true;$('saveLocalRecovery').textContent='RESETTING…';await resetLocalOwnerCredential();}catch(e){$('localRecoveryError').textContent=String(e?.message||e);}finally{if(!$('localRecovery').classList.contains('hidden')){$('saveLocalRecovery').disabled=localRecoveryWaitMs()>0;$('saveLocalRecovery').textContent='RESET OWNER PASSWORD';}}};
+$('cancelLocalRecovery').onclick=()=>{show('login');$('localRecoveryError').textContent='';configureOwnerLogin();};
+$('savePassword').onclick=async()=>{try{$('passwordSetupError').textContent='';const a=$('newPassword').value,b=$('confirmPassword').value;if(!passwordStrongEnough(a)){$('passwordSetupError').textContent='Use at least 10 characters.';return;}if(a!==b){$('passwordSetupError').textContent='The passwords do not match.';return;}$('savePassword').disabled=true;$('savePassword').textContent='SECURING ACCOUNT…';await setOwnerPassword(a);const entered=await enterSupabaseOwner();if(!entered.ok)throw new Error(entered.reason||'Vessel scope could not be verified.');history.replaceState({surface:'owner',projectId},'',`owner.html?project=${encodeURIComponent(projectId)}&view=portal${source==='engine'?'&source=engine':''}`);renderPortal();}catch(e){$('passwordSetupError').textContent=String(e?.message||e);}finally{$('savePassword').disabled=false;if(!$('passwordSetup').classList.contains('hidden'))$('savePassword').textContent='CREATE PASSWORD & CONTINUE';}};
+$('useLocalRecovery').onclick=()=>{localRecoveryAttempt=true;$('passwordLabel').classList.remove('hidden');$('signIn').classList.remove('hidden');$('sendMagicLink').classList.add('hidden');$('forgotPassword').classList.add('hidden');$('useLocalRecovery').classList.add('hidden');$('loginUser').value='joe';$('loginError').textContent='RECOVERY-ONLY local owner bridge enabled for this attempt.';};
+$('loginPass').addEventListener('keydown',e=>{if(e.key==='Enter')$('signIn').click();});$('localConfirmPassword').addEventListener('keydown',e=>{if(e.key==='Enter')$('saveLocalRecovery').click();});$('signOut').onclick=async()=>{const ss=supabaseSession();if(ss?.access_token){try{await fetch(SUPABASE_URL+'/auth/v1/logout',{method:'POST',headers:supaHeaders(ss.access_token)});}catch(_){}}clearSupabaseSession();clearSession();history.replaceState({surface:'owner',projectId},'',`owner.html?project=${encodeURIComponent(projectId)}&view=login${source==='engine'?'&source=engine':''}`);show('login');$('loginPass').value='';configureOwnerLogin();};$('retry').onclick=()=>location.reload();
+boot().catch(e=>{$('failureDetail').textContent=String(e?.message||e);if(source==='engine')$('failureEngine').classList.remove('hidden');show('failure');});
+})();
+</script>
+</body>
+</html>

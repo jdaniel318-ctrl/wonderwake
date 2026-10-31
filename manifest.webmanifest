@@ -1,0 +1,18 @@
+{
+  "name": "Dark Sky \u2014 Fleet Mission",
+  "short_name": "Dark Sky",
+  "start_url": "./index.html?_darkSkyRelease=8.8.20.73&_darkSkySeal=fleetbound-882073",
+  "display": "standalone",
+  "background_color": "#071419",
+  "theme_color": "#071419",
+  "icons": [
+    {
+      "src": "black_flag_platform_icon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ],
+  "description": "Dark Sky: the Black Flag multi-project business platform with isolated project operations, owner access, deployment control, telemetry, and Captain command.",
+  "version": "8.8.20.73"
+}

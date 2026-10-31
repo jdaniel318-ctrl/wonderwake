@@ -1,0 +1,258 @@
+{
+  "schema": "dark-sky-golden-voyages-v1",
+  "build": "8.8.20.73",
+  "policy": "real-ui-path-release-assurance-with-admiral-course-authority",
+  "voyages": [
+    {
+      "id": "blackwake-authority-hull",
+      "label": "KeelLock Authority Hull Voyage",
+      "class": "required",
+      "release_blocker": true,
+      "proof": [
+        "anonymous-rpc-denial",
+        "admiral-server-authority-check",
+        "exact-vessel-captain-scope",
+        "exact-project-owner-scope",
+        "actor-bound-commissioning-recovery",
+        "fleet-core-readback-before-server-safe"
+      ],
+      "summary": "Authority is proven by Fleet Core and exact server scope; browser/session state is never authority."
+    },
+    {
+      "id": "fleet-entry",
+      "path": [
+        "Engine Login",
+        "Fleet Dock",
+        "Vessel roster paints"
+      ],
+      "release_blocker": true,
+      "registry_ledger_contract": "Live fleet count must remain six and Fleet Intelligence must leave READING FLEET inside the bounded window."
+    },
+    {
+      "id": "customer",
+      "path": [
+        "Fleet Dock",
+        "Customer Experience",
+        "Exact business-facing vessel shell",
+        "Live session or no-record Private Preview",
+        "Never Project Control or Deployment Shipwright",
+        "Correct project/branding/session"
+      ],
+      "release_blocker": true
+    },
+    {
+      "id": "production-identity",
+      "label": "Production Identity Voyage",
+      "class": "development-watch",
+      "release_blocker": false,
+      "proof": [
+        "supabase-provider-contract",
+        "publishable-key-only-browser-boundary",
+        "server-membership-authority",
+        "exact-project-rls",
+        "authenticated-fleet-spine-posture",
+        "six-of-six-neutral-settings-seed",
+        "fleet-seed-does-not-invent-owner",
+        "captain-admiral-engine-commissioning",
+        "server-revocation",
+        "rollback-bridge"
+      ],
+      "clear_condition": "A real backend is connected and live negative tests prove cross-vessel denial, membership revocation, session expiry, and rollback.",
+      "known_good_anchor": "8.6.38"
+    },
+    {
+      "id": "fleet-ownership-charter",
+      "label": "Fleet Ownership Charter Voyage",
+      "class": "required",
+      "release_blocker": true,
+      "proof": [
+        "entry-path-separation",
+        "commissioning-not-ownership",
+        "ownership-not-operation",
+        "self-join-controlled",
+        "admiral-owned-supported",
+        "transfer-preserves-vessel-id",
+        "transfer-audited-recoverable"
+      ],
+      "summary": "Vessel entry \u2192 ownership \u2192 operating authority remain separate; self-join and deliberate transfer cannot silently escalate Fleet authority."
+    },
+    {
+      "id": "lateral-fleet-structure",
+      "label": "Lateral Fleet Structure Voyage",
+      "class": "required",
+      "release_blocker": true,
+      "proof": [
+        "black-flag-registry-identity",
+        "six-independent-businesses-retained",
+        "bootstrap-admiral-program-not-commissioned",
+        "no-project-parentage",
+        "explicit-capability-adoption",
+        "ownership-authority-branding-namespace-data-remain-isolated"
+      ],
+      "summary": "The registry sees every member without containing it; a governed capability may travel only through explicit adoption."
+    },
+    {
+      "id": "bootstrap-build-schedule",
+      "label": "Bootstrap Build Bootstrap Build Schedule",
+      "class": "required",
+      "release_blocker": true,
+      "path": [
+        "Admiral Promote",
+        "Commissioning Orders",
+        "Late-loaded Bootstrap identity panel",
+        "Open Bootstrap Build Schedule",
+        "Move multi-day task",
+        "Duration remains intact",
+        "Vendor sees assigned task and move notice",
+        "Settlement remains visible"
+      ],
+      "proof": [
+        "twelve-week-monday-friday-calendar",
+        "schedule-doorway-installs-after-brand-panel",
+        "realistic-clearing-to-settlement-seed",
+        "single-and-multi-day-bars",
+        "mouse-touch-keyboard-movement",
+        "task-vendor-assignment-and-filtered-view",
+        "vendor-visible-schedule-change-log",
+        "browser-local-only",
+        "no-commissioning-or-fleet-core-write"
+      ],
+      "summary": "Bootstrap Build can test flexible scheduling and vendor visibility without becoming live fleet, customer, or messaging data."
+    },
+    {
+      "id": "owner",
+      "path": [
+        "Fleet Dock",
+        "Owner Control Center",
+        "Refresh",
+        "State retained",
+        "Explicit Engine return"
+      ],
+      "release_blocker": true,
+      "staging_ledger_contract": "When a live staging action occurs, persisted staged records must equal targeted vessels after re-render while adoption remains separate."
+    },
+    {
+      "id": "captain",
+      "path": [
+        "Engine",
+        "Captain Professional Command",
+        "Command action",
+        "Durable result",
+        "Deterministic return"
+      ],
+      "release_blocker": true,
+      "registry_ledger_contract": "Live fleet count must remain six and Fleet Intelligence must leave READING FLEET inside the bounded window."
+    },
+    {
+      "id": "admiral",
+      "path": [
+        "Captain",
+        "Admiral Professional Trial",
+        "Readiness/Foundry",
+        "Deterministic return"
+      ],
+      "release_blocker": true,
+      "staging_ledger_contract": "When a live staging action occurs, persisted staged records must equal targeted vessels after re-render while adoption remains separate."
+    },
+    {
+      "id": "fleet-truth-signal",
+      "label": "Fleet Truth Signal Voyage",
+      "class": "required",
+      "release_blocker": true,
+      "path": [
+        "Exact vessel Owner Control",
+        "Live owner identity and membership verification",
+        "Publish current work and issue count",
+        "Admiral authenticates separately",
+        "Refresh read-only My Fleet",
+        "Open exact vessel observation"
+      ],
+      "proof": [
+        "no local recovery publication",
+        "no cross-vessel owner read or write",
+        "no Admiral watch mutation",
+        "never-reported distinct from stale",
+        "registry timestamps never become operational activity",
+        "server reported_at is the only freshness clock"
+      ],
+      "summary": "A vessel owns its operational report; an authenticated Admiral may observe the server-attested result without receiving control of that vessel."
+    },
+    {
+      "id": "owner-recovery-helm",
+      "label": "Owner Recovery Helm Voyage",
+      "class": "required",
+      "release_blocker": true,
+      "path": [
+        "Exact vessel Owner Entrance",
+        "Forgot Password",
+        "Supabase email recovery or provisional Project Admin recovery",
+        "New password confirmation",
+        "Durable recovery result",
+        "Fresh owner sign-in"
+      ],
+      "proof": [
+        "forgot-password-visible-for-every-owner-entrance",
+        "recovery-never-crosses-project-id",
+        "local-recovery-lockout-after-five-failures",
+        "recovery-never-auto-signs-in",
+        "recovery-never-grants-engine-captain-or-admiral",
+        "local-recovery-cannot-publish-watch-report",
+        "supabase-recovery-reverifies-exact-vessel-membership"
+      ],
+      "summary": "A forgotten owner password can be replaced without changing vessel ownership, widening authority, or confusing provisional recovery with a live server identity."
+    },
+    {
+      "id": "ike-production",
+      "path": [
+        "Photo",
+        "Wording/Style",
+        "Preview",
+        "Approval",
+        "Order",
+        "Owner sees exact artifact"
+      ],
+      "release_blocker": true,
+      "staging_ledger_contract": "When a live staging action occurs, persisted staged records must equal targeted vessels after re-render while adoption remains separate."
+    },
+    {
+      "id": "owner-authority",
+      "label": "Owner Authority Voyage",
+      "class": "required",
+      "proof": [
+        "credential-separation",
+        "canonical-vessel-scope",
+        "namespace-scope",
+        "expiring-project_owner-session",
+        "logout-witness",
+        "safe-return"
+      ],
+      "production_backend": "required-before-outside-owner-rollout",
+      "release_blocker": true
+    },
+    {
+      "id": "admiral-rank-session-separation",
+      "label": "Admiral Rank / Session Separation",
+      "class": "release-blocker",
+      "release_blocker": true,
+      "proof": [
+        "commissioned Admiral wording survives secure-session lock",
+        "fresh document still requires two-step Admiral authentication",
+        "session expiry never grants access and never labels rank removed",
+        "Captain office remains separate",
+        "readiness WATCH does not demote rank"
+      ]
+    }
+  ],
+  "governance": {
+    "admiralMayChangeCourse": true,
+    "rule": "Golden voyages may evolve when Admiral deliberately promotes a new Fleet course. A course change must explicitly version the voyage set; it may add or supersede assurance paths but may not silently weaken active release blockers."
+  },
+  "release_compatibility": {
+    "runtime_build": "8.8.17.13",
+    "basis": "same semantic contract; exact existing safety predicates retained and negative-tested",
+    "authored_build": "8.8.17",
+    "verified_by": "keelguard-package-validation",
+    "proves_live_operation": false
+  },
+  "release": "Ironbound TEST"
+}

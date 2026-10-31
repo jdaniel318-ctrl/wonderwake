@@ -1,0 +1,251 @@
+{
+  "schema": "dark-sky-command-model-v1",
+  "build": "8.8.20.73",
+  "views": {
+    "operational": "professional-default",
+    "presentation": "cinematic-secondary"
+  },
+  "layers": [
+    {
+      "id": "engine",
+      "verb": "operate",
+      "mission": "routing, diagnostics, recovery, commissioning and project health"
+    },
+    {
+      "id": "captain",
+      "verb": "command",
+      "mission": "Watch \u2192 Decide \u2192 Act \u2192 Record across vessels"
+    },
+    {
+      "id": "admiral",
+      "verb": "govern",
+      "mission": "fleet posture, doctrine, standards, Foundry, delegation and cross-vessel intelligence"
+    }
+  ],
+  "learning_pipeline": [
+    "Observation",
+    "Lesson",
+    "Capability Candidate",
+    "Foundry",
+    "Sea Trial",
+    "Proven Capability",
+    "Fleet Standard / Shared Service / New Vessel"
+  ],
+  "release": "Ironbound TEST",
+  "dualOfficeCommission": {
+    "samePersonMayHoldCaptainAndAdmiral": true,
+    "officesRemainDistinct": true,
+    "activeOfficeRequiredPerAction": true,
+    "captainSessionSilentlyElevates": false,
+    "admiralServerVerificationRequired": true,
+    "ledger": "REGISTRY_LEDGER_MODEL.json"
+  },
+  "viewContract": {
+    "default": "professional",
+    "cinematic": "secondary presentation over same command model",
+    "statePreserved": true,
+    "captain": [
+      "Watch",
+      "Decide",
+      "Act",
+      "Record"
+    ],
+    "admiral": [
+      "Govern",
+      "Standardize",
+      "Delegate",
+      "Promote"
+    ]
+  },
+  "outcomeContract": {
+    "readinessFindings": "durable actionable findings",
+    "actionResults": "remain at affected command context",
+    "whatChanged": "visible on professional command"
+  },
+  "presentation_contract": {
+    "professional_default": true,
+    "cinematic_secondary": true,
+    "same_command_model": true,
+    "preserve_state_across_views": true,
+    "no_operational_overlays": true,
+    "captain_lanes": [
+      "Watch",
+      "Decide",
+      "Act",
+      "Record"
+    ],
+    "admiral_lanes": [
+      "Govern",
+      "Standardize",
+      "Delegate",
+      "Promote"
+    ],
+    "layout_order": [
+      "Command lanes",
+      "Status",
+      "Tools",
+      "Presentation"
+    ]
+  },
+  "readiness_truth": {
+    "lifecycle": [
+      "Detected",
+      "Open",
+      "Verified Fix",
+      "Cleared"
+    ],
+    "current_posture_separate_from_history": true,
+    "direct_actions": true,
+    "storage_growth_watch": true,
+    "captain_outcomes_durable": true
+  },
+  "admiralCourseAuthority": {
+    "enabled": true,
+    "authority": "admiral",
+    "captainRole": "recommend-and-execute-delegated-course",
+    "engineRole": "implement-current-promoted-course",
+    "promotionRequired": true,
+    "historyRetained": true,
+    "rollbackSupported": true,
+    "invariant": "Changing Fleet course must not silently rewrite prior proof, vessel identity, owner authority, or release history."
+  },
+  "admiralCommissioningAuthority": {
+    "enabled": true,
+    "authority": "admiral",
+    "previewRequired": true,
+    "defaultLifecycle": "commissioning",
+    "commissionerBecomesIndividualProjectOwner": false,
+    "admiralOwnedProgramsSupported": true,
+    "defaultProgramOwnershipModel": "admiral_owned",
+    "createsMembership": false,
+    "createsEntitlements": false,
+    "workingNameEditable": true,
+    "immutableIdentity": [
+      "id",
+      "project_id",
+      "namespace"
+    ]
+  },
+  "fleetStructureContract": {
+    "registryOwner": "black_flag",
+    "topology": "lateral_independent_members",
+    "roles": {
+      "admiral": "govern standards, capability passage, and fleet-wide posture without absorbing vessels",
+      "captain": "operate and distribute only delegated, vessel-scoped capability",
+      "firstMate": "build, test, repair, and report without granting authority or crossing data boundaries"
+    },
+    "bootstrapBuild": {
+      "missionClass": "admiral_program",
+      "ownershipModel": "admiral_owned",
+      "operatingModel": "fleet_operated",
+      "relationshipToOtherVessels": "peer_not_parent",
+      "commissionedByThisRelease": false
+    },
+    "existingFleet": {
+      "count": 6,
+      "missionClass": "independent_business",
+      "identityAndDataIsolation": true
+    },
+    "sharedCapabilityPassage": {
+      "availableAcrossLevels": true,
+      "explicitAdoptionRequired": true,
+      "movesOwnership": false,
+      "movesAuthority": false,
+      "movesProjectData": false
+    }
+  },
+  "admiralFirstPaint": {
+    "defaultView": "professional",
+    "defaultLane": "govern",
+    "scrollPosition": "top",
+    "backgroundReadiness": "compact-posture-only",
+    "currentFindingsPublisher": "manual-fleet-readiness-only",
+    "incompleteProofState": "verifying-not-hold"
+  },
+  "admiralRecovery": {
+    "provider": "supabase-auth",
+    "requestOrigin": "dark-sky-admiral-entitlement-station",
+    "explicitRedirect": "root-index?surface=admiral-recovery",
+    "callbackPrecedence": "before-engine-owner-preview",
+    "identityResolution": [
+      "auth-v1-user",
+      "fleet_global_authorities-self"
+    ],
+    "requiredAuthority": "admiral-active-not-revoked",
+    "typeMarkerRequired": false,
+    "passwordStorage": "supabase-auth-only",
+    "tokenPersistence": "forbidden",
+    "failureMode": "safe-hold-no-authority"
+  },
+  "ownerRecovery": {
+    "entry": "forgot-password-visible-every-owner-entrance",
+    "supabaseIdentity": "email-recovery-and-exact-vessel-membership-reverification",
+    "provisionalIdentity": "exact-vessel-project-admin-recovery",
+    "provisionalFailureLimit": 5,
+    "provisionalLockoutMinutes": 5,
+    "minimumPasswordCharacters": 10,
+    "automaticSignIn": false,
+    "authorityChange": false,
+    "fleetWatchPublication": "supabase-project-owner-membership-only",
+    "confirmation": "durable-business-scoped-result"
+  },
+  "supabaseKeel": {
+    "readAuthority": "active-server-side-admiral-only",
+    "readFunction": "admiral_read_fleet_spine",
+    "vesselStates": [
+      "owner_ready",
+      "owner_attention",
+      "fleet_seeded",
+      "registry_only"
+    ],
+    "ownerReadyRequires": [
+      "owner_assigned",
+      "one-active-project_owner-membership",
+      "matching-auth-user",
+      "business-settings-row"
+    ],
+    "fleetSeedCreatesOwnership": false,
+    "fleetSeedCreatesCredentials": false,
+    "fleetSeedPublishes": false,
+    "localFallbackRetainedUntilCutoverProof": true
+  },
+  "fleetWatchtower": {
+    "readAuthority": "active-server-side-admiral-only",
+    "readFunction": "admiral_read_fleet_watch",
+    "writeAuthority": "exact-vessel-active-owner-membership-only",
+    "writeFunction": "vessel_publish_watch_report",
+    "ownerReadFunction": "vessel_read_own_watch_report",
+    "admiralWriteControls": false,
+    "registryActivityIsOperationalTruth": false,
+    "states": [
+      "never_reported",
+      "fresh_verified",
+      "stale_report"
+    ],
+    "reportFields": [
+      "current_work",
+      "unresolved_issues",
+      "issue_summary",
+      "reported_at",
+      "truth_source"
+    ],
+    "failureMode": "explicit-unavailable-no-registry-substitution"
+  },
+  "release_compatibility": {
+    "runtime_build": "8.8.17.13",
+    "basis": "same semantic contract; exact existing safety predicates retained and negative-tested",
+    "authored_build": "8.8.17",
+    "verified_by": "keelguard-package-validation",
+    "proves_live_operation": false
+  },
+  "admiralOfficeCommission": {
+    "status": "commissioned",
+    "acceptedBuild": "8.8.18.0",
+    "rankPersistsAcrossWorkspaceSessions": true,
+    "sessionAuthenticationStillRequired": true,
+    "readinessWarningsDoNotDemoteRank": true,
+    "captainOfficeRetained": true,
+    "revocation": "explicit-active-server-authority-revocation-only",
+    "invariant": "A session may lock without demoting the Admiral; Captain and Admiral offices remain distinct."
+  }
+}
