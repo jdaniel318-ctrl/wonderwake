@@ -1,20 +1,19 @@
-WONDERWAKE11 — PLAYDECK · 0.8.0
+WONDERWAKE12 — WAYFINDER · 0.8.1
 
 UPDATE
 1. Save any open picture, then Keep a progress copy for each learner you want backed up.
-2. Unzip this package. Upload every top-level file INSIDE Wonderwake11-Playdeck into the existing wonderwake repository root, replacing matching files. Keep verification/ and recovery/ on your device.
-3. After GitHub Pages finishes, refresh your existing Wonderwake page. Check PLAYDECK · FAMILY PREVIEW 0.8.0 and choose the same explorer.
+2. Unzip this package. Upload every top-level file INSIDE Wonderwake12-Wayfinder into the existing wonderwake repository root, replacing matching files. Keep verification/ and recovery/ on your device.
+3. After GitHub Pages finishes, refresh your existing Wonderwake page. Check WAYFINDER · FAMILY PREVIEW 0.8.1 and choose the same explorer.
 
 THREE DEVICE CHECKS
-1. Open Lantern Trail. Fit a bridge using the pieces and actions together in the dock. Try a drag and a tap. Check the larger board stays steady when the next puzzle opens.
-2. In Firefly Trail open More, then tap or drag outside the menu. That gesture should only close it. Your next gesture should draw the trail. Reset is inside More; Undo remains in the dock.
-3. Paint a mark and tap Save picture. Wait for Saved to gallery in the top button. Add a mark: it should say Save changes. Save again, then open Gallery and check the picture.
+1. Play Lantern Trail. Check the goal stays visible, including Lantern Hollow’s Match this / Your code and numbered slots. Enter three shapes, then light the lantern.
+2. In Skybridge, choose Draw this answer on an early addition question. Try too many dots, Check answer, Undo and check again. The paper should stay steady and Next discovery remain visible. Blank paper is a valid zero answer.
+3. In Wordforge, draw a word, reveal and compare it, then continue. Try Back to choices and reopen before checking: your drawing should remain. Open More and tap outside: the first tap only dismisses, and the next draws.
 
 SAVING
-Saved to gallery confirms the current picture on this device. Saving… means wait. Retry save means the picture remains in this page but is not confirmed on disk. Keep the page open and download the picture or use Keep a progress copy if saving continues to fail.
-Trail saved in the puzzle header confirms the latest puzzle checkpoint. Quest completion still awards 10 sparks once per island. Paintings and quest progress belong to the selected explorer.
+Saved to gallery confirms the current picture on this device. Saving… means wait. Retry save means saving has not been confirmed. Trail saved confirms the latest puzzle checkpoint. Drawing-answer scratch work is kept while switching views within the current question; save it from More to keep it in the gallery.
 
-Same page, same learners and same gallery format. Do not clear website data. The recovery ZIP contains previous Sparkstep application code, not your learner data; your progress copies are separate.
+Same page, same learners and same gallery format. Do not clear website data. The recovery ZIP contains previous Playdeck application code, not learner data; progress copies are separate.
 
 OPEN WONDERWAKE
 https://jdaniel318-ctrl.github.io/wonderwake/

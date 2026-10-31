@@ -1,11 +1,11 @@
-# Wonderwake11 — Playdeck 0.8.0
+# Wonderwake12 — Wayfinder 0.8.1
 
-Lantern Trail now uses one large, steady playfield and a single compact dock for puzzle pieces and actions. Puzzle title, island, learner, progress and device-save status share the slim header. Select bridge gaps directly on the bridge, or drag pieces as before. Undo and Clue stay in the dock; Reset, instructions and finger mode are in More. An outside gesture dismisses More without playing a move.
+Lantern Trail keeps the goal in view while you play. Lantern Hollow now labels “Match this” and “Your code”, numbers empty slots and shows when the three-shape code is ready to check. Finding shapes and entering their order have distinct guidance. The large playfield, compact puzzle dock, quick transitions and existing rules remain.
 
-In Colorwake, Save picture changes to Saving… and then Saved to gallery only after the current picture is confirmed saved. The confirmation stays until the drawing or layers change. Save changes and Retry save make the next action explicit. Reopening an unconfirmed in-page gallery entry does not claim it was saved.
+Skybridge and Wordforge have a fitted workspace only when you choose Draw this answer. The question stays above the paper; Undo, Clear, Back to choices, More and the relevant answer action remain within reach. Incorrect answers can be corrected without moving the paper. Returning to choices and reopening keeps the drawing for that question. Dot counting accepts zero on blank paper. Handwriting uses reveal-and-compare guided practice; other math drawings are scratch work with a return to the original answer choices.
 
-Start with START_HERE.txt for uploading and three device checks. Upload all top-level files together so the integrity-checked scripts match. Existing learners, gallery pictures, layered artwork, quest progress and progress-copy checksums stay compatible. The 2,000-stroke drawing limit is unchanged.
+This applies shared interaction lessons where useful. The regular choices, progression, Colorwake painting tools, tracing, Maker Grove, Star Glider, home and grown-up tools keep their own flow. Paint saving continues to show Saved to gallery after confirmation. No learner data format or fleet authority changes.
 
-The quest rules and reward engine are unchanged. The scene uses the available dimensions with matching normalized input coordinates; sprites and text retain their proportions. On narrow phones the same dock wraps into two rows. Scene bounds stay fixed across puzzles, clues and confirmations. Quick transitions, Skip animation and reduced motion remain available.
+Start with START_HERE.txt for uploading and three device checks. Upload all top-level files together so integrity-checked assets match. Existing learners, galleries, layered artwork and quest progress stay compatible. The 2,000-stroke drawing limit is unchanged.
 
-Source verification is in verification/. recovery/ contains the previous Sparkstep application ZIP. Physical iPad/Safari/Pencil testing remains the final device check. This is a standalone family preview package; uploading and deployment remain with the user.
+Source verification is in verification/. recovery/ contains the previous Playdeck application ZIP, not learner data. Physical iPad/Safari/Pencil testing remains the final device check. This standalone family preview is supplied for manual upload.

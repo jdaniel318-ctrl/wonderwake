@@ -235,3 +235,62 @@
 .paint-header-actions .paint-save{width:168px;min-width:168px;height:44px;padding:6px 10px;line-height:16px;white-space:normal}
 .paint-save.save-failed{background:#8b513b}.paint-save[aria-busy=true]{opacity:.85}
 @media(max-width:600px){.paint-header-actions .paint-save{width:94px;min-width:94px;padding:6px;font-size:12px}}
+/* Wayfinder: only the optional picture-answer workspace uses this fitted shell. */
+#drawing-answer-host{display:none}
+.answer-modal{padding:8px;touch-action:manipulation}
+.answer-modal .modal-shell{max-width:none;height:calc(100dvh - 16px);max-height:calc(100dvh - 16px);border-radius:22px}
+.answer-modal .modal-head{padding:8px 16px;gap:16px;min-height:62px}
+.answer-modal .modal-head>div{min-width:0;flex:1}
+.answer-modal .modal-head .eyebrow{display:none}
+.answer-modal .modal-head h2{font-size:22px;margin:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.answer-modal .active-learner{font-size:11px;margin-top:3px}
+.answer-modal #modal-body{display:flex;flex:1;overflow:hidden}
+.answer-modal #mission,.answer-modal .learning-area>:not(#drawing-answer-host){display:none}
+.answer-modal .learning-area{display:flex;flex:1;min-width:0;min-height:0;max-width:none;margin:0;padding:0}
+.answer-modal #drawing-answer-host{display:flex;flex:1;min-width:0;min-height:0}
+.answer-modal #drawing-answer-host .guided-paper{position:relative;display:flex;flex-direction:column;gap:5px;flex:1;min-width:0;min-height:0;max-width:none;margin:0;padding:8px 14px calc(4px + env(safe-area-inset-bottom,0px))}
+.guided-paper .paint-heading{flex:0 0 82px;overflow:auto}
+.guided-paper .paint-heading .eyebrow{font-size:9px;letter-spacing:1.4px}
+.guided-paper .paint-heading h3{font:500 26px/1.2 Georgia;margin:5px 0}
+.guided-paper .paint-heading h3:focus{outline:none}
+.guided-paper .paint-instruction{font-size:12px;line-height:16px;margin:4px auto;max-width:700px}
+.guided-paper .paint-paper{display:flex;align-items:center;justify-content:center;flex:1;min-height:0;min-width:0;overflow:hidden}
+.guided-paper .paper-surface{flex:none;border-radius:12px;overflow:hidden;box-shadow:0 0 0 1px #b4c8b9;background:#fffdf3}
+.guided-paper .paint-canvas{width:100%;height:100%;aspect-ratio:auto;border:0;border-radius:0;touch-action:none}
+.guided-paint-dock{display:flex;align-items:center;justify-content:center;align-self:center;gap:6px;flex:0 0 58px;padding:5px 8px;border:1px solid #d6ddce;border-radius:18px;background:#fffdf5;max-width:100%;box-shadow:0 5px 18px #23463f12}
+.guided-paint-dock button{font-size:12px;min-width:44px;min-height:44px;padding:8px 12px;line-height:15px}
+.guided-paint-dock .paint-answer,.guided-paint-dock #next-question{max-width:180px;white-space:normal}
+.guided-paper .paint-state{flex:0 0 20px;min-height:20px;height:20px;line-height:14px;font-size:11px;margin:0;overflow:auto;color:#58716c}
+.guided-paper .paint-compare{flex:0 0 30px;min-height:30px;height:30px;line-height:15px;font-size:12px;overflow:auto}
+.guided-paper.count-paper .paint-compare{display:none}
+.guided-paper .answer-outcome{flex:0 0 42px;min-height:42px;overflow:auto}
+.guided-paper .feedback{margin:0;padding:6px 10px;font-size:12px;line-height:15px;text-align:center;animation:none}
+.guided-paper .guided-options{bottom:132px;max-height:calc(100% - 145px);text-align:left}
+.guided-options>.paint-save,.guided-options>.paint-download,.guided-options>.paint-finger{width:100%;margin:5px 0;font-size:13px;min-height:44px}
+.guided-options .paint-palette{grid-template-columns:repeat(6,1fr)}.guided-options .paint-palette>label{grid-column:1/-1;font-size:13px}
+@media(max-width:600px){
+ .answer-modal{padding:0}.answer-modal .modal-shell{height:100dvh;max-height:100dvh;border-radius:0}.answer-modal .modal-head{padding:5px 8px;gap:8px;min-height:60px}.answer-modal .modal-head h2{font-size:18px}.answer-modal .modal-head button{font-size:11px;padding:8px;min-height:44px;flex:none}.answer-modal .active-learner{font-size:10px}
+ .answer-modal #drawing-answer-host .guided-paper{padding:6px 8px 4px;gap:5px}.guided-paper .paint-heading{flex-basis:120px}.guided-paper .paint-heading h3{font-size:22px}.guided-paper .paint-instruction{font-size:11px;line-height:15px}
+ .guided-paint-dock{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:4px;padding:5px;flex-basis:104px;width:100%;max-width:350px}.guided-paint-dock button{font-size:11px;padding:6px 9px;flex:1 0 24%;min-width:44px}.guided-paint-dock .paint-answer,.guided-paint-dock #next-question{grid-column:1/-1;max-width:100%}
+ .guided-paper .answer-outcome{flex-basis:48px;min-height:48px}.guided-paper .guided-options{bottom:184px;max-height:calc(100% - 195px)}.guided-options .paint-palette{grid-template-columns:repeat(5,1fr)}
+}
+@media(max-height:540px) and (min-width:560px){
+ .answer-modal{padding:0}.answer-modal .modal-shell{height:100dvh;max-height:100dvh;border-radius:0}.answer-modal .modal-head{min-height:48px;padding:2px 8px;gap:9px}.answer-modal .modal-head h2{font-size:17px}.answer-modal .active-learner{font-size:9px;margin-top:0}.answer-modal .modal-head button{min-height:44px;padding:6px 9px;font-size:10px}
+ .answer-modal #drawing-answer-host .guided-paper{padding:3px 8px 2px;gap:3px}.guided-paper .paint-heading{flex-basis:54px}.guided-paper .paint-heading .eyebrow{display:none}.guided-paper .paint-heading h3{font-size:19px;line-height:22px;margin:1px 0}.guided-paper .paint-instruction{font-size:10px;line-height:13px;margin:2px 0}
+ .guided-paint-dock{display:flex;flex-basis:50px;flex-wrap:nowrap;width:max-content;max-width:100%;padding:2px 5px;gap:4px}.guided-paint-dock button{flex:none;font-size:10px;padding:5px 8px}.guided-paint-dock .paint-answer,.guided-paint-dock #next-question{flex:none;max-width:130px}
+ .guided-paper .paint-state{flex-basis:16px;min-height:16px;height:16px;font-size:10px;line-height:13px}.guided-paper .paint-compare{flex-basis:26px;min-height:26px;height:26px;font-size:11px;line-height:13px}.guided-paper .answer-outcome{flex-basis:32px;min-height:32px}.guided-paper .feedback{font-size:10px;line-height:12px;padding:3px 6px}.guided-paper .guided-options{bottom:110px;max-height:calc(100% - 115px)}
+}
+
+.guided-paper.thinking-paper .paint-compare{display:none}
+@media(max-width:559px), (max-width:600px) and (min-height:541px){.thinking-paper .guided-paint-dock{flex-basis:54px}}
+
+/* Retain each question's own reference, without turning every activity into a studio. */
+.guided-paper .paint-heading.has-reference,.guided-paper .paint-heading.has-hear{display:flex;align-items:center;justify-content:center;gap:14px}
+.guided-copy{min-width:0;flex:1}
+.paint-reference{display:block;width:300px;max-width:38%;height:80px;object-fit:contain;flex:none}
+.guided-hear{flex:none;min-height:44px;min-width:44px;font-size:12px;padding:8px 12px}
+@media(max-width:600px) and (min-height:541px){
+ .guided-paper .paint-heading.has-reference{flex-basis:184px;flex-direction:column;gap:2px}.has-reference .guided-copy{flex:1;min-height:0;width:100%;overflow:auto}.guided-paper .has-reference .eyebrow,.guided-paper .has-hear .eyebrow{display:none}.guided-paper .has-reference h3{font-size:20px}
+ .paint-reference{width:100%;max-width:100%;height:64px;min-height:64px}.guided-paper .paint-heading.has-hear{gap:7px}.guided-paper .has-hear h3{font-size:18px;line-height:22px}.guided-hear{width:64px;white-space:normal;padding:6px;font-size:10px;line-height:14px}
+}
+@media(max-height:540px) and (min-width:560px){.guided-paper .paint-heading.has-reference{flex-basis:70px;gap:7px}.paint-reference{width:40%;max-width:40%;height:68px}.guided-hear{font-size:10px;padding:6px 8px}}

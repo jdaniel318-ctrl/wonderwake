@@ -85,3 +85,16 @@
 .quest-hud h3:focus{outline:none}
 /* Keep clue toggling from stealing space from pieces on short landscape screens. */
 @media(max-height:540px) and (min-width:560px){.quest-actions [data-q=hint]{width:48px;flex:none;white-space:normal;line-height:12px;padding:5px 4px}}
+/* Wayfinder: the goal stays visible while the puzzle keeps its own tools. */
+.quest-goal{flex:0 0 46px;min-height:46px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:3px;text-align:center;color:#355f5c;overflow:auto}
+.quest-goal strong{font-size:14px;line-height:17px}.quest-goal span{font-size:12px;line-height:15px}
+.quest-code-row{display:flex;align-items:center;gap:5px;text-align:left}
+.quest-code-row>span:first-child{width:52px;flex:none;font-size:9px;font-weight:750;color:#45655d}
+.quest-code-answer i{border-radius:4px;font-size:10px;color:#587168}.quest-code-answer i.next-slot{box-shadow:inset 0 0 0 1.5px #a17b35;background:#fff4d2;color:#62481e}
+.quest-actions [data-q=check]{min-width:110px}
+@media(max-width:600px){.quest-goal{flex-basis:52px;min-height:52px;padding:0 3px}.quest-goal strong{font-size:12px;line-height:15px}.quest-goal span{font-size:11px;line-height:14px}.quest-code-row{gap:3px}.quest-code-row>span:first-child{width:40px;font-size:8px}.quest-code-target,.quest-code-answer{padding:2px 4px;gap:2px}.quest-code i{width:16px}.quest-code svg{width:16px;height:18px}}
+@media(max-height:540px) and (min-width:560px){.quest-goal{flex-basis:38px;min-height:38px;gap:1px}.quest-goal strong{font-size:12px;line-height:15px}.quest-goal span{font-size:10px;line-height:13px}.quest-code-row>span:first-child{width:38px;font-size:8px}.quest-code-row{gap:3px}.quest-code i{width:15px}.quest-code svg{width:15px;height:18px}.quest-code-target,.quest-code-answer{padding:2px 3px;gap:1px}.quest-symbols{gap:3px}.quest-symbols button{padding:3px}.quest-puzzle-tools{gap:5px}.quest-actions [data-q=check]{min-width:90px;width:90px;white-space:normal;line-height:13px}}
+
+@media(max-width:360px){.quest-puzzle-tools{gap:4px}.quest-code-row>span:first-child{width:36px}.quest-code i{width:15px}}
+
+@media(max-width:360px){.quest-actions [data-q=check]{min-width:104px;width:104px;white-space:normal;line-height:13px}.quest-actions [data-q=hint]{min-width:44px;width:58px;white-space:normal;line-height:13px;padding:5px 4px}}

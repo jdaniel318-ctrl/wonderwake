@@ -34,7 +34,7 @@ function hsvFromColor(hex){
 }
 
 function mount(host,opts={}){
- const compact=!!opts.fit,limits=root.WWCore.DRAWING_LIMITS;
+ const compact=!!opts.fit,guided=!!opts.guided&&!compact,limits=root.WWCore.DRAWING_LIMITS;
  let strokes=[],redo=[],color=COLORS[0][0],size=compact?4:8,tool='pen',current=null,dirty=false,pending=null,editVersion=0,totalPoints=0,frame=0,disposed=false,paper=null,trayOpener=null;
  const initialConfirmed=!!opts.initial&&opts.initialSaved!==false;
  let saveBusy=false,saveFailed=!!opts.initial&&!initialConfirmed,hasSaved=initialConfirmed,savedVersion=initialConfirmed?0:-1,paperGeneration=0;
@@ -72,6 +72,20 @@ function mount(host,opts={}){
   host.querySelector('.size-control').insertAdjacentHTML('beforeend','<div class="opacity-control"><div class="size-label"><label for="opacity-slider">Pen opacity</label><output class="opacity-value" for="opacity-slider">100%</output></div><input id="opacity-slider" class="opacity-slider" type="range" min="1" max="100" value="100" aria-label="Pen opacity"><small>Light shading ← → Solid color</small></div>');
   workshop.insertAdjacentHTML('beforeend','<div class="paint-tray" id="paint-layers" role="dialog" aria-label="Picture layers" hidden><div class="tray-heading"><strong>Layers</strong><button type="button" class="tray-close" aria-label="Close layers">Done</button></div><p class="layer-help">Draw details above your background.</p><div class="layer-list"></div><button type="button" class="secondary add-layer" aria-label="Add layer">+ Add layer</button><div class="layer-settings"><label for="layer-name">Layer name</label><input id="layer-name" maxlength="24" aria-label="Layer name"><div class="layer-actions"><button type="button" data-layer-action="visible">Hide</button><button type="button" data-layer-action="locked">Lock</button><button type="button" data-layer-action="up">Move up</button><button type="button" data-layer-action="down">Move down</button></div><label class="size-label" for="layer-opacity">Layer opacity <output class="layer-opacity-value">100%</output></label><input id="layer-opacity" type="range" min="1" max="100" value="100" aria-label="Layer opacity"><button type="button" class="remove-layer">Remove this layer</button></div><p class="layer-paper-note">Cream paper stays underneath. Erase only the selected layer.</p></div>');
   host.querySelectorAll('.tray-close').forEach(b=>b.textContent='Done');
+ }
+ if(guided){
+  workshop.classList.add('guided-paper');if(opts.count)workshop.classList.add('count-paper');if(!opts.onAnswer)workshop.classList.add('thinking-paper');
+  const dock=document.createElement('div');dock.className='guided-paint-dock';dock.setAttribute('role','group');dock.setAttribute('aria-label','Picture answer controls');
+  const more=document.createElement('div');more.id='paint-more';more.className='paint-tray guided-options';more.hidden=true;more.setAttribute('role','dialog');more.setAttribute('aria-label','Picture options');
+  more.innerHTML='<div class="tray-heading"><strong>Picture options</strong><button type="button" class="tray-close">Done</button></div>';
+  for(const selector of ['.paint-palette','.paint-save','.paint-download','.paint-finger'])more.append(host.querySelector(selector));
+  for(const [selector,label] of [['.paint-undo','Undo'],['.paint-clear','Clear']]){const b=host.querySelector(selector);b.setAttribute('aria-label',b.textContent);b.textContent=label;dock.append(b);}
+  dock.insertAdjacentHTML('beforeend','<button type="button" class="secondary paint-back">'+(opts.backLabel||'Back to choices')+'</button><button type="button" class="secondary guided-more-toggle" data-tray="more" aria-expanded="false" aria-controls="paint-more">More</button>');
+  const answer=host.querySelector('.paint-answer');if(answer){dock.append(answer);if(opts.count){answer.textContent='Check answer';answer.setAttribute('aria-label','Check my picture answer');}}
+  host.querySelectorAll('.learn-controls').forEach(n=>n.remove());
+  workshop.insertBefore(dock,state);workshop.append(more);
+  host.querySelector('.paint-back').onclick=()=>{finish();closeTray();opts.onBack?.();};
+  host.querySelector('.paint-heading .eyebrow').textContent=opts.count?'SHOW YOUR ANSWER WITH DOTS':'DRAW YOUR THINKING';
  }
  const painter=compact?WWPaint.createPainter(can,live):null;
  const saveButton=(headerActions||host).querySelector('.paint-save');
@@ -123,7 +137,7 @@ function mount(host,opts={}){
   tray.querySelector('button').focus({preventScroll:true});
  }
  function dismissOutside(e){
-  if(!compact)return;
+  if(!compact&&!guided)return;
   if(dismissedPointers.has(e.pointerId)){e.preventDefault();e.stopImmediatePropagation();return;}
   dismissedClicks.delete(e.pointerId);suppressClick=false;
   const active=openTray(),inPaper=paperWrap.contains(e.target);
@@ -287,7 +301,7 @@ function mount(host,opts={}){
  document.addEventListener('keydown',escapeTray,true);
  host.querySelector('.paint-undo').onclick=()=>{finish();const s=strokes.pop();if(!s)return;redo.push(s);totalPoints-=s.points.length;edited();draw();state.textContent=opts.count?strokes.length+' dots on your paper.':'Last stroke undone.';};
  const redoButton=host.querySelector('.paint-redo');if(redoButton)redoButton.onclick=()=>{finish();const s=redo.pop();if(!s)return;strokes.push(s);totalPoints+=s.points.length;edited();draw();state.textContent='Stroke restored.';};
- host.querySelector('.paint-clear').onclick=()=>{if(strokes.length&&!confirm('Start a fresh paper? Save this picture to your gallery first to keep it.'))return;finish();strokes=[];redo=[];totalPoints=0;dirty=false;pending=null;editVersion++;hasSaved=false;savedVersion=-1;saveFailed=false;paperGeneration++;syncSaveButton();if(compact){opts.initial=null;opts.onNewPaper?.();layers=[{id:1,name:'My drawing',visible:true,locked:false,opacity:100}];activeLayer=1;renderLayers();}closeTray(true);draw();state.textContent='Fresh paper. What will you make?';};
+ host.querySelector('.paint-clear').onclick=()=>{if(strokes.length&&!confirm('Start a fresh paper? Save this picture to your gallery first to keep it.'))return;finish();strokes=[];redo=[];totalPoints=0;dirty=false;pending=null;editVersion++;hasSaved=false;savedVersion=-1;saveFailed=false;paperGeneration++;syncSaveButton();if(compact){opts.initial=null;opts.onNewPaper?.();layers=[{id:1,name:'My drawing',visible:true,locked:false,opacity:100}];activeLayer=1;renderLayers();}closeTray(true);draw();state.textContent=opts.count?'0 dots on your paper. Leave it blank if your answer is zero.':'Fresh paper. What will you make?';};
  host.querySelector('.paint-finger').onclick=()=>{finish();guard.allowFinger();closeTray(true);state.textContent='Finger drawing enabled. Your marks are kept.';};
  saveButton.onclick=async()=>{
   finish();closeTray();if(!strokes.length&&!opts.initial){state.textContent='Draw something first.';return;}
@@ -302,13 +316,13 @@ function mount(host,opts={}){
  host.querySelector('.paint-download').onclick=()=>{finish();if(!strokes.length){state.textContent='Draw something first.';return;}can.toBlob(blob=>{if(blob)opts.onDownload(blob);},'image/png');closeTray(true);};
  if(opts.onAnswer)host.querySelector('.paint-answer').onclick=()=>{finish();if(!strokes.length&&!opts.count){state.textContent='Make your picture first.';return;}opts.onAnswer(strokes.length,host.querySelector('.paint-compare'),host.querySelector('.paint-answer'));};
  let resizeObserver=null;
- if(compact){const fit=()=>{const r=paperWrap.getBoundingClientRect();if(r.width<1||r.height<1)return;
+ if(compact||guided){const fit=()=>{const r=paperWrap.getBoundingClientRect();if(r.width<1||r.height<1)return;
    if(!paper){const aspect=Math.max(.6,Math.min(2.4,r.width/r.height));paper={width:1600,height:Math.round(1600/aspect)};draw();}
    const w=Math.max(1,Math.min(r.width,r.height*ratio()));surface.style.width=w+'px';surface.style.height=w/ratio()+'px';
-  };resizeObserver=new ResizeObserver(fit);resizeObserver.observe(paperWrap);fit();}
+  };resizeObserver=new ResizeObserver(fit);resizeObserver.observe(paperWrap);if(compact)fit();}
  draw();setColor(color);syncSaveButton();if(opts.initial)state.textContent=initialConfirmed?'Saved to your gallery on this device.':'This picture is still in this page. Retry save to keep it on this device.';
  return()=>{disposed=true;painter?.dispose();clearTimeout(trayTimer);document.removeEventListener('pointerdown',dismissOutside,true);for(const event of ['pointermove','pointerup','pointercancel'])document.removeEventListener(event,consumeDismissed,true);document.removeEventListener('click',consumeClick,true);dismissedPointers.clear();dismissedClicks.clear();resizeObserver?.disconnect();cancelAnimationFrame(frame);guard.cancel();current=null;document.removeEventListener('keydown',escapeTray,true);headerActions?.remove();can.onpointerdown=can.onpointermove=can.onpointerup=can.onpointercancel=can.onlostpointercapture=null;};
 }
-root.WWDrawing=Object.freeze({version:'0.8.0',paint,mount,colorFromHSV});
+root.WWDrawing=Object.freeze({version:'0.8.1',paint,mount,colorFromHSV});
 })(globalThis);
 

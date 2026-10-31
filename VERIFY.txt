@@ -1,21 +1,17 @@
-PLAYDECK 0.8.0 — VERIFICATION
+WAYFINDER 0.8.1 — VERIFICATION
 
-Automated browser checks use Chromium, native mouse/keyboard, native CDP touch, and synthetic Pencil events for cancellation and overlapping-contact cases. They do not certify physical Apple Pencil feel or Safari browser chrome behavior.
+Full regression suite: 98 tests passed. After the final guided-only initial-sizing correction, the extracted ZIP passed all 13 focused Wayfinder tests, 36 guided layout cases and three legacy workflow scripts. Detailed sequencing and actual outputs are in verification/FINAL_TEST_OUTPUT.txt, RESULTS.json and SEALED_SMOKE.txt.
 
 Coverage:
-- Enlarged board, compact dock, in-scene bridge targets and fixed bounds across all puzzles.
-- All pieces and actions onscreen; no control intersections, including the longer Hide clue label.
-- Tablet, portrait phone, short portrait, intermediate-width and short-landscape layouts.
-- More dismissal consumes the entire gesture, including overlapping contacts and header taps.
-- Save picture / Saving… / Saved to gallery / Save changes / Retry save; current-version and new-paper races.
-- Failed in-page gallery entries remain retryable when reopened; confirmed pictures reopen as saved.
-- All three islands, input cancellation, keyboard routes, reward idempotence, local resume and checked backups.
-- Grayscale, color wheel, layers, opacity, soft shading, layer-local eraser, gallery editing and legacy guided answers.
-- Drawing capacity and full-gallery export/restore.
-- Final JavaScript syntax, SHA-384 script/style integrity, SHA-256 file inventory, ZIP CRC and extracted-file equality.
+- Visible goal, target/answer distinction, required-shape discovery, wrong code and Undo, explicit readiness.
+- Guided counting, zero, wrong-answer correction, successful Next, retained marks on return and reopening.
+- Counting, shapes and fraction references match original question visuals; spelling retains Hear the word and guided comparison.
+- Keyboard success moves focus to Next; menus consume outside mouse, Pencil and overlapping-touch dismissals.
+- Fixed paper bounds through feedback and comparison; initial paper uses the available space after references mount.
+- Ten viewport sizes for quest/studio docks; six tablet/phone/short-landscape sizes across six guided answer modes.
+- Existing quests, transitions, rewards, saves, learner isolation, gallery capacity, backup/restore and asynchronous-save editing regressions.
+- JavaScript syntax, SHA-384 script/style integrity, SHA-256 asset inventory, ZIP CRC and extracted-file equality.
 
-Actual counts, commands and outcomes are in verification/RESULTS.json and FINAL_TEST_OUTPUT.txt. Final extracted-package smoke results are in SEALED_SMOKE.txt. Review decisions are in REVIEW.txt.
+Chromium automation includes real mouse/keyboard and existing CDP touch coverage plus synthetic Pencil events. It does not certify physical Pencil feel, Safari browser chrome, or native assistive technology. Three device checks are in START_HERE.txt.
 
-Required physical device check: use the three steps in START_HERE.txt on the family's iPad/Safari/Pencil. The user approved prior Sparkstep screen stability and transitions; this Playdeck layout still needs that device check.
-
-No deployment was performed. The Black Flag engine, learner data format, reward rules and fleet authority were not changed.
+No deployment was performed. Learner schemas, puzzle rules and Black Flag fleet authority remain unchanged.

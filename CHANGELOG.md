@@ -1,3 +1,10 @@
+# Wayfinder 0.8.1
+
+- Persistent goal and current instruction in Lantern Trail; labeled target and entered codes, numbered empty slots and explicit readiness in Lantern Hollow.
+- Fitted optional picture answers in Skybridge and Wordforge, with question, primary actions and feedback onscreen. Returning to choices preserves the current question’s drawing.
+- Dot counting, guided handwriting comparison and scratch work retain their distinct answer flows. Zero remains valid, wrong answers remain correctable, and outside-menu dismissal does not add a mark.
+- No broad redesign of other activities; rules, progression, galleries and fleet connections are unchanged.
+
 # Playdeck 0.8.0
 - Enlarged the quest scene to the available width and height; combined puzzle pieces and actions in one dock.
 - Moved title, place, learner, puzzle count and local-save status into the slim header.
