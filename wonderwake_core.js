@@ -1,4 +1,5 @@
 (function(root){'use strict';const C=typeof module!=='undefined'?require('./wonderwake_content.js'):root.WWContent;
+const Q=typeof module!=='undefined'?require('./wonderwake_quest.js'):root.WWQuest;
 const ids=['starling','comet','aurora'];const MAX_LEARNERS=24;
 const DRAWING_LIMITS=Object.freeze({strokes:2000,points:50000,importBytes:64000000});
 function validLearnerId(id){return typeof id==='string'&&(ids.includes(id)||/^learner-[a-f0-9]{8}-[a-f0-9]{4}-4[a-f0-9]{3}-[89ab][a-f0-9]{3}-[a-f0-9]{12}$/.test(id));}
@@ -59,6 +60,7 @@ if(p.gallery!==undefined){
   })};
  });
 }
+if(p.glowtrail!==undefined){try{clean.glowtrail=Q.validate(p.glowtrail);}catch(e){fail();}}
 return clean;
 }
 const api={ids,MAX_LEARNERS,DRAWING_LIMITS,validLearnerId,nickname,displayName,avatars,newProfile,record,chooseSkill,skillStatus,answerEqual,number,canonical,validateProfile};if(typeof module!=='undefined')module.exports=api;root.WWCore=api;

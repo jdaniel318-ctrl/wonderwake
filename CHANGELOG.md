@@ -1,3 +1,13 @@
+# 0.7.0 — Glowtrail
+
+Added the Lantern Trail: three connected, replayable island routes with bridge fitting, drawn/tapped pathfinding, and lantern reveal/code puzzles. Success animates the explorer and lights a persistent island lantern. The home quest card and map now provide a direct entrance and show the three completed lanterns. Skybridge still opens the original math activities.
+
+One compact puzzle tray holds Undo, Reset, Clue and the next action. Pointer, tap and keyboard paths are available; reduced motion and existing optional sound are honored. Touch cancellation restores both puzzle data and selection. Input-mode changes cancel unfinished gestures safely; keyboard mutations cannot commit an active pointer gesture.
+
+Optional bounded glowtrail progress is preserved in each explorer's local save and checked export. Checkpoints save before success animation; each island awards ten sparks once. No academic mastery is inferred from these puzzles. The existing painting, six-layer renderer, gallery, math and spelling workflows remain available.
+
+New required upload files: wonderwake_quest.js, wonderwake_quest_ui.js and wonderwake_quest.css. No Engine, account, cloud or fleet-authority changes.
+
 # 0.6.0 — Shadecraft
 
 Direct pure-black-to-white grayscale swatches and a 256-value neutral slider. A separate color-intensity control makes lighter tints accessible in the wheel. Preset neutral choices synchronize the gray slider and its Keep action.

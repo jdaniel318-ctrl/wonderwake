@@ -1,13 +1,11 @@
-# Wonderwake08 — Shadecraft 0.6.0
+# Wonderwake09 — Glowtrail 0.7.0
 
-Actual picture layers, controllable shading and direct grayscale for the independent Colorwake studio. Start with START_HERE.txt for uploading and three device checks.
+A connected, untimed Lantern Trail adventure built from Wonderwake's touch, drawing, layering and saved-progress lessons. Start with START_HERE.txt for uploading and the next three device checks.
 
-Colors has a permanent black/gray/white row and a continuous neutral slider. The wheel includes intensity and brightness. A new Soft brush feathers the stroke edges; per-tool opacity changes shading strength. Pen at 100% paints a crisp opaque line. The compact dock now includes Layers.
+Three island routes each combine Bridge Bay (fit countable planks), Firefly Trail (draw or tap a safe route), and Lantern Hollow (move a light through a dark layer and match a discovered symbol code). The explorer walks the completed path and the island lantern lights up. One contextual tray exposes Undo, Reset, Clue and the current action. Clues are optional; there are no timers or lives. Each island awards ten sparks once. Existing academic skill records are not altered by puzzle play.
 
-Up to six layers can be selected, named, hidden, locked, reordered and given their own opacity. Erasing affects only the selected layer. Completed layers are cached and the active stroke is composited in order, so preview and saved output agree. Saved pictures and backups retain every layer; PNG downloads flatten visible layers.
+Committed actions and puzzle checkpoints are kept with the selected explorer. Wait for the checked-save message before closing or refreshing. Partial quests survive a progress export; a failed local save keeps current work available in the page for export. Existing profile shapes and checksums remain unchanged when no optional glowtrail field is present.
 
-Gallery's Edit picture reopens the drawing and Save updates that entry. New paper keeps the saved original and starts a separate picture. Old profiles remain canonically unchanged when validated; old artwork keeps its original appearance. Editing an older picture places it on one layer and preserves old eraser marks as paper-colored strokes.
+The rule engine lives in wonderwake_quest.js; drawing/input and scene lifecycle live in wonderwake_quest_ui.js; responsive layout lives in wonderwake_quest.css. Core validates the bounded optional state, and app integration owns learner identity, reward and checked saving. The existing studio renderer and painting tools remain unchanged. All visuals are original Canvas/HTML/SVG code using the existing character art; no new remote dependency.
 
-The paper stays large and fixed. Outside gestures dismiss a menu before drawing resumes. The 2,000-stroke / 50,000-point allowance and 12-picture gallery remain. New data requires Shadecraft or later; use progress backups when updating, and do not clear website data.
-
-This build does not commission or integrate Wonderwake into the fleet. Lessons are retained for future review. See CHANGELOG.md, VERIFY.txt, WONDERWAKE_VESSEL.json and verification/FLEET_LESSONS.txt. The source has no new external dependency or drawing service. recovery/ contains the previous application, not learner records.
+See VERIFY.txt, verification/RESULTS.json and verification/REVIEW.txt for evidence and limitations. This package does not deploy or commission Wonderwake into the fleet. New quest metadata requires Glowtrail or later. recovery/ contains the previous application ZIP, not learner records.

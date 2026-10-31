@@ -2,8 +2,8 @@
   "schema": "blackflag-draft-vessel-descriptor-v1",
   "project_key": "wonderwake",
   "display_name": "Wonderwake",
-  "release": "Shadecraft",
-  "version": "0.6.0",
+  "release": "Glowtrail",
+  "version": "0.7.0",
   "lifecycle": "draft_family_preview",
   "commissioned_on_server": false,
   "fleet_core_membership_changed": false,
@@ -33,7 +33,8 @@
     "star_glider",
     "colorwake_painting",
     "learner_picture_gallery",
-    "guided_drawing_answers"
+    "guided_drawing_answers",
+    "lantern_trail"
   ],
   "future_modules_not_implemented": [
     "comprehensive_reviewed_k12",
@@ -90,5 +91,19 @@
     "soft_shading_brush": true,
     "layer_local_eraser": true,
     "editable_gallery_pictures": true
+  },
+  "lantern_trail": {
+    "chapters": 3,
+    "puzzles_per_chapter": 3,
+    "types": [
+      "bridge-fit",
+      "drawn-path",
+      "lantern-reveal-code"
+    ],
+    "sparks_once_per_chapter": 10,
+    "max_path_points": 1200,
+    "local_checkpoint_resume": true,
+    "backup_included": true,
+    "academic_mastery_awarded": false
   }
 }

@@ -35,7 +35,8 @@ tree(g,280,489,.8,true);ellipse(g,323,506,19,14,'#dc9354');line(g,[[320,493],[32
 const by=363+Math.sin(t*1.3)*6;ellipse(g,168,by-25,65,35,'#f3d191');poly(g,[[118,by-24],[167,by-60],[167,by+9]],'#e9ad78');ellipse(g,168,by-25,52,33,'#f2cd8a');line(g,[[136,by],[146,by+28],[185,by+28],[199,by]],'#d9c9a1',2);poly(g,[[136,by+23],[196,by+23],[182,by+42],[149,by+42]],'#536c7a');line(g,[[145,by+21],[185,by+21]],'#f4d995',4);
 // Fireflies, glowing buoy lanterns and drifting petals.
 for(let i=0;i<18;i++){let x=430+(i*79)%370+Math.sin(t+i)*7,y=310+(i*43)%140+Math.cos(t*.7+i)*5;ellipse(g,x,y,2,2,'#ffe6a7');}
-cloud(g,82,580,1.5,.65);cloud(g,1113,480,1.5,.35);}
+cloud(g,82,580,1.5,.65);cloud(g,1113,480,1.5,.35);const lit=state.glowtrail?.completed||[];for(let i=0;i<3;i++){const x=690+i*40,y=110;ellipse(g,x,y,13,13,lit.includes(i)?'#fff0a878':'#537e7d33');star(g,x,y,8,lit.includes(i)?'#ffe39a':'#91b6ad');}
+}
 function setup(canvas,width=1200,height=650){const dpr=Math.min(root.devicePixelRatio||1,2);canvas.width=width*dpr;canvas.height=height*dpr;const g=canvas.getContext('2d');g.setTransform(dpr,0,0,dpr,0,0);return g;}
 function world(canvas,getState){const g=setup(canvas);let handle,stopped=false,start=performance.now(),last=-100,stamp='';function frame(ts){if(stopped)return;const s=getState();const key=s.theme+'|'+s.avatar+'|'+s.motion;if(ts-last>32&&!document.hidden&&(s.motion||key!==stamp)){stamp=key;drawWorld(g,s.motion?(ts-start)/1000:0,s);last=ts;}handle=requestAnimationFrame(frame);}handle=requestAnimationFrame(frame);return()=>{stopped=true;cancelAnimationFrame(handle);};}
 function visual(canvas,v){const g=setup(canvas,600,190);g.clearRect(0,0,600,190);if(!v)return;

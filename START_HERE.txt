@@ -1,30 +1,30 @@
-WONDERWAKE08 — SHADECRAFT · 0.6.0
+WONDERWAKE09 — GLOWTRAIL · 0.7.0
 
 UPDATE
-1. Save the current picture and keep a progress copy for each learner you want backed up.
-2. Unzip this package. Upload every top-level file INSIDE Wonderwake08-Shadecraft to the existing wonderwake repository root, replacing matching files. Include the new wonderwake_paint.js file. Leave verification/ and recovery/ on your device.
-3. After GitHub Pages finishes, refresh Wonderwake once. Check SHADECRAFT · FAMILY PREVIEW 0.6.0, select the same explorer, then Paint a picture.
+1. Save your current picture and keep a progress copy for each learner you want backed up.
+2. Unzip this package. Upload every top-level file INSIDE Wonderwake09-Glowtrail to your existing wonderwake repository root, replacing matching files. Include the new wonderwake_quest.js, wonderwake_quest_ui.js and wonderwake_quest.css. Leave verification/ and recovery/ on your device.
+3. When GitHub Pages finishes, refresh once. Check GLOWTRAIL · FAMILY PREVIEW 0.7.0 and choose the same explorer. Tap Play Lantern Trail.
 
-BLACK, WHITE AND GRAYS
-Colors opens with a dedicated row: pure black, charcoal, dark gray, mid gray, light gray and pure white. The black-to-white slider selects any of 256 neutral shades directly. Keep this gray adds a non-preset shade to My colors. The color wheel now has an Intensity slider as well as Brightness, so tints do not require finding the exact center of the wheel.
+THE LANTERN TRAIL
+Three connected puzzles lead to a lantern lighting up, with three island routes to explore.
+Bridge Bay: count the spaces and fit a plank into each gap. Drag a plank onto the picture, or tap a plank and then a Gap button. Filled gaps can be tapped without a selected plank to return the piece. A wrong fit is a chance to try another idea.
+Firefly Trail: draw a route from START, through the three golden sparks, to FINISH. Go around the water. You can also tap waypoints; the game joins them. Follow trail lets your explorer walk the route you made. Keyboard: focus the scene, use arrow keys to move the cursor, and Space to add a point.
+Lantern Hollow: move the lantern to discover shapes under the dark layer. Match the pictured three-shape code using the discovered buttons. Keyboard arrows move the light. Light lantern finishes the island.
 
-SHADING
-Open Pen and choose Soft brush for feathered shadows or highlights. Each drawing tool has its own size and opacity. Low opacity gives light passes; 100% gives solid color at the center. Successive strokes build up shading. For a crisp opaque line use Pen at 100%. Marker starts at 38% and Pencil at 78%, preserving the familiar defaults; both can now be adjusted. Tool settings stay with the explorer.
-
-LAYERS
-Open Layers on the dock. Add up to six layers; the selected row is where new strokes go. Layers at the top cover those below. Rename, hide/show, lock/unlock, move up/down, or adjust the whole layer's opacity. Eraser removes marks only from the selected layer and reveals the lower layers. Cream paper remains underneath all layers.
-
-Remove this layer asks before deleting marks. Undo/Redo controls strokes, not layer management. Starting New paper resets to one empty layer. All layers, including hidden ones, remain in a saved picture and progress backup. A PNG is the visible flattened picture.
-
-KEEP WORKING ON A PICTURE
-Gallery now has Edit picture. It opens an editable copy. Save updates that same picture instead of filling another gallery slot. Starting New paper while editing detaches the old picture; the next saved drawing becomes a new gallery picture. A deliberately emptied existing picture can also be saved. Save or Download before leaving unfinished work.
+UNDO, CLUES AND SAVING
+The current puzzle has one compact set of controls: Undo, Reset, Clue and the next action. Reset can be undone. Clues show one possible approach; using them does not take anything away. There are no timers or lives. Reduced motion and optional sound follow the explorer's existing preferences. After using Pencil, Use finger safely switches back to finger play.
+Committed moves and completed puzzle checkpoints save with the current explorer. Wait for Trail saved on this device before refreshing or closing the browser. If Not saved appears, keep the page open and use Keep a progress copy on the islands. In-page progress remains available for export. Canceled unfinished gestures are discarded; committed moves remain.
+The first completion of each island awards 10 discovery sparks. Replay is welcome but does not repeatedly award those sparks. Quest play does not automatically increase independent math or spelling mastery.
 
 THREE DEVICE CHECKS
-1. Draw black, gray and white marks with Pen at 100%. Try the gray slider. Check that the first outside tap only closes the menu.
-2. Draw a background, add a details layer, then shade with Soft brush around 20–30% opacity. Hide/show the layer and erase a small part; the background should stay intact.
-3. Save, open Gallery and Edit picture. Confirm the layers and shading remain. Save an edit, reopen the same explorer and check it again.
+1. Play Bridge Bay using both a dragged plank and a tapped plank/Gap pair. Check that Undo and Clue feel simple and the scene stays steady.
+2. Draw or tap a safe Firefly Trail. Watch your explorer follow it. Return to the islands and Continue Lantern Trail; the next puzzle should remain ready.
+3. Find the hidden shapes, enter the code and light the lantern. Wait for Trail saved on this device, reopen the same explorer, and check that the lantern and progress remain.
+
+THE REST OF YOUR SHIP
+Math, spelling, Letter Trails, Maker Grove, Star Glider, free painting and the gallery remain available. The primary Start adventure entry now leads into the Lantern Trail; choose Skybridge for the original math questions. Shadecraft's studio retains its large paper, custom colors, soft brush, opacity controls, six layers and editable gallery. The new game uses its own compact contextual controls.
 
 COMPATIBILITY
-Same address, database and learners. Existing pictures and progress files remain readable; old artwork is not converted until opened for editing and explicitly saved. New layered pictures require Shadecraft or later. Older recovery builds cannot read all new data. Do not clear website data.
+Same URL, same database, same local learners. Old progress copies remain readable with the same canonical checksums. New quest progress needs Glowtrail or later. recovery/ contains the previous Shadecraft application ZIP, not learner data; older applications cannot safely round-trip new quest progress. Do not clear website data.
 
-The large paper, 2,000-stroke / 50,000-point allowance and 12-picture gallery remain. Six layers bound tablet memory use. This is still local family preview; no cloud sync, fleet bootstrap or Engine deployment is included. recovery/ holds the previous application ZIP, not learner data. Native Safari/Pencil feel and memory pressure require the device check.
+This is an independent local family preview. No fleet commissioning, account, cloud sync or Engine deployment is included. Native iPad/Safari/Pencil behavior and how enjoyable the quest is over repeated play still need your field feedback.
