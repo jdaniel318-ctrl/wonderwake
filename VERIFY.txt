@@ -1,27 +1,21 @@
-WONDERWAKE10 — SPARKSTEP 0.7.1 · VERIFICATION
+PLAYDECK 0.8.0 — VERIFICATION
 
-Current source checks use synthetic learners in Chromium. Family device records are never used by automated tests.
+Automated browser checks use Chromium, native mouse/keyboard, native CDP touch, and synthetic Pencil events for cancellation and overlapping-contact cases. They do not certify physical Apple Pencil feel or Safari browser chrome behavior.
 
-28 unit tests: inherited profile compatibility, palette, painting/layers, academic rules and all quest rules; plus route sampling by distance and finite stationary/backward poses. The new motion module does not change stored points or validation rules.
+Coverage:
+- Enlarged board, compact dock, in-scene bridge targets and fixed bounds across all puzzles.
+- All pieces and actions onscreen; no control intersections, including the longer Hide clue label.
+- Tablet, portrait phone, short portrait, intermediate-width and short-landscape layouts.
+- More dismissal consumes the entire gesture, including overlapping contacts and header taps.
+- Save picture / Saving… / Saved to gallery / Save changes / Retry save; current-version and new-paper races.
+- Failed in-page gallery entries remain retryable when reopened; confirmed pictures reopen as saved.
+- All three islands, input cancellation, keyboard routes, reward idempotence, local resume and checked backups.
+- Grayscale, color wheel, layers, opacity, soft shading, layer-local eraser, gallery editing and legacy guided answers.
+- Drawing capacity and full-gallery export/restore.
+- Final JavaScript syntax, SHA-384 script/style integrity, SHA-256 file inventory, ZIP CRC and extracted-file equality.
 
-47 browser tests: 9 Sparkstep, 17 Glowtrail, 11 Shadecraft, 7 Prism and 3 Openpaper. Sparkstep covers the START regression, skippable and natural scene transitions, held pointer exclusion, changing reduced motion mid-effect, leaving/reloading during transition, valid walking routes, all scene destinations, once-only reward, optional walking poses for all original characters, stable board bounds and the post-review held-key regression. Enter/Space held through Continue or Skip cannot add a mark; a fresh Space and normal arrow repetition work afterward.
+Actual counts, commands and outcomes are in verification/RESULTS.json and FINAL_TEST_OUTPUT.txt. Final extracted-package smoke results are in SEALED_SMOKE.txt. Review decisions are in REVIEW.txt.
 
-Quest layout: all four states at 1366x900, 1024x768, 390x844, 320x568, 844x390 and 568x320. Actions remain reachable and at least 44px; clues do not move the board; no horizontal overflow. An additional across-puzzle geometry test checks 1366x900, 1024x768, 768x1024, 390x844, 320x568 and 568x320. It caught a 4px mobile tray difference before the reserved space fix. All four board bounds now match within each tested viewport.
+Required physical device check: use the three steps in START_HERE.txt on the family's iPad/Safari/Pencil. The user approved prior Sparkstep screen stability and transitions; this Playdeck layout still needs that device check.
 
-Inherited standalone workflow checks also passed: gallery save/reload, learner isolation, guided math/spelling pictures, expedition prize painting, backup/restore and tamper rejection, gallery-capacity refusal without replacement, PNG download and edits during asynchronous saving. Studio layouts pass at six sizes; wheel/palette layouts pass at three sizes. A 302-stroke UI case passed with more than 1600 stored points, synthetic palm rejection and rotation preserving pixels. An actual downloaded 11,337,220-byte full-gallery backup restored 600,000 points in 12 pictures.
-
-Visual inspection: tablet bridge walking, the middle of a lantern dissolve, firefly followers and portrait lantern controls. Screenshots are local diagnostics, not shipped art. Original Canvas/SVG artwork is reused. No remote assets or new runtime dependency.
-
-Review: one independent read-only source review. No Critical issue. One Important held-key crossover was reproduced in a failing browser test, fixed with a release-aware input guard and verified for both Continue and Skip. A minor cosmetic duplication of stationary spark markers after travel is recorded for later polish. See verification/REVIEW.txt and SPARKSTEP_LEDGER.txt. Historical release plans/reviews are retained as history, not current verification claims.
-
-REPRODUCTION
-node --test verification/*unit.cjs
-node --test verification/quest-browser.cjs verification/quest-acceptance.cjs verification/sparkstep-browser.cjs verification/shade-browser.cjs verification/prism-browser.cjs verification/openpaper-browser.cjs
-Other scripts: quest-layout.cjs, openpaper-layout.cjs, prism-layout.cjs, browser.cjs, extra-browser.cjs, race-browser.cjs, openpaper-capacity.cjs.
-Set WW_URL to a local HTTP server and WW_CHROMIUM to a Chromium executable. Playwright is required for verification only; it is not part of the uploaded application. Actual mouse and CDP touch input complement synthetic pen tests. No physical Safari or screen-reader certification is claimed.
-
-FIELD EVIDENCE
-On Oct 31, Joseph reported Glowtrail's puzzles were all fun, nothing fiddly, and the screen steady. The supplied iPad screenshots show first-island completion and the retained lantern/22 sparks after refresh. These establish the prior release's first-island family test. Sparkstep's new walking, transitions and native Pencil feel still require the three device checks in START_HERE.txt.
-
-PACKAGE
-JavaScript syntax, SHA384 script/style integrity, SHA256 inventory, ZIP CRC and extracted-byte equivalence are checked. The extracted ZIP is smoke-tested; see verification/SEALED_SMOKE.txt. No deployment was performed. Glowtrail recovery code is included separately from learner backups. Wait for the checked local-save acknowledgement before refreshing.
+No deployment was performed. The Black Flag engine, learner data format, reward rules and fleet authority were not changed.

@@ -25,49 +25,76 @@ function mount(host,opts){
  function releaseKey(e){heldKeys.delete(e.code||e.key);blockedKeys.delete(e.code||e.key);}
  root.addEventListener('keydown',trackKey,true);root.addEventListener('keyup',releaseKey,true);
  const sprites={};for(const name of ['hero','fox','tree','pine'])sprites[name]=(ctx,x,y,...args)=>{ctx.save();ctx.translate(x,y);ctx.scale(1,1/stretch);A[name](ctx,0,0,...args);ctx.restore();};
- host.innerHTML='<section class="quest-shell"><div class="quest-hud"><div><span class="quest-kicker"></span><h3 id="quest-heading"></h3></div><span class="quest-chapter"></span></div><div class="quest-scene"><div class="quest-surface"><canvas id="quest-canvas" tabindex="0" aria-label="Lantern Trail puzzle board"></canvas><div class="quest-win" hidden></div><div class="quest-transition" hidden aria-hidden="true"><div class="quest-transition-light">✦</div><p></p><span>THE LANTERN TRAIL</span></div><button type="button" class="quest-skip" data-q="skip" hidden>Skip animation</button></div></div><div class="quest-controls"><p class="quest-instruction"></p><div class="quest-puzzle-tools"></div><div class="quest-actions"></div><p class="quest-feedback" role="status" aria-live="polite"></p><div class="quest-meta"><span class="quest-save" role="status"></span><button class="quest-finger" hidden>Use finger</button></div></div></section>';
- const el=s=>host.querySelector(s),can=el('canvas'),g=can.getContext('2d'),surface=el('.quest-surface');
+ const hud=document.createElement('div');hud.className='quest-hud';
+ hud.innerHTML='<div class="quest-title"><h3 id="quest-heading"></h3><span class="quest-kicker"></span></div><div class="quest-progress"><span class="quest-chapter"></span><span class="quest-save" role="status" aria-live="polite"></span></div>';
+ host.innerHTML='<section class="quest-shell"><div class="quest-scene"><div class="quest-surface"><canvas id="quest-canvas" tabindex="0" aria-label="Lantern Trail puzzle board"></canvas><div class="quest-gaps" role="group" aria-label="Place your chosen plank"></div><div class="quest-win" hidden></div><div class="quest-transition" hidden aria-hidden="true"><div class="quest-transition-light">✦</div><p></p><span>THE LANTERN TRAIL</span></div><button type="button" class="quest-skip" data-q="skip" hidden>Skip animation</button></div></div><div class="quest-controls"><div class="quest-dock" role="group" aria-label="Puzzle pieces and actions"><div class="quest-puzzle-tools"></div><div class="quest-actions"></div></div><p class="quest-feedback" role="status" aria-live="polite"></p><div id="quest-more" class="quest-options" role="dialog" aria-label="Puzzle options" hidden><div class="quest-options-head"><strong>A little help</strong><button type="button" data-q="close-more">Done</button></div><p class="quest-instruction"></p><p class="quest-key-tip"></p><button type="button" data-q="reset">Reset this puzzle</button><button type="button" class="quest-finger" hidden>Use finger</button></div></div></section>';
+ if(opts.header)opts.header.insertBefore(hud,opts.header.querySelector('.sound-btn'));else host.querySelector('.quest-shell').prepend(hud);
+ const el=s=>host.querySelector(s)||hud.querySelector(s),can=el('canvas'),g=can.getContext('2d'),surface=el('.quest-surface');
  can.width=W*2;can.height=H*2;g.scale(2,2);
  const fog=document.createElement('canvas');fog.width=W;fog.height=H;const fg=fog.getContext('2d');
  function motion(){return typeof opts.motion==='function'?opts.motion():opts.motion!==false;}
  function syncMotionControls(){
   el('.quest-skip').hidden=!animation&&!transition;
   can.inert=!!transition;
-  el('.quest-controls').inert=!!transition;
+  el('.quest-controls').inert=!!transition;el('.quest-gaps').inert=!!transition||success;
  }
  function message(text){el('.quest-feedback').textContent=text;}
- function saveLabel(){el('.quest-save').textContent=saveBusy?'Saving your trail…':saveOK?(hasSaved?'Trail saved on this device.':'Your moves save on this device.'):'Not saved — use Keep a progress copy on the islands.';el('.quest-save').classList.toggle('save-problem',!saveOK&&!saveBusy);}
+ function saveLabel(){const label=el('.quest-save');label.textContent=saveBusy?'Saving…':saveOK?(hasSaved?'✓ Trail saved':'Saves on device'):'Trail not saved';label.title=saveOK?'Your trail is kept on this device.':'Not saved — use Keep a progress copy on the islands.';label.classList.toggle('save-problem',!saveOK&&!saveBusy);if(!saveOK&&!saveBusy)message(label.title);}
+
  function persist(){const snapshot=clone(state),token=++saveToken;saveBusy=true;saveLabel();Promise.resolve().then(()=>opts.onChange(snapshot)).then(ok=>{if(stopped||token!==saveToken)return;saveBusy=false;saveOK=ok!==false;hasSaved=saveOK;saveLabel();}).catch(()=>{if(stopped||token!==saveToken)return;saveBusy=false;saveOK=false;saveLabel();});}
  function remember(before){history.push(before);if(history.length>30)history.shift();}
  function commit(before){if(JSON.stringify(before)===JSON.stringify(state))return;remember(before);persist();renderTools();}
  function button(attrs,text){return '<button type="button" '+attrs+'>'+text+'</button>';}
  function renderTools(){
+  const focused=document.activeElement,focusAttr=['data-piece','data-gap','data-symbol','data-q'].find(a=>host.contains(focused)&&focused.hasAttribute(a)),focusValue=focusAttr&&focused.getAttribute(focusAttr);
+  const restoreFocus=()=>{if(!focusAttr||transition)return;const replacement=host.querySelector('['+focusAttr+'="'+focusValue+'"]');if(replacement&&!replacement.disabled&&!replacement.closest('[inert]'))replacement.focus({preventScroll:true});else can.focus({preventScroll:true});};
   dirty=true;syncMotionControls();
   const tools=el('.quest-puzzle-tools'),actions=el('.quest-actions');
-  el('.quest-kicker').textContent=viewStep<3?'THE LANTERN TRAIL · '+c.place:'A LITTLE LIGHT, A BIG ADVENTURE';
+  el('.quest-kicker').textContent=viewStep<3?c.place+(opts.learnerName?' · '+opts.learnerName:''):'A LITTLE LIGHT, A BIG ADVENTURE';
   el('#quest-heading').textContent=viewStep<3?LABELS[viewStep]:'Lantern lit';
   el('.quest-chapter').textContent=viewStep<3?'Puzzle '+(viewStep+1)+' / 3':state.completed.length+' / 3 islands';
   el('.quest-instruction').textContent=viewStep<3?INSTRUCTIONS[viewStep]:c.name+' is complete. Another island is waiting.';
   el('.quest-win').hidden=viewStep!==3;
+  el('.quest-gaps').hidden=viewStep!==0;el('.quest-gaps').innerHTML='';
+  el('.quest-key-tip').textContent=viewStep===1?'Keyboard: arrow keys move your guide; Space adds a trail point.':viewStep===2?'Keyboard: focus the board and move the light with arrow keys.':'Choose a plank, then choose its matching gap. Dragging works too.';
+  el('[data-q=reset]').hidden=success||viewStep===3;
+  el('.quest-finger').hidden=!guard.penSeen();saveLabel();
   if(viewStep===3){
-   el('.quest-win').innerHTML='<span class="quest-kicker">'+state.completed.length+' OF 3 ISLANDS SHINING</span><h3>A light for '+c.place+'</h3><p>You built, found a way, and brought the lantern home.</p>';
+   closeMore();el('.quest-win').innerHTML='<span class="quest-kicker">'+state.completed.length+' OF 3 ISLANDS SHINING</span><h3>A light for '+c.place+'</h3><p>You built, found a way, and brought the lantern home.</p>';
    tools.innerHTML='<div class="quest-lanterns" aria-label="'+state.completed.length+' lanterns lit">'+[0,1,2].map(i=>'<span class="'+(state.completed.includes(i)?'lit':'')+'">✦</span>').join('')+'</div>';
    actions.innerHTML=button('data-q="next-island" class="quest-primary"','Next island')+button('data-q="paint"','Paint a memory')+button('data-q="home"','The islands');
    message(state.completed.length===3?'All three lanterns are home. You can explore the trails again.':'Your next island has a different path to discover.');
-   return;
+   restoreFocus();return;
   }
   if(viewStep===0){
-   tools.innerHTML='<div class="quest-planks" role="group" aria-label="Bridge planks">'+c.pieces.map((n,i)=>button('data-piece="'+i+'" class="quest-plank '+(selected===i?'selected':'')+'" aria-label="Plank '+(i+1)+': '+n+' spaces" aria-pressed="'+(selected===i)+'" '+(state.bridge.includes(i)?'disabled':''),'<span class="plank-preview" aria-hidden="true">'+'▰'.repeat(n)+'</span><span>'+n+' '+(n===1?'space':'spaces')+'</span>')).join('')+'</div><div class="quest-gaps" role="group" aria-label="Place your chosen plank">'+c.gaps.map((n,i)=>button('data-gap="'+i+'" data-filled="'+(state.bridge[i]>=0)+'" aria-label="Gap '+(i+1)+', '+n+' spaces'+(state.bridge[i]>=0?', filled':'')+'"',state.bridge[i]>=0?'✓ Gap '+(i+1):'Gap '+(i+1))).join('')+'</div>';
+   tools.innerHTML='<div class="quest-planks" role="group" aria-label="Bridge planks">'+c.pieces.map((n,i)=>button('data-piece="'+i+'" class="quest-plank '+(selected===i?'selected':'')+'" aria-label="Plank '+(i+1)+': '+n+' spaces" aria-pressed="'+(selected===i)+'" '+(state.bridge.includes(i)?'disabled':''),'<span class="plank-preview" aria-hidden="true">'+'▰'.repeat(n)+'</span><span>'+n+' '+(n===1?'space':'spaces')+'</span>')).join('')+'</div>';
+   el('.quest-gaps').innerHTML=c.gaps.map((n,i)=>button('data-gap="'+i+'" style="left:'+([310,510,710][i]/W*100)+'%;top:'+ (335/H*100)+'%;width:'+Math.max(44,(n*32+10)/W*1000)/10+'%" data-filled="'+(state.bridge[i]>=0)+'" aria-label="Gap '+(i+1)+', '+n+' spaces'+(state.bridge[i]>=0?', filled':'')+'"','<span class="gap-label">'+(state.bridge[i]>=0?'✓ Gap '+(i+1):'Gap '+(i+1))+'</span>')).join('');
   }else if(viewStep===1){
-   tools.innerHTML='<div class="quest-trail-tools"><span><b>✦ '+c.sparks.filter(p=>state.trail.some((v,i)=>i&&Q.segmentDistance(p,state.trail[i-1],v)<=38)).length+' / 3</b> sparks on your trail</span><span class="quest-key-tip">Arrows move · Space adds a point</span></div>';
+   tools.innerHTML='<div class="quest-trail-tools"><span><b>✦ '+c.sparks.filter(p=>state.trail.some((v,i)=>i&&Q.segmentDistance(p,state.trail[i-1],v)<=38)).length+' / 3</b> sparks on your trail</span></div>';
   }else{
    tools.innerHTML='<div class="quest-code"><span>Find this code</span><span class="quest-code-target" aria-label="Code: '+c.code.map(i=>Q.SYMBOLS[i]).join(', ')+'">'+c.code.map(i=>'<i style="color:'+COLORS[i]+'">'+symbolIcon(i)+'</i>').join('')+'</span><span class="quest-code-answer" aria-label="Your code: '+(state.code.map(i=>Q.SYMBOLS[i]).join(', ')||'empty')+'">'+[0,1,2].map(i=>'<i>'+(state.code[i]===undefined?'·':symbolIcon(state.code[i]))+'</i>').join('')+'</span></div><div class="quest-symbols">'+Q.SYMBOLS.map((name,i)=>button('data-symbol="'+i+'" aria-label="'+name+'" '+(!state.found.includes(i)||state.code.length>=3?'disabled':''),'<b style="color:'+COLORS[i]+'">'+(state.found.includes(i)?symbolIcon(i):'?')+'</b><span>'+ (state.found.includes(i)?name:'Hidden')+'</span>')).join('')+'</div>';
   }
-  if(success){actions.innerHTML=button('data-q="continue" class="quest-primary" '+(animation?'disabled':''),viewStep===0?'Follow the fireflies →':'To the lantern →');}
-  else actions.innerHTML=button('data-q="undo" '+(!history.length?'disabled':''),'↶ Undo')+button('data-q="reset"','Reset')+button('data-q="hint" aria-pressed="'+hint+'"',hint?'Hide clue':'Clue')+button('data-q="check" class="quest-primary"',viewStep===0?'Cross bridge':viewStep===1?'Follow trail':'Light lantern');
+  if(success){closeMore();actions.innerHTML=button('data-q="continue" class="quest-primary" '+(animation?'disabled':''),viewStep===0?'Follow the fireflies →':'To the lantern →');}
+  else actions.innerHTML=button('data-q="undo" '+(!history.length?'disabled':''),'↶ Undo')+button('data-q="hint" aria-pressed="'+hint+'"',hint?'Hide clue':'Clue')+button('data-q="more" aria-label="More puzzle options" aria-controls="quest-more" aria-expanded="false"','•••<small>More</small>')+button('data-q="check" class="quest-primary"',viewStep===0?'Cross bridge':viewStep===1?'Follow trail':'Light lantern');
   tools.inert=success;
-  el('.quest-finger').hidden=!guard.penSeen();saveLabel();
+  el('.quest-finger').hidden=!guard.penSeen();saveLabel();restoreFocus();
  }
+ const dismissed=new Set();let swallowClick=false;
+ const ownsTarget=target=>host.contains(target)||!!opts.header?.contains(target);
+ function closeMore(focus=false){el('#quest-more').hidden=true;el('[data-q=more]')?.setAttribute('aria-expanded','false');if(focus)el('[data-q=more]')?.focus({preventScroll:true});}
+ function dismissDown(e){
+  if(stopped||!ownsTarget(e.target))return;
+  if(dismissed.has(e.pointerId)){e.preventDefault();e.stopImmediatePropagation();return;}
+  swallowClick=false;
+  if(dismissed.size||(!el('#quest-more').hidden&&!el('#quest-more').contains(e.target)&&!e.target.closest('[data-q=more]'))){
+   dismissed.add(e.pointerId);swallowClick=true;e.preventDefault();e.stopImmediatePropagation();closeMore();
+   if(e.target===can&&e.pointerType==='pen'&&guard.begin(e))guard.cancel();
+  }
+ }
+ function consumeDismiss(e){if(!dismissed.has(e.pointerId))return;e.preventDefault();e.stopImmediatePropagation();if(e.type!=='pointermove')dismissed.delete(e.pointerId);}
+ function consumeClick(e){if(swallowClick&&e.detail>0&&ownsTarget(e.target)){e.preventDefault();e.stopImmediatePropagation();}}
+ function escapeOptions(e){if(e.key==='Escape'&&!el('#quest-more').hidden){e.preventDefault();e.stopImmediatePropagation();closeMore(true);}}
+ document.addEventListener('pointerdown',dismissDown,true);for(const event of ['pointermove','pointerup','pointercancel'])document.addEventListener(event,consumeDismiss,true);document.addEventListener('click',consumeClick,true);document.addEventListener('keydown',escapeOptions,true);
  function pointFrom(e){const r=can.getBoundingClientRect();const p=[(e.clientX-r.left)/r.width,(e.clientY-r.top)/r.height];return p.every(v=>v>=0&&v<=1)?p:null;}
  function gapAt(p){if(!p||Math.abs(p[1]*H-335)>82)return -1;const x=p[0]*W;let best=-1;[310,510,710].forEach((v,i)=>{if(Math.abs(x-v)<86)best=i;});return best;}
  function place(gap,piece){const before=clone(state),r=Q.fitBridge(state,gap,piece);if(!r.ok){message('That plank does not fit this gap. Count the spaces and try another.');return;}state=r.state;selected=-1;burst([310,510,710][gap],335,'#f8d47c');commit(before);message('A good fit! '+state.bridge.filter(n=>n>=0).length+' of 3 gaps bridged.');}
@@ -113,11 +140,11 @@ function mount(host,opts){
  function stageView(step){
   viewStep=step;history=[];selected=-1;hint=false;success=false;acceptedRoute=null;effects=[];
   keyboard=[...c.start];light=[.1,.5];renderTools();
-  if(step<3)message('Try your idea. Undo is always here.');
+  if(step<3)message(INSTRUCTIONS[step]);
  }
  // Only presentation is delayed. Q.advance and persist have already secured the checkpoint.
  function transitionTo(step,label,prepare){
-  if(transition||stopped)return;blockHeldKeys();cancelGesture();animation=null;
+  if(transition||stopped)return;closeMore();blockHeldKeys();cancelGesture();animation=null;
   const change=()=>{if(prepare)prepare();stageView(step);};
   if(!motion()){change();syncMotionControls();can.focus({preventScroll:true});opts.onSpeak?.(INSTRUCTIONS[step]||label);return;}
   transition={elapsed:0,switched:false,change,step,label};
@@ -140,6 +167,7 @@ function mount(host,opts){
  function skipAnimation(){if(transition)finishTransition();else if(animation)finishTravel(true);}
 
  function click(e){const b=e.target.closest('button');if(!b||b.disabled||stopped)return;
+  if(b.dataset.q==='more'&&!transition){const tray=el('#quest-more');if(!tray.hidden){closeMore(true);return;}cancelGesture();tray.hidden=false;el('[data-q=more]')?.setAttribute('aria-expanded','true');tray.querySelector('button').focus({preventScroll:true});return;}
   if(performance.now()<ignoreClickUntil&&e.detail>0)return;
   if(b.dataset.q==='skip'){skipAnimation();return;}
   if(transition)return;
@@ -148,8 +176,9 @@ function mount(host,opts){
   if(b.dataset.gap!==undefined){const gap=Number(b.dataset.gap);if(selected>=0)place(gap,selected);else if(state.bridge[gap]>=0){const before=clone(state);state.bridge[gap]=-1;commit(before);message('Plank returned. Choose another idea.');}else message('Choose a plank first.');return;}
   if(b.dataset.symbol!==undefined){const before=clone(state);state.code.push(Number(b.dataset.symbol));commit(before);message(state.code.length===3?'Ready? Try lighting the lantern.':'Choose the next shape in the pictured code.');return;}
   switch(b.dataset.q){
+   case'close-more':closeMore(true);break;
    case'undo':if(history.length){state=history.pop();selected=-1;persist();renderTools();message('One move back. Try another idea.');}break;
-   case'reset':resetStage();break;
+   case'reset':closeMore();resetStage();el('[data-q=more]')?.focus({preventScroll:true});break;
    case'hint':hint=!hint;renderTools();message(hint?['Count the little spaces. A plank needs the same number.','The dotted trail shows one safe way. You can choose your own.','The faint rings show places to shine your lantern.'][viewStep]:'Clue tucked away. Your progress stays.');break;
    case'check':check();break;
    case'continue':if(!animation)nextStage();break;
@@ -167,10 +196,10 @@ function mount(host,opts){
   }
   if((e.code==='Space'||e.key==='Enter')&&viewStep===1){e.preventDefault();const before=clone(state);append([...keyboard]);commit(before);}
  }
- function fit(){const box=el('.quest-scene').getBoundingClientRect(),portrait=box.width<600&&box.height>box.width*.7;const w=Math.max(1,portrait?box.width:Math.min(box.width,box.height*W/H)),h=Math.max(1,portrait?box.height:w*H/W);stretch=h/(w*H/W);surface.style.width=w+'px';surface.style.height=h+'px';can.width=W*2;can.height=Math.round(H*2*stretch);g.setTransform(2,0,0,2*stretch,0,0);dirty=true;}
+ function fit(){const box=el('.quest-scene').getBoundingClientRect(),w=Math.max(1,box.width),h=Math.max(1,box.height);stretch=h/(w*H/W);surface.style.width=w+'px';surface.style.height=h+'px';can.width=W*2;can.height=Math.round(H*2*stretch);g.setTransform(2,0,0,2*stretch,0,0);dirty=true;}
  const observer=new ResizeObserver(fit);observer.observe(el('.quest-scene'));
  host.addEventListener('pointerdown',down);host.addEventListener('pointermove',move);host.addEventListener('pointerup',end);const canceled=e=>end(e,true);host.addEventListener('pointercancel',canceled);host.addEventListener('lostpointercapture',canceled);host.addEventListener('click',click);can.addEventListener('keydown',key);
- el('.quest-finger').onclick=()=>{cancelGesture();guard.allowFinger();el('.quest-finger').hidden=true;message('Finger play is ready.');};
+ el('.quest-finger').onclick=()=>{cancelGesture();guard.allowFinger();el('.quest-finger').hidden=true;closeMore(true);message('Finger play is ready.');};
  // Original code-drawn scenery shares the explorer and forest artwork with the islands.
  function text(t,x,y,size=16,color='#345b56',align='center'){g.save();g.translate(x,y);g.scale(1,1/stretch);g.fillStyle=color;g.font='700 '+(size*Math.min(1.8,Math.max(1,650/surface.clientWidth)))+'px system-ui';g.textAlign=align;g.fillText(t,0,0);g.restore();}
  function ground(night=false){
@@ -266,8 +295,8 @@ function mount(host,opts){
   if(viewStep===0)drawBridge();else if(viewStep===1)drawTrail();else if(viewStep===2)drawHollow();else drawWin();
   drawEffects();frame=requestAnimationFrame(run);
  }
- renderTools();message(viewStep<3?'Try an idea. There is no timer, and you can undo.':'Your lantern is still shining.');fit();opts.onSpeak?.(INSTRUCTIONS[viewStep]||'Your lantern is home.');frame=requestAnimationFrame(run);
- return()=>{stopped=true;root.removeEventListener('keydown',trackKey,true);root.removeEventListener('keyup',releaseKey,true);heldKeys.clear();blockedKeys.clear();animation=null;transition=null;effects=[];cancelAnimationFrame(frame);observer.disconnect();guard.cancel();pointer=null;host.removeEventListener('pointerdown',down);host.removeEventListener('pointermove',move);host.removeEventListener('pointerup',end);host.removeEventListener('pointercancel',canceled);host.removeEventListener('lostpointercapture',canceled);host.removeEventListener('click',click);can.removeEventListener('keydown',key);can.width=can.height=fog.width=fog.height=1;};
+ renderTools();el('#quest-heading').tabIndex=-1;el('#quest-heading').focus({preventScroll:true});message(viewStep<3?INSTRUCTIONS[viewStep]:'Your lantern is still shining.');fit();opts.onSpeak?.(INSTRUCTIONS[viewStep]||'Your lantern is home.');frame=requestAnimationFrame(run);
+ return()=>{stopped=true;hud.remove();document.removeEventListener('pointerdown',dismissDown,true);for(const event of ['pointermove','pointerup','pointercancel'])document.removeEventListener(event,consumeDismiss,true);document.removeEventListener('click',consumeClick,true);document.removeEventListener('keydown',escapeOptions,true);dismissed.clear();root.removeEventListener('keydown',trackKey,true);root.removeEventListener('keyup',releaseKey,true);heldKeys.clear();blockedKeys.clear();animation=null;transition=null;effects=[];cancelAnimationFrame(frame);observer.disconnect();guard.cancel();pointer=null;host.removeEventListener('pointerdown',down);host.removeEventListener('pointermove',move);host.removeEventListener('pointerup',end);host.removeEventListener('pointercancel',canceled);host.removeEventListener('lostpointercapture',canceled);host.removeEventListener('click',click);can.removeEventListener('keydown',key);can.width=can.height=fog.width=fog.height=1;};
 }
-root.WWQuestUI=Object.freeze({version:'0.7.1',mount});
+root.WWQuestUI=Object.freeze({version:'0.8.0',mount});
 })(globalThis);

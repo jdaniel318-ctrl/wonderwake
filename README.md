@@ -1,11 +1,11 @@
-# Wonderwake10 — Sparkstep 0.7.1
+# Wonderwake11 — Playdeck 0.8.0
 
-A movement and transition update for the Lantern Trail. Original explorers now step along accepted routes, fireflies gather behind them, fitted planks sparkle, and a short lantern dissolve connects the puzzles and island celebrations. Skip animation is available during travel. Reduced motion completes these effects immediately.
+Lantern Trail now uses one large, steady playfield and a single compact dock for puzzle pieces and actions. Puzzle title, island, learner, progress and device-save status share the slim header. Select bridge gaps directly on the bridge, or drag pieces as before. Undo and Clue stay in the dock; Reset, instructions and finger mode are in More. An outside gesture dismisses More without playing a move.
 
-The explorer stays at START until a drawn route is accepted. The scene keeps the same bounds between puzzles, including on narrow phones. No puzzle rules, reward rules, stored profile schema or drawing-studio controls change in this update.
+In Colorwake, Save picture changes to Saving… and then Saved to gallery only after the current picture is confirmed saved. The confirmation stays until the drawing or layers change. Save changes and Retry save make the next action explicit. Reopening an unconfirmed in-page gallery entry does not claim it was saved.
 
-Start with START_HERE.txt for uploading and three device checks. The new wonderwake_quest_motion.js file is required. Upload all top-level files together so the integrity-checked scripts match. Existing learners, gallery pictures, Glowtrail progress and progress-copy checksums remain compatible.
+Start with START_HERE.txt for uploading and three device checks. Upload all top-level files together so the integrity-checked scripts match. Existing learners, gallery pictures, layered artwork, quest progress and progress-copy checksums stay compatible. The 2,000-stroke drawing limit is unchanged.
 
-Architecture: wonderwake_quest.js owns rules and validation; wonderwake_quest_motion.js samples accepted routes by distance; quest UI owns transient movement and scene changes. Optional walking poses reuse the original artwork in world/creative. All static callers keep their existing pose. Animation never decides puzzle success or grants a reward. The app still owns selected-learner identity and checked local saving.
+The quest rules and reward engine are unchanged. The scene uses the available dimensions with matching normalized input coordinates; sprites and text retain their proportions. On narrow phones the same dock wraps into two rows. Scene bounds stay fixed across puzzles, clues and confirmations. Quick transitions, Skip animation and reduced motion remain available.
 
-Source, tests and review evidence are included in verification/. recovery/ contains the previous Glowtrail application ZIP. See VERIFY.txt for what was actually tested and the remaining physical Safari/Pencil check. Wonderwake remains a standalone family preview.
+Source verification is in verification/. recovery/ contains the previous Sparkstep application ZIP. Physical iPad/Safari/Pencil testing remains the final device check. This is a standalone family preview package; uploading and deployment remain with the user.

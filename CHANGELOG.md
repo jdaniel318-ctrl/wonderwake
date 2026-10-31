@@ -1,3 +1,11 @@
+# Playdeck 0.8.0
+- Enlarged the quest scene to the available width and height; combined puzzle pieces and actions in one dock.
+- Moved title, place, learner, puzzle count and local-save status into the slim header.
+- Made bridge gaps accessible directly on the board. Drag and keyboard controls remain available.
+- Added a small More panel for Reset, instructions and finger mode; outside dismissal consumes its gesture.
+- Added persistent current-picture save confirmation, pending and retry labels, with version and fresh-paper race protection.
+- Kept the existing puzzle rules, quick transitions, rewards, learners, layers and backup format.
+
 # Sparkstep 0.7.1 — 2026-10-31
 
 - Optional walking poses for the original explorers; distance-based accepted route travel with firefly followers.

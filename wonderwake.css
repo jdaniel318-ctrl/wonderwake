@@ -230,3 +230,8 @@
  .paint-dock .dock-divider{display:none}.paint-tray{right:120px;max-width:calc(100% - 132px)}
 }
 
+
+/* Current picture acknowledgement is persistent and does not resize the header. */
+.paint-header-actions .paint-save{width:168px;min-width:168px;height:44px;padding:6px 10px;line-height:16px;white-space:normal}
+.paint-save.save-failed{background:#8b513b}.paint-save[aria-busy=true]{opacity:.85}
+@media(max-width:600px){.paint-header-actions .paint-save{width:94px;min-width:94px;padding:6px;font-size:12px}}

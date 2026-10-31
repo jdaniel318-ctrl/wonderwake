@@ -36,6 +36,9 @@ function hsvFromColor(hex){
 function mount(host,opts={}){
  const compact=!!opts.fit,limits=root.WWCore.DRAWING_LIMITS;
  let strokes=[],redo=[],color=COLORS[0][0],size=compact?4:8,tool='pen',current=null,dirty=false,pending=null,editVersion=0,totalPoints=0,frame=0,disposed=false,paper=null,trayOpener=null;
+ const initialConfirmed=!!opts.initial&&opts.initialSaved!==false;
+ let saveBusy=false,saveFailed=!!opts.initial&&!initialConfirmed,hasSaved=initialConfirmed,savedVersion=initialConfirmed?0:-1,paperGeneration=0;
+ if(opts.initial&&!initialConfirmed)dirty=true;
  const toolSizes={pen:4,pencil:4,marker:14,eraser:24,brush:20,...opts.tools?.sizes};
  const toolOpacities={pen:100,pencil:78,marker:38,eraser:100,brush:25,...opts.tools?.opacities};
  let layers=compact?(opts.initial?.layers?JSON.parse(JSON.stringify(opts.initial.layers)):[{id:1,name:'My drawing',visible:true,locked:false,opacity:100}]):null;
@@ -79,7 +82,16 @@ function mount(host,opts={}){
  function draw(){if(compact){painter.rebuild(strokes.filter(s=>s!==current),paper,layers);if(current)painter.preview(current,layers);}else{paint(can,strokes.filter(s=>s!==current),paper);live.width=can.width;live.height=can.height;if(current)stroke(live.getContext('2d'),current,can.width,can.height);}historyButtons();}
  function activeFrame(){frame=0;if(disposed)return;const g=live.getContext('2d');g.clearRect(0,0,live.width,live.height);if(current){if(compact)painter.preview(current,layers);else stroke(g,current,can.width,can.height);}}
  function queueFrame(){if(!frame)frame=requestAnimationFrame(activeFrame);}
- function edited(){dirty=true;pending=null;editVersion++;}
+ function syncSaveButton(){
+  const confirmed=!dirty&&hasSaved&&savedVersion===editVersion;
+  const label=saveBusy?'Saving…':confirmed?'Saved to gallery':saveFailed?'Retry save':hasSaved?'Save changes':'Save picture';
+  const span=saveButton.querySelector('span');if(span){if(span.textContent!==label)span.textContent=label;}else saveButton.textContent=label;
+  saveButton.disabled=saveBusy;saveButton.classList.toggle('saved',confirmed&&!saveBusy);saveButton.classList.toggle('save-failed',saveFailed&&!saveBusy);
+  saveButton.setAttribute('aria-busy',String(saveBusy));
+  saveButton.setAttribute('aria-label',saveBusy?'Saving picture':confirmed?'Saved to gallery on this device':saveFailed?'Retry save to my gallery':'Save to my gallery');
+  saveButton.title=confirmed?'This version is saved in your gallery on this device.':hasSaved?'Your changes need saving.':'Save this picture to your gallery on this device.';
+ }
+ function edited(){dirty=true;pending=null;editVersion++;saveFailed=false;syncSaveButton();}
  function point(e){const b=can.getBoundingClientRect();return [Math.round(Math.max(0,Math.min(1,(e.clientX-b.left)/b.width))*100000)/100000,Math.round(Math.max(0,Math.min(1,(e.clientY-b.top)/b.height))*100000)/100000];}
  function full(){state.textContent='This is a wonderfully detailed picture. Save it, then start a new paper.';}
  function addPoint(e,force=false){if(!current||opts.count)return;const p=point(e),last=current.points.at(-1),dist=Math.hypot((p[0]-last[0])*800,(p[1]-last[1])*800/ratio());if(dist<(force?.01:.5))return;if(totalPoints>=limits.points){full();return;}current.points.push(p);totalPoints++;edited();}
@@ -275,17 +287,17 @@ function mount(host,opts={}){
  document.addEventListener('keydown',escapeTray,true);
  host.querySelector('.paint-undo').onclick=()=>{finish();const s=strokes.pop();if(!s)return;redo.push(s);totalPoints-=s.points.length;edited();draw();state.textContent=opts.count?strokes.length+' dots on your paper.':'Last stroke undone.';};
  const redoButton=host.querySelector('.paint-redo');if(redoButton)redoButton.onclick=()=>{finish();const s=redo.pop();if(!s)return;strokes.push(s);totalPoints+=s.points.length;edited();draw();state.textContent='Stroke restored.';};
- host.querySelector('.paint-clear').onclick=()=>{if(strokes.length&&!confirm('Start a fresh paper? Save this picture to your gallery first to keep it.'))return;finish();strokes=[];redo=[];totalPoints=0;dirty=false;pending=null;editVersion++;if(compact){opts.initial=null;opts.onNewPaper?.();layers=[{id:1,name:'My drawing',visible:true,locked:false,opacity:100}];activeLayer=1;renderLayers();}closeTray(true);draw();state.textContent='Fresh paper. What will you make?';};
+ host.querySelector('.paint-clear').onclick=()=>{if(strokes.length&&!confirm('Start a fresh paper? Save this picture to your gallery first to keep it.'))return;finish();strokes=[];redo=[];totalPoints=0;dirty=false;pending=null;editVersion++;hasSaved=false;savedVersion=-1;saveFailed=false;paperGeneration++;syncSaveButton();if(compact){opts.initial=null;opts.onNewPaper?.();layers=[{id:1,name:'My drawing',visible:true,locked:false,opacity:100}];activeLayer=1;renderLayers();}closeTray(true);draw();state.textContent='Fresh paper. What will you make?';};
  host.querySelector('.paint-finger').onclick=()=>{finish();guard.allowFinger();closeTray(true);state.textContent='Finger drawing enabled. Your marks are kept.';};
  saveButton.onclick=async()=>{
   finish();closeTray();if(!strokes.length&&!opts.initial){state.textContent='Draw something first.';return;}
   if(!dirty){state.textContent='This version is already saved. Add a stroke to make a new version.';return;}
-  saveButton.disabled=true;saveButton.classList.remove('saved');const savingVersion=editVersion;
+  if(saveBusy)return;saveBusy=true;saveFailed=false;syncSaveButton();state.textContent='Saving your picture…';const savingVersion=editVersion,savingPaper=paperGeneration;
   try{if(!pending)pending={title:(opts.initial?.title||opts.title||'My picture').slice(0,80),createdAt:opts.initial?.createdAt??Date.now(),...(compact?{layers:JSON.parse(JSON.stringify(layers))}:{}),...(paper?{paper:{...paper}}:{}),strokes:JSON.parse(JSON.stringify(strokes))};
-   const ok=await opts.onSave(pending);if(disposed)return;
-   if(ok){if(editVersion===savingVersion){dirty=false;saveButton.classList.add('saved');state.textContent='Saved to your gallery on this device.';}else state.textContent='Earlier picture saved. Your newer edits need another save.';}
-   else state.textContent='Picture is still here. Saving failed; download a copy from More.';
-  }catch(e){if(!disposed)state.textContent=e.message;}finally{if(!disposed)saveButton.disabled=false;}
+   const ok=await opts.onSave(pending);if(disposed||savingPaper!==paperGeneration)return;
+   if(ok){hasSaved=true;if(editVersion===savingVersion){dirty=false;savedVersion=savingVersion;state.textContent='Saved to your gallery on this device.';}else state.textContent='Earlier picture saved. Your newer edits need another save.';}
+   else{saveFailed=true;state.textContent='Picture is still here. Saving failed; download a copy from More.';}
+  }catch(e){if(!disposed&&savingPaper===paperGeneration){saveFailed=true;state.textContent=e.message;}}finally{if(!disposed){saveBusy=false;syncSaveButton();}}
  };
  host.querySelector('.paint-download').onclick=()=>{finish();if(!strokes.length){state.textContent='Draw something first.';return;}can.toBlob(blob=>{if(blob)opts.onDownload(blob);},'image/png');closeTray(true);};
  if(opts.onAnswer)host.querySelector('.paint-answer').onclick=()=>{finish();if(!strokes.length&&!opts.count){state.textContent='Make your picture first.';return;}opts.onAnswer(strokes.length,host.querySelector('.paint-compare'),host.querySelector('.paint-answer'));};
@@ -294,9 +306,9 @@ function mount(host,opts={}){
    if(!paper){const aspect=Math.max(.6,Math.min(2.4,r.width/r.height));paper={width:1600,height:Math.round(1600/aspect)};draw();}
    const w=Math.max(1,Math.min(r.width,r.height*ratio()));surface.style.width=w+'px';surface.style.height=w/ratio()+'px';
   };resizeObserver=new ResizeObserver(fit);resizeObserver.observe(paperWrap);fit();}
- draw();setColor(color);
+ draw();setColor(color);syncSaveButton();if(opts.initial)state.textContent=initialConfirmed?'Saved to your gallery on this device.':'This picture is still in this page. Retry save to keep it on this device.';
  return()=>{disposed=true;painter?.dispose();clearTimeout(trayTimer);document.removeEventListener('pointerdown',dismissOutside,true);for(const event of ['pointermove','pointerup','pointercancel'])document.removeEventListener(event,consumeDismissed,true);document.removeEventListener('click',consumeClick,true);dismissedPointers.clear();dismissedClicks.clear();resizeObserver?.disconnect();cancelAnimationFrame(frame);guard.cancel();current=null;document.removeEventListener('keydown',escapeTray,true);headerActions?.remove();can.onpointerdown=can.onpointermove=can.onpointerup=can.onpointercancel=can.onlostpointercapture=null;};
 }
-root.WWDrawing=Object.freeze({version:'0.6.0',paint,mount,colorFromHSV});
+root.WWDrawing=Object.freeze({version:'0.8.0',paint,mount,colorFromHSV});
 })(globalThis);
 
