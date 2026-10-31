@@ -1,3 +1,13 @@
+# 0.5.1 — Prism
+
+Colors uses American spelling. The new HSV color wheel, brightness control and hex input add up to 16 custom colors per explorer to the existing palette. Custom swatches persist, export and restore; removal leaves existing artwork unchanged. The dock shows the active color.
+
+Each of Pen, Pencil, Marker and Eraser has a 1–40 size slider with its own remembered setting. Optional paintTools metadata preserves old profile checksums while new exports carry palette and tool preferences. Stroke validation accepts integer widths from 1 to 40.
+
+Outside gestures dismiss the open menu without painting or clicking through. All overlapping contacts remain suppressed until the gesture ends; compatibility clicks are consumed. A pen dismissal on paper also arms the existing finger guard. Menus close with a brief reduced-motion-aware transition. Done replaces the X as an alternative to tapping outside.
+
+The large fixed paper and 2,000-stroke / 50,000-point allowance remain. No Engine, deployment, database name or learner identity changes. New Prism data requires Prism or later; recovery software is not a learner backup.
+
 # 0.5.0 — Openpaper
 
 Paper fills the available studio with a slim fixed header and compact tool dock. Twelve colours, illustrated pen/pencil/marker/eraser controls, four thicknesses, undo and redo. Trays animate over the paper without shifting it; reduced-motion settings are respected. Islands, Save and Gallery remain reachable on tablets and phones, including long learner nicknames.

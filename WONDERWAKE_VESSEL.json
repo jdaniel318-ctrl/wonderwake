@@ -2,8 +2,8 @@
   "schema": "blackflag-draft-vessel-descriptor-v1",
   "project_key": "wonderwake",
   "display_name": "Wonderwake",
-  "release": "Openpaper",
-  "version": "0.5.0",
+  "release": "Prism",
+  "version": "0.5.1",
   "lifecycle": "draft_family_preview",
   "commissioned_on_server": false,
   "fleet_core_membership_changed": false,
@@ -70,5 +70,16 @@
     "native_vectorcraft_roundtrip_verified": false,
     "artcraft_services_included": false,
     "default_dinosaur": "Fern the triceratops"
+  },
+  "creative_controls": {
+    "custom_colors_per_learner": 16,
+    "size_range": [
+      1,
+      40
+    ],
+    "tool_sizes_remembered": true,
+    "outside_gesture_dismisses_without_drawing": true,
+    "strokes_per_picture": 2000,
+    "sampled_points_per_picture": 50000
   }
 }

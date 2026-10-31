@@ -1,19 +1,25 @@
-WONDERWAKE06 — OPENPAPER · 0.5.0
+WONDERWAKE07 — PRISM · 0.5.1
 
-1. On the existing Wonderwake page, keep a progress copy for each learner you want backed up. Save any current paper to its gallery first.
-2. Unzip this package. Upload all top-level files INSIDE Wonderwake06-Openpaper to the existing wonderwake repository root, replacing matching files. Leave verification/ and recovery/ on your device; neither folder is required to run the game.
-3. Once GitHub Pages finishes, refresh the existing Wonderwake page once. Check for OPENPAPER · FAMILY PREVIEW 0.5.0. Choose the same learner, then Paint a picture.
+1. Save any current picture to its gallery. On the existing Wonderwake page, keep a progress copy for each learner you want backed up.
+2. Unzip this package. Upload all top-level files INSIDE Wonderwake07-Prism to the existing wonderwake repository root, replacing matching files. Leave verification/ and recovery/ on your device; neither folder is needed to run the game.
+3. After GitHub Pages finishes, refresh Wonderwake once. Check PRISM · FAMILY PREVIEW 0.5.1. Choose the same explorer, then Paint a picture.
 
-YOUR STUDIO
-Islands, Gallery and Save stay at the top. The small dock holds Colour, Pen, Undo, Redo and More. Tap Colour for twelve swatches. Tap Pen for pen/pencil/marker/eraser and thickness. Tap the paper or close the tray to continue. More holds PNG download, finger drawing, new paper and shapes.
+COLORS AND TOOLS
+The dock now says Colors. Open Colors, choose Make a color, move around the wheel and adjust Brightness. Add color puts it in My colors and selects it on the dock. An optional hex field lets you match an exact color. Your 12 default swatches remain; each explorer can keep 16 custom colors. Removing a swatch never changes a saved picture.
 
-BIGGER PAPER, MORE ROOM TO CREATE
-The paper uses the available screen shape. Rotation fits the original paper without stretching your marks. Up to 2,000 strokes / 50,000 sampled points per picture; 12 saved pictures per learner. New paper is temporary until Save succeeds. Download is another way to keep a PNG.
+Open Pen to choose Pen, Pencil, Marker or Eraser. The size slider runs from 1 to 40 and remembers a separate setting for each tool and explorer. A small preview shows the line changing. Pencil is finer and Marker broader than Pen at the same setting.
+
+Tap outside an open menu to close it. That entire tap or drag only closes the menu; after the short transition and lifting your fingers, the next gesture can draw. Done and Escape are also available. Menu changes leave the paper in place.
+
+KEEP CREATING
+The larger paper and 2,000-stroke / 50,000-point allowance remain. Each learner has 12 gallery slots. Save and Gallery stay at the top. More contains PNG download, new paper, finger drawing and shapes. New paper is temporary until saved.
 
 KEEP YOUR EXISTING WORK
-Same hosted address, database, learner IDs and galleries. Existing saved pictures and progress exports are supported. Do not clear website data. New Openpaper paintings require this version or later; older builds cannot read all the new gallery data.
+Same hosted address, database, learner IDs and galleries. Existing progress exports remain readable. Custom colors and sizes are included in new progress copies. Do not clear website data. New Prism settings and variable-width drawings require Prism or later; older builds cannot read all new data.
 
-recovery/ contains the previous application ZIP, not learner records. Keep progress exports separately. No files are deployed by downloading this package. The Black Flag Engine is unchanged.
+recovery/ contains the previous application ZIP, not learner records. Keep progress exports separately. Downloading this package does not deploy it. Wonderwake remains independent; the Black Flag Engine is unchanged.
 
-DEVICE CHECK
-Draw a detailed picture; switch colours/tools; Save and open Gallery. Confirm the screen stays still and the picture looks right on your actual Safari/Pencil. Automated checks are described in VERIFY.txt.
+BECCA'S THREE CHECKS
+1. Make a custom color, add it, and draw with it. Try a different size for each tool.
+2. Open Colors or Pen, then touch and drag on the paper. The menu should close without a mark; the next gesture should draw. The paper should stay still.
+3. Save the picture, open Gallery, then reopen Wonderwake and choose the same explorer. Check the picture, My colors and tool sizes.

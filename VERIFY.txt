@@ -1,35 +1,36 @@
-WONDERWAKE06 — OPENPAPER 0.5.0 · VERIFICATION
+WONDERWAKE07 — PRISM 0.5.1 · VERIFICATION
 
-All browser checks use synthetic learners, not actual device records.
+All automated checks use synthetic learners, not the family's device records.
 
-13 unit/core tests passed: comparison and spelling generation, old profile and export compatibility, picture validation, new paper/tool metadata, detailed paintings beyond the previous limit, exact 2,000-stroke/50,000-point bounds, malformed inputs, learner separation, guided-vs-independent learning evidence and pointer guard.
+16 unit/core tests passed: legacy canonical profiles and painting formats; new optional paintTools data; valid and invalid custom hex palettes; integer stroke/tool widths; HSV primary, neutral and shade output; drawing capacity bounds; learner separation; pointer guard; math/spelling generation and learning evidence.
 
-3 Openpaper browser regressions passed:
-- Paper exceeds 900x550 at a 1024x768 viewport; colour/tool trays and Save feedback leave its rectangle unchanged.
-- A continuous drawing with 6,000 synthetic Pencil events exceeds the previous limit, saves and reloads intact.
-- A 24-character learner nickname keeps Save/Gallery visible at 320px phone width. This regression failed before the header fix and passed afterwards.
+7 Prism browser regressions passed:
+- Colors label on the main dock.
+- Outside tap/drag closes color and pen trays without a mark; the next gesture paints.
+- The wheel, brightness, keyboard hue control, hex entry and Add color feed the palette and dock. Duplicate colors are not added twice. Swatch removal leaves canvas pixels unchanged.
+- Custom colors and a size 17 painting survive local storage and an actual downloaded/decoded progress export; another learner has a separate palette; reload restores the original explorer's palette.
+- Touch and pen gestures remain suppressed through movement, cancellation, the transition and a later overlapping contact. The following independent gesture draws.
+- A first header tap only closes a menu; the second tap saves.
+- A Pencil dismissal enables the existing finger guard; explicit finger drawing resets it.
+- Individual tool sizes survive switching tools and reloading.
+(Some test cases cover several related behaviors.)
 
-6 layout sizes passed: 1366x900, 1024x768, 390x844, 320x568, 844x390 and 568x320. Paper uses over half the viewport area; Islands/Save/Gallery and dock targets are visible and at least 44px. Modal/body do not scroll. Trays stay contained and do not shift the paper. Colour, marker, thickness, undo/redo, reduced motion and identical saved/gallery pixels checked. Tablet/phone/short-landscape screenshots visually inspected.
+3 inherited drawing regressions passed: large stable tablet paper through trays and Save feedback; 6,000 synthetic Pencil events save/reload beyond the old point limit; long learner nicknames keep Save/Gallery visible at 320 px width.
 
-Capacity and backup checks passed:
-- 302 strokes / more than 1,600 stored points, repeated-position sample filtering, synthetic palm rejection, rotation preserves canvas pixels.
-- The real footer export downloaded a full 12-picture gallery with 600,000 points. Compact file size: 11,337,220 bytes. WWStore.unpack restored identical canonical progress. Import bound is 64 MB.
-- Unit validation accepts 50,000 points and 2,000 strokes; rejects the next point/stroke. Stored pictures remain bounded, not unlimited.
+6 layout sizes passed: 1366x900,1024x768,390x844,320x568,844x390,568x320. Paper uses over half of the viewport, navigation/dock targets remain visible and at least 44 px, trays stay contained, modal/body scrolling does not move the paper, reduced motion is honored, marker/color/slider/undo/redo work, and saved/gallery pixels match. Additional wheel/palette checks passed at 1024x768,390x844,320x568: no sideways overflow, controls reachable, and paper geometry unchanged. Tablet/phone screenshots were visually inspected.
 
-Existing browser workflows passed:
-- Painting, save, reload, gallery and learner isolation.
-- Countable math picture answers, zero answer and guided spelling self-check.
-- Progress export/restore, checksum tamper rejection and old export shape.
-- A full gallery refuses a new picture without overwriting old pictures.
-- PNG download; four-question expedition and prize painting.
-- Editing during an asynchronous save stays dirty and can be saved separately.
-- No application page errors in these workflows.
+Existing workflows passed: paint/save/reload/gallery, learner isolation, countable math picture answers including zero, guided spelling self-check, full-gallery refusal without replacement, PNG download, four-question expedition/prize painting, checksummed export/restore and tamper rejection, editing during asynchronous save remains saveable, and no page errors in the checked paths.
 
-Independent source review: two important findings (long nickname clipping Save and oversized pretty-printed backups) fixed and verified. Final source verdict: no remaining critical or important findings.
+Capacity checks passed: 302 strokes, more than 1,600 stored points, duplicate sampling filter, synthetic palm rejection and rotation preserving canvas pixels. An actual full-gallery footer download with 12 pictures / 600,000 points restored identical canonical data; size 11,337,220 bytes, below 64 MB import bound. Maximum picture allowance stays 2,000 strokes / 50,000 sampled points.
 
-Run the Node tests with node --test verification/unit.cjs verification/more-unit.cjs verification/openpaper-unit.cjs. Browser scripts need Playwright, a Chromium executable in WW_CHROMIUM and a local HTTP server URL in WW_URL. openpaper-layout.cjs also uses the documented local test-browser default. PNG screenshots are temporary diagnostics, not application assets.
+Independent review found a delayed second-finger dismissal gap. A regression reproduced it before the fix. After the fix, genuine Chromium CDP touch input verified both finger-release orders, remaining-contact movement, no unintended marks, and normal drawing on the next gesture. The first-Pencil-dismissal guard behavior was also tightened and regression tested. Final source review: no remaining Critical or Important findings.
 
-Final package: all shipped JS syntax checked; SHA-384 script/style tags verified; ASSET_HASHES.json inventories SHA-256 of every other packaged file; ZIP CRC and extracted-file agreement checked. No deployment is performed by this package.
+Run: node --test verification/*unit.cjs
+Browser scripts require Playwright, Chromium at WW_CHROMIUM (or the script's default), and a local HTTP URL in WW_URL. Browser checks use Chromium; they do not establish physical Safari/Pencil behavior. Screenshot paths are temporary diagnostics, not application assets.
 
-LIMITS
-Chromium automation and synthetic pointer events are not native iPad Safari or physical Apple Pencil verification. Actual-device drawing feel, browser chrome resizing and hardware palm behaviour need the family field check. No new server account, cloud sync, authenticated learner isolation or commissioning is claimed. Unsaved paper is temporary; Save or Download before leaving. The older recovery build cannot read all new Openpaper painting data.
+Final package is checked for JS syntax, SHA-384 script/style integrity, SHA-256 inventory, ZIP CRC and agreement with extracted bytes. No deployment is performed by this package.
+
+DEVICE EVIDENCE AND LIMITS
+The user's Openpaper screenshots and report establish that the larger studio and previous controls were visible and preferred on Safari. They do not establish acceptance of these new Prism controls. Becca's next device check should exercise custom colors, sliders, outside taps/drags, saved pictures and reopening the same explorer. Physical palm behavior and Safari browser-chrome resizing remain device checks.
+
+No new cloud sync, account, authenticated learner isolation, fleet bootstrap or commissioning is claimed. Unsaved paper is temporary. New Prism settings and variable-width paintings require Prism or later; recovery software is not a learner backup.
